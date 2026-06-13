@@ -598,7 +598,7 @@ const DISTRICTS = [
   {
     "District": "Scarsdale Union Free School District",
     "State": "NY",
-    "Region": "Westchester County / NYC suburbs",
+    "Region": "Westchester NY",
     "BA Start": 69524,
     "BA 5-Year": 90131,
     "BA 10-Year": 110052,
@@ -3133,7 +3133,7 @@ const DISTRICTS = [
   {
     "District": "Loudoun County Public Schools",
     "State": "VA",
-    "Region": "Northern Virginia / DC suburbs",
+    "Region": "Northern VA/DC",
     "BA Start": 60553,
     "BA 5-Year": 71558,
     "BA 10-Year": 84421,
