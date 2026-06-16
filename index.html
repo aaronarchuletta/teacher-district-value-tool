@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher District Value Prototype 306</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="desktop-side-rail" aria-label="Main shortcuts">
+  <button type="button" class="side-rail-btn" id="desktopRailHome" aria-label="Return to home map view">
+    <span class="side-rail-icon" aria-hidden="true">⌂</span>
+    <span class="side-rail-label">Home</span>
+  </button>
+  <button type="button" class="side-rail-btn" id="desktopRailSearch" aria-label="Search districts">
+    <span class="side-rail-icon" aria-hidden="true">⌕</span>
+    <span class="side-rail-label">Search</span>
+  </button>
+  <button type="button" class="side-rail-btn" id="desktopRailFavorites" aria-label="Open favorite districts">
+    <span class="side-rail-icon" aria-hidden="true">♥</span>
+    <span class="side-rail-label">Favorites</span>
+    <span class="side-rail-count" id="favoriteRailCount" hidden>0</span>
+  </button>
+</nav>
+
+<section class="favorites-panel" id="favoritesPanel" aria-label="Favorite districts" hidden>
+  <div class="favorites-panel-head">
+    <div>
+      <h2>Favorites</h2>
+      <p id="favoritesPanelSub">Save districts to compare later.</p>
+    </div>
+    <button type="button" class="favorites-panel-close" id="favoritesPanelClose" aria-label="Close favorites">×</button>
+  </div>
+  <div class="favorites-panel-grid" id="favoritesPanelGrid"></div>
+</section>
+
+<nav class="mobile-bottom-toolbar" aria-label="Mobile shortcuts">
+  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarHome" aria-label="Return to home map view">
+    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">⌂</span>
+    <span>Home</span>
+  </button>
+  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarSearch" aria-label="Search districts">
+    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">⌕</span>
+    <span>Search</span>
+  </button>
+  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarFavorites" aria-label="Open favorite districts">
+    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">♥</span>
+    <span>Favorites</span>
+    <span class="mobile-bottom-toolbar-count" id="mobileFavoriteCount" hidden>0</span>
+  </button>
+</nav>
+
+<section class="mobile-map-results-sheet" id="mobileMapResultsSheet" aria-label="Matching districts in map view">
+  <button type="button" class="mobile-map-results-handle" id="mobileMapResultsSheetToggle" aria-label="Expand or collapse matching district list">
+    <span></span>
+  </button>
+  <div class="mobile-map-results-summary" id="mobileMapResultsSummary">Move the map to see matching districts.</div>
+  <div class="mobile-map-results-list" id="mobileMapResultsList"></div>
+</section>
+
+<header>
+  <h1>Teacher District Value</h1>
+  <p>A working prototype for exploring public school districts by salary progression, affordability, sub pay, student-teacher ratio, and demographic balance. This uses your current workbook as the data engine.</p>
+</header>
+
+<main class="grid">
+
+  <div class="mobile-search-topbar" aria-label="Mobile district search and filters">
+    <div class="mobile-search-wrap">
+      <span class="mobile-search-icon" aria-hidden="true">⌕</span>
+      <input type="search" id="mobileDistrictSearch" placeholder="Search district..." autocomplete="off" aria-label="Search for a school district" aria-expanded="false" aria-controls="mobileDistrictSearchResults">
+      <button type="button" id="mobileDistrictSearchClear" class="mobile-search-clear" aria-label="Clear district search" hidden>×</button>
+      <div id="mobileDistrictSearchResults" class="mobile-search-results" role="listbox" aria-label="Matching districts"></div>
+    </div>
+    <button type="button" class="mobile-filter-circle" id="mobileFilterOpenBtn" aria-label="Open filters">
+      <span class="mobile-filter-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M5 3.5V20.5" />
+          <path d="M1.5 8.5H8.5" />
+          <path d="M12 2.5V11.5" />
+          <path d="M8.5 14H15.5" />
+          <path d="M12 16.5V21.5" />
+          <path d="M19 3.5V20.5" />
+          <path d="M15.5 8.5H22.5" />
+        </svg>
+      </span>
+      <span class="mobile-filter-badge" id="mobileFilterBadge">0</span>
+    </button>
+  </div>
+
+<section class="overview-profile-layout" id="mobileFiltersAnchor">
+    <div class="card overview-filter-card">
+      <div class="mobile-filter-overlay-head">
+        <button type="button" class="mobile-filter-close" id="mobileFilterCloseBtn" aria-label="Close filters">‹</button>
+        <h2>Filters</h2>
+        <button type="button" class="mobile-filter-reset" id="mobileFilterResetBtn">Reset</button>
+      </div>
+      <select id="stateFilter" style="display:none"><option value="">All states</option></select>
+      <select id="regionFilter" style="display:none"><option value="">All regions</option></select>
+      <button class="btn secondary" id="resetBtn" style="display:none">Reset Filters</button>
+
+      <div class="more-filters-shell">
+        <button type="button" class="more-filters-trigger" id="moreFiltersTrigger" aria-expanded="false" aria-controls="moreFiltersPanel">
+          <span class="filter-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <path d="M5 3.5V20.5" />
+              <path d="M1.5 8.5H8.5" />
+              <path d="M12 2.5V11.5" />
+              <path d="M8.5 14H15.5" />
+              <path d="M12 16.5V21.5" />
+              <path d="M19 3.5V20.5" />
+              <path d="M15.5 8.5H22.5" />
+            </svg>
+          </span>
+          <span class="trigger-label">Filters</span>
+          <span class="filter-count-badge" id="extraFilterCount">0</span>
+          <span class="chevron" id="moreFiltersChevron">⌄</span>
+        </button>
+
+        <div class="more-filters-panel" id="moreFiltersPanel" hidden>
+          <div class="more-filters-content">
+            <div class="filter-section numeric-filter-section">
+              <div class="numeric-filter-row">
+                <div class="numeric-filter-label-row">
+                  <label for="minRentFilter">Rent range</label>
+                  <span id="rentRangeReadout">Any</span>
+                </div>
+                <div class="range-slider-wrap">
+                  <div class="dual-range" id="rentRangeControl">
+                    <div class="dual-range-track"></div>
+                    <div class="dual-range-fill" id="rentRangeFill"></div>
+                    <input type="range" id="minRentFilter" min="500" max="5000" step="100" value="500">
+                    <input type="range" id="maxRentFilter" min="500" max="5000" step="100" value="5000">
+                  </div>
+                  <div class="range-end-labels"><span>$500</span><span>$5,000</span></div>
+                </div>
+              </div>
+
+              <div class="numeric-filter-row">
+                <div class="numeric-filter-label-row">
+                  <label for="minHomePriceFilter">Home price range</label>
+                  <span id="homePriceRangeReadout">Any</span>
+                </div>
+                <div class="range-slider-wrap">
+                  <div class="dual-range" id="homePriceRangeControl">
+                    <div class="dual-range-track"></div>
+                    <div class="dual-range-fill" id="homePriceRangeFill"></div>
+                    <input type="range" id="minHomePriceFilter" min="100000" max="1500000" step="25000" value="100000">
+                    <input type="range" id="maxHomePriceFilter" min="100000" max="1500000" step="25000" value="1500000">
+                  </div>
+                  <div class="range-end-labels"><span>$100,000</span><span>$1,500,000</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-section checkbox-filter-section">
+              <div class="filter-section-heading">More district filters</div>
+              <label class="filter-check" for="tenHighSchoolsFilter">
+                <input type="checkbox" id="tenHighSchoolsFilter">
+                <span>10+ high schools</span>
+              </label>
+              <label class="filter-check" for="stableDistrictsFilter">
+                <input type="checkbox" id="stableDistrictsFilter">
+                <span>Stable districts</span>
+              </label>
+              <label class="filter-check" for="overall60Filter">
+                <input type="checkbox" id="overall60Filter">
+                <span>60+ overall score</span>
+              </label>
+              <label class="filter-check" for="balancedDemographicsFilter">
+                <input type="checkbox" id="balancedDemographicsFilter">
+                <span>Balanced demographics</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="more-filters-footer">
+          </div>
+        </div>
+      </div>
+
+<div class="vertical-filter-stack">
+        <div class="vertical-filter-group">
+          <div class="vertical-filter-label">Education Level</div>
+          <div class="vertical-bubble-row">
+            <button type="button" class="bubble active" data-edu="Bachelor's">Bachelor's</button>
+            <button type="button" class="bubble" data-edu="Master's">Master's</button>
+          </div>
+        </div>
+
+        <div class="vertical-filter-group">
+          <div class="vertical-filter-label">Years Experience</div>
+          <input type="range" id="experienceFilter" min="0" max="10" step="1" value="0">
+          <div class="range-readout" id="experienceReadout">0 years</div>
+        </div>
+
+        <div class="vertical-filter-group">
+          <div class="vertical-filter-label">Desired Salary</div>
+          <input type="range" id="salaryFilter" min="40000" max="130000" step="1000" value="40000">
+          <div class="range-readout" id="salaryReadout">$40,000+</div>
+          <button type="button" class="reset-all-filters-btn" id="resetAllFiltersBtn">Reset filters</button>
+        </div>
+      </div>
+
+      <div class="current-search-card" aria-label="Current search summary">
+        <div class="current-search-title">Current Search</div>
+        <div class="current-search-list">
+          <div class="current-search-row"><span>Education</span><span id="summaryEducation">Bachelor's</span></div>
+          <div class="current-search-row"><span>Experience</span><span id="summaryExperience">0 years</span></div>
+          <div class="current-search-row"><span id="summarySalaryLabel">Salary</span><span id="summarySalary">$40,000+</span></div>
+          <div class="current-search-row"><span>Rent</span><span id="summaryRent">Any</span></div>
+          <div class="current-search-row"><span>Home Price</span><span id="summaryHomePrice">Any</span></div>
+          <div class="current-search-row"><span>10+ high schools</span><span id="summaryTenHighSchools">Off</span></div>
+          <div class="current-search-row"><span>Stable</span><span id="summaryStableDistricts">Off</span></div>
+          <div class="current-search-row"><span>60+ overall</span><span id="summaryOverall60">Off</span></div>
+          <div class="current-search-row"><span>Balanced demographics</span><span id="summaryBalancedDemographics">Off</span></div>
+        </div>
+      </div>
+      <div class="overview-bottom-status">
+        <div class="filter-note">The map highlights states with at least one district that meets your selected filters.</div>
+        <p class="status" id="statusLine"></p>
+      </div>
+      <div class="mobile-filter-sticky-footer">
+        <button type="button" id="mobileFilterSeeResultsBtn">See results</button>
+      </div>
+    </div>
+
+    <div class="card top-map-card" id="usaMapSection">
+      <h2>U.S. Teacher Value Map</h2>
+      <p class="status map-instruction" style="margin-top:-4px;margin-bottom:8px">
+        <span class="desktop-map-copy">Pinch-zoom or pan the live map. Matching districts in the visible map area appear in Top Matches.</span>
+        <span class="mobile-map-copy">Pinch-zoom or pan the live map to find matching districts.</span>
+      </p>
+      <div class="top-map-split">
+        <div class="top-map-left">
+          <div class="usa-map-wrap"><div id="usaMap"></div><div class="state-click-layer" id="stateClickLayer"></div></div>
+        </div>
+        <section class="state-results side-panel active" id="stateResults">
+          <div class="state-results-head">
+            <div>
+              <h2 id="stateResultsTitle">Selected State Results</h2>
+              <div class="state-results-sub" id="stateResultsSub">Click any blue state on the map to view district rankings.</div>
+            </div>
+          </div>
+          <div class="mini-kpis" id="stateKpis" style="display:none"></div>
+          <div class="top-districts" id="topDistrictCards"></div>
+        </section>
+      </div>
+      <div class="legend" id="mapLegend">
+        <span><i class="dot" style="background:#2f5caa"></i>District matches filters</span>
+        <span><i class="dot" style="background:#9ca3af"></i>District outside filters</span>
+        <span><i class="dot" style="background:#BF5700"></i>Selected district</span>
+      </div>
+    </div>
+  </section>
+<section class="map-rankings-layout" id="mobileResultsAnchor">
+  <section class="card rankings-card" id="rankingsSection">
+    <h2 id="rankingsTitle">Sortable District Rankings</h2>
+    <div class="table-wrap">
+      <table id="districtTable">
+        <colgroup>
+          <col style="width:18%">
+          <col style="width:5%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:9%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:9%">
+          <col style="width:9%">
+        </colgroup>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="mobile-rankings-list" id="mobileRankingsList" aria-label="Mobile district rankings"></div>
+    <p class="status rankings-help-text">Click any column header to sort. Click a district row to view its profile card.</p>
+  </section>
+</section>
+
+<section class="profile-map-layout" id="mobileDistrictDetailsAnchor">
+  <section class="card lower-profile-card profile-card">
+    <div class="desktop-profile-heading">
+      <div class="desktop-profile-title-block">
+        <h3 id="profileName">Select a district</h3>
+        <div class="desktop-profile-region" id="desktopProfileRegion">Choose a district to view details.</div>
+      </div>
+      <div class="desktop-profile-actions">
+        <div class="desktop-profile-utility-stack" id="desktopProfileUtilityStack" hidden>
+          <button type="button" class="favorite-toggle profile-favorite-toggle" id="desktopProfileFavoriteBtn" aria-label="Favorite selected district" hidden>♡</button>
+          <button type="button" class="profile-info-toggle" id="desktopProfileInfoBtn" data-score-guide-trigger="desktop" aria-label="Show overall value score guide" aria-expanded="false" hidden>i</button>
+        </div>
+        <div class="desktop-profile-score" id="desktopProfileOverallScore">—<span>Overall score</span></div>
+        <div class="score-guide-popover" id="desktopScoreGuidePopover" hidden>
+          <div class="score-guide-card-title">Score Guide</div>
+          <div class="score-guide-list">
+            <div class="score-guide-row elite"><strong>80+</strong><span>Rare standout</span></div>
+            <div class="score-guide-row excellent"><strong>70–79</strong><span>Excellent value</span></div>
+            <div class="score-guide-row strong"><strong>60–69</strong><span>Strong value</span></div>
+            <div class="score-guide-row mixed"><strong>50–59</strong><span>Mixed value</span></div>
+            <div class="score-guide-row tradeoffs"><strong>40–49</strong><span>Major tradeoffs</span></div>
+            <div class="score-guide-row limited"><strong>Below 40</strong><span>Limited value</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-district-detail-card" id="mobileDistrictDetailCard" aria-label="Mobile selected district detail">
+      <div class="mobile-detail-topline">
+        <div class="mobile-detail-title-block">
+          <div class="mobile-detail-name" id="mobileDetailName">Select a district</div>
+          <div class="mobile-detail-region" id="mobileDetailRegion">Choose a district to view details.</div>
+        </div>
+        <div class="mobile-detail-utility-stack" id="mobileDetailUtilityStack" hidden>
+          <button type="button" class="favorite-toggle mobile-detail-favorite" id="mobileDetailFavoriteBtn" aria-label="Favorite selected district" hidden>♡</button>
+          <button type="button" class="mobile-detail-info-toggle" id="mobileDetailInfoBtn" data-score-guide-trigger="mobile" aria-label="Show overall value score guide" aria-expanded="false" hidden>i</button>
+        </div>
+        <div class="mobile-detail-score" id="mobileDetailOverallScore">—<span>Overall Value Score</span></div>
+      </div>
+      <div class="mobile-detail-map-frame" id="mobileDetailMapFrame">
+        <div class="mobile-detail-map-placeholder" id="mobileDetailMapPlaceholder">Select a district to view its map.</div>
+        <img id="mobileDetailMapImage" alt="" hidden>
+      </div>
+      <div class="mobile-detail-nav-row">
+        <button type="button" class="mobile-detail-nav-btn" id="mobileDetailPrev" aria-label="Previous district">‹</button>
+        <div class="mobile-detail-nav-meta" id="mobileDetailNavMeta">Browse matching districts</div>
+        <button type="button" class="mobile-detail-nav-btn" id="mobileDetailNext" aria-label="Next district">›</button>
+      </div>
+      <div class="mobile-detail-section-title">District Scores</div>
+      <div class="mobile-detail-highlight-grid" id="mobileDetailHighlights"></div>
+    </div>
+    <div class="score-guide-sheet-backdrop" id="mobileScoreGuideBackdrop" hidden></div>
+    <div class="score-guide-sheet" id="mobileScoreGuideSheet" aria-label="Overall value score guide" hidden>
+      <div class="score-guide-sheet-handle"></div>
+      <div class="score-guide-sheet-head">
+        <h3>Score Guide</h3>
+      </div>
+      <div class="score-guide-list">
+        <div class="score-guide-row elite"><strong>80+</strong><span>Rare standout</span></div>
+            <div class="score-guide-row excellent"><strong>70–79</strong><span>Excellent value</span></div>
+            <div class="score-guide-row strong"><strong>60–69</strong><span>Strong value</span></div>
+            <div class="score-guide-row mixed"><strong>50–59</strong><span>Mixed value</span></div>
+            <div class="score-guide-row tradeoffs"><strong>40–49</strong><span>Major tradeoffs</span></div>
+            <div class="score-guide-row limited"><strong>Below 40</strong><span>Limited value</span></div>
+      </div>
+    </div>
+
+    <p class="status profile-help-text" style="margin-top:-4px;margin-bottom:8px">
+      <span class="desktop-profile-copy">Scroll inside this box to view all profile details.</span>
+      <span class="mobile-profile-copy">Tap a district card or table row to view details here.</span>
+    </p>
+    <div class="metric-list" id="profileMetrics"></div>
+  </section>
+
+  <section class="card district-map-card">
+    <div class="district-map-head">
+      <div class="district-map-head-main">
+        <h2>District Map</h2>
+        <h3 id="districtMapTitle">Select a district</h3>
+        <div class="district-map-status-row">
+          <p class="status" id="districtMapStatus">Map will appear here when available.</p>
+        </div>
+      </div>
+    </div>
+    <div class="district-map-nav-meta" id="districtMapNavMeta">
+      <span id="districtMapNavMetaText">National browse · Use arrows to browse districts.</span>
+      <div class="district-map-nav-controls" aria-label="District map navigation">
+        <button type="button" class="district-map-nav-btn prev" id="districtMapPrev" aria-label="Previous district"><span>‹</span></button>
+        <button type="button" class="district-map-nav-btn next" id="districtMapNext" aria-label="Next district"><span>›</span></button>
+      </div>
+    </div>
+    <div class="district-map-frame" id="districtMapFrame">
+      <div class="district-map-placeholder" id="districtMapPlaceholder">Select a district to view its map.</div>
+      <img id="districtMapImage" alt="" hidden>
+    </div>
+  </section>
+</section>
+</main>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="districts-data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
