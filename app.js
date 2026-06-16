@@ -967,6 +967,26 @@ const scoreCols = [
   }
 
   const DISTRICT_GEO = {
+  "Channelview ISD": [
+    29.7925,
+    -95.1255
+  ],
+  "Plano ISD": [
+    33.0198,
+    -96.6989
+  ],
+  "Galena Park ISD": [
+    29.7336,
+    -95.2302
+  ],
+  "Deer Park ISD": [
+    29.7052,
+    -95.1238
+  ],
+  "Port Arthur ISD": [
+    29.8849,
+    -93.9399
+  ],
   "Alief ISD": [
     29.711,
     -95.596

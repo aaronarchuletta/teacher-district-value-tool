@@ -1,0 +1,10 @@
+Use this fixed complete package.
+
+1. Unzip this folder.
+2. Open the unzipped folder.
+3. Copy ALL contents into your local teacher_value_site_working folder.
+4. Choose Replace for duplicate files.
+5. Open index.html from teacher_value_site_working.
+6. Search for Plano ISD or Galena Park ISD.
+
+This package keeps the v323 districts in districts-data.js directly and also includes districts-additions-v323.js, so the new districts should appear even if the add-on script step caused confusion before.
