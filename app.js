@@ -1250,7 +1250,18 @@ const scoreCols = [
   let leafletStateBoundaryLayer = null;
   let leafletMoveTimer = null;
 
-  const STATE_FIT_BOUNDS = {
+  
+
+  function getDistrictGeo(d) {
+    if (!d) return null;
+    const point = DISTRICT_GEO[d.District];
+    if (point) return point;
+    const lat = Number(d.lat ?? d.Latitude ?? d.latitude);
+    const lng = Number(d.lng ?? d.Lng ?? d.Longitude ?? d.longitude);
+    if (Number.isFinite(lat) && Number.isFinite(lng)) return [lat, lng];
+    return null;
+  }
+const STATE_FIT_BOUNDS = {
     AL:[[30.2,-88.6],[35.1,-84.8]], AK:[[51.2,-179.2],[71.6,-129.9]], AZ:[[31.2,-114.9],[37.1,-109.0]], AR:[[33.0,-94.7],[36.6,-89.6]],
     CA:[[32.4,-124.5],[42.1,-114.1]], CO:[[36.9,-109.1],[41.1,-102.0]], CT:[[40.9,-73.8],[42.1,-71.7]], DE:[[38.4,-75.8],[39.9,-75.0]],
     FL:[[24.4,-87.8],[31.1,-80.0]], GA:[[30.3,-85.7],[35.1,-80.8]], HI:[[18.8,-160.3],[22.4,-154.7]], ID:[[42.0,-117.3],[49.1,-111.0]],
@@ -1279,10 +1290,10 @@ const scoreCols = [
   function fitMapToStateDistricts(st) {
     if (!leafletUsaMap || !window.L || !st) return;
     const filteredRows = DISTRICTS.filter(d => d.State === st && districtHasMapMatch(d));
-    const fallbackRows = DISTRICTS.filter(d => d.State === st && DISTRICT_GEO[d.District]);
+    const fallbackRows = DISTRICTS.filter(d => d.State === st && getDistrictGeo(d));
     const rows = filteredRows.length ? filteredRows : fallbackRows;
     const latLngs = rows
-      .map(d => DISTRICT_GEO[d.District])
+      .map(d => getDistrictGeo(d))
       .filter(Boolean)
       .map(point => L.latLng(point[0], point[1]));
 
@@ -1445,7 +1456,7 @@ const scoreCols = [
 
   function getMapDefaultRows() {
     return DISTRICTS.filter(d => {
-      const point = DISTRICT_GEO[d.District];
+      const point = getDistrictGeo(d);
       return point && districtHasMapMatch(d);
     });
   }
@@ -1458,7 +1469,7 @@ const scoreCols = [
       return;
     }
     const latLngs = rows
-      .map(d => DISTRICT_GEO[d.District])
+      .map(d => getDistrictGeo(d))
       .filter(Boolean)
       .map(point => L.latLng(point[0], point[1]));
 
@@ -1529,7 +1540,7 @@ const scoreCols = [
 
     const bounds = leafletUsaMap.getBounds();
     DISTRICTS.forEach(d => {
-      const point = DISTRICT_GEO[d.District];
+      const point = getDistrictGeo(d);
       if (!point) return;
       const latLng = L.latLng(point[0], point[1]);
       if (!bounds.pad(0.25).contains(latLng)) return;
@@ -1573,7 +1584,7 @@ const scoreCols = [
     if (!leafletUsaMap || !window.L) return [];
     const bounds = leafletUsaMap.getBounds();
     return DISTRICTS.filter(d => {
-      const point = DISTRICT_GEO[d.District];
+      const point = getDistrictGeo(d);
       if (!point) return false;
       return bounds.contains(L.latLng(point[0], point[1])) && districtHasMapMatch(d);
     });
