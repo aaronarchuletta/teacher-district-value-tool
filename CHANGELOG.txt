@@ -70,3 +70,6 @@ Prototype 331 - Cache-bust class size display fix
 - Used public district salary summaries / salary proxy data plus Zillow housing data and district profile information.
 - No scoring weights changed.
 - Browser tab title and cache-busting links updated to Prototype 333.
+
+Prototype 333 cache-bust correction
+- Corrected browser tab title and cache-busting references to v333 so GitHub Pages loads the updated district data.
