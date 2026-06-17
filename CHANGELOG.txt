@@ -59,3 +59,8 @@ Prototype 327 - Desktop map-view district browsing
 ## 330 Class size color block fix
 - Restored color-scaled score blocks around the Class Size column while keeping the displayed value as the rounded student-to-teacher ratio.
 - No workbook, scoring formula, or district data changes.
+
+
+Prototype 331 - Cache-bust class size display fix
+- Kept the rounded class-size ratio inside the color-scaled score block.
+- Added cache-busting version strings to styles.css, districts-data.js, and app.js references.

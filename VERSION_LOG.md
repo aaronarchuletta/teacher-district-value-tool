@@ -44,3 +44,8 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 ## 330 Class size color block fix
 - Restored color-scaled score blocks around the Class Size column while keeping the displayed value as the rounded student-to-teacher ratio.
 - No workbook, scoring formula, or district data changes.
+
+
+## 331 Cache-bust class size display fix
+- Kept the rounded class-size ratio inside the color-scaled score block.
+- Added version query strings to local CSS/JS file references so GitHub Pages/browser cache loads the current files.
