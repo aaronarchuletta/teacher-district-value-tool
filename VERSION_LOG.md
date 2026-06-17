@@ -49,9 +49,3 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 ## 331 Cache-bust class size display fix
 - Kept the rounded class-size ratio inside the color-scaled score block.
 - Added version query strings to local CSS/JS file references so GitHub Pages/browser cache loads the current files.
-
-## 333 Ohio district additions
-- Added Dublin City Schools, OH and Mariemont City Schools, OH as first-pass district entries.
-- Used public district salary summaries / salary proxy data plus Zillow housing data and district profile information.
-- No scoring weights changed.
-- Browser tab title and cache-busting links updated to Prototype 333.
