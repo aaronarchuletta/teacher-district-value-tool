@@ -55,3 +55,7 @@ Prototype 327 - Desktop map-view district browsing
 ## 329 Class size ratio display fix
 - Updated the desktop sortable rankings Class Size column to show the rounded student-to-teacher ratio, such as 11:1.
 - Removed the point-score display from the Class Size column so the table shows the actual ratio instead of the score.
+
+## 330 Class size color block fix
+- Restored color-scaled score blocks around the Class Size column while keeping the displayed value as the rounded student-to-teacher ratio.
+- No workbook, scoring formula, or district data changes.
