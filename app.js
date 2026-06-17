@@ -1718,7 +1718,7 @@ const scoreCols = [
     }
     if (col === "Student-Teacher Ratio Score") {
       const ratio = d["Student-Teacher Ratio"];
-      return `<span class="score-pill" style="background:${scoreColor(v)}" title="Class Size Score: ${fmtScore(v)}">${formatClassSizeRatio(ratio)}</span>`;
+      return `<span title="Student-Teacher Ratio">${formatClassSizeRatio(ratio)}</span>`;
     }
     if (["White %","Hispanic %","Asian %","Black %","Other %"].includes(col)) return fmtWholePct(v);
     if (col === "Work Environment Multiplier") return typeof v === "number" ? `${Math.round(v * 100)}%` : "—";
