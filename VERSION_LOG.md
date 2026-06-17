@@ -57,3 +57,11 @@
 - New tile labels: $0 = None; $1–$2,499 = Low; $2,500–$4,999 = Fair; $5,000–$7,499 = Good; $7,500–$9,999 = Very Good; $10,000+ = Excellent.
 - This is a profile display/rating-scale change only; district salary values, workbook data, and scoring weights were not changed.
 - Browser tab title and cache-busting links updated to Prototype 348.
+
+
+## Prototype 349 state funding context
+- Added State Funding Context using FY2024 Census current spending per pupil by state.
+- Overall Value now applies a 5% state funding context factor: previous overall × 95% + state funding score × 5%.
+- Added State Funding Context Score, State Current Spending Per Pupil, rating, and source fields to districts-data.js.
+- Added State Funding tile to district profile display.
+- No salary values or existing salary/rent/source fields were changed in this version.

@@ -39,3 +39,7 @@ Upload the contents of this ZIP to your existing GitHub repository, replace matc
 
 
 Prototype 348 note: Master’s Premium tile uses the new dollar-based display rating scale. Upload the standard active website files and test with ?v=348.
+
+
+## Prototype 349 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=349` or `?v=349b`.

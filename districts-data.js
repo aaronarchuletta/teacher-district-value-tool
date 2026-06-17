@@ -45,7 +45,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 96.9231,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 72.5686,
-    "Overall Value Score": 72.5686,
+    "Overall Value Score": 72.4402,
     "Daily Sub Pay": 180,
     "Pre-Risk Overall": 72.5686,
     "preRiskScore": 72.5686,
@@ -87,7 +87,13 @@ const DISTRICTS = [
         "10": 79000
       }
     },
-    "rank": 1
+    "rank": 2,
+    "Previous Overall Value Score": 72.5686,
+    "State Current Spending Per Pupil": 17664,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 72.4402
   },
   {
     "District": "Clovis Unified School District",
@@ -135,7 +141,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 73.8462,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 72.4188,
-    "Overall Value Score": 72.4188,
+    "Overall Value Score": 73.0479,
     "Daily Sub Pay": 210,
     "Pre-Risk Overall": 72.4188,
     "preRiskScore": 72.4188,
@@ -177,7 +183,13 @@ const DISTRICTS = [
         "10": 102800
       }
     },
-    "rank": 2
+    "rank": 1,
+    "Previous Overall Value Score": 72.4188,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 73.0479
   },
   {
     "District": "Mounds View Public Schools",
@@ -205,7 +217,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 67.6923,
     "Sub Pay Score": 83.3333,
     "Demographic Balance Score": 80.525,
-    "Overall Value Score": 71.3124,
+    "Overall Value Score": 71.2468,
     "Median Home Price per Sq Ft": 198,
     "Price per Sq Ft Score": 92.6154,
     "Other %": 8,
@@ -230,7 +242,7 @@ const DISTRICTS = [
     "Area": "Shoreview / Mounds View, MN",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "mounds-view-public-schools",
-    "score": 71.3124,
+    "score": 71.2468,
     "preRiskScore": 71.3124,
     "riskMultiplier": 1,
     "state": "MN",
@@ -271,7 +283,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 71.3124,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. BA 10-year uses the first accessible BA+15 lane because the BA00 lane does not advance to steps 9/10; verify placement with HR."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. BA 10-year uses the first accessible BA+15 lane because the BA00 lane does not advance to steps 9/10; verify placement with HR.",
+    "Previous Overall Value Score": 71.3124,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Rio Rancho Public Schools",
@@ -319,7 +336,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 90.7692,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 70.2553,
-    "Overall Value Score": 70.2553,
+    "Overall Value Score": 70.2425,
     "Daily Sub Pay": 180,
     "Pre-Risk Overall": 70.2553,
     "preRiskScore": 70.2553,
@@ -361,7 +378,13 @@ const DISTRICTS = [
         "10": 81000
       }
     },
-    "rank": 4
+    "rank": 4,
+    "Previous Overall Value Score": 70.2553,
+    "State Current Spending Per Pupil": 17664,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 70.2425
   },
   {
     "District": "Anoka-Hennepin Schools",
@@ -450,8 +473,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 67.7372,
     "Pre-Risk Overall Value Score": 67.7372,
-    "Overall Value Score": 67.7372,
-    "score": 67.7372,
+    "Overall Value Score": 67.8503,
+    "score": 67.8503,
     "preRiskScore": 67.7372,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 17.4,
@@ -463,7 +486,12 @@ const DISTRICTS = [
     "totalSchools": 43,
     "highSchools": 5,
     "stabilityLabel": "Stable",
-    "rank": 5
+    "rank": 5,
+    "Previous Overall Value Score": 67.7372,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Rosemount-Apple Valley-Eagan ISD 196",
@@ -491,7 +519,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 76.9231,
     "Sub Pay Score": 55.8824,
     "Demographic Balance Score": 81.575,
-    "Overall Value Score": 67.4023,
+    "Overall Value Score": 67.5322,
     "Median Home Price per Sq Ft": 215,
     "Price per Sq Ft Score": 90,
     "Other %": 7,
@@ -516,7 +544,7 @@ const DISTRICTS = [
     "Area": "Apple Valley/Eagan/Rosemount, MN",
     "PPSF Source URL": "First-pass market estimate; verify with preferred housing/rent source.",
     "id": "rosemount-apple-valley-eagan-isd-196",
-    "score": 67.4023,
+    "score": 67.5322,
     "preRiskScore": 67.4023,
     "riskMultiplier": 1,
     "state": "MN",
@@ -557,7 +585,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 67.4023,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "Round 3 first-pass entry; ISD 196 has negotiated placement discretion / higher-step blanks, so verify BA/MA comparisons with HR.",
-    "rank": 6
+    "rank": 6,
+    "Previous Overall Value Score": 67.4023,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Twin Falls School District",
@@ -605,7 +638,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 87.6923,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 65.3155,
-    "Overall Value Score": 65.3155,
+    "Overall Value Score": 64.0497,
     "Daily Sub Pay": 125,
     "Pre-Risk Overall": 65.3155,
     "preRiskScore": 65.3155,
@@ -647,7 +680,13 @@ const DISTRICTS = [
         "10": 73500
       }
     },
-    "rank": 7
+    "rank": 11,
+    "Previous Overall Value Score": 65.3155,
+    "State Current Spending Per Pupil": 11060,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 64.0497
   },
   {
     "District": "Vail School District",
@@ -695,7 +734,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 86.1538,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 65.1318,
-    "Overall Value Score": 65.1318,
+    "Overall Value Score": 63.8752,
     "Daily Sub Pay": 140,
     "Pre-Risk Overall": 65.1318,
     "preRiskScore": 65.1318,
@@ -737,7 +776,13 @@ const DISTRICTS = [
         "10": 75500
       }
     },
-    "rank": 8
+    "rank": 12,
+    "Previous Overall Value Score": 65.1318,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 63.8752
   },
   {
     "District": "Eden Prairie Schools",
@@ -765,7 +810,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 80,
     "Sub Pay Score": 60.9091,
     "Demographic Balance Score": 83.575,
-    "Overall Value Score": 64.9848,
+    "Overall Value Score": 65.2356,
     "Median Home Price per Sq Ft": 221,
     "Price per Sq Ft Score": 89.0769,
     "Other %": 9,
@@ -790,7 +835,7 @@ const DISTRICTS = [
     "Area": "Twin Cities / Eden Prairie, MN",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "eden-prairie-schools",
-    "score": 64.9848,
+    "score": 65.2356,
     "preRiskScore": 64.9848,
     "riskMultiplier": 1,
     "state": "MN",
@@ -800,7 +845,7 @@ const DISTRICTS = [
     "totalSchools": 9,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 9,
+    "rank": 7,
     "salarySchedule": {
       "Bachelor's": {
         "0": 51831,
@@ -831,7 +876,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 64.9848,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Salary schedule has a Step 10-14 band; years 9 and 10 were entered at that band for this pass."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Salary schedule has a Step 10-14 band; years 9 and 10 were entered at that band for this pass.",
+    "Previous Overall Value Score": 64.9848,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Hobbs Municipal Schools",
@@ -920,8 +970,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 63.8852,
     "Pre-Risk Overall Value Score": 63.8852,
-    "Overall Value Score": 63.8852,
-    "score": 63.8852,
+    "Overall Value Score": 64.1909,
+    "score": 64.1909,
     "preRiskScore": 63.8852,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 17,
@@ -933,7 +983,12 @@ const DISTRICTS = [
     "totalSchools": 15,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 10
+    "rank": 10,
+    "Previous Overall Value Score": 63.8852,
+    "State Current Spending Per Pupil": 17664,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Antelope Valley Union High School District",
@@ -1022,8 +1077,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 63.2613,
     "Pre-Risk Overall Value Score": 63.2613,
-    "Overall Value Score": 63.2613,
-    "score": 63.2613,
+    "Overall Value Score": 64.3482,
+    "score": 64.3482,
     "preRiskScore": 63.2613,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 21.5,
@@ -1035,7 +1090,12 @@ const DISTRICTS = [
     "totalSchools": 12,
     "highSchools": 8,
     "stabilityLabel": "Stable",
-    "rank": 11
+    "rank": 8,
+    "Previous Overall Value Score": 63.2613,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Kern High School District",
@@ -1083,7 +1143,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 83.0769,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 63.16901019161698,
-    "Overall Value Score": 63.16901019161698,
+    "Overall Value Score": 64.2606,
     "Daily Sub Pay": 200,
     "Pre-Risk Overall": 63.16901019161698,
     "preRiskScore": 63.16901019161698,
@@ -1125,7 +1185,13 @@ const DISTRICTS = [
         "10": 94638
       }
     },
-    "rank": 12
+    "rank": 9,
+    "Previous Overall Value Score": 63.169,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 64.2606
   },
   {
     "District": "Deer Park ISD",
@@ -1191,7 +1257,7 @@ const DISTRICTS = [
     "Affordability Score": 70.97304,
     "Student-Teacher Ratio Score": 72.2,
     "Sub Pay Score": 43.333333333333336,
-    "Overall Value Score": 62.33845415384615,
+    "Overall Value Score": 61.2215,
     "Median Home Price per Sq Ft": 154,
     "Price per Sq Ft Score": 91.6923076923077,
     "Sub Pay Housing Power": 1.3,
@@ -1207,7 +1273,13 @@ const DISTRICTS = [
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Salary progression is estimated from published range; verify exact schedule if available.",
-    "rank": 13
+    "rank": 19,
+    "Previous Overall Value Score": 62.3385,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 61.2215
   },
   {
     "District": "Galena Park ISD",
@@ -1273,7 +1345,7 @@ const DISTRICTS = [
     "Affordability Score": 86.86928,
     "Student-Teacher Ratio Score": 66.86666666666666,
     "Sub Pay Score": 52.083333333333336,
-    "Overall Value Score": 61.77779591955757,
+    "Overall Value Score": 60.6889,
     "Median Home Price per Sq Ft": 153,
     "Price per Sq Ft Score": 91.84615384615384,
     "Sub Pay Housing Power": 1.5625,
@@ -1289,7 +1361,13 @@ const DISTRICTS = [
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Rent input is first-pass because rental source coverage is thinner than for larger cities.",
-    "rank": 14
+    "rank": 21,
+    "Previous Overall Value Score": 61.7778,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 60.6889
   },
   {
     "District": "Madison Metropolitan School District",
@@ -1317,7 +1395,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 100,
     "Sub Pay Score": 68.0906,
     "Demographic Balance Score": 92,
-    "Overall Value Score": 61.64,
+    "Overall Value Score": 62.058,
     "Median Home Price per Sq Ft": 261,
     "Price per Sq Ft Score": 82.9231,
     "Other %": 11,
@@ -1341,7 +1419,7 @@ const DISTRICTS = [
     "Last Verified": "2026-06-11",
     "Area": "Madison, WI",
     "id": "madison-metropolitan-school-district",
-    "score": 61.64,
+    "score": 62.058,
     "preRiskScore": 61.64,
     "riskMultiplier": 1,
     "state": "WI",
@@ -1384,7 +1462,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 61.64,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No current employment-stability penalty applied in this restoration pass; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 61.64,
+    "State Current Spending Per Pupil": 15952,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Osseo Area Schools / ISD 279",
@@ -1473,8 +1556,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 61.4663,
     "Pre-Risk Overall Value Score": 61.4663,
-    "Overall Value Score": 61.4663,
-    "score": 61.4663,
+    "Overall Value Score": 61.893,
+    "score": 61.893,
     "preRiskScore": 61.4663,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 16.8,
@@ -1486,7 +1569,12 @@ const DISTRICTS = [
     "totalSchools": 31,
     "highSchools": 3,
     "stabilityLabel": "Stable",
-    "rank": 16
+    "rank": 16,
+    "Previous Overall Value Score": 61.4663,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Naperville CUSD 203",
@@ -1514,7 +1602,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 90,
     "Sub Pay Score": 20.9995,
     "Demographic Balance Score": 83.125,
-    "Overall Value Score": 61.3106,
+    "Overall Value Score": 62.4951,
     "Median Home Price per Sq Ft": 265,
     "Price per Sq Ft Score": 82.3077,
     "Other %": 6,
@@ -1539,7 +1627,7 @@ const DISTRICTS = [
     "Area": "Naperville, IL",
     "PPSF Source URL": "https://www.apartments.com/rent-market-trends/naperville-il/ ; Redfin first-pass market lookup, 2026-06-15",
     "id": "naperville-cusd-203",
-    "score": 61.3106,
+    "score": 62.4951,
     "preRiskScore": 61.3106,
     "riskMultiplier": 1,
     "state": "IL",
@@ -1549,7 +1637,7 @@ const DISTRICTS = [
     "totalSchools": 23,
     "highSchools": 2,
     "stabilityLabel": "Stable",
-    "rank": 17,
+    "rank": 13,
     "salarySchedule": {
       "Bachelor's": {
         "0": 58403,
@@ -1580,7 +1668,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 61.3106,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Salary values are first-pass estimates derived from the current contract and published schedule structure; verify exact 2025-26 salary schedule before final ranking."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Salary values are first-pass estimates derived from the current contract and published schedule structure; verify exact 2025-26 salary schedule before final ranking.",
+    "Previous Overall Value Score": 61.3106,
+    "State Current Spending Per Pupil": 21776,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "West Des Moines Community Schools",
@@ -1608,7 +1701,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 80.7692,
     "Sub Pay Score": 100,
     "Demographic Balance Score": 80.9565,
-    "Overall Value Score": 61.2693,
+    "Overall Value Score": 60.9558,
     "Median Home Price per Sq Ft": 211,
     "Price per Sq Ft Score": 90.6154,
     "Other %": 7.7,
@@ -1633,7 +1726,7 @@ const DISTRICTS = [
     "Area": "West Des Moines, IA",
     "PPSF Source URL": "https://www.wdmcs.org/our-district/departments/human-resources ; https://resources.finalsite.net/images/v1745950877/wdmcsorg/ak8isa1vu50msa93nxgy/CombinedSalarySchedule.pdf ; https://www.kcci.com/article/west-des-moines-school-board-substitute-teacher-pay-increase/62347446 ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=1930930 ; https://www.niche.com/k12/d/west-des-moines-community-school-district-ia/students/ ; https://www.redfin.com/city/20722/IA/West-Des-Moines/housing-market ; https://www.apartments.com/rent-market-trends/west-des-moines-ia/",
     "id": "west-des-moines-community-schools",
-    "score": 61.2693,
+    "score": 60.9558,
     "preRiskScore": 61.2693,
     "riskMultiplier": 1,
     "state": "IA",
@@ -1643,7 +1736,7 @@ const DISTRICTS = [
     "totalSchools": 13,
     "highSchools": 2,
     "stabilityLabel": "Stable",
-    "rank": 18,
+    "rank": 20,
     "salarySchedule": {
       "Bachelor's": {
         "0": 51584,
@@ -1675,7 +1768,12 @@ const DISTRICTS = [
     "Count Notes": "District website lists 13 school sites: eight elementary/learning academy campuses, two junior highs, Valley Southwoods Freshman High School, Valley High School, and Walnut Creek Campus. NCES lists 14 total schools, likely including a non-instructional/support site, so school-count columns follow the public school-site list.",
     "Pre-Risk Overall Value Score": 61.2693,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied. First-pass public-source screening did not find current broad layoff or fiscal-crisis evidence; keep monitoring Iowa enrollment/funding pressures."
+    "Work Environment Risk": "No current employment-stability penalty applied. First-pass public-source screening did not find current broad layoff or fiscal-crisis evidence; keep monitoring Iowa enrollment/funding pressures.",
+    "Previous Overall Value Score": 61.2693,
+    "State Current Spending Per Pupil": 14369,
+    "State Funding Context Score": 55,
+    "State Funding Context Rating": "Fair",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Glenbrook High School District 225",
@@ -1703,7 +1801,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 100,
     "Sub Pay Score": 75.7026,
     "Demographic Balance Score": 78.825,
-    "Overall Value Score": 60.9114,
+    "Overall Value Score": 62.1158,
     "Median Home Price per Sq Ft": 350,
     "Price per Sq Ft Score": 69.2308,
     "Other %": 6,
@@ -1728,7 +1826,7 @@ const DISTRICTS = [
     "Area": "Glenview / Northbrook, IL",
     "PPSF Source URL": "https://www.redfin.com/city/7628/IL/Glenview/housing-market ; https://www.apartments.com/rent-market-trends/glenview-il/",
     "id": "glenbrook-high-school-district-225",
-    "score": 60.9114,
+    "score": 62.1158,
     "preRiskScore": 60.9114,
     "riskMultiplier": 1,
     "state": "IL",
@@ -1738,7 +1836,7 @@ const DISTRICTS = [
     "totalSchools": 2,
     "highSchools": 2,
     "stabilityLabel": "Stable",
-    "rank": 19,
+    "rank": 14,
     "salarySchedule": {
       "Bachelor's": {
         "0": 69929,
@@ -1769,7 +1867,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 60.9114,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. High salary schedule and low ratio make it competitive; housing costs keep it below the top in this pass."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. High salary schedule and low ratio make it competitive; housing costs keep it below the top in this pass.",
+    "Previous Overall Value Score": 60.9114,
+    "State Current Spending Per Pupil": 21776,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Carlsbad Municipal Schools",
@@ -1858,8 +1961,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 60.7759,
     "Pre-Risk Overall Value Score": 60.7759,
-    "Overall Value Score": 60.7759,
-    "score": 60.7759,
+    "Overall Value Score": 61.2371,
+    "score": 61.2371,
     "preRiskScore": 60.7759,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 16.5,
@@ -1871,7 +1974,12 @@ const DISTRICTS = [
     "totalSchools": 14,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 20
+    "rank": 18,
+    "Previous Overall Value Score": 60.7759,
+    "State Current Spending Per Pupil": 17664,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Port Arthur ISD",
@@ -1937,7 +2045,7 @@ const DISTRICTS = [
     "Affordability Score": 96.46343999999999,
     "Student-Teacher Ratio Score": 78.73333333333333,
     "Sub Pay Score": 57.600801402454294,
-    "Overall Value Score": 60.33876419874519,
+    "Overall Value Score": 59.3218,
     "Median Home Price per Sq Ft": 96,
     "Price per Sq Ft Score": 100,
     "Sub Pay Housing Power": 1.7280240420736288,
@@ -1953,7 +2061,13 @@ const DISTRICTS = [
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Salary bands are first-pass from announcement; verify against official salary schedule.",
-    "rank": 21
+    "rank": 23,
+    "Previous Overall Value Score": 60.3388,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 59.3218
   },
   {
     "District": "Indian Prairie School District 204",
@@ -1981,7 +2095,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 84.6154,
     "Sub Pay Score": 90.9066,
     "Demographic Balance Score": 91.4,
-    "Overall Value Score": 60.2539,
+    "Overall Value Score": 61.4912,
     "Median Home Price per Sq Ft": 250,
     "Price per Sq Ft Score": 84.6154,
     "Other %": 6,
@@ -2006,7 +2120,7 @@ const DISTRICTS = [
     "Area": "Naperville / Aurora, IL",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "indian-prairie-school-district-204",
-    "score": 60.2539,
+    "score": 61.4912,
     "preRiskScore": 60.2539,
     "riskMultiplier": 1,
     "state": "IL",
@@ -2016,7 +2130,7 @@ const DISTRICTS = [
     "totalSchools": 33,
     "highSchools": 4,
     "stabilityLabel": "Stable",
-    "rank": 22,
+    "rank": 17,
     "salarySchedule": {
       "Bachelor's": {
         "0": 56403,
@@ -2047,7 +2161,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 60.2539,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Added as a high-sub-pay Chicago-suburban test district; verify sub pay directly with HR before treating as final."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Added as a high-sub-pay Chicago-suburban test district; verify sub pay directly with HR before treating as final.",
+    "Previous Overall Value Score": 60.2539,
+    "State Current Spending Per Pupil": 21776,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "West Ada School District",
@@ -2095,7 +2214,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 73.8462,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 60.0062,
-    "Overall Value Score": 60.0062,
+    "Overall Value Score": 59.0059,
     "Daily Sub Pay": 125,
     "Pre-Risk Overall": 60.0062,
     "preRiskScore": 60.0062,
@@ -2137,7 +2256,13 @@ const DISTRICTS = [
         "10": 77500
       }
     },
-    "rank": 23
+    "rank": 25,
+    "Previous Overall Value Score": 60.0062,
+    "State Current Spending Per Pupil": 11060,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 59.0059
   },
   {
     "District": "Chaffey Joint Union High School District",
@@ -2226,8 +2351,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 59.17,
     "Pre-Risk Overall Value Score": 59.17,
-    "Overall Value Score": 59.17,
-    "score": 59.17,
+    "Overall Value Score": 60.4615,
+    "score": 60.4615,
     "preRiskScore": 59.17,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 22.5,
@@ -2239,7 +2364,12 @@ const DISTRICTS = [
     "totalSchools": 12,
     "highSchools": 8,
     "stabilityLabel": "Stable",
-    "rank": 24
+    "rank": 22,
+    "Previous Overall Value Score": 59.17,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Wayzata Public Schools",
@@ -2267,7 +2397,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 61.5385,
     "Sub Pay Score": 39.1892,
     "Demographic Balance Score": 67.875,
-    "Overall Value Score": 58.6166,
+    "Overall Value Score": 59.1858,
     "Median Home Price per Sq Ft": 250,
     "Price per Sq Ft Score": 84.6154,
     "Other %": 4,
@@ -2292,7 +2422,7 @@ const DISTRICTS = [
     "Area": "Plymouth/Wayzata, MN",
     "PPSF Source URL": "First-pass market estimate; verify with preferred housing/rent source.",
     "id": "wayzata-public-schools",
-    "score": 58.6166,
+    "score": 59.1858,
     "preRiskScore": 58.6166,
     "riskMultiplier": 1,
     "state": "MN",
@@ -2333,7 +2463,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 58.6166,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "Round 3 first-pass entry; Wayzata reserve-teacher pay found; salary schedule estimated pending official lane/step table.",
-    "rank": 25
+    "rank": 24,
+    "Previous Overall Value Score": 58.6166,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Cobb County School District",
@@ -2361,7 +2496,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 84.1538,
     "Sub Pay Score": 47.7836,
     "Demographic Balance Score": 91.767,
-    "Overall Value Score": 58.3645,
+    "Overall Value Score": 58.9463,
     "Median Home Price per Sq Ft": 212,
     "Price per Sq Ft Score": 90.4615,
     "Other %": 6,
@@ -2386,7 +2521,7 @@ const DISTRICTS = [
     "Area": "Marietta / Cobb County, GA",
     "PPSF Source URL": "https://media.cobbk12.org/media/WWWCobb/medialib/teacher-salary-schedule.56404f113440.pdf ; https://www.cobbk12.org/the-district ; https://www.cobbk12.org/cobb-schools-delivers-balanced-budget-focused-on-classrooms-safety-and-long-term-stability.128573 ; https://www.cobbk12.org/substitute-teacher ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=1301290 ; https://www.apartments.com/rent-market-trends/marietta-ga/ ; https://www.redfin.com/city/12766/GA/Marietta/housing-market",
     "id": "cobb-county-school-district",
-    "score": 58.3645,
+    "score": 58.9463,
     "preRiskScore": 58.3645,
     "riskMultiplier": 1,
     "state": "GA",
@@ -2428,7 +2563,12 @@ const DISTRICTS = [
     "Count Notes": "District page lists 66 elementary schools, 26 middle schools, 17 high schools, plus one charter school, one special education center, and one adult education center.",
     "Pre-Risk Overall Value Score": 58.3645,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No penalty applied. Cobb's FY2027 public budget messaging states no teacher layoffs and emphasizes classroom stability; local reporting notes staffing reductions are handled through attrition/reassignment rather than layoffs."
+    "Work Environment Risk": "No penalty applied. Cobb's FY2027 public budget messaging states no teacher layoffs and emphasizes classroom stability; local reporting notes staffing reductions are handled through attrition/reassignment rather than layoffs.",
+    "Previous Overall Value Score": 58.3645,
+    "State Current Spending Per Pupil": 15833,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Gilbert Public Schools",
@@ -2476,7 +2616,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 66.1538,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 58.3021,
-    "Overall Value Score": 58.3021,
+    "Overall Value Score": 57.387,
     "Daily Sub Pay": 150,
     "Pre-Risk Overall": 58.3021,
     "preRiskScore": 58.3021,
@@ -2518,7 +2658,13 @@ const DISTRICTS = [
         "10": 75500
       }
     },
-    "rank": 27
+    "rank": 30,
+    "Previous Overall Value Score": 58.3021,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 57.387
   },
   {
     "District": "Washoe County School District",
@@ -2566,7 +2712,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 61.5385,
     "Stability Score": 75,
     "Pre-Risk Overall Value Score": 60.9527,
-    "Overall Value Score": 57.9051,
+    "Overall Value Score": 57.7598,
     "Daily Sub Pay": 150,
     "Pre-Risk Overall": 60.9527,
     "preRiskScore": 60.9527,
@@ -2608,7 +2754,13 @@ const DISTRICTS = [
         "10": 88000
       }
     },
-    "rank": 28
+    "rank": 28,
+    "Previous Overall Value Score": 57.9051,
+    "State Current Spending Per Pupil": 14812,
+    "State Funding Context Score": 55,
+    "State Funding Context Rating": "Fair",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 57.7598
   },
   {
     "District": "Channelview ISD",
@@ -2674,7 +2826,7 @@ const DISTRICTS = [
     "Affordability Score": 79.21104,
     "Student-Teacher Ratio Score": 62.66666666666667,
     "Sub Pay Score": 51.85185185185185,
-    "Overall Value Score": 57.545370100033935,
+    "Overall Value Score": 56.6681,
     "Median Home Price per Sq Ft": 151,
     "Price per Sq Ft Score": 92.15384615384616,
     "Sub Pay Housing Power": 1.5555555555555556,
@@ -2690,7 +2842,13 @@ const DISTRICTS = [
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "First-pass salary values; verify exact step/lane chart before final ranking.",
-    "rank": 29
+    "rank": 32,
+    "Previous Overall Value Score": 57.5454,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 56.6681
   },
   {
     "District": "Farmington Municipal Schools",
@@ -2779,8 +2937,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 57.3212,
     "Pre-Risk Overall Value Score": 57.3212,
-    "Overall Value Score": 57.3212,
-    "score": 57.3212,
+    "Overall Value Score": 57.9551,
+    "score": 57.9551,
     "preRiskScore": 57.3212,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 17.5,
@@ -2792,7 +2950,12 @@ const DISTRICTS = [
     "totalSchools": 20,
     "highSchools": 4,
     "stabilityLabel": "Stable",
-    "rank": 30
+    "rank": 27,
+    "Previous Overall Value Score": 57.3212,
+    "State Current Spending Per Pupil": 17664,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Queen Creek Unified School District",
@@ -2840,7 +3003,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 61.5385,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 56.9239,
-    "Overall Value Score": 56.9239,
+    "Overall Value Score": 56.0777,
     "Daily Sub Pay": 145,
     "Pre-Risk Overall": 56.9239,
     "preRiskScore": 56.9239,
@@ -2882,7 +3045,13 @@ const DISTRICTS = [
         "10": 75000
       }
     },
-    "rank": 31
+    "rank": 36,
+    "Previous Overall Value Score": 56.9239,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 56.0777
   },
   {
     "District": "New Trier Township High School District 203",
@@ -2910,7 +3079,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 100,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 63.375,
-    "Overall Value Score": 56.3091,
+    "Overall Value Score": 57.7436,
     "Median Home Price per Sq Ft": 500,
     "Price per Sq Ft Score": 46.1538,
     "Other %": 8,
@@ -2935,7 +3104,7 @@ const DISTRICTS = [
     "Area": "Winnetka/Northfield, IL",
     "PPSF Source URL": "First-pass market estimate; verify with preferred housing/rent source.",
     "id": "new-trier-township-high-school-district-203",
-    "score": 56.3091,
+    "score": 57.7436,
     "preRiskScore": 56.3091,
     "riskMultiplier": 1,
     "state": "IL",
@@ -2976,7 +3145,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 56.3091,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "Round 3 first-pass entry; New Trier salary lane is estimated and housing affordability is very high-cost.",
-    "rank": 32
+    "rank": 29,
+    "Previous Overall Value Score": 56.3091,
+    "State Current Spending Per Pupil": 21776,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Mariemont City Schools",
@@ -3054,7 +3228,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 75.3846,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 55.7289,
-    "Overall Value Score": 55.7289,
+    "Overall Value Score": 56.4425,
     "Daily Sub Pay": 150,
     "Pre-Risk Overall": 55.7289,
     "preRiskScore": 55.7289,
@@ -3064,7 +3238,13 @@ const DISTRICTS = [
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Demographic Balance Note": "First-pass public demographic profile.",
     "mapImage": "",
-    "rank": 33
+    "rank": 34,
+    "Previous Overall Value Score": 55.7289,
+    "State Current Spending Per Pupil": 17257,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 56.4425
   },
   {
     "District": "Syosset Central School District",
@@ -3092,7 +3272,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 100,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 70.892,
-    "Overall Value Score": 54.9103,
+    "Overall Value Score": 57.1648,
     "Median Home Price per Sq Ft": 559,
     "Price per Sq Ft Score": 37.0769,
     "Other %": 3,
@@ -3115,7 +3295,7 @@ const DISTRICTS = [
     "Source URL": "NCES lists 10 total schools; district school list shows seven elementary schools, two middle schools, and one high school.",
     "Area": "Syosset, NY",
     "id": "syosset-central-school-district",
-    "score": 54.9103,
+    "score": 57.1648,
     "preRiskScore": 54.9103,
     "riskMultiplier": 1,
     "state": "NY",
@@ -3125,7 +3305,7 @@ const DISTRICTS = [
     "totalSchools": 10,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 34,
+    "rank": 31,
     "salarySchedule": {
       "Bachelor's": {
         "0": 68687,
@@ -3159,7 +3339,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 54.9103,
+    "State Current Spending Per Pupil": 31918,
+    "State Funding Context Score": 100,
+    "State Funding Context Rating": "Excellent",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Barbers Hill ISD",
@@ -3187,7 +3372,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 92.3077,
     "Sub Pay Score": 40.2406,
     "Demographic Balance Score": 70.6887,
-    "Overall Value Score": 54.7128,
+    "Overall Value Score": 53.9772,
     "Median Home Price per Sq Ft": 190,
     "Price per Sq Ft Score": 93.8462,
     "Other %": 4,
@@ -3211,7 +3396,7 @@ const DISTRICTS = [
     "Area": "Mont Belvieu, TX",
     "PPSF Source URL": "https://www.redfin.com/city/12568/TX/Mont-Belvieu/housing-market ; https://www.apartments.com/rent-market-trends/mont-belvieu-tx/",
     "id": "barbers-hill-isd",
-    "score": 54.7128,
+    "score": 53.9772,
     "preRiskScore": 54.7128,
     "riskMultiplier": 1,
     "state": "TX",
@@ -3221,7 +3406,7 @@ const DISTRICTS = [
     "totalSchools": 8,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 35,
+    "rank": 39,
     "salarySchedule": {
       "Bachelor's": {
         "0": 66000,
@@ -3254,7 +3439,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 54.7128,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No penalty applied. Low current layoff risk: Barbers Hill shows strong enrollment growth and public-facing hiring/retention language; no current public evidence found of broad layoffs, closures, or fiscal-crisis cuts in this pass.",
-    "Last Verified": "2026-06-16"
+    "Last Verified": "2026-06-16",
+    "Previous Overall Value Score": 54.7128,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Portland Public Schools",
@@ -3282,7 +3472,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 68.9231,
     "Sub Pay Score": 100,
     "Demographic Balance Score": 81.4335,
-    "Overall Value Score": 54.6514,
+    "Overall Value Score": 56.1688,
     "Median Home Price per Sq Ft": 328,
     "Price per Sq Ft Score": 72.6154,
     "Other %": 14.3,
@@ -3305,7 +3495,7 @@ const DISTRICTS = [
     "Source URL": "PPS 2025-26 overview: 45 elementary, 10 K-8, 15 middle, 10 high, 1 K-12; total 81.",
     "Area": "Portland, OR",
     "id": "portland-public-schools",
-    "score": 54.6514,
+    "score": 56.1688,
     "preRiskScore": 64.2958,
     "riskMultiplier": 0.85,
     "state": "OR",
@@ -3315,7 +3505,7 @@ const DISTRICTS = [
     "totalSchools": 81,
     "highSchools": 10,
     "stabilityLabel": "Severe",
-    "rank": 36,
+    "rank": 35,
     "salarySchedule": {
       "Bachelor's": {
         "0": 57206,
@@ -3349,7 +3539,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.85,
     "Work Environment Risk": "15% employment-stability penalty retained due to active budget shortfall, furlough context, layoff notices, and labor grievance/process concerns.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 54.6514,
+    "State Current Spending Per Pupil": 18083,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Scarsdale Union Free School District",
@@ -3377,7 +3572,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 100,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 76.25,
-    "Overall Value Score": 54.151,
+    "Overall Value Score": 56.4434,
     "Median Home Price per Sq Ft": 752,
     "Price per Sq Ft Score": 7.3846,
     "Other %": 8,
@@ -3402,7 +3597,7 @@ const DISTRICTS = [
     "Area": "Scarsdale, NY",
     "PPSF Source URL": "https://www.redfin.com/city/16773/NY/Scarsdale/housing-market ; https://www.realtor.com/local/market/new-york/westchester-county/scarsdale",
     "id": "scarsdale-union-free-school-district",
-    "score": 54.151,
+    "score": 56.4434,
     "preRiskScore": 54.151,
     "riskMultiplier": 1,
     "state": "NY",
@@ -3412,7 +3607,7 @@ const DISTRICTS = [
     "totalSchools": 7,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 37,
+    "rank": 33,
     "salarySchedule": {
       "Bachelor's": {
         "0": 69524,
@@ -3444,7 +3639,12 @@ const DISTRICTS = [
     "Count Notes": "District/NCES sources show 5 elementary schools, 1 middle school, and 1 high school. Substitute pay is an Indeed estimate because a clear official per-diem rate was not found in the quick pass.",
     "Pre-Risk Overall Value Score": 54.151,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No penalty applied. Low current layoff risk: 2026-27 budget/bond passed, current contract runs through 2028, enrollment projections appear stable/growing, but budget documents still note tax-cap pressure and attrition-based staff reductions."
+    "Work Environment Risk": "No penalty applied. Low current layoff risk: 2026-27 budget/bond passed, current contract runs through 2028, enrollment projections appear stable/growing, but budget documents still note tax-cap pressure and attrition-based staff reductions.",
+    "Previous Overall Value Score": 54.151,
+    "State Current Spending Per Pupil": 31918,
+    "State Funding Context Score": 100,
+    "State Funding Context Rating": "Excellent",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Salt Lake School District",
@@ -3472,7 +3672,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 61.5385,
     "Sub Pay Score": 68.125,
     "Demographic Balance Score": 83.125,
-    "Overall Value Score": 53.6211,
+    "Overall Value Score": 52.94,
     "Median Home Price per Sq Ft": 372,
     "Price per Sq Ft Score": 65.8462,
     "Other %": 10,
@@ -3494,7 +3694,7 @@ const DISTRICTS = [
     "Total Schools Counted": 35,
     "Area": "Salt Lake City, UT",
     "id": "salt-lake-school-district",
-    "score": 53.6211,
+    "score": 52.94,
     "preRiskScore": 56.4433,
     "riskMultiplier": 0.95,
     "state": "UT",
@@ -3504,7 +3704,7 @@ const DISTRICTS = [
     "totalSchools": 35,
     "highSchools": 5,
     "stabilityLabel": "Moderate",
-    "rank": 38,
+    "rank": 42,
     "salarySchedule": {
       "Bachelor's": {
         "0": 62566,
@@ -3557,7 +3757,12 @@ const DISTRICTS = [
     "Work Environment Risk": "5% watchlist penalty due to strained funding/program cuts, but no strong current evidence of broad teacher layoffs.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 53.6211,
+    "State Current Spending Per Pupil": 11347,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Sun Prairie Area School District",
@@ -3585,7 +3790,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 90.7692,
     "Sub Pay Score": 66.7742,
     "Demographic Balance Score": 81.725,
-    "Overall Value Score": 53.4591,
+    "Overall Value Score": 54.2861,
     "Median Home Price per Sq Ft": 210,
     "Price per Sq Ft Score": 90.7692,
     "Other %": 13,
@@ -3610,7 +3815,7 @@ const DISTRICTS = [
     "Area": "Sun Prairie, WI",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "sun-prairie-area-school-district",
-    "score": 53.4591,
+    "score": 54.2861,
     "preRiskScore": 53.4591,
     "riskMultiplier": 1,
     "state": "WI",
@@ -3620,7 +3825,7 @@ const DISTRICTS = [
     "totalSchools": 15,
     "highSchools": 2,
     "stabilityLabel": "Stable",
-    "rank": 39,
+    "rank": 37,
     "salarySchedule": {
       "Bachelor's": {
         "0": 52918,
@@ -3651,7 +3856,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 53.4591,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. District shows active hiring and no reliable current broad layoff/closure evidence found in this pass."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. District shows active hiring and no reliable current broad layoff/closure evidence found in this pass.",
+    "Previous Overall Value Score": 53.4591,
+    "State Current Spending Per Pupil": 15952,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Alief ISD",
@@ -3679,7 +3889,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 92.3077,
     "Sub Pay Score": 42.5926,
     "Demographic Balance Score": 68.375,
-    "Overall Value Score": 53.20798350619418,
+    "Overall Value Score": 52.5476,
     "Median Home Price per Sq Ft": 113,
     "Price per Sq Ft Score": 100,
     "Other %": 1,
@@ -3701,7 +3911,7 @@ const DISTRICTS = [
     "Total Schools Counted": 46,
     "Area": "Alief, TX",
     "id": "alief-isd",
-    "score": 53.20798350619418,
+    "score": 52.5476,
     "preRiskScore": 59.11998167354909,
     "riskMultiplier": 0.9,
     "state": "TX",
@@ -3711,7 +3921,7 @@ const DISTRICTS = [
     "totalSchools": 46,
     "highSchools": 6,
     "stabilityLabel": "Elevated",
-    "rank": 40,
+    "rank": 44,
     "salarySchedule": {
       "Bachelor's": {
         "0": 66500,
@@ -3745,7 +3955,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to enrollment-loss pressure, charter competition, and budget-cut concerns.",
     "Source URL": "Alief 2025-2026 compensation handbook. Salary schedule includes a Teacher Retention Allotment (TRA); prototype values now include TRA because the district states beginning teaching salary is $66,500.",
     "Last Verified": "2026-06-17",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 53.208,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Dublin City Schools",
@@ -3823,7 +4038,7 @@ const DISTRICTS = [
     "Price per Sq Ft Score": 85.8462,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 53.0895,
-    "Overall Value Score": 53.0895,
+    "Overall Value Score": 53.935,
     "Daily Sub Pay": 155,
     "Pre-Risk Overall": 53.0895,
     "preRiskScore": 53.0895,
@@ -3833,7 +4048,13 @@ const DISTRICTS = [
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Demographic Balance Note": "First-pass public demographic profile.",
     "mapImage": "",
-    "rank": 41
+    "rank": 40,
+    "Previous Overall Value Score": 53.0895,
+    "State Current Spending Per Pupil": 17257,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 53.935
   },
   {
     "District": "Minnetonka Public Schools",
@@ -3861,7 +4082,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 61.5385,
     "Sub Pay Score": 54.0462,
     "Demographic Balance Score": 55.675,
-    "Overall Value Score": 52.5384,
+    "Overall Value Score": 53.4115,
     "Median Home Price per Sq Ft": 240,
     "Price per Sq Ft Score": 86.1538,
     "Other %": 4,
@@ -3886,7 +4107,7 @@ const DISTRICTS = [
     "Area": "Minnetonka, MN",
     "PPSF Source URL": "First-pass market estimate; verify with preferred housing/rent source.",
     "id": "minnetonka-public-schools",
-    "score": 52.5384,
+    "score": 53.4115,
     "preRiskScore": 52.5384,
     "riskMultiplier": 1,
     "state": "MN",
@@ -3927,7 +4148,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 52.5384,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "Round 3 first-pass entry; verify exact salary placement and substitute pay with HR before final ranking.",
-    "rank": 42
+    "rank": 41,
+    "Previous Overall Value Score": 52.5384,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Beaverton School District",
@@ -3955,7 +4181,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 50,
     "Sub Pay Score": 82.973,
     "Demographic Balance Score": 88.7,
-    "Overall Value Score": 52.3777,
+    "Overall Value Score": 54.0088,
     "Median Home Price per Sq Ft": 299,
     "Price per Sq Ft Score": 77.0769,
     "Other %": 15,
@@ -3980,7 +4206,7 @@ const DISTRICTS = [
     "Area": "Beaverton, OR",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "beaverton-school-district",
-    "score": 52.3777,
+    "score": 54.0088,
     "preRiskScore": 58.1974,
     "riskMultiplier": 0.9,
     "state": "OR",
@@ -3990,7 +4216,7 @@ const DISTRICTS = [
     "totalSchools": 52,
     "highSchools": 6,
     "stabilityLabel": "Elevated",
-    "rank": 43,
+    "rank": 38,
     "salarySchedule": {
       "Bachelor's": {
         "0": 55872,
@@ -4021,7 +4247,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 58.1974,
     "Work Environment Multiplier": 0.9,
-    "Work Environment Risk": "10% employment-stability penalty applied. Beaverton has strong salary/substitute inputs, but first-pass budget review showed current deficit/staffing-reduction risk, so it should not be treated as a clean low-risk #1."
+    "Work Environment Risk": "10% employment-stability penalty applied. Beaverton has strong salary/substitute inputs, but first-pass budget review showed current deficit/staffing-reduction risk, so it should not be treated as a clean low-risk #1.",
+    "Previous Overall Value Score": 52.3777,
+    "State Current Spending Per Pupil": 18083,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Plano ISD",
@@ -4087,7 +4318,7 @@ const DISTRICTS = [
     "Affordability Score": 36.82488,
     "Student-Teacher Ratio Score": 75,
     "Sub Pay Score": 33.33333333333333,
-    "Overall Value Score": 51.64942241683104,
+    "Overall Value Score": 51.067,
     "Median Home Price per Sq Ft": 242,
     "Price per Sq Ft Score": 78.15384615384616,
     "Sub Pay Housing Power": 1,
@@ -4103,7 +4334,13 @@ const DISTRICTS = [
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Current public schedule is 2026-27; verify if you require same-year comparability.",
-    "rank": 44
+    "rank": 49,
+    "Previous Overall Value Score": 51.6494,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html",
+    "score": 51.067
   },
   {
     "District": "Katy ISD",
@@ -4131,7 +4368,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 84.6154,
     "Sub Pay Score": 22.7273,
     "Demographic Balance Score": 92.15,
-    "Overall Value Score": 51.248,
+    "Overall Value Score": 50.6856,
     "Median Home Price per Sq Ft": 160,
     "Price per Sq Ft Score": 98.4615,
     "Other %": 4,
@@ -4153,7 +4390,7 @@ const DISTRICTS = [
     "Total Schools Counted": 80,
     "Area": "Katy, TX",
     "id": "katy-isd",
-    "score": 51.248,
+    "score": 50.6856,
     "preRiskScore": 56.9422,
     "riskMultiplier": 0.9,
     "state": "TX",
@@ -4163,7 +4400,7 @@ const DISTRICTS = [
     "totalSchools": 80,
     "highSchools": 11,
     "stabilityLabel": "Elevated",
-    "rank": 45,
+    "rank": 50,
     "salarySchedule": {
       "Bachelor's": {
         "0": 66180,
@@ -4197,7 +4434,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to budget pressure and staffing-reduction risk, partly mitigated by attrition/vacancy-based approach.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 51.248,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Grossmont Union High School District",
@@ -4286,8 +4528,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 51.1944,
     "Pre-Risk Overall Value Score": 51.1944,
-    "Overall Value Score": 51.1944,
-    "score": 51.1944,
+    "Overall Value Score": 52.8847,
+    "score": 52.8847,
     "preRiskScore": 51.1944,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 22,
@@ -4299,7 +4541,12 @@ const DISTRICTS = [
     "totalSchools": 15,
     "highSchools": 12,
     "stabilityLabel": "Stable",
-    "rank": 46
+    "rank": 43,
+    "Previous Overall Value Score": 51.1944,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Gwinnett County Public Schools",
@@ -4327,7 +4574,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 82.6154,
     "Sub Pay Score": 25.6694,
     "Demographic Balance Score": 91.0997,
-    "Overall Value Score": 50.7286,
+    "Overall Value Score": 51.6922,
     "Median Home Price per Sq Ft": 165,
     "Price per Sq Ft Score": 97.6923,
     "Other %": 4.6,
@@ -4352,7 +4599,7 @@ const DISTRICTS = [
     "Area": "Lawrenceville / Gwinnett County, GA",
     "PPSF Source URL": "https://resources.finalsite.net/images/v1719000691/gcpsk12org/lmrrhx4bc5hdy3ivppap/2024-2025_Teacher_Salary_Scheduleeq.pdf ; https://www.gcpsk12.org/about-us/gcps-by-the-numbers ; https://www.gcpsk12.org/about-us/careers/hr-support/substitute-management/general-information ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=1302550 ; https://www.apartments.com/rent-market-trends/lawrenceville-ga/ ; https://www.redfin.com/city/11598/GA/Lawrenceville/housing-market",
     "id": "gwinnett-county-public-schools",
-    "score": 50.7286,
+    "score": 51.6922,
     "preRiskScore": 50.7286,
     "riskMultiplier": 1,
     "state": "GA",
@@ -4394,7 +4641,12 @@ const DISTRICTS = [
     "Count Notes": "GCPS by the Numbers lists 81 elementary schools, 29 middle schools, 24 high schools, 7 special entities, and 1 charter school.",
     "Pre-Risk Overall Value Score": 50.7286,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No penalty applied. Current public-source pass found no broad layoff/closure warning; GCPS is a very large district and its FY2026 budget materials include teacher salary increases/retention support rather than layoff signals."
+    "Work Environment Risk": "No penalty applied. Current public-source pass found no broad layoff/closure warning; GCPS is a very large district and its FY2026 budget materials include teacher salary increases/retention support rather than layoff signals.",
+    "Previous Overall Value Score": 50.7286,
+    "State Current Spending Per Pupil": 15833,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Chicago Public Schools",
@@ -4422,7 +4674,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 86.3846,
     "Sub Pay Score": 30.2161,
     "Demographic Balance Score": 81.2567,
-    "Overall Value Score": 50.3977,
+    "Overall Value Score": 52.1278,
     "Median Home Price per Sq Ft": 303,
     "Price per Sq Ft Score": 76.4615,
     "Other %": 2.6,
@@ -4443,7 +4695,7 @@ const DISTRICTS = [
     "Source URL": "CPS Stats & Facts lists 423 district-run elementary/K-8 schools and 91 district-run high schools. The 157 high-school grand total includes charter, contract, and SAFE schools, so the prototype now displays the district-run count because CPS salary data applies to district-run teacher placement.",
     "Area": "Chicago, IL",
     "id": "chicago-public-schools",
-    "score": 50.3977,
+    "score": 52.1278,
     "preRiskScore": 59.2914,
     "riskMultiplier": 0.85,
     "state": "IL",
@@ -4453,7 +4705,7 @@ const DISTRICTS = [
     "totalSchools": 514,
     "highSchools": 91,
     "stabilityLabel": "Severe",
-    "rank": 48,
+    "rank": 45,
     "salarySchedule": {
       "Bachelor's": {
         "0": 72520,
@@ -4495,7 +4747,12 @@ const DISTRICTS = [
     "Number of Middle Schools": null,
     "Other / Specialty Schools": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 50.3977,
+    "State Current Spending Per Pupil": 21776,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Waunakee Community School District",
@@ -4523,7 +4780,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 84.6154,
     "Sub Pay Score": 51.8182,
     "Demographic Balance Score": 45.45,
-    "Overall Value Score": 50.3947,
+    "Overall Value Score": 51.375,
     "Median Home Price per Sq Ft": 220,
     "Price per Sq Ft Score": 89.2308,
     "Other %": 8,
@@ -4548,7 +4805,7 @@ const DISTRICTS = [
     "Area": "Waunakee, WI",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "waunakee-community-school-district",
-    "score": 50.3947,
+    "score": 51.375,
     "preRiskScore": 50.3947,
     "riskMultiplier": 1,
     "state": "WI",
@@ -4558,7 +4815,7 @@ const DISTRICTS = [
     "totalSchools": 8,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 49,
+    "rank": 48,
     "salarySchedule": {
       "Bachelor's": {
         "0": 52000,
@@ -4589,7 +4846,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 50.3947,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. First-pass screening found substitute pay data and no current broad layoff/closure evidence."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. First-pass screening found substitute pay data and no current broad layoff/closure evidence.",
+    "Previous Overall Value Score": 50.3947,
+    "State Current Spending Per Pupil": 15952,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "North Clackamas School District",
@@ -4617,7 +4879,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 43.6923,
     "Sub Pay Score": 58.2872,
     "Demographic Balance Score": 77.875,
-    "Overall Value Score": 50.1469,
+    "Overall Value Score": 51.8896,
     "Median Home Price per Sq Ft": 279,
     "Price per Sq Ft Score": 80.1538,
     "Other %": 9,
@@ -4640,7 +4902,7 @@ const DISTRICTS = [
     "Source URL": "District page lists 32 schools total; counts entered as 18 elementary, 4 middle, 5 high, 5 charter/CTE/specialty.",
     "Area": "Milwaukie / North Clackamas, OR",
     "id": "north-clackamas-school-district",
-    "score": 50.1469,
+    "score": 51.8896,
     "preRiskScore": 52.7862,
     "riskMultiplier": 0.95,
     "state": "OR",
@@ -4650,7 +4912,7 @@ const DISTRICTS = [
     "totalSchools": 32,
     "highSchools": 5,
     "stabilityLabel": "Moderate",
-    "rank": 50,
+    "rank": 46,
     "salarySchedule": {
       "Bachelor's": {
         "0": 58788,
@@ -4685,7 +4947,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.95,
     "Work Environment Risk": "5% watchlist penalty due to Portland-area funding climate and active budget review; no strong current broad layoff evidence found in first pass.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 50.1469,
+    "State Current Spending Per Pupil": 18083,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Pearland ISD",
@@ -4774,8 +5041,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 49.8858,
     "Pre-Risk Overall Value Score": 49.8858,
-    "Overall Value Score": 49.8858,
-    "score": 49.8858,
+    "Overall Value Score": 49.3915,
+    "score": 49.3915,
     "preRiskScore": 49.8858,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 14,
@@ -4787,7 +5054,12 @@ const DISTRICTS = [
     "totalSchools": 22,
     "highSchools": 4,
     "stabilityLabel": "Stable",
-    "rank": 51
+    "rank": 51,
+    "Previous Overall Value Score": 49.8858,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Loudoun County Public Schools",
@@ -4815,7 +5087,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 99,
     "Sub Pay Score": 0.3843,
     "Demographic Balance Score": 92.325,
-    "Overall Value Score": 46.4969,
+    "Overall Value Score": 47.6721,
     "Median Home Price per Sq Ft": 309,
     "Price per Sq Ft Score": 75.5385,
     "Other %": 11,
@@ -4840,7 +5112,7 @@ const DISTRICTS = [
     "Area": "Ashburn / Loudoun County, VA",
     "PPSF Source URL": "https://www.redfin.com/city/29015/VA/Ashburn/housing-market",
     "id": "loudoun-county-public-schools",
-    "score": 46.4969,
+    "score": 47.6721,
     "preRiskScore": 48.9441,
     "riskMultiplier": 0.95,
     "state": "VA",
@@ -4882,7 +5154,12 @@ const DISTRICTS = [
     "Count Notes": "LCPS operates a very large PK-12 system; NCES lists 102 total schools, and the high-school list includes 17 traditional high schools. Counts use 17 high schools, 18 middle schools, 62 elementary schools, and 5 other/specialty campuses to reconcile to 102 total schools.",
     "Pre-Risk Overall Value Score": 48.9441,
     "Work Environment Multiplier": 0.95,
-    "Work Environment Risk": "5% watchlist penalty applied. Current public-source pass found no active broad layoffs or closures; however, local reporting and LCPS enrollment planning indicate enrollment is projected to decline through 2031, so stability is not scored as a perfect 100."
+    "Work Environment Risk": "5% watchlist penalty applied. Current public-source pass found no active broad layoffs or closures; however, local reporting and LCPS enrollment planning indicate enrollment is projected to decline through 2031, so stability is not scored as a perfect 100.",
+    "Previous Overall Value Score": 46.4969,
+    "State Current Spending Per Pupil": 17104,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Clear Creek ISD",
@@ -4971,8 +5248,8 @@ const DISTRICTS = [
     "Stability Score": 100,
     "Pre-Risk Overall": 46.4592,
     "Pre-Risk Overall Value Score": 46.4592,
-    "Overall Value Score": 46.4592,
-    "score": 46.4592,
+    "Overall Value Score": 46.1362,
+    "score": 46.1362,
     "preRiskScore": 46.4592,
     "riskMultiplier": 1,
     "Student Teacher Ratio": 14.5,
@@ -4984,7 +5261,12 @@ const DISTRICTS = [
     "totalSchools": 49,
     "highSchools": 7,
     "stabilityLabel": "Stable",
-    "rank": 53
+    "rank": 55,
+    "Previous Overall Value Score": 46.4592,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Verona Area School District",
@@ -5012,7 +5294,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 92.3077,
     "Sub Pay Score": 36.4553,
     "Demographic Balance Score": 70.775,
-    "Overall Value Score": 45.2662,
+    "Overall Value Score": 46.5029,
     "Median Home Price per Sq Ft": 224,
     "Price per Sq Ft Score": 88.6154,
     "Other %": 8,
@@ -5037,7 +5319,7 @@ const DISTRICTS = [
     "Area": "Verona, WI",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "verona-area-school-district",
-    "score": 45.2662,
+    "score": 46.5029,
     "preRiskScore": 45.2662,
     "riskMultiplier": 1,
     "state": "WI",
@@ -5047,7 +5329,7 @@ const DISTRICTS = [
     "totalSchools": 8,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 54,
+    "rank": 53,
     "salarySchedule": {
       "Bachelor's": {
         "0": 56698,
@@ -5078,7 +5360,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 45.2662,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Current salary and substitute sources were available; no reliable broad layoff/closure evidence found in this pass."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Current salary and substitute sources were available; no reliable broad layoff/closure evidence found in this pass.",
+    "Previous Overall Value Score": 45.2662,
+    "State Current Spending Per Pupil": 15952,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Cherry Creek School District",
@@ -5106,7 +5393,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 67.8462,
     "Sub Pay Score": 45.1087,
     "Demographic Balance Score": 88.313,
-    "Overall Value Score": 45.0405,
+    "Overall Value Score": 46.2885,
     "Median Home Price per Sq Ft": 255,
     "Price per Sq Ft Score": 83.8462,
     "Other %": 10.6,
@@ -5128,7 +5415,7 @@ const DISTRICTS = [
     "Total Schools Counted": 67,
     "Area": "Aurora & Centennial, CO average",
     "id": "cherry-creek-school-district",
-    "score": 45.0405,
+    "score": 46.2885,
     "preRiskScore": 52.9888,
     "riskMultiplier": 0.85,
     "state": "CO",
@@ -5138,7 +5425,7 @@ const DISTRICTS = [
     "totalSchools": 67,
     "highSchools": 8,
     "stabilityLabel": "Severe",
-    "rank": 55,
+    "rank": 54,
     "salarySchedule": {
       "Bachelor's": {
         "0": 62000,
@@ -5172,7 +5459,12 @@ const DISTRICTS = [
     "Work Environment Risk": "15% employment-stability penalty due to announced job reductions and districtwide budget-cut plan.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 45.0405,
+    "State Current Spending Per Pupil": 15908,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Denver Public Schools",
@@ -5200,7 +5492,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 76.9231,
     "Sub Pay Score": 43.21,
     "Demographic Balance Score": 80.55,
-    "Overall Value Score": 43.9271,
+    "Overall Value Score": 45.2307,
     "Median Home Price per Sq Ft": 367,
     "Price per Sq Ft Score": 66.6154,
     "Other %": 7,
@@ -5222,7 +5514,7 @@ const DISTRICTS = [
     "Total Schools Counted": 193,
     "Area": "Denver, CO",
     "id": "denver-public-schools",
-    "score": 43.9271,
+    "score": 45.2307,
     "preRiskScore": 48.8079,
     "riskMultiplier": 0.9,
     "state": "CO",
@@ -5232,7 +5524,7 @@ const DISTRICTS = [
     "totalSchools": 193,
     "highSchools": 18,
     "stabilityLabel": "Elevated",
-    "rank": 56,
+    "rank": 57,
     "salarySchedule": {
       "Bachelor's": {
         "0": 57666,
@@ -5266,7 +5558,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to central-office layoffs, declining enrollment pressure, and warnings about possible additional school closures.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 43.9271,
+    "State Current Spending Per Pupil": 15908,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Saint Helena Unified School District",
@@ -5294,7 +5591,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 89.8462,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 67.725,
-    "Overall Value Score": 43.76,
+    "Overall Value Score": 45.822,
     "Median Home Price per Sq Ft": 903,
     "Price per Sq Ft Score": 0,
     "Other %": 2,
@@ -5317,7 +5614,7 @@ const DISTRICTS = [
     "Source URL": "District site lists St. Helena High, Robert Louis Stevenson Middle, St. Helena Elementary, St. Helena Primary, and St. Helena Opportunities Program; NCES lists 5 total schools.",
     "Area": "St. Helena, CA",
     "id": "saint-helena-unified-school-district",
-    "score": 43.76,
+    "score": 45.822,
     "preRiskScore": 43.76,
     "riskMultiplier": 1,
     "state": "CA",
@@ -5327,7 +5624,7 @@ const DISTRICTS = [
     "totalSchools": 5,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 57,
+    "rank": 56,
     "salarySchedule": {
       "Bachelor's": {
         "0": 93432,
@@ -5361,7 +5658,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 43.76,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Middleton-Cross Plains Area School District",
@@ -5389,7 +5691,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 90,
     "Sub Pay Score": 42.1053,
     "Demographic Balance Score": 72.175,
-    "Overall Value Score": 42.6421,
+    "Overall Value Score": 44.01,
     "Median Home Price per Sq Ft": 254,
     "Price per Sq Ft Score": 84,
     "Other %": 13,
@@ -5414,7 +5716,7 @@ const DISTRICTS = [
     "Area": "Middleton, WI",
     "PPSF Source URL": "Redfin/Apartments first-pass market lookup, 2026-06-15",
     "id": "middleton-cross-plains-area-school-district",
-    "score": 42.6421,
+    "score": 44.01,
     "preRiskScore": 42.6421,
     "riskMultiplier": 1,
     "state": "WI",
@@ -5424,7 +5726,7 @@ const DISTRICTS = [
     "totalSchools": 12,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 58,
+    "rank": 59,
     "salarySchedule": {
       "Bachelor's": {
         "0": 55000,
@@ -5455,7 +5757,12 @@ const DISTRICTS = [
     },
     "Pre-Risk Overall Value Score": 42.6421,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Local-source screening found a current compensation model and no broad current layoff/closure evidence; keep monitoring annual Wisconsin funding pressure."
+    "Work Environment Risk": "No current employment-stability penalty applied in this first-pass entry. Local-source screening found a current compensation model and no broad current layoff/closure evidence; keep monitoring annual Wisconsin funding pressure.",
+    "Previous Overall Value Score": 42.6421,
+    "State Current Spending Per Pupil": 15952,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Jordan District",
@@ -5483,7 +5790,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 30.7692,
     "Sub Pay Score": 67.8212,
     "Demographic Balance Score": 58.075,
-    "Overall Value Score": 42.5392,
+    "Overall Value Score": 42.4122,
     "Median Home Price per Sq Ft": 232,
     "Price per Sq Ft Score": 87.3846,
     "Other %": 7,
@@ -5505,7 +5812,7 @@ const DISTRICTS = [
     "Total Schools Counted": 68,
     "Area": "West Jordan, UT",
     "id": "jordan-district",
-    "score": 42.5392,
+    "score": 42.4122,
     "preRiskScore": 42.5392,
     "riskMultiplier": 1,
     "state": "UT",
@@ -5515,7 +5822,7 @@ const DISTRICTS = [
     "totalSchools": 68,
     "highSchools": 10,
     "stabilityLabel": "Stable",
-    "rank": 59,
+    "rank": 62,
     "salarySchedule": {
       "Bachelor's": {
         "0": 63900,
@@ -5549,7 +5856,12 @@ const DISTRICTS = [
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 42.5392,
+    "State Current Spending Per Pupil": 11347,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "San Antonio ISD",
@@ -5577,7 +5889,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 77.3077,
     "Sub Pay Score": 52.0408,
     "Demographic Balance Score": 24.061,
-    "Overall Value Score": 42.3989,
+    "Overall Value Score": 42.279,
     "Median Home Price per Sq Ft": 151,
     "Price per Sq Ft Score": 99.8462,
     "Other %": 0,
@@ -5600,7 +5912,7 @@ const DISTRICTS = [
     "Source URL": "Campus counts from Texas Tribune Schools Explorer. Demographic fields use Hispanic share from Texas Tribune, Black share from Express-News, and remaining minority/white share estimated from Public School Review summary.",
     "Area": "San Antonio, TX",
     "id": "san-antonio-isd",
-    "score": 42.3989,
+    "score": 42.279,
     "preRiskScore": 49.881,
     "riskMultiplier": 0.85,
     "state": "TX",
@@ -5610,7 +5922,7 @@ const DISTRICTS = [
     "totalSchools": 83,
     "highSchools": 14,
     "stabilityLabel": "Severe",
-    "rank": 60,
+    "rank": 63,
     "salarySchedule": {
       "Bachelor's": {
         "0": 60000,
@@ -5644,7 +5956,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.85,
     "Work Environment Risk": "15% employment-stability penalty due to major deficit, school closures, declining enrollment, hiring freeze/cuts, and staffing-reduction risk.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 42.3989,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Tahoe-Truckee Unified School District",
@@ -5672,7 +5989,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 47.6154,
     "Sub Pay Score": 40.7853,
     "Demographic Balance Score": 67.8767,
-    "Overall Value Score": 41.97,
+    "Overall Value Score": 44.1215,
     "Median Home Price per Sq Ft": 346,
     "Price per Sq Ft Score": 69.8462,
     "Other %": 6.9,
@@ -5695,7 +6012,7 @@ const DISTRICTS = [
     "Source URL": "CDE 2025-26 DataQuest enrollment by ethnicity; NCES 2024-25 district ratio and school count; CDE school directory for active public school categories; TTUSD 2025-26 substitute rates; uploaded TTUSD certificated salary schedule.",
     "Area": "Truckee, CA",
     "id": "tahoe-truckee-unified-school-district",
-    "score": 41.97,
+    "score": 44.1215,
     "preRiskScore": 41.97,
     "riskMultiplier": 1,
     "state": "CA",
@@ -5741,7 +6058,12 @@ const DISTRICTS = [
     "Work Environment Risk": "No current employment-stability penalty applied; TTUSD is a Basic Aid/community-funded district and first-pass research did not find current broad layoff or closure evidence.",
     "Last Verified": "2026-06-16",
     "PPSF Source URL": "https://fred.stlouisfed.org/series/MEDLISPRIPERSQUFEE46020",
-    "rank": 61
+    "rank": 58,
+    "Previous Overall Value Score": 41.97,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Edina Public Schools",
@@ -5769,7 +6091,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 65.3846,
     "Sub Pay Score": 35,
     "Demographic Balance Score": 60.175,
-    "Overall Value Score": 41.1337,
+    "Overall Value Score": 42.577,
     "Median Home Price per Sq Ft": 275,
     "Price per Sq Ft Score": 80.7692,
     "Other %": 4,
@@ -5794,7 +6116,7 @@ const DISTRICTS = [
     "Area": "Edina, MN",
     "PPSF Source URL": "First-pass market estimate; verify with preferred housing/rent source.",
     "id": "edina-public-schools",
-    "score": 41.1337,
+    "score": 42.577,
     "preRiskScore": 41.1337,
     "riskMultiplier": 1,
     "state": "MN",
@@ -5835,7 +6157,12 @@ const DISTRICTS = [
     "Pre-Risk Overall Value Score": 41.1337,
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "Round 3 first-pass entry; Edina uses Kelly Education for substitutes, so daily sub rate is estimated pending verification.",
-    "rank": 62
+    "rank": 61,
+    "Previous Overall Value Score": 41.1337,
+    "State Current Spending Per Pupil": 17098,
+    "State Funding Context Score": 70,
+    "State Funding Context Rating": "Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Lake Washington School District",
@@ -5863,7 +6190,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 54.5385,
     "Sub Pay Score": 22.5253,
     "Demographic Balance Score": 87.7,
-    "Overall Value Score": 40.4958,
+    "Overall Value Score": 42.721,
     "Median Home Price per Sq Ft": 650,
     "Price per Sq Ft Score": 23.0769,
     "Other %": 9,
@@ -5888,7 +6215,7 @@ const DISTRICTS = [
     "Area": "Redmond / Kirkland, WA",
     "PPSF Source URL": "https://www.lwsd.org/employment/teachers-certificated-employees/salary-schedules ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?DistrictID=5304230 ; https://www.apartments.com/rent-market-trends/redmond-wa/ ; https://www.redfin.com/city/14913/WA/Redmond/housing-market ; https://www.lwsd.org/about/enrollment-report",
     "id": "lake-washington-school-district",
-    "score": 40.4958,
+    "score": 42.721,
     "preRiskScore": 42.6271,
     "riskMultiplier": 0.95,
     "state": "WA",
@@ -5898,7 +6225,7 @@ const DISTRICTS = [
     "totalSchools": 57,
     "highSchools": 6,
     "stabilityLabel": "Moderate",
-    "rank": 63,
+    "rank": 60,
     "salarySchedule": {
       "Bachelor's": {
         "0": 61887,
@@ -5930,7 +6257,12 @@ const DISTRICTS = [
     "Count Notes": "LWSD schools page lists high school options including Eastlake, Emerson, Juanita, Lake Washington, Redmond, Tesla STEM, plus ICS/WANIC programs. This prototype counts 6 high-school options and 57 total schools per NCES.",
     "Pre-Risk Overall Value Score": 42.6271,
     "Work Environment Multiplier": 0.95,
-    "Work Environment Risk": "5% watchlist penalty applied. LWSD has strong salary and high district quality, but current budget planning references declining enrollment, rising costs, and state/local funding constraints. No broad active layoff evidence found in this pass."
+    "Work Environment Risk": "5% watchlist penalty applied. LWSD has strong salary and high district quality, but current budget planning references declining enrollment, rising costs, and state/local funding constraints. No broad active layoff evidence found in this pass.",
+    "Previous Overall Value Score": 40.4958,
+    "State Current Spending Per Pupil": 18564,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Royal ISD",
@@ -5958,7 +6290,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 63,
     "Sub Pay Score": 5.6793,
     "Demographic Balance Score": 55.7525,
-    "Overall Value Score": 40.3734,
+    "Overall Value Score": 40.3547,
     "Median Home Price per Sq Ft": 161,
     "Price per Sq Ft Score": 98.3077,
     "Other %": 2.3,
@@ -5981,7 +6313,7 @@ const DISTRICTS = [
     "Source URL": "Royal ISD is a fast-growth district. Current district page lists six campuses, including Royal Prairie Elementary and Royal STEM Academy; NCES/Texas Tribune school counts lag current district listings. Substitute pay is provisional because the public 2023-2024 Substitute Pay Schedule listing did not expose the actual rate in searchable text.",
     "Area": "Brookshire/Pattison, TX",
     "id": "royal-isd",
-    "score": 40.3734,
+    "score": 40.3547,
     "preRiskScore": 40.3734,
     "riskMultiplier": 1,
     "state": "TX",
@@ -6025,7 +6357,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 40.3734,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Leander ISD",
@@ -6053,7 +6390,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 84.6154,
     "Sub Pay Score": 36.6667,
     "Demographic Balance Score": 85.725,
-    "Overall Value Score": 38.8952,
+    "Overall Value Score": 38.9504,
     "Median Home Price per Sq Ft": 190,
     "Price per Sq Ft Score": 93.8462,
     "Other %": 6,
@@ -6075,7 +6412,7 @@ const DISTRICTS = [
     "Total Schools Counted": 49,
     "Area": "Austin, TX",
     "id": "leander-isd",
-    "score": 38.8952,
+    "score": 38.9504,
     "preRiskScore": 43.2169,
     "riskMultiplier": 0.9,
     "state": "TX",
@@ -6085,7 +6422,7 @@ const DISTRICTS = [
     "totalSchools": 49,
     "highSchools": 6,
     "stabilityLabel": "Elevated",
-    "rank": 65,
+    "rank": 67,
     "salarySchedule": {
       "Bachelor's": {
         "0": 57500,
@@ -6119,7 +6456,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to declining enrollment, projected deficit, and school-closure/consolidation discussions; teacher-layoff risk appears partly mitigated by attrition.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 38.8952,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Metro Nashville Public Schools",
@@ -6147,7 +6489,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 69.2308,
     "Sub Pay Score": 16.0592,
     "Demographic Balance Score": 85.207,
-    "Overall Value Score": 38.7516,
+    "Overall Value Score": 38.814,
     "Median Home Price per Sq Ft": 274,
     "Price per Sq Ft Score": 80.9231,
     "Other %": 0.4,
@@ -6168,7 +6510,7 @@ const DISTRICTS = [
     "Source URL": "MNPS official schools directory high-school filter lists 21 high schools; middle/K-8 count remains from the public school-options list.",
     "Area": "Nashville, TN",
     "id": "metro-nashville-public-schools",
-    "score": 38.7516,
+    "score": 38.814,
     "preRiskScore": 40.7912,
     "riskMultiplier": 0.95,
     "state": "TN",
@@ -6178,7 +6520,7 @@ const DISTRICTS = [
     "totalSchools": 162,
     "highSchools": 21,
     "stabilityLabel": "Moderate",
-    "rank": 66,
+    "rank": 68,
     "salarySchedule": {
       "Bachelor's": {
         "0": 53610,
@@ -6215,7 +6557,12 @@ const DISTRICTS = [
     "Number of Elementary Schools": null,
     "Other / Specialty Schools": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 38.7516,
+    "State Current Spending Per Pupil": 12882,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Provo City School District",
@@ -6243,7 +6590,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 38.4615,
     "Sub Pay Score": 41.6129,
     "Demographic Balance Score": 71.325,
-    "Overall Value Score": 37.4429,
+    "Overall Value Score": 37.5708,
     "Median Home Price per Sq Ft": 267,
     "Price per Sq Ft Score": 82,
     "Other %": 8,
@@ -6265,7 +6612,7 @@ const DISTRICTS = [
     "Total Schools Counted": 18,
     "Area": "Provo, UT",
     "id": "provo-city-school-district",
-    "score": 37.4429,
+    "score": 37.5708,
     "preRiskScore": 41.6033,
     "riskMultiplier": 0.9,
     "state": "UT",
@@ -6275,7 +6622,7 @@ const DISTRICTS = [
     "totalSchools": 18,
     "highSchools": 3,
     "stabilityLabel": "Elevated",
-    "rank": 67,
+    "rank": 71,
     "salarySchedule": {
       "Bachelor's": {
         "0": 60672,
@@ -6310,7 +6657,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to active budget-reduction discussions and enrollment/funding challenges.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 37.4429,
+    "State Current Spending Per Pupil": 11347,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Nassau County School District",
@@ -6338,7 +6690,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 72.6923,
     "Sub Pay Score": 15.4308,
     "Demographic Balance Score": 52.2,
-    "Overall Value Score": 37.3507,
+    "Overall Value Score": 37.4832,
     "Median Home Price per Sq Ft": 212,
     "Price per Sq Ft Score": 90.4615,
     "Other %": 5,
@@ -6363,7 +6715,7 @@ const DISTRICTS = [
     "Area": "Yulee / Nassau County, FL",
     "PPSF Source URL": "https://www.nassau.k12.fl.us/page/instructional-salaries ; https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5569/Ncsd/f73c8433-23bf-4388-aa76-259dafad90d2/24-27_NTA_Ratified_Amended_with_Signatures__25.pdf ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=1201350 ; https://www.apartments.com/rent-market-trends/yulee-fl/ ; https://www.redfin.com/zipcode/32097/housing-market",
     "id": "nassau-county-school-district",
-    "score": 37.3507,
+    "score": 37.4832,
     "preRiskScore": 37.3507,
     "riskMultiplier": 1,
     "state": "FL",
@@ -6373,7 +6725,7 @@ const DISTRICTS = [
     "totalSchools": 17,
     "highSchools": 4,
     "stabilityLabel": "Stable",
-    "rank": 68,
+    "rank": 72,
     "salarySchedule": {
       "Bachelor's": {
         "0": 52407,
@@ -6405,7 +6757,12 @@ const DISTRICTS = [
     "Count Notes": "Nassau County has four main high-school campuses for this prototype: Fernandina Beach High, Hilliard Middle-Senior, West Nassau High, and Yulee High. District website says 17 schools; NCES lists 22 including additional programs.",
     "Pre-Risk Overall Value Score": 37.3507,
     "Work Environment Multiplier": 1,
-    "Work Environment Risk": "No penalty applied. Current pass found strong public-facing district performance signals and no broad layoff/closure/fiscal-crisis warning comparable to Austin, Oakland, LAUSD, or Portland."
+    "Work Environment Risk": "No penalty applied. Current pass found strong public-facing district performance signals and no broad layoff/closure/fiscal-crisis warning comparable to Austin, Oakland, LAUSD, or Portland.",
+    "Previous Overall Value Score": 37.3507,
+    "State Current Spending Per Pupil": 12693,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "San Jose Unified School District",
@@ -6433,7 +6790,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 30.7692,
     "Sub Pay Score": 10.6061,
     "Demographic Balance Score": 79.175,
-    "Overall Value Score": 37.3462,
+    "Overall Value Score": 39.7289,
     "Median Home Price per Sq Ft": 878,
     "Price per Sq Ft Score": 0,
     "Other %": 7,
@@ -6455,7 +6812,7 @@ const DISTRICTS = [
     "Total Schools Counted": 41,
     "Area": "San Jose, CA",
     "id": "san-jose-usd",
-    "score": 37.3462,
+    "score": 39.7289,
     "preRiskScore": 41.4958,
     "riskMultiplier": 0.9,
     "state": "CA",
@@ -6465,7 +6822,7 @@ const DISTRICTS = [
     "totalSchools": 41,
     "highSchools": 6,
     "stabilityLabel": "Elevated",
-    "rank": 69,
+    "rank": 65,
     "salarySchedule": {
       "Bachelor's": {
         "0": 72051,
@@ -6499,10 +6856,15 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to school-closure risk and declining-enrollment pressure.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 37.3462,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
-    "District": "La Ca\u00f1ada Unified School District",
+    "District": "La Cañada Unified School District",
     "State": "CA",
     "Region": "Southern California",
     "BA Start": 62754,
@@ -6527,7 +6889,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 10.3077,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 85.425,
-    "Overall Value Score": 36.536,
+    "Overall Value Score": 38.9592,
     "Median Home Price per Sq Ft": 1030,
     "Price per Sq Ft Score": 0,
     "Other %": 13,
@@ -6547,9 +6909,9 @@ const DISTRICTS = [
     "Number of Elementary Schools": 3,
     "Other / Specialty Schools": 0,
     "Total Schools Counted": 4,
-    "Area": "La Ca\u00f1ada Flintridge, CA",
+    "Area": "La Cañada Flintridge, CA",
     "id": "la-ca-ada-unified-school-district",
-    "score": 36.536,
+    "score": 38.9592,
     "preRiskScore": 36.536,
     "riskMultiplier": 1,
     "state": "CA",
@@ -6559,7 +6921,7 @@ const DISTRICTS = [
     "totalSchools": 4,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 70,
+    "rank": 66,
     "salarySchedule": {
       "Bachelor's": {
         "0": 62754,
@@ -6593,7 +6955,12 @@ const DISTRICTS = [
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 36.536,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Glendora Unified School District",
@@ -6621,7 +6988,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 7.6923,
     "Sub Pay Score": 24.0741,
     "Demographic Balance Score": 81.75,
-    "Overall Value Score": 35.9516,
+    "Overall Value Score": 38.404,
     "Median Home Price per Sq Ft": 583,
     "Price per Sq Ft Score": 33.3846,
     "Other %": 7,
@@ -6643,7 +7010,7 @@ const DISTRICTS = [
     "Total Schools Counted": 10,
     "Area": "Glendora, CA",
     "id": "glendora-usd",
-    "score": 35.9516,
+    "score": 38.404,
     "preRiskScore": 37.8438,
     "riskMultiplier": 0.95,
     "state": "CA",
@@ -6653,7 +7020,7 @@ const DISTRICTS = [
     "totalSchools": 10,
     "highSchools": 2,
     "stabilityLabel": "Moderate",
-    "rank": 71,
+    "rank": 69,
     "salarySchedule": {
       "Bachelor's": {
         "0": 55384,
@@ -6687,7 +7054,12 @@ const DISTRICTS = [
     "Work Environment Risk": "5% watchlist penalty because current layoff evidence is unclear; needs official budget/interim report verification.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 35.9516,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "South Pasadena Unified School District",
@@ -6715,7 +7087,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 4.8462,
     "Sub Pay Score": 24.2115,
     "Demographic Balance Score": 92.945,
-    "Overall Value Score": 35.7031,
+    "Overall Value Score": 38.1679,
     "Median Home Price per Sq Ft": 962,
     "Price per Sq Ft Score": 0,
     "Other %": 20.4,
@@ -6738,7 +7110,7 @@ const DISTRICTS = [
     "Source URL": "NCES lists 5 total schools. SPUSD website lists three elementary schools, one middle school, and one high school. Substitute rate uses latest public EdJoin posting found ($200 full-day daily rate; posting year 2022-23, so verify before relying on current hiring).",
     "Area": "South Pasadena, CA",
     "id": "south-pasadena-unified-school-district",
-    "score": 35.7031,
+    "score": 38.1679,
     "preRiskScore": 37.5822,
     "riskMultiplier": 0.95,
     "state": "CA",
@@ -6748,7 +7120,7 @@ const DISTRICTS = [
     "totalSchools": 5,
     "highSchools": 1,
     "stabilityLabel": "Moderate",
-    "rank": 72,
+    "rank": 70,
     "salarySchedule": {
       "Bachelor's": {
         "0": 54525,
@@ -6782,7 +7154,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.95,
     "Work Environment Risk": "5% watchlist penalty because current evidence is limited; older cuts are stale but budget risk should still be monitored.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 35.7031,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Oxnard Union High School District",
@@ -6810,7 +7187,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 0,
     "Sub Pay Score": 13.5302,
     "Demographic Balance Score": 42.075,
-    "Overall Value Score": 33.3572,
+    "Overall Value Score": 35.9393,
     "Median Home Price per Sq Ft": 514,
     "Price per Sq Ft Score": 44,
     "Other %": 1,
@@ -6832,7 +7209,7 @@ const DISTRICTS = [
     "Total Schools Counted": 12,
     "Area": "Oxnard, CA",
     "id": "oxnard-union-high-school-district",
-    "score": 33.3572,
+    "score": 35.9393,
     "preRiskScore": 39.2438,
     "riskMultiplier": 0.85,
     "state": "CA",
@@ -6876,7 +7253,12 @@ const DISTRICTS = [
     "Work Environment Risk": "15% employment-stability penalty due to formal budget-stabilization planning and reported job-cut risk.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 33.3572,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Ocean Springs School District",
@@ -6904,7 +7286,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 87.3077,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 61.5557,
-    "Overall Value Score": 33.2006,
+    "Overall Value Score": 33.5406,
     "Median Home Price per Sq Ft": 201,
     "Price per Sq Ft Score": 92.1538,
     "Other %": 6.29,
@@ -6927,7 +7309,7 @@ const DISTRICTS = [
     "Source URL": "NCES lists 7 schools. Counts categorize Ocean Springs High as high, Ocean Springs Middle as middle, Ocean Springs Upper Elementary plus Magnolia/Oak/Pecan Park as elementary, and Keys Vocational Center as other/specialty. Demographic percentages are summed from NCES school-level race/ethnicity counts; Other includes American Indian/Alaska Native, Native Hawaiian/Pacific Islander, and Two or More Races.",
     "Area": "Ocean Springs, MS",
     "id": "ocean-springs-school-district",
-    "score": 33.2006,
+    "score": 33.5406,
     "preRiskScore": 33.2006,
     "riskMultiplier": 1,
     "state": "MS",
@@ -6937,7 +7319,7 @@ const DISTRICTS = [
     "totalSchools": 7,
     "highSchools": 1,
     "stabilityLabel": "Stable",
-    "rank": 74,
+    "rank": 76,
     "salarySchedule": {
       "Bachelor's": {
         "0": 48200,
@@ -6971,7 +7353,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 1,
     "Work Environment Risk": "No current employment-stability penalty applied; first-pass research did not find reliable current layoff evidence.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 33.2006,
+    "State Current Spending Per Pupil": 12324,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Canyons School District",
@@ -6999,7 +7386,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 28.0769,
     "Sub Pay Score": 36.3724,
     "Demographic Balance Score": 57.325,
-    "Overall Value Score": 32.9496,
+    "Overall Value Score": 33.3021,
     "Median Home Price per Sq Ft": 252,
     "Price per Sq Ft Score": 84.3077,
     "Other %": 6,
@@ -7022,7 +7409,7 @@ const DISTRICTS = [
     "Source URL": "NCES lists 50 total schools; counts follow district school directory categories with 8 specialty schools.",
     "Area": "Sandy / Canyons District, UT",
     "id": "canyons-school-district",
-    "score": 32.9496,
+    "score": 33.3021,
     "preRiskScore": 36.6106,
     "riskMultiplier": 0.9,
     "state": "UT",
@@ -7032,7 +7419,7 @@ const DISTRICTS = [
     "totalSchools": 50,
     "highSchools": 6,
     "stabilityLabel": "Elevated",
-    "rank": 75,
+    "rank": 77,
     "salarySchedule": {
       "Bachelor's": {
         "0": 64200,
@@ -7071,7 +7458,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.9,
     "Work Environment Risk": "10% employment-stability penalty due to declining enrollment and possible elementary-school changes/closures; no broad layoff evidence found in first pass.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 32.9496,
+    "State Current Spending Per Pupil": 11347,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Chapel Hill-Carrboro City Schools",
@@ -7099,7 +7491,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 94.6923,
     "Sub Pay Score": 22.973,
     "Demographic Balance Score": 82.9456,
-    "Overall Value Score": 32.5702,
+    "Overall Value Score": 32.9417,
     "Median Home Price per Sq Ft": 296,
     "Price per Sq Ft Score": 77.5385,
     "Other %": 6.79,
@@ -7121,7 +7513,7 @@ const DISTRICTS = [
     "Total Schools Counted": 20,
     "Area": "Chapel Hill, NC",
     "id": "chapel-hill-carrboro-city-schools",
-    "score": 32.5702,
+    "score": 32.9417,
     "preRiskScore": 38.3179,
     "riskMultiplier": 0.85,
     "state": "NC",
@@ -7131,7 +7523,7 @@ const DISTRICTS = [
     "totalSchools": 20,
     "highSchools": 4,
     "stabilityLabel": "Severe",
-    "rank": 76,
+    "rank": 78,
     "salarySchedule": {
       "Bachelor's": {
         "0": 48380,
@@ -7165,7 +7557,12 @@ const DISTRICTS = [
     "Work Environment Risk": "15% employment-stability penalty due to staff cuts, school-closure discussions, declining enrollment, and budget shortfall concerns.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 32.5702,
+    "State Current Spending Per Pupil": 12995,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "San Diego Unified School District",
@@ -7193,7 +7590,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 23.0769,
     "Sub Pay Score": 32.2639,
     "Demographic Balance Score": 88.175,
-    "Overall Value Score": 32.1955,
+    "Overall Value Score": 34.8357,
     "Median Home Price per Sq Ft": 687,
     "Price per Sq Ft Score": 17.3846,
     "Other %": 10,
@@ -7215,7 +7612,7 @@ const DISTRICTS = [
     "Total Schools Counted": 176,
     "Area": "San Diego, CA",
     "id": "san-diego-usd",
-    "score": 32.1955,
+    "score": 34.8357,
     "preRiskScore": 37.877,
     "riskMultiplier": 0.85,
     "state": "CA",
@@ -7225,7 +7622,7 @@ const DISTRICTS = [
     "totalSchools": 176,
     "highSchools": 22,
     "stabilityLabel": "Severe",
-    "rank": 77,
+    "rank": 74,
     "salarySchedule": {
       "Bachelor's": {
         "0": 59491,
@@ -7259,7 +7656,12 @@ const DISTRICTS = [
     "Work Environment Risk": "15% employment-stability penalty due to active budget stress and classified layoff notices.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 32.1955,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Oakland Unified School District",
@@ -7287,7 +7689,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 46.1538,
     "Sub Pay Score": 74.8148,
     "Demographic Balance Score": 87.825,
-    "Overall Value Score": 31.2599,
+    "Overall Value Score": 33.9469,
     "Median Home Price per Sq Ft": 577,
     "Price per Sq Ft Score": 34.3077,
     "Other %": 10,
@@ -7305,7 +7707,7 @@ const DISTRICTS = [
     "Total Schools Counted": 80,
     "Area": "Oakland, CA",
     "id": "oakland-usd",
-    "score": 31.2599,
+    "score": 33.9469,
     "preRiskScore": 39.0749,
     "riskMultiplier": 0.8,
     "state": "CA",
@@ -7315,7 +7717,7 @@ const DISTRICTS = [
     "totalSchools": 80,
     "highSchools": null,
     "stabilityLabel": "Extreme",
-    "rank": 78,
+    "rank": 75,
     "salarySchedule": {
       "Bachelor's": {
         "0": 62696,
@@ -7353,7 +7755,12 @@ const DISTRICTS = [
     "Other / Specialty Schools": null,
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 31.2599,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Glendale Union High School District",
@@ -7381,7 +7788,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 21.2308,
     "Sub Pay Score": 22.9743,
     "Demographic Balance Score": 72.1532,
-    "Overall Value Score": 29.0579,
+    "Overall Value Score": 29.605,
     "Median Home Price per Sq Ft": 211,
     "Price per Sq Ft Score": 90.6154,
     "Other %": 4.4,
@@ -7404,7 +7811,7 @@ const DISTRICTS = [
     "Source URL": "2025-2026 GUHSD Certified Salary Schedule: BA mapped to BA column; Master's mapped to BA+30 / MA column. NCES lists 11 total schools. GUHSD is a high-school-only district; all schools counted as high schools. Substitute rate uses $145 adjusted rate of published $123-$199 daily range.",
     "Area": "Glendale, AZ",
     "id": "glendale-union-high-school-district",
-    "score": 29.0579,
+    "score": 29.605,
     "preRiskScore": 30.5873,
     "riskMultiplier": 0.95,
     "state": "AZ",
@@ -7448,7 +7855,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.95,
     "Work Environment Risk": "5% watchlist penalty because current layoff evidence is unclear; Arizona override/funding exposure should be monitored.",
     "Last Verified": "2026-06-17",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 29.0579,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Austin ISD",
@@ -7476,7 +7888,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 86.9231,
     "Sub Pay Score": 29.2434,
     "Demographic Balance Score": 75.6163,
-    "Overall Value Score": 28.3097,
+    "Overall Value Score": 28.8942,
     "Median Home Price per Sq Ft": 294,
     "Price per Sq Ft Score": 77.8462,
     "Other %": 4.33,
@@ -7499,7 +7911,7 @@ const DISTRICTS = [
     "Source URL": "School-directory pages include a 6-12 campus (Ann Richards) in both the middle and high lists; counts below are normalized to the district's cited 114 schools and classify Ann Richards with middle schools.",
     "Area": "Austin, TX",
     "id": "austin-isd",
-    "score": 28.3097,
+    "score": 28.8942,
     "preRiskScore": 35.3871,
     "riskMultiplier": 0.8,
     "state": "TX",
@@ -7509,7 +7921,7 @@ const DISTRICTS = [
     "totalSchools": 114,
     "highSchools": 13,
     "stabilityLabel": "Extreme",
-    "rank": 80,
+    "rank": 81,
     "salarySchedule": {
       "Bachelor's": {
         "0": 60600,
@@ -7543,7 +7955,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.8,
     "Work Environment Risk": "20% employment-stability penalty due to very large projected budget gap, planned job cuts, school-closure discussions, and possible governance/fiscal instability.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 28.3097,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Arcadia Unified School District",
@@ -7571,7 +7988,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 3.2308,
     "Sub Pay Score": 10.7903,
     "Demographic Balance Score": 68.725,
-    "Overall Value Score": 26.1879,
+    "Overall Value Score": 29.1285,
     "Median Home Price per Sq Ft": 736,
     "Price per Sq Ft Score": 9.8462,
     "Other %": 2,
@@ -7594,7 +8011,7 @@ const DISTRICTS = [
     "Source URL": "AUSD reports six elementary schools, three middle schools, one comprehensive high school, and one alternative school/outreach program. Master's degree alone appears in the same Column 1 as BA on the ATA schedule, so BA and MA entries use the same column unless additional semester units are earned.",
     "Area": "Arcadia, CA",
     "id": "arcadia-unified-school-district",
-    "score": 26.1879,
+    "score": 29.1285,
     "preRiskScore": 30.8093,
     "riskMultiplier": 0.85,
     "state": "CA",
@@ -7604,7 +8021,7 @@ const DISTRICTS = [
     "totalSchools": 11,
     "highSchools": 1,
     "stabilityLabel": "Severe",
-    "rank": 81,
+    "rank": 80,
     "salarySchedule": {
       "Bachelor's": {
         "0": 78277,
@@ -7638,7 +8055,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.85,
     "Work Environment Risk": "15% employment-stability penalty because district budget updates indicated teacher-layoff risk unless local funding support fills the gap.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 26.1879,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Eanes ISD",
@@ -7666,7 +8088,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 97.8462,
     "Sub Pay Score": 0,
     "Demographic Balance Score": 70.6617,
-    "Overall Value Score": 25.1141,
+    "Overall Value Score": 25.8584,
     "Median Home Price per Sq Ft": 558,
     "Price per Sq Ft Score": 37.2308,
     "Other %": 7,
@@ -7688,7 +8110,7 @@ const DISTRICTS = [
     "Total Schools Counted": 10,
     "Area": "Austin 78746 / West Lake Hills, TX",
     "id": "eanes-isd",
-    "score": 25.1141,
+    "score": 25.8584,
     "preRiskScore": 27.9046,
     "riskMultiplier": 0.9,
     "state": "TX",
@@ -7698,7 +8120,7 @@ const DISTRICTS = [
     "totalSchools": 10,
     "highSchools": 2,
     "stabilityLabel": "Elevated",
-    "rank": 82,
+    "rank": 83,
     "salarySchedule": {
       "Bachelor's": {
         "0": 57000,
@@ -7732,7 +8154,12 @@ const DISTRICTS = [
     "Work Environment Risk": "10% employment-stability penalty due to shortfall concerns, consolidation/closure actions, and cost-saving measures; recent cuts may partially stabilize the outlook.",
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 25.1141,
+    "State Current Spending Per Pupil": 12895,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Los Angeles Unified School District",
@@ -7760,7 +8187,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 44.6154,
     "Sub Pay Score": 48.6755,
     "Demographic Balance Score": 55.875,
-    "Overall Value Score": 24.7331,
+    "Overall Value Score": 27.7464,
     "Median Home Price per Sq Ft": 634,
     "Price per Sq Ft Score": 25.5385,
     "Other %": 6,
@@ -7778,7 +8205,7 @@ const DISTRICTS = [
     "Total Schools Counted": 784,
     "Area": "Los Angeles, CA",
     "id": "los-angeles-unified",
-    "score": 24.7331,
+    "score": 27.7464,
     "preRiskScore": 30.9164,
     "riskMultiplier": 0.8,
     "state": "CA",
@@ -7788,7 +8215,7 @@ const DISTRICTS = [
     "totalSchools": 784,
     "highSchools": 87,
     "stabilityLabel": "Extreme",
-    "rank": 83,
+    "rank": 82,
     "salarySchedule": {
       "Bachelor's": {
         "0": 68966,
@@ -7827,7 +8254,12 @@ const DISTRICTS = [
     "Other / Specialty Schools": null,
     "Source URL": null,
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 24.7331,
+    "State Current Spending Per Pupil": 20791,
+    "State Funding Context Score": 85,
+    "State Funding Context Rating": "Very Good",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Flagstaff Unified School District",
@@ -7855,7 +8287,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 71.6923,
     "Sub Pay Score": 10.8696,
     "Demographic Balance Score": 83.6572,
-    "Overall Value Score": 24.4181,
+    "Overall Value Score": 25.1972,
     "Median Home Price per Sq Ft": 368,
     "Price per Sq Ft Score": 66.4615,
     "Other %": 27.7,
@@ -7878,7 +8310,7 @@ const DISTRICTS = [
     "Source URL": "FUSD official about page says 15 comprehensive school sites; district school list includes 3 high schools and 2 middle schools.",
     "Area": "Flagstaff, AZ",
     "id": "flagstaff-unified-school-district",
-    "score": 24.4181,
+    "score": 25.1972,
     "preRiskScore": 27.1313,
     "riskMultiplier": 0.9,
     "state": "AZ",
@@ -7923,7 +8355,12 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.9,
     "Work Environment Risk": "10% employment-stability penalty due to enrollment/funding stress, long-term financial-planning concerns, and override dependence.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 24.4181,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   },
   {
     "District": "Chandler Unified School District",
@@ -7951,7 +8388,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 57,
     "Sub Pay Score": 21.1893,
     "Demographic Balance Score": 81.41,
-    "Overall Value Score": 22.4122,
+    "Overall Value Score": 23.2916,
     "Median Home Price per Sq Ft": 286,
     "Price per Sq Ft Score": 79.0769,
     "Other %": 2.1,
@@ -7974,7 +8411,7 @@ const DISTRICTS = [
     "Source URL": "CUSD About page lists 31 elementary schools, 5 junior highs, 2 middle schools, 5 high schools, 4 alternatives, 1 secondary, and 1 online school.",
     "Area": "Chandler, AZ",
     "id": "chandler-unified-school-district",
-    "score": 22.4122,
+    "score": 23.2916,
     "preRiskScore": 26.3673,
     "riskMultiplier": 0.85,
     "state": "AZ",
@@ -8024,6 +8461,11 @@ const DISTRICTS = [
     "Work Environment Multiplier": 0.85,
     "Work Environment Risk": "15% employment-stability penalty due to declining enrollment, budget shortfall, and staffing-reduction/job-cut plan.",
     "Last Verified": "2026-06-16",
-    "PPSF Source URL": null
+    "PPSF Source URL": null,
+    "Previous Overall Value Score": 22.4122,
+    "State Current Spending Per Pupil": 12003,
+    "State Funding Context Score": 40,
+    "State Funding Context Rating": "Low",
+    "State Funding Source URL": "https://www.census.gov/newsroom/press-releases/2026/school-system-finances.html"
   }
 ];

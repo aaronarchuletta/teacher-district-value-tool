@@ -32,3 +32,6 @@ Prototype 346 applies the confirmed Alief ISD salary audit correction. It includ
 - Updated GUHSD BA/MA start, 5-year, 10-year values, Master's Premium, salary scores, affordability-linked values, overall value score, and rank.
 - No scoring weights were changed.
 - Browser tab title and cache-busting links updated to Prototype 348.
+
+
+Prototype 349: adds a 5% State Funding Context factor based on FY2024 Census current spending per pupil by state.
