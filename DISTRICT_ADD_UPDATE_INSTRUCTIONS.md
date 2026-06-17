@@ -18,3 +18,7 @@ This is a complete package. Upload the contents of this folder into the existing
 5. Test with: ?v=325
 
 No need to delete the repository contents first.
+
+
+## Prototype 334 note
+This package includes a uniquely named data file, `districts-data-v334.js`, so GitHub Pages cannot keep serving an older cached `districts-data.js`. Upload all contents of this ZIP and replace matching files.
