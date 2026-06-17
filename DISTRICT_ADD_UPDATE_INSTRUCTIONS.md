@@ -1,24 +1,20 @@
-# Prototype 340 clean upload instructions
+# Teacher District Value Prototype 342 Update Instructions
 
-This package resets the site back to the standard active filenames:
+This package corrects Kern High School District salary data using the uploaded KHSD 2025-2026 Certificated Base Salary Schedule.
 
-- index.html
-- styles.css
-- districts-data.js
-- app.js
+## What changed
 
-The 75 districts are inside `districts-data.js` directly.
+- Kern BA salary schedule now maps to Class I without masters.
+- Kern Master's salary schedule now maps to Class III with masters.
+- Kern Master's + 1 year is now $71,426.
+- Kern Master's + 10 years is now $94,638.
+- Kern overall score and salary-growth values were recalculated.
+- No scoring weights were changed.
 
-Upload the contents of this folder to the GitHub repo root and choose **Replace** for matching files.
+## Upload steps
 
-After committing, test with:
+1. Upload the contents of this ZIP to your existing GitHub repository.
+2. Commit the changes.
+3. Test the live site with `?v=342`.
 
-`?v=340`
-
-Important: older files with versioned names can stay in GitHub, but the site should no longer use them because `index.html` points to the standard files above.
-
-
-## Prototype 341 clean map-coordinate fix
-- Keeps standard active filenames: index.html, styles.css, districts-data.js, app.js.
-- Fixes district map/count behavior by letting app.js use each district's lat/lng fields when a district is not in the older hard-coded DISTRICT_GEO lookup.
-- This makes the 10 v336 districts appear in the map/count/search views and keeps all 75 districts active.
+The active website files are the standard filenames: `index.html`, `styles.css`, `districts-data.js`, and `app.js`.
