@@ -50,8 +50,8 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Kept the rounded class-size ratio inside the color-scaled score block.
 - Added version query strings to local CSS/JS file references so GitHub Pages/browser cache loads the current files.
 
-## 332 State boundary map focus
-- Added clickable state boundary behavior on the main Leaflet map.
-- Clicking inside a state with entered districts selects that state and zooms/focuses the map on the districts in that state.
-- Updated browser tab title and cache-busting version tags to Prototype 332.
-
+## 333 Ohio district additions
+- Added Dublin City Schools, OH and Mariemont City Schools, OH as first-pass district entries.
+- Used public district salary summaries / salary proxy data plus Zillow housing data and district profile information.
+- No scoring weights changed.
+- Browser tab title and cache-busting links updated to Prototype 333.

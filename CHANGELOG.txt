@@ -64,3 +64,9 @@ Prototype 327 - Desktop map-view district browsing
 Prototype 331 - Cache-bust class size display fix
 - Kept the rounded class-size ratio inside the color-scaled score block.
 - Added cache-busting version strings to styles.css, districts-data.js, and app.js references.
+
+## 333 Ohio district additions
+- Added Dublin City Schools, OH and Mariemont City Schools, OH as first-pass district entries.
+- Used public district salary summaries / salary proxy data plus Zillow housing data and district profile information.
+- No scoring weights changed.
+- Browser tab title and cache-busting links updated to Prototype 333.

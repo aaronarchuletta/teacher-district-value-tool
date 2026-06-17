@@ -6073,3 +6073,203 @@ const DISTRICTS = [
   window.TEACHER_VALUE_DISTRICT_ADDITIONS_VERSION = "v323";
 })();
 
+
+
+(function () {
+  const NEW_DISTRICTS_V333 = [
+  {
+    "District": "Dublin City Schools",
+    "State": "OH",
+    "Region": "Ohio / Columbus suburbs",
+    "BA Start": 52078,
+    "BA 5-Year": 72000,
+    "BA 10-Year": 78000,
+    "MA Start": 57286,
+    "MA 5-Year": 76500,
+    "MA 10-Year": 86000,
+    "Median Home Price": 569539,
+    "Median Rent": 2300,
+    "Median Home Price per Sq Ft": 242,
+    "Student-Teacher Ratio": 15.0,
+    "Licensed Sub Pay": 155,
+    "White %": 57,
+    "Hispanic %": 9,
+    "Asian %": 21,
+    "Black %": 6,
+    "Other %": 7,
+    "Number of High Schools": 3,
+    "Number of Middle Schools": 5,
+    "Number of Elementary Schools": 14,
+    "Other / Specialty Schools": 3,
+    "Total Schools Counted": 25,
+    "salarySchedule": {
+      "Bachelor's": {
+        "0": 52078,
+        "1": 56850,
+        "2": 61600,
+        "3": 65500,
+        "4": 69000,
+        "5": 72000,
+        "6": 74000,
+        "7": 75500,
+        "8": 76500,
+        "9": 77250,
+        "10": 78000
+      },
+      "Master's": {
+        "0": 57286,
+        "1": 62000,
+        "2": 66500,
+        "3": 70000,
+        "4": 73500,
+        "5": 76500,
+        "6": 79000,
+        "7": 81500,
+        "8": 83000,
+        "9": 84500,
+        "10": 86000
+      }
+    },
+    "Count Notes": "First-pass Ohio addition. Dublin publishes starting salary, average teacher salary, average experience, and district profile counts; exact BA/MA 5-year and 10-year salary schedule values are estimated until an official step schedule is entered.",
+    "Source URL": "https://www.dublinschools.net/departments/treasurercfo ; https://www.dublinschools.net/about/district-profile ; https://www.dublinschools.net/departments/humanresources/current-openings ; https://www.zillow.com/rental-manager/market-trends/dublin-oh/ ; https://www.zillow.com/home-values/4426/dublin-oh/",
+    "Area": "Dublin / Columbus suburbs, OH",
+    "Last Verified": "2026-06-16",
+    "lat": 40.0992,
+    "lng": -83.1141,
+    "Data Confidence": "First-pass entry. Official starting salary and district average salary were available; exact step/lane values should be verified before final ranking.",
+    "Avg Start Salary": 54682.0,
+    "Avg 10-Year Salary": 82000.0,
+    "Avg Growth %": 0.499579,
+    "Master's Premium": 5208,
+    "Salary Level Score": 53.3333,
+    "Growth Score": 83.2632,
+    "Master's Premium Score": 34.72,
+    "Salary Score": 62.5133,
+    "Affordability Score": 28.8424,
+    "Student-Teacher Ratio Score": 76.9231,
+    "Sub Pay Housing Power": 1.3478,
+    "Sub Pay Score": 17.3913,
+    "Demographic Balance Score": 100,
+    "Price per Sq Ft Score": 85.8462,
+    "Stability Score": 100,
+    "Pre-Risk Overall Value Score": 53.0895,
+    "Overall Value Score": 53.0895,
+    "Daily Sub Pay": 155,
+    "Pre-Risk Overall": 53.0895,
+    "preRiskScore": 53.0895,
+    "Work Environment Risk": "Stable / no current evidence",
+    "Work Environment Multiplier": 1.0,
+    "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
+    "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
+    "Demographic Balance Note": "First-pass public demographic profile.",
+    "mapImage": ""
+  },
+  {
+    "District": "Mariemont City Schools",
+    "State": "OH",
+    "Region": "Ohio / Cincinnati suburbs",
+    "BA Start": 51000,
+    "BA 5-Year": 62000,
+    "BA 10-Year": 74000,
+    "MA Start": 56000,
+    "MA 5-Year": 68500,
+    "MA 10-Year": 82000,
+    "Median Home Price": 593962,
+    "Median Rent": 1600,
+    "Median Home Price per Sq Ft": 310,
+    "Student-Teacher Ratio": 13.0,
+    "Licensed Sub Pay": 150,
+    "White %": 82,
+    "Hispanic %": 5,
+    "Asian %": 6,
+    "Black %": 1,
+    "Other %": 6,
+    "Number of High Schools": 1,
+    "Number of Middle Schools": 1,
+    "Number of Elementary Schools": 2,
+    "Other / Specialty Schools": 0,
+    "Total Schools Counted": 4,
+    "salarySchedule": {
+      "Bachelor's": {
+        "0": 51000,
+        "1": 53200,
+        "2": 55500,
+        "3": 57800,
+        "4": 60000,
+        "5": 62000,
+        "6": 64500,
+        "7": 67000,
+        "8": 69500,
+        "9": 72000,
+        "10": 74000
+      },
+      "Master's": {
+        "0": 56000,
+        "1": 58500,
+        "2": 61000,
+        "3": 63500,
+        "4": 66000,
+        "5": 68500,
+        "6": 71000,
+        "7": 73500,
+        "8": 76500,
+        "9": 79500,
+        "10": 82000
+      }
+    },
+    "Count Notes": "First-pass Ohio addition. Exact 2025-26 salary step table was not publicly located in this pass; values use public salary summaries and should be replaced with an official salary schedule when available. District school count uses the four school buildings listed by Mariemont.",
+    "Source URL": "https://www.mariemontschools.org/ ; https://www.teacher.org/school-district/mariemont-city-school-district/ ; https://openpayrolls.com/rank/highest-paid-employees/ohio-mariemont-city ; https://www.zillow.com/rental-manager/market-trends/45227/ ; https://www.zillow.com/home-values/32698/mariemont-cincinnati-oh/ ; https://www.mariemontschools.org/Downloads/MHS%20Profile%20202324.pdf",
+    "Area": "Mariemont / Cincinnati east suburbs, OH",
+    "Last Verified": "2026-06-16",
+    "lat": 39.1453,
+    "lng": -84.3744,
+    "Data Confidence": "First-pass entry. Exact salary schedule should be verified against Mariemont CBA/adopted salary schedule before final ranking.",
+    "Avg Start Salary": 53500.0,
+    "Avg 10-Year Salary": 78000.0,
+    "Avg Growth %": 0.457944,
+    "Master's Premium": 5000,
+    "Salary Level Score": 46.6667,
+    "Growth Score": 76.324,
+    "Master's Premium Score": 33.3333,
+    "Salary Score": 56.5296,
+    "Affordability Score": 37.271,
+    "Student-Teacher Ratio Score": 92.3077,
+    "Sub Pay Housing Power": 1.875,
+    "Sub Pay Score": 43.75,
+    "Demographic Balance Score": 83.3,
+    "Price per Sq Ft Score": 75.3846,
+    "Stability Score": 100,
+    "Pre-Risk Overall Value Score": 55.7289,
+    "Overall Value Score": 55.7289,
+    "Daily Sub Pay": 150,
+    "Pre-Risk Overall": 55.7289,
+    "preRiskScore": 55.7289,
+    "Work Environment Risk": "Stable / no current evidence",
+    "Work Environment Multiplier": 1.0,
+    "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
+    "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
+    "Demographic Balance Note": "First-pass public demographic profile.",
+    "mapImage": ""
+  }
+];
+
+  function upsertDistricts(target, additions) {
+    additions.forEach((district) => {
+      const idx = target.findIndex((existing) => existing.District === district.District);
+      if (idx >= 0) {
+        target[idx] = Object.assign({}, target[idx], district);
+      } else {
+        target.push(district);
+      }
+    });
+  }
+
+  if (typeof DISTRICTS !== "undefined" && Array.isArray(DISTRICTS)) {
+    upsertDistricts(DISTRICTS, NEW_DISTRICTS_V333);
+  } else {
+    window.NEW_DISTRICTS_V333 = NEW_DISTRICTS_V333;
+    console.warn("DISTRICTS was not available when districts-additions-v333.js loaded.");
+  }
+
+  window.TEACHER_VALUE_DISTRICT_ADDITIONS_VERSION = "v333";
+})();
