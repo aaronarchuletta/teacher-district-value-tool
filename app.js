@@ -983,6 +983,15 @@ const scoreCols = [
   }
 
   const DISTRICT_GEO = {
+
+  "Dublin City Schools": [
+    40.0992,
+    -83.1141
+  ],
+  "Mariemont City Schools": [
+    39.1453,
+    -84.3744
+  ],
   "Channelview ISD": [
     29.7925,
     -95.1255

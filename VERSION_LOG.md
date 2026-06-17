@@ -61,3 +61,9 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Added a uniquely named district data file, districts-data-v334.js, loaded by index.html.
 - This bypasses stale GitHub Pages/browser caching of districts-data.js.
 - Confirms Dublin City Schools and Mariemont City Schools remain in the district data.
+
+
+## 335 Ohio district map visibility fix
+- Added map coordinates for Dublin City Schools, OH and Mariemont City Schools, OH.
+- This fixes the issue where the districts were in the data file but did not appear in desktop visible-map rankings or map-based browsing.
+- Updated browser tab title to Prototype 335 and refreshed cache-busting query strings.

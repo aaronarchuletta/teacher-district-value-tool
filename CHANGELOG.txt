@@ -73,3 +73,8 @@ Prototype 331 - Cache-bust class size display fix
 
 Prototype 333 cache-bust correction
 - Corrected browser tab title and cache-busting references to v333 so GitHub Pages loads the updated district data.
+
+
+Prototype 335 - Ohio district map visibility fix
+- Added map coordinates for Dublin City Schools and Mariemont City Schools so they appear in map-based/visible-viewport district lists.
+- Updated cache-busting links and browser tab title to Prototype 335.
