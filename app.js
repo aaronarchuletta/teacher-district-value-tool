@@ -459,6 +459,21 @@ const scoreCols = [
         items
       };
     }
+
+    // Desktop district-map arrows should browse only the districts currently
+    // visible in the main Leaflet map viewport. This keeps the lower district
+    // map/profile navigation synced with regions like Houston, Austin, or Utah
+    // after the user pans or zooms the map.
+    if (isDesktopMapViewportRankingMode()) {
+      const items = [...getMapViewportRows()]
+        .sort((a,b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
+      return {
+        mode: "viewport",
+        label: "Visible map districts",
+        items
+      };
+    }
+
     const items = [...getFiltered()].sort((a,b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
     return {
       mode: "national",
@@ -1262,6 +1277,7 @@ const scoreCols = [
           renderLeafletDistrictMarkers();
           renderMapViewportTopMatches();
           renderMobileMapResultsSheetFromViewport();
+          updateDistrictMapNavigation();
           if (window.matchMedia("(min-width: 769px)").matches) renderTable(false);
         }, 80);
       });
