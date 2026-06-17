@@ -1399,7 +1399,7 @@ const STATE_FIT_BOUNDS = {
         minZoom: 3,
         maxZoom: 12,
         zoomControl: true,
-        scrollWheelZoom: true,
+        scrollWheelZoom: false,
         touchZoom: true,
         dragging: true,
         worldCopyJump: false
