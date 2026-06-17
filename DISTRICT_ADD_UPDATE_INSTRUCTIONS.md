@@ -22,3 +22,9 @@ This package adds 10 high-value candidate districts for first-pass scoring.
 
 
 Prototype 344 upload note: upload the standard active files and test with ?v=344. This is a display logic update only; district data/scoring weights are unchanged.
+
+## Prototype 345
+
+This package disables mouse wheel/trackpad scroll zoom on the desktop USA map. Use the map's + and - buttons for zooming. No district data or scoring values changed.
+
+Upload the contents of this ZIP to your existing GitHub repository, replace matching files, commit, and test the live site with `?v=345`.

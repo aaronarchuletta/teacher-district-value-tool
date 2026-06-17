@@ -1,16 +1,13 @@
-Prototype 340 clean package.
-Upload the contents of this folder to the GitHub repo root.
-Choose Replace for matching files.
-The active website files are:
+Prototype 344 candidate district additions.
+
+Upload all files in this ZIP to your GitHub repository root. Choose Replace for matching files.
+
+Active website files:
 - index.html
 - styles.css
 - districts-data.js
 - app.js
 
-Older files such as districts-data-v336.js, districts-data-v337.js, districts-data-v338.js, districts-data-v339.js, and app-v339.js can remain in GitHub, but they are no longer used by this package.
+After GitHub Pages publishes, test with ?v=343. If your browser still shows old data, test with ?v=343b.
 
-
-## Prototype 341 clean map-coordinate fix
-- Keeps standard active filenames: index.html, styles.css, districts-data.js, app.js.
-- Fixes district map/count behavior by letting app.js use each district's lat/lng fields when a district is not in the older hard-coded DISTRICT_GEO lookup.
-- This makes the 10 v336 districts appear in the map/count/search views and keeps all 75 districts active.
+Prototype 344: salary profile tile uses salary-to-rent ratio for its rating/bar.

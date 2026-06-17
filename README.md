@@ -18,3 +18,5 @@ Prototype 325 package: includes five Texas district additions plus the mobile/de
 
 
 Prototype 344 note: profile salary tile now rates the displayed salary against local median rent rather than the blended Salary Score.
+
+Prototype 345: disables mouse wheel/trackpad scroll zoom on the USA map so desktop zoom is controlled by the + and - buttons. No workbook/scoring changes.

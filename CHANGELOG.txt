@@ -110,3 +110,21 @@ Prototype 336 - Add top 10 western candidate districts
 - Corrected the Master's + 1 year value from the prior rough estimate to $71,426.
 - Updated Kern salary score and overall value score; no scoring weights changed.
 - Browser tab title updated to Prototype 342.
+
+
+Prototype 343 - Add 10 high-value candidate districts
+- Added Hobbs Municipal Schools, Farmington Municipal Schools, Carlsbad Municipal Schools, Chaffey Joint Union HSD, Antelope Valley Union HSD, Grossmont Union HSD, Clear Creek ISD, Pearland ISD, Anoka-Hennepin Schools, and Osseo Area Schools / ISD 279.
+- Used first-pass public-source salary/housing/demographic inputs; no scoring weights changed.
+- Browser tab title and cache-busting links updated to Prototype 343.
+
+
+## Prototype 344 - Salary-to-rent profile salary tile
+- Changed the district profile salary tile rating/bar to use a local salary-to-rent ratio instead of the blended Salary Score.
+- The displayed dollar amount remains the selected Bachelor's or Master's salary.
+- Salary-to-rent score uses selected annual salary divided by 12, then divided by median monthly rent.
+- Overall scoring weights and district data were not changed.
+
+## Prototype 345 desktop map wheel-zoom fix
+- Disabled mouse wheel / trackpad scroll zoom on the desktop USA map.
+- Map zoom is now controlled by the Leaflet + and - buttons while keeping drag/pan behavior and mobile touch zoom intact.
+- No district data, workbook values, or scoring weights changed.

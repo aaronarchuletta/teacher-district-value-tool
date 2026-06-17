@@ -30,3 +30,8 @@
 - The displayed dollar amount remains the selected Bachelor's or Master's salary.
 - Salary-to-rent score uses selected annual salary divided by 12, then divided by median monthly rent.
 - Overall scoring weights and district data were not changed.
+
+## Prototype 345 desktop map wheel-zoom fix
+- Disabled mouse wheel / trackpad scroll zoom on the desktop USA map.
+- Map zoom is now controlled by the Leaflet + and - buttons while keeping drag/pan behavior and mobile touch zoom intact.
+- No district data, workbook values, or scoring weights changed.
