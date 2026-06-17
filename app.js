@@ -1238,7 +1238,128 @@ const scoreCols = [
 };
   let leafletUsaMap = null;
   let leafletDistrictLayer = null;
+  let leafletStateBoundaryLayer = null;
   let leafletMoveTimer = null;
+
+  const STATE_FIT_BOUNDS = {
+    AL:[[30.2,-88.6],[35.1,-84.8]], AK:[[51.2,-179.2],[71.6,-129.9]], AZ:[[31.2,-114.9],[37.1,-109.0]], AR:[[33.0,-94.7],[36.6,-89.6]],
+    CA:[[32.4,-124.5],[42.1,-114.1]], CO:[[36.9,-109.1],[41.1,-102.0]], CT:[[40.9,-73.8],[42.1,-71.7]], DE:[[38.4,-75.8],[39.9,-75.0]],
+    FL:[[24.4,-87.8],[31.1,-80.0]], GA:[[30.3,-85.7],[35.1,-80.8]], HI:[[18.8,-160.3],[22.4,-154.7]], ID:[[42.0,-117.3],[49.1,-111.0]],
+    IL:[[37.0,-91.6],[42.6,-87.0]], IN:[[37.7,-88.2],[41.8,-84.7]], IA:[[40.3,-96.7],[43.6,-90.1]], KS:[[36.9,-102.1],[40.1,-94.5]],
+    KY:[[36.5,-89.6],[39.2,-81.9]], LA:[[28.9,-94.1],[33.1,-88.8]], ME:[[42.9,-71.1],[47.5,-66.9]], MD:[[37.9,-79.5],[39.8,-75.0]],
+    MA:[[41.2,-73.6],[42.9,-69.9]], MI:[[41.7,-90.5],[48.4,-82.1]], MN:[[43.4,-97.3],[49.5,-89.5]], MS:[[30.1,-91.7],[35.1,-88.1]],
+    MO:[[35.9,-95.8],[40.7,-89.1]], MT:[[44.3,-116.1],[49.1,-104.0]], NE:[[39.9,-104.1],[43.1,-95.3]], NV:[[35.0,-120.1],[42.1,-114.0]],
+    NH:[[42.7,-72.6],[45.4,-70.5]], NJ:[[38.8,-75.6],[41.4,-73.9]], NM:[[31.2,-109.1],[37.1,-103.0]], NY:[[40.4,-79.8],[45.1,-71.8]],
+    NC:[[33.8,-84.4],[36.7,-75.3]], ND:[[45.9,-104.1],[49.1,-96.5]], OH:[[38.3,-84.9],[41.9,-80.5]], OK:[[33.6,-103.1],[37.1,-94.4]],
+    OR:[[41.9,-124.7],[46.4,-116.4]], PA:[[39.6,-80.6],[42.6,-74.7]], RI:[[41.1,-71.9],[42.1,-71.1]], SC:[[32.0,-83.4],[35.3,-78.5]],
+    SD:[[42.4,-104.1],[45.9,-96.4]], TN:[[34.9,-90.4],[36.7,-81.6]], TX:[[25.7,-106.7],[36.6,-93.5]], UT:[[36.9,-114.1],[42.1,-109.0]],
+    VT:[[42.7,-73.5],[45.1,-71.4]], VA:[[36.5,-83.8],[39.6,-75.2]], WA:[[45.5,-124.8],[49.1,-116.9]], WV:[[37.1,-82.7],[40.7,-77.7]],
+    WI:[[42.4,-92.9],[47.3,-86.8]], WY:[[40.9,-111.1],[45.1,-104.0]], DC:[[38.78,-77.13],[39.0,-76.9]]
+  };
+
+  function codeFromStateFeature(feature) {
+    const props = feature?.properties || {};
+    const rawCode = props.STUSPS || props.postal || props.STATE_ABBR || props.state_code || props.abbr || props.id || feature?.id;
+    if (rawCode && /^[A-Z]{2}$/.test(String(rawCode).toUpperCase())) return String(rawCode).toUpperCase();
+    const name = props.name || props.NAME || props.State || props.state || props.STATE_NAME;
+    if (!name) return "";
+    const entry = Object.entries(stateNames).find(([, fullName]) => fullName.toLowerCase() === String(name).toLowerCase());
+    return entry ? entry[0] : "";
+  }
+
+  function fitMapToStateDistricts(st) {
+    if (!leafletUsaMap || !window.L || !st) return;
+    const filteredRows = DISTRICTS.filter(d => d.State === st && districtHasMapMatch(d));
+    const fallbackRows = DISTRICTS.filter(d => d.State === st && DISTRICT_GEO[d.District]);
+    const rows = filteredRows.length ? filteredRows : fallbackRows;
+    const latLngs = rows
+      .map(d => DISTRICT_GEO[d.District])
+      .filter(Boolean)
+      .map(point => L.latLng(point[0], point[1]));
+
+    if (latLngs.length === 1) {
+      leafletUsaMap.setView(latLngs[0], 8, { animate: true });
+      return;
+    }
+    if (latLngs.length > 1) {
+      leafletUsaMap.fitBounds(L.latLngBounds(latLngs).pad(0.35), { maxZoom: 8, animate: true });
+      return;
+    }
+    const stateBounds = STATE_FIT_BOUNDS[st];
+    if (stateBounds) leafletUsaMap.fitBounds(stateBounds, { maxZoom: 6, animate: true });
+  }
+
+  function focusStateFromMapClick(st) {
+    if (!st || !stateFilter) return;
+    stateFilter.value = st;
+    updateRegionOptions();
+    regionFilter.value = "";
+    selectedDistrict = null;
+    renderAll(false);
+    window.setTimeout(() => {
+      fitMapToStateDistricts(st);
+      renderLeafletDistrictMarkers();
+      renderMapViewportTopMatches();
+      updateDistrictMapNavigation();
+    }, 80);
+  }
+
+  function initLeafletStateBoundaryClicks() {
+    if (!leafletUsaMap || !window.L || leafletStateBoundaryLayer) return;
+
+    const addBoundaryLayer = geojson => {
+      if (!leafletUsaMap || leafletStateBoundaryLayer || !geojson) return;
+      leafletStateBoundaryLayer = L.geoJSON(geojson, {
+        style: feature => {
+          const st = codeFromStateFeature(feature);
+          const hasRows = DISTRICTS.some(d => d.State === st);
+          return {
+            color: hasRows ? "#2f5caa" : "#94a3b8",
+            weight: 1,
+            opacity: 0.18,
+            fillOpacity: hasRows ? 0.025 : 0.01,
+            fillColor: hasRows ? "#2f5caa" : "#94a3b8"
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const st = codeFromStateFeature(feature);
+          if (!st) return;
+          const hasRows = DISTRICTS.some(d => d.State === st);
+          layer.options.interactive = true;
+          layer.on("click", evt => {
+            if (evt.originalEvent) L.DomEvent.stopPropagation(evt.originalEvent);
+            if (!hasRows) return;
+            focusStateFromMapClick(st);
+          });
+          layer.on("mouseover", () => {
+            if (hasRows) layer.setStyle({ weight: 2, opacity: 0.35, fillOpacity: 0.06 });
+          });
+          layer.on("mouseout", () => {
+            if (leafletStateBoundaryLayer) leafletStateBoundaryLayer.resetStyle(layer);
+          });
+          if (hasRows) layer.bindTooltip(stateNames[st] || st, { sticky: true, direction: "top" });
+        }
+      }).addTo(leafletUsaMap);
+      if (leafletDistrictLayer) leafletDistrictLayer.bringToFront();
+    };
+
+    const urls = [
+      "https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json",
+      "https://cdn.jsdelivr.net/gh/PublicaMundi/MappingAPI@master/data/geojson/us-states.json"
+    ];
+
+    const tryUrl = index => {
+      if (index >= urls.length) return;
+      fetch(urls[index])
+        .then(resp => {
+          if (!resp.ok) throw new Error(`State boundary fetch failed: ${resp.status}`);
+          return resp.json();
+        })
+        .then(addBoundaryLayer)
+        .catch(() => tryUrl(index + 1));
+    };
+    tryUrl(0);
+  }
 
   function renderMap() {
     const usaMapEl = document.getElementById("usaMap");
@@ -1269,6 +1390,7 @@ const scoreCols = [
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(leafletUsaMap);
 
+      initLeafletStateBoundaryClicks();
       leafletDistrictLayer = L.layerGroup().addTo(leafletUsaMap);
 
       leafletUsaMap.on("moveend zoomend", () => {

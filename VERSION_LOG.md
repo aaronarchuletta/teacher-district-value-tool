@@ -49,3 +49,9 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 ## 331 Cache-bust class size display fix
 - Kept the rounded class-size ratio inside the color-scaled score block.
 - Added version query strings to local CSS/JS file references so GitHub Pages/browser cache loads the current files.
+
+## 332 State boundary map focus
+- Added clickable state boundary behavior on the main Leaflet map.
+- Clicking inside a state with entered districts selects that state and zooms/focuses the map on the districts in that state.
+- Updated browser tab title and cache-busting version tags to Prototype 332.
+
