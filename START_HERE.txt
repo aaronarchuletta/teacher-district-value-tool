@@ -5,4 +5,4 @@ Choose Replace for matching filenames, then commit.
 
 Test with: ?v=326
 
-Prototype 327: Desktop district-map arrows now browse only visible districts in the main map viewport.
+Prototype 328: Desktop district-map arrows now browse only visible districts in the main map viewport.

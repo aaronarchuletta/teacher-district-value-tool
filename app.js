@@ -2022,8 +2022,7 @@ const scoreCols = [
   function formatClassSizeRatio(value) {
     const n = Number(value);
     if (!Number.isFinite(n) || n <= 0) return "—";
-    const rounded = Math.round(n * 10) / 10;
-    return Number.isInteger(rounded) ? `${rounded}:1` : `${rounded.toFixed(1)}:1`;
+    return `${Math.round(n)}:1`;
   }
 
   function mobileDetailIcon(kind) {

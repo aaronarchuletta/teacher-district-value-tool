@@ -45,3 +45,8 @@ Prototype 327 - Desktop map-view district browsing
 - Example: zooming into the Houston region limits arrow browsing to visible Houston-area districts that match the active filters.
 - No workbook, scoring formula, or district data changes.
 
+
+
+## 328 Rounded class size ratio display
+- Updated the Class Size column/profile display to show rounded student-to-teacher ratios such as `11:1`.
+- No workbook, scoring formula, or district data changes.

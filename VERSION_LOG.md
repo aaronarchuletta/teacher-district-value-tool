@@ -31,9 +31,7 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Changed the desktop Class Size column display from point score to the actual student-teacher ratio, such as 11:1.
 - Kept the underlying sorting/scoring data unchanged.
 
-Prototype 327 - Desktop map-view district browsing
-- Updated the desktop district-map arrow navigation so it browses only districts currently visible in the main map viewport.
-- Panning or zooming the main map now updates the district-map navigation count/context.
-- Example: zooming into the Houston region limits arrow browsing to visible Houston-area districts that match the active filters.
-- No workbook, scoring formula, or district data changes.
 
+## 328 Rounded class size ratio display
+- Updated the Class Size column/profile display to show rounded student-to-teacher ratios such as `11:1`.
+- No workbook, scoring formula, or district data changes.
