@@ -133,3 +133,10 @@ Prototype 347 GUHSD salary schedule correction
 - Corrected Glendale Union High School District salary data using uploaded 2025-2026 Certified Salary Schedule.
 - Mapped BA to BA and Master's to BA+30 / MA.
 - No scoring weights changed.
+
+
+## Prototype 348 - Master’s Premium tile rating scale
+- Changed the district profile Master’s Premium tile rating/bar to use a clearer dollar-based display scale.
+- New tile labels: $0 = None; $1–$2,499 = Low; $2,500–$4,999 = Fair; $5,000–$7,499 = Good; $7,500–$9,999 = Very Good; $10,000+ = Excellent.
+- This is a profile display/rating-scale change only; district salary values, workbook data, and scoring weights were not changed.
+- Browser tab title and cache-busting links updated to Prototype 348.

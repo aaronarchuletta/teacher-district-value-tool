@@ -50,3 +50,10 @@
 - Updated GUHSD BA/MA start, 5-year, 10-year values, Master's Premium, salary scores, affordability-linked values, overall value score, and rank.
 - No scoring weights were changed.
 - Browser tab title and cache-busting links updated to Prototype 347.
+
+
+## Prototype 348 - Master’s Premium tile rating scale
+- Changed the district profile Master’s Premium tile rating/bar to use a clearer dollar-based display scale.
+- New tile labels: $0 = None; $1–$2,499 = Low; $2,500–$4,999 = Fair; $5,000–$7,499 = Good; $7,500–$9,999 = Very Good; $10,000+ = Excellent.
+- This is a profile display/rating-scale change only; district salary values, workbook data, and scoring weights were not changed.
+- Browser tab title and cache-busting links updated to Prototype 348.

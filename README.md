@@ -26,9 +26,9 @@ Prototype 345: disables mouse wheel/trackpad scroll zoom on the USA map so deskt
 Prototype 346 applies the confirmed Alief ISD salary audit correction. It includes the 2025-2026 Teacher Retention Allotment in Alief salary values, recalculates Alief scores/rank, and preserves the Prototype 345 desktop map wheel-scroll zoom fix. No scoring weights changed.
 
 
-## Prototype 347 GUHSD salary schedule correction
+## Prototype 348 GUHSD salary schedule correction
 - Corrected Glendale Union High School District using the uploaded 2025-2026 Certified Salary Schedule.
 - BA maps to the BA column; Master's maps to BA+30 / MA.
 - Updated GUHSD BA/MA start, 5-year, 10-year values, Master's Premium, salary scores, affordability-linked values, overall value score, and rank.
 - No scoring weights were changed.
-- Browser tab title and cache-busting links updated to Prototype 347.
+- Browser tab title and cache-busting links updated to Prototype 348.

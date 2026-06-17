@@ -30,9 +30,12 @@ This package disables mouse wheel/trackpad scroll zoom on the desktop USA map. U
 Upload the contents of this ZIP to your existing GitHub repository, replace matching files, commit, and test the live site with `?v=345`.
 
 
-## Prototype 347 GUHSD salary schedule correction
+## Prototype 348 GUHSD salary schedule correction
 - Corrected Glendale Union High School District using the uploaded 2025-2026 Certified Salary Schedule.
 - BA maps to the BA column; Master's maps to BA+30 / MA.
 - Updated GUHSD BA/MA start, 5-year, 10-year values, Master's Premium, salary scores, affordability-linked values, overall value score, and rank.
 - No scoring weights were changed.
-- Browser tab title and cache-busting links updated to Prototype 347.
+- Browser tab title and cache-busting links updated to Prototype 348.
+
+
+Prototype 348 note: Master’s Premium tile uses the new dollar-based display rating scale. Upload the standard active website files and test with ?v=348.

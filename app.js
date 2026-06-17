@@ -2195,6 +2195,40 @@ const STATE_FIT_BOUNDS = {
     return Math.max(0, Math.min(100, score));
   }
 
+  function mastersPremiumAmount(d) {
+    const premium = Number(d["Master's Premium"]);
+    return Number.isFinite(premium) ? Math.max(0, premium) : null;
+  }
+
+  function mastersPremiumTileScore(d) {
+    const premium = mastersPremiumAmount(d);
+    if (!Number.isFinite(premium)) return null;
+    if (premium <= 0) return 0;
+    if (premium < 2500) return 20 + (premium / 2500) * 39;
+    if (premium < 5000) return 60 + ((premium - 2500) / 2500) * 9.9;
+    if (premium < 7500) return 70 + ((premium - 5000) / 2500) * 9.9;
+    if (premium < 10000) return 80 + ((premium - 7500) / 2500) * 9.9;
+    return 90 + Math.min(10, ((premium - 10000) / 5000) * 10);
+  }
+
+  function mastersPremiumTileRating(d) {
+    const premium = mastersPremiumAmount(d);
+    if (!Number.isFinite(premium)) return "—";
+    if (premium <= 0) return "None";
+    if (premium < 2500) return "Low";
+    if (premium < 5000) return "Fair";
+    if (premium < 7500) return "Good";
+    if (premium < 10000) return "Very Good";
+    return "Excellent";
+  }
+
+  function mastersPremiumTileColor(d) {
+    const premium = mastersPremiumAmount(d);
+    if (!Number.isFinite(premium)) return "#172033";
+    if (premium <= 0) return "#667085";
+    return mobileScoreColor(mastersPremiumTileScore(d));
+  }
+
   function mobileDetailIcon(kind) {
     const icons = {
       salary: '<span aria-hidden="true">$</span>',
@@ -2330,14 +2364,15 @@ const STATE_FIT_BOUNDS = {
     }
     const value = Number(item.score);
     const width = mobileScoreWidth(value);
-    const ratingColor = mobileScoreColor(value);
+    const ratingColor = item.ratingColor || mobileScoreColor(value);
+    const ratingLabel = item.ratingLabel || mobileScoreRating(value);
     const icon = item.icon || "";
     const iconColor = item.color || "#667085";
     return `<div class="metric score-feature-tile">
       <div class="desktop-score-icon" style="background:${iconColor}">${icon}</div>
       <div class="m-label">${item.label}</div>
       <div class="m-value">${item.value}</div>
-      <div class="desktop-score-rating" style="color:${ratingColor}">${mobileScoreRating(value)}</div>
+      <div class="desktop-score-rating" style="color:${ratingColor}">${ratingLabel}</div>
       <div class="desktop-score-bar"><span style="--bar-width:${width}%;--bar-color:${ratingColor}"></span></div>
     </div>`;
   }
@@ -2394,7 +2429,7 @@ const STATE_FIT_BOUNDS = {
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#2f9e44"},
-      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:d["Master's Premium Score"], icon:mobileDetailIcon("salary"), color:"#1f9d55"},
+      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
       {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#6b35b5"},
