@@ -2240,6 +2240,17 @@ const STATE_FIT_BOUNDS = {
     return d["State Funding Context Rating"] || mobileScoreRating(Number(d["State Funding Context Score"]));
   }
 
+  function stateFundingTileColor(d) {
+    const rating = String(stateFundingTileRating(d) || "").toLowerCase();
+    if (rating === "excellent") return "#178a4f";
+    if (rating === "very good") return "#238a4b";
+    if (rating === "good") return "#7a8f1f";
+    if (rating === "fair") return "#c58b00";
+    if (rating === "low") return "#b42318";
+    if (rating === "very low") return "#7f1d1d";
+    return mobileScoreColor(Number(d["State Funding Context Score"]));
+  }
+
   function mobileDetailIcon(kind) {
     const icons = {
       salary: '<span aria-hidden="true">$</span>',
@@ -2348,7 +2359,7 @@ const STATE_FIT_BOUNDS = {
       {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
       {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#2f9e44"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:d["State Funding Context Score"], displayValue:stateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
+      {label:"State Funding", value:d["State Funding Context Score"], displayValue:stateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#268c9a"},
       {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#5468c8"}
     ];
@@ -2357,7 +2368,7 @@ const STATE_FIT_BOUNDS = {
       const value = Number(item.value);
       const safeValue = item.displayValue ?? (Number.isFinite(value) ? fmtScore(value) : "—");
       const width = mobileScoreWidth(value);
-      const scoreColor = mobileScoreColor(value);
+      const scoreColor = item.ratingColor || mobileScoreColor(value);
       const ratingLabel = item.ratingLabel || mobileScoreRating(value);
       return `<div class="mobile-detail-highlight ${item.wide ? "wide" : ""}">
         <div class="mobile-detail-highlight-head">
@@ -2440,7 +2451,7 @@ const STATE_FIT_BOUNDS = {
     const placementLabel = placementLabelForDistrict(d);
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
+      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#2f9e44"},

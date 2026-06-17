@@ -35,3 +35,9 @@ Prototype 346 applies the confirmed Alief ISD salary audit correction. It includ
 
 
 Prototype 349: adds a 5% State Funding Context factor based on FY2024 Census current spending per pupil by state.
+
+
+## Prototype 350 State Funding tile color fix
+- Updated State Funding Context profile tile colors to use the State Funding label scale directly.
+- Fair now displays with the fair/orange treatment instead of inheriting a red color from the underlying numeric score.
+- Display-only fix; no data, workbook, scoring weights, or rankings changed.

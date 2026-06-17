@@ -43,3 +43,9 @@ Prototype 348 note: Master’s Premium tile uses the new dollar-based display ra
 
 ## Prototype 349 upload
 Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=349` or `?v=349b`.
+
+
+## Prototype 350 State Funding tile color fix
+- Updated State Funding Context profile tile colors to use the State Funding label scale directly.
+- Fair now displays with the fair/orange treatment instead of inheriting a red color from the underlying numeric score.
+- Display-only fix; no data, workbook, scoring weights, or rankings changed.

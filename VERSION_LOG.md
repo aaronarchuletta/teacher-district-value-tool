@@ -65,3 +65,9 @@
 - Added State Funding Context Score, State Current Spending Per Pupil, rating, and source fields to districts-data.js.
 - Added State Funding tile to district profile display.
 - No salary values or existing salary/rent/source fields were changed in this version.
+
+
+## Prototype 350 State Funding tile color fix
+- Updated State Funding Context profile tile colors to use the State Funding label scale directly.
+- Fair now displays with the fair/orange treatment instead of inheriting a red color from the underlying numeric score.
+- Display-only fix; no data, workbook, scoring weights, or rankings changed.
