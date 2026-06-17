@@ -75,3 +75,9 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Updated browser tab title to Prototype 336.
 - Updated workbook and addendum files for the ten added districts.
 - No scoring weights changed; entries are first-pass and should be verified before final ranking claims.
+
+
+## Prototype 337 visibility/cache fix
+- Re-issued the 75-district dataset under a new file name: districts-data-v337.js.
+- Updated index.html to load districts-data-v337.js?v=337 and app.js?v=337.
+- No scoring logic changes.

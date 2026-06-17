@@ -26,3 +26,7 @@ This package adds ten western-state candidate districts:
 - `index.html` now loads `districts-data-v336.js?v=336` to avoid stale cached data.
 - The browser tab title has been updated to Teacher District Value Prototype 336.
 - The added district data is first-pass and should be verified against official step schedules, current sub pay, housing sources, and district-boundary assumptions before final public ranking claims.
+
+
+## Prototype 337 note
+This package forces the 75-district dataset to load from `districts-data-v337.js?v=337`. After uploading, test with `?v=337`.

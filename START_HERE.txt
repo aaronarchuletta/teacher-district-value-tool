@@ -1,1 +1,1 @@
-Prototype 336 complete package. Upload the contents of this folder to GitHub, replace matching files, commit, then test with ?v=336.
+Prototype 337 complete package. Upload all files to the GitHub repository root, replace matching files, commit, then test with ?v=337. This package contains 75 districts.
