@@ -1,24 +1,28 @@
-# Teacher District Value Prototype 325 Update
+# Teacher District Value Prototype 336 Update Instructions
 
-This is a complete package. Upload the contents of this folder into the existing GitHub repository and choose **Replace** for matching files.
+This package adds ten western-state candidate districts:
 
-## Includes
+- Las Cruces Public Schools, NM
+- Rio Rancho Public Schools, NM
+- Gilbert Public Schools, AZ
+- Queen Creek Unified School District, AZ
+- Vail School District, AZ
+- West Ada School District, ID
+- Twin Falls School District, ID
+- Washoe County School District, NV
+- Kern High School District, CA
+- Clovis Unified School District, CA
 
-- Five added Texas districts from the prior update: Channelview ISD, Plano ISD, Galena Park ISD, Deer Park ISD, and Port Arthur ISD.
-- Mobile district profile score change: Sub Pay tile replaced with 10-Year Growth.
-- Desktop sortable rankings change: Salary score column replaced with Salary Growth %.
-- Fixed workbook retained for records.
+## How to update GitHub
 
-## GitHub steps
+1. Download and unzip the Prototype 336 complete package.
+2. Upload the package contents into the same GitHub repository folder where your site files already live.
+3. Choose Replace for matching files.
+4. Commit the changes.
+5. Test using `?v=336`.
 
-1. Unzip the package.
-2. Upload the contents to the same GitHub repository directory.
-3. Choose Replace when GitHub asks about files with matching names.
-4. Commit with: Update prototype 325 growth display
-5. Test with: ?v=325
+## Notes
 
-No need to delete the repository contents first.
-
-
-## Prototype 334 note
-This package includes a uniquely named data file, `districts-data-v334.js`, so GitHub Pages cannot keep serving an older cached `districts-data.js`. Upload all contents of this ZIP and replace matching files.
+- `index.html` now loads `districts-data-v336.js?v=336` to avoid stale cached data.
+- The browser tab title has been updated to Teacher District Value Prototype 336.
+- The added district data is first-pass and should be verified against official step schedules, current sub pay, housing sources, and district-boundary assumptions before final public ranking claims.

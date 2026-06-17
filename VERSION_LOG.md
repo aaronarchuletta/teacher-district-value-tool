@@ -67,3 +67,11 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Added map coordinates for Dublin City Schools, OH and Mariemont City Schools, OH.
 - This fixes the issue where the districts were in the data file but did not appear in desktop visible-map rankings or map-based browsing.
 - Updated browser tab title to Prototype 335 and refreshed cache-busting query strings.
+
+
+## 336 Add top 10 western candidate districts
+- Added Las Cruces Public Schools, Rio Rancho Public Schools, Gilbert Public Schools, Queen Creek Unified, Vail School District, West Ada, Twin Falls, Washoe County, Kern High, and Clovis Unified.
+- Updated district data file name/cache tag to districts-data-v336.js?v=336.
+- Updated browser tab title to Prototype 336.
+- Updated workbook and addendum files for the ten added districts.
+- No scoring weights changed; entries are first-pass and should be verified before final ranking claims.

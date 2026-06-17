@@ -1,1 +1,1 @@
-Prototype 329 complete package. Upload the files from this folder to the root of your existing GitHub repository and choose Replace for matching files. Test with ?v=329.
+Prototype 336 complete package. Upload the contents of this folder to GitHub, replace matching files, commit, then test with ?v=336.

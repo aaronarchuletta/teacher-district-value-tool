@@ -78,3 +78,10 @@ Prototype 333 cache-bust correction
 Prototype 335 - Ohio district map visibility fix
 - Added map coordinates for Dublin City Schools and Mariemont City Schools so they appear in map-based/visible-viewport district lists.
 - Updated cache-busting links and browser tab title to Prototype 335.
+
+
+Prototype 336 - Add top 10 western candidate districts
+- Added 10 candidate districts from CA, NV, ID, NM, and AZ for 60+ overall-score testing.
+- Added a new cache-busting data file districts-data-v336.js and updated index.html to load it.
+- Updated the workbook to v336 and added new district-row source files.
+- No app behavior/scoring weights changed.
