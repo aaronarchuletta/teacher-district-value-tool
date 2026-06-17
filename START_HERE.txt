@@ -1,4 +1,10 @@
-Prototype 339 complete package
-Upload all contents to GitHub root.
-The active files are index.html, districts-data-v339.js, app-v339.js, styles.css, and map images.
-Test with ?v=339.
+Prototype 340 clean package.
+Upload the contents of this folder to the GitHub repo root.
+Choose Replace for matching files.
+The active website files are:
+- index.html
+- styles.css
+- districts-data.js
+- app.js
+
+Older files such as districts-data-v336.js, districts-data-v337.js, districts-data-v338.js, districts-data-v339.js, and app-v339.js can remain in GitHub, but they are no longer used by this package.

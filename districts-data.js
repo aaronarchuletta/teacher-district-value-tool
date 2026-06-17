@@ -399,7 +399,7 @@ const DISTRICTS = [
     "Master's Premium Score": 70.2867,
     "Salary Score": 68.7121,
     "Affordability Score": 48.0443,
-    "Student-Teacher Ratio Score": 90.0,
+    "Student-Teacher Ratio Score": 90,
     "Sub Pay Score": 20.9995,
     "Demographic Balance Score": 83.125,
     "Overall Value Score": 61.3106,
@@ -1160,7 +1160,7 @@ const DISTRICTS = [
     "Overall Value Score": 54.7128,
     "Median Home Price per Sq Ft": 190,
     "Price per Sq Ft Score": 93.8462,
-    "Other %": 4.0,
+    "Other %": 4,
     "Sub Pay Housing Power": 1.8048,
     "Stability Score": 100,
     "Pre-Risk Overall": 54.7128,
@@ -2880,7 +2880,7 @@ const DISTRICTS = [
     "Master's Premium Score": 26.6667,
     "Salary Score": 32.2851,
     "Affordability Score": 31,
-    "Student-Teacher Ratio Score": 90.0,
+    "Student-Teacher Ratio Score": 90,
     "Sub Pay Score": 42.1053,
     "Demographic Balance Score": 72.175,
     "Overall Value Score": 42.6421,
@@ -3449,7 +3449,7 @@ const DISTRICTS = [
     "Master's Premium Score": 6.6667,
     "Salary Score": 29.469,
     "Affordability Score": 53.8086,
-    "Student-Teacher Ratio Score": 63.0,
+    "Student-Teacher Ratio Score": 63,
     "Sub Pay Score": 5.6793,
     "Demographic Balance Score": 55.7525,
     "Overall Value Score": 40.3734,
@@ -5163,7 +5163,7 @@ const DISTRICTS = [
     "Overall Value Score": 25.1141,
     "Median Home Price per Sq Ft": 558,
     "Price per Sq Ft Score": 37.2308,
-    "Other %": 7.0,
+    "Other %": 7,
     "Sub Pay Housing Power": 0.6667,
     "Stability Score": 60,
     "Pre-Risk Overall": 27.9046,
@@ -5442,7 +5442,7 @@ const DISTRICTS = [
     "Master's Premium Score": 8.3333,
     "Salary Score": 11.1916,
     "Affordability Score": 19.7692,
-    "Student-Teacher Ratio Score": 57.0,
+    "Student-Teacher Ratio Score": 57,
     "Sub Pay Score": 21.1893,
     "Demographic Balance Score": 81.41,
     "Overall Value Score": 22.4122,
@@ -5519,19 +5519,7 @@ const DISTRICTS = [
     "Work Environment Risk": "15% employment-stability penalty due to declining enrollment, budget shortfall, and staffing-reduction/job-cut plan.",
     "Last Verified": "2026-06-16",
     "PPSF Source URL": null
-  }
-];
-
-
-// Integrated v323 additions fallback: keeps new districts in the main data file.
-// Teacher District Value Prototype 323 district additions
-// Adds: Channelview ISD, Plano ISD, Galena Park ISD, Deer Park ISD, Port Arthur ISD
-// Load this file AFTER districts-data.js and BEFORE app.js.
-
-(function () {
-  "use strict";
-
-  const NEW_DISTRICTS_V323 = [
+  },
   {
     "District": "Channelview ISD",
     "State": "TX",
@@ -5546,10 +5534,10 @@ const DISTRICTS = [
     "Median Rent": 1800,
     "Student-Teacher Ratio": 15.6,
     "Licensed Sub Pay": 140,
-    "White %": 4.0,
+    "White %": 4,
     "Hispanic %": 84.6,
-    "Asian %": 1.0,
-    "Black %": 8.0,
+    "Asian %": 1,
+    "Black %": 8,
     "Other %": 2.4,
     "Number of High Schools": 2,
     "Number of Middle Schools": 3,
@@ -5584,14 +5572,14 @@ const DISTRICTS = [
         "10": 73000
       }
     },
-    "Avg Start Salary": 69250.0,
-    "Avg 10-Year Salary": 72250.0,
+    "Avg Start Salary": 69250,
+    "Avg 10-Year Salary": 72250,
     "Avg Growth %": 0.04332129963898917,
     "Master's Premium": 1500,
     "Demographic Balance Score": 67.02000000000001,
     "Salary Level Score": 60.55555555555555,
     "Growth Score": 6.664815329075256,
-    "Master's Premium Score": 10.0,
+    "Master's Premium Score": 10,
     "Salary Score": 36.638240920731896,
     "Affordability Score": 79.21104,
     "Student-Teacher Ratio Score": 62.66666666666667,
@@ -5608,7 +5596,7 @@ const DISTRICTS = [
     "Daily Sub Pay": 140,
     "Pre-Risk Overall Value Score": 57.545370100033935,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "First-pass salary values; verify exact step/lane chart before final ranking."
@@ -5627,10 +5615,10 @@ const DISTRICTS = [
     "Median Rent": 2600,
     "Student-Teacher Ratio": 13.75,
     "Licensed Sub Pay": 130,
-    "White %": 31.0,
+    "White %": 31,
     "Hispanic %": 30.1,
-    "Asian %": 24.0,
-    "Black %": 12.0,
+    "Asian %": 24,
+    "Black %": 12,
     "Other %": 2.9,
     "Number of High Schools": 11,
     "Number of Middle Schools": 11,
@@ -5665,8 +5653,8 @@ const DISTRICTS = [
         "10": 71600
       }
     },
-    "Avg Start Salary": 65000.0,
-    "Avg 10-Year Salary": 70600.0,
+    "Avg Start Salary": 65000,
+    "Avg 10-Year Salary": 70600,
     "Avg Growth %": 0.08615384615384615,
     "Master's Premium": 2000,
     "Demographic Balance Score": 99.93,
@@ -5675,12 +5663,12 @@ const DISTRICTS = [
     "Master's Premium Score": 13.333333333333334,
     "Salary Score": 37.261275476660096,
     "Affordability Score": 36.82488,
-    "Student-Teacher Ratio Score": 75.0,
+    "Student-Teacher Ratio Score": 75,
     "Sub Pay Score": 33.33333333333333,
     "Overall Value Score": 51.64942241683104,
     "Median Home Price per Sq Ft": 242,
     "Price per Sq Ft Score": 78.15384615384616,
-    "Sub Pay Housing Power": 1.0,
+    "Sub Pay Housing Power": 1,
     "Count Notes": "Uses Plano ISD 2026-27 new-hire certified teacher schedule because that current public schedule was available; verify if you want strict 2025-26 comparability. NCES total schools used; Texas Tribune campus counts shown in source.",
     "Source URL": "https://www.pisd.edu/employment/join-our-team/new-hire-salary-schedule-2026-2027 ; https://schools.texastribune.org/districts/plano-isd/ ; https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=4835100 ; https://www.redfin.com/city/30868/TX/Plano/housing-market ; https://www.zillow.com/rental-manager/market-trends/plano-tx/ ; https://www.pisd.edu/employment/join-our-team/substitutes",
     "Last Verified": "2026-06-16",
@@ -5689,7 +5677,7 @@ const DISTRICTS = [
     "Daily Sub Pay": 130,
     "Pre-Risk Overall Value Score": 51.64942241683104,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Current public schedule is 2026-27; verify if you require same-year comparability."
@@ -5708,10 +5696,10 @@ const DISTRICTS = [
     "Median Rent": 1600,
     "Student-Teacher Ratio": 14.97,
     "Licensed Sub Pay": 125,
-    "White %": 4.0,
+    "White %": 4,
     "Hispanic %": 82.3,
-    "Asian %": 1.0,
-    "Black %": 10.0,
+    "Asian %": 1,
+    "Black %": 10,
     "Other %": 2.7,
     "Number of High Schools": 6,
     "Number of Middle Schools": 5,
@@ -5746,8 +5734,8 @@ const DISTRICTS = [
         "10": 75200
       }
     },
-    "Avg Start Salary": 67575.0,
-    "Avg 10-Year Salary": 74200.0,
+    "Avg Start Salary": 67575,
+    "Avg 10-Year Salary": 74200,
     "Avg Growth %": 0.09803921568627451,
     "Master's Premium": 2000,
     "Demographic Balance Score": 67.56,
@@ -5770,7 +5758,7 @@ const DISTRICTS = [
     "Daily Sub Pay": 125,
     "Pre-Risk Overall Value Score": 61.77779591955757,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Rent input is first-pass because rental source coverage is thinner than for larger cities."
@@ -5789,11 +5777,11 @@ const DISTRICTS = [
     "Median Rent": 2000,
     "Student-Teacher Ratio": 14.17,
     "Licensed Sub Pay": 130,
-    "White %": 23.0,
-    "Hispanic %": 66.0,
-    "Asian %": 2.0,
-    "Black %": 6.0,
-    "Other %": 3.0,
+    "White %": 23,
+    "Hispanic %": 66,
+    "Asian %": 2,
+    "Black %": 6,
+    "Other %": 3,
     "Number of High Schools": 2,
     "Number of Middle Schools": 4,
     "Number of Elementary Schools": 8,
@@ -5827,8 +5815,8 @@ const DISTRICTS = [
         "10": 78000
       }
     },
-    "Avg Start Salary": 63000.0,
-    "Avg 10-Year Salary": 78000.0,
+    "Avg Start Salary": 63000,
+    "Avg 10-Year Salary": 78000,
     "Avg Growth %": 0.23809523809523808,
     "Master's Premium": 0,
     "Demographic Balance Score": 72.1,
@@ -5851,7 +5839,7 @@ const DISTRICTS = [
     "Daily Sub Pay": 130,
     "Pre-Risk Overall Value Score": 62.33845415384615,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Salary progression is estimated from published range; verify exact schedule if available."
@@ -5870,10 +5858,10 @@ const DISTRICTS = [
     "Median Rent": 1331,
     "Student-Teacher Ratio": 13.19,
     "Licensed Sub Pay": 115,
-    "White %": 3.0,
+    "White %": 3,
     "Hispanic %": 54.4,
-    "Asian %": 2.0,
-    "Black %": 39.0,
+    "Asian %": 2,
+    "Black %": 39,
     "Other %": 1.6,
     "Number of High Schools": 2,
     "Number of Middle Schools": 2,
@@ -5908,8 +5896,8 @@ const DISTRICTS = [
         "10": 61980
       }
     },
-    "Avg Start Salary": 56240.0,
-    "Avg 10-Year Salary": 61240.0,
+    "Avg Start Salary": 56240,
+    "Avg 10-Year Salary": 61240,
     "Avg Growth %": 0.08890469416785206,
     "Master's Premium": 1480,
     "Demographic Balance Score": 66.27999999999999,
@@ -5932,151 +5920,11 @@ const DISTRICTS = [
     "Daily Sub Pay": 115,
     "Pre-Risk Overall Value Score": 60.33876419874519,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Data Confidence": "Salary bands are first-pass from announcement; verify against official salary schedule."
-  }
-];
-
-  const DISTRICT_GEO_ADDITIONS_V323 = {
-  "Channelview ISD": [
-    29.7925,
-    -95.1255
-  ],
-  "Plano ISD": [
-    33.0198,
-    -96.6989
-  ],
-  "Galena Park ISD": [
-    29.7336,
-    -95.2302
-  ],
-  "Deer Park ISD": [
-    29.7052,
-    -95.1238
-  ],
-  "Port Arthur ISD": [
-    29.8849,
-    -93.9399
-  ]
-};
-
-  const DISTRICT_CONTEXT_ADDITIONS_V323 = {
-  "Channelview ISD": {
-    "cities": [
-      "Channelview",
-      "Houston east side",
-      "Sheldon area"
-    ],
-    "zips": [
-      "77530",
-      "77015",
-      "77049"
-    ],
-    "note": "East Houston-area district along the Ship Channel with comparatively low home prices and high Hispanic enrollment."
   },
-  "Plano ISD": {
-    "cities": [
-      "Plano",
-      "Richardson area",
-      "Murphy",
-      "Parker"
-    ],
-    "zips": [
-      "75023",
-      "75024",
-      "75025",
-      "75074",
-      "75075"
-    ],
-    "note": "Large North Dallas suburban district with many campuses and higher local housing costs than many Houston-area districts."
-  },
-  "Galena Park ISD": {
-    "cities": [
-      "Galena Park",
-      "Jacinto City",
-      "Houston east side",
-      "North Shore"
-    ],
-    "zips": [
-      "77547",
-      "77015",
-      "77049"
-    ],
-    "note": "East Houston-area district including Galena Park and North Shore communities."
-  },
-  "Deer Park ISD": {
-    "cities": [
-      "Deer Park",
-      "Pasadena area",
-      "La Porte area"
-    ],
-    "zips": [
-      "77536",
-      "77571",
-      "77505"
-    ],
-    "note": "Southeast Houston-area district near the Ship Channel with stable suburban/industrial context."
-  },
-  "Port Arthur ISD": {
-    "cities": [
-      "Port Arthur",
-      "Groves area",
-      "Sabine Pass area"
-    ],
-    "zips": [
-      "77640",
-      "77642",
-      "77655"
-    ],
-    "note": "Golden Triangle district with low housing costs and a lower published teacher starting salary than the Houston-area additions."
-  }
-};
-
-  function upsertDistricts(target, additions) {
-    additions.forEach(addition => {
-      const idx = target.findIndex(d => d && d.District === addition.District);
-      if (idx >= 0) {
-        target[idx] = Object.assign({}, target[idx], addition);
-      } else {
-        target.push(addition);
-      }
-    });
-  }
-
-  if (typeof DISTRICTS !== "undefined" && Array.isArray(DISTRICTS)) {
-    upsertDistricts(DISTRICTS, NEW_DISTRICTS_V323);
-  } else {
-    window.NEW_DISTRICTS_V323 = NEW_DISTRICTS_V323;
-    console.warn("DISTRICTS was not available when districts-additions-v323.js loaded.");
-  }
-
-  // Map/profile helpers. These update optional globals if your current app exposes them.
-  // If your app stores geo/context data elsewhere, the core district rows still load correctly.
-  try {
-    if (typeof DISTRICT_GEO !== "undefined" && DISTRICT_GEO) {
-      Object.assign(DISTRICT_GEO, DISTRICT_GEO_ADDITIONS_V323);
-    }
-  } catch (err) {
-    window.DISTRICT_GEO_ADDITIONS_V323 = DISTRICT_GEO_ADDITIONS_V323;
-  }
-
-  try {
-    if (typeof districtGeoContext !== "undefined" && districtGeoContext) {
-      Object.assign(districtGeoContext, DISTRICT_CONTEXT_ADDITIONS_V323);
-    }
-  } catch (err) {
-    window.DISTRICT_CONTEXT_ADDITIONS_V323 = DISTRICT_CONTEXT_ADDITIONS_V323;
-  }
-
-  window.TEACHER_VALUE_DISTRICT_ADDITIONS_VERSION = "v323";
-})();
-
-
-
-(function () {
-  const NEW_DISTRICTS_V333 = [
   {
     "District": "Dublin City Schools",
     "State": "OH",
@@ -6090,7 +5938,7 @@ const DISTRICTS = [
     "Median Home Price": 569539,
     "Median Rent": 2300,
     "Median Home Price per Sq Ft": 242,
-    "Student-Teacher Ratio": 15.0,
+    "Student-Teacher Ratio": 15,
     "Licensed Sub Pay": 155,
     "White %": 57,
     "Hispanic %": 9,
@@ -6137,8 +5985,8 @@ const DISTRICTS = [
     "lat": 40.0992,
     "lng": -83.1141,
     "Data Confidence": "First-pass entry. Official starting salary and district average salary were available; exact step/lane values should be verified before final ranking.",
-    "Avg Start Salary": 54682.0,
-    "Avg 10-Year Salary": 82000.0,
+    "Avg Start Salary": 54682,
+    "Avg 10-Year Salary": 82000,
     "Avg Growth %": 0.499579,
     "Master's Premium": 5208,
     "Salary Level Score": 53.3333,
@@ -6158,7 +6006,7 @@ const DISTRICTS = [
     "Pre-Risk Overall": 53.0895,
     "preRiskScore": 53.0895,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Demographic Balance Note": "First-pass public demographic profile.",
@@ -6177,7 +6025,7 @@ const DISTRICTS = [
     "Median Home Price": 593962,
     "Median Rent": 1600,
     "Median Home Price per Sq Ft": 310,
-    "Student-Teacher Ratio": 13.0,
+    "Student-Teacher Ratio": 13,
     "Licensed Sub Pay": 150,
     "White %": 82,
     "Hispanic %": 5,
@@ -6224,8 +6072,8 @@ const DISTRICTS = [
     "lat": 39.1453,
     "lng": -84.3744,
     "Data Confidence": "First-pass entry. Exact salary schedule should be verified against Mariemont CBA/adopted salary schedule before final ranking.",
-    "Avg Start Salary": 53500.0,
-    "Avg 10-Year Salary": 78000.0,
+    "Avg Start Salary": 53500,
+    "Avg 10-Year Salary": 78000,
     "Avg Growth %": 0.457944,
     "Master's Premium": 5000,
     "Salary Level Score": 46.6667,
@@ -6245,38 +6093,12 @@ const DISTRICTS = [
     "Pre-Risk Overall": 55.7289,
     "preRiskScore": 55.7289,
     "Work Environment Risk": "Stable / no current evidence",
-    "Work Environment Multiplier": 1.0,
+    "Work Environment Multiplier": 1,
     "Work Environment Note": "No employment-stability penalty applied in this first-pass addition; verify with adopted budget, enrollment trend, board packets, and HR/union notices before final scoring.",
     "Stability Review Stage": "First-pass public-source screening; verify with adopted budget, board packets, audit/ACFR, enrollment trend, and union/HR notices before final scoring.",
     "Demographic Balance Note": "First-pass public demographic profile.",
     "mapImage": ""
-  }
-];
-
-  function upsertDistricts(target, additions) {
-    additions.forEach((district) => {
-      const idx = target.findIndex((existing) => existing.District === district.District);
-      if (idx >= 0) {
-        target[idx] = Object.assign({}, target[idx], district);
-      } else {
-        target.push(district);
-      }
-    });
-  }
-
-  if (typeof DISTRICTS !== "undefined" && Array.isArray(DISTRICTS)) {
-    upsertDistricts(DISTRICTS, NEW_DISTRICTS_V333);
-  } else {
-    window.NEW_DISTRICTS_V333 = NEW_DISTRICTS_V333;
-    console.warn("DISTRICTS was not available when districts-additions-v333.js loaded.");
-  }
-
-  window.TEACHER_VALUE_DISTRICT_ADDITIONS_VERSION = "v333";
-})();
-
-
-(function () {
-  const NEW_DISTRICTS_V336 = [
+  },
   {
     "District": "Las Cruces Public Schools",
     "State": "NM",
@@ -6287,8 +6109,8 @@ const DISTRICTS = [
     "MA Start": 59000,
     "MA 5-Year": 70000,
     "MA 10-Year": 79000,
-    "Avg Start Salary": 57000.0,
-    "Avg 10-Year Salary": 77000.0,
+    "Avg Start Salary": 57000,
+    "Avg 10-Year Salary": 77000,
     "Avg Growth %": 0.350877,
     "Master's Premium": 4000,
     "Median Home Price": 310000,
@@ -6311,7 +6133,7 @@ const DISTRICTS = [
     "Last Verified": "2026-06-16",
     "lat": 32.3199,
     "lng": -106.7637,
-    "Salary Level Score": 45.0,
+    "Salary Level Score": 45,
     "Growth Score": 58.4795,
     "Master's Premium Score": 26.6667,
     "Salary Score": 46.0512,
@@ -6319,7 +6141,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 68.4615,
     "Sub Pay Housing Power": 2.4828,
     "Sub Pay Score": 74.14,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 96.9231,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 72.5686,
@@ -6376,8 +6198,8 @@ const DISTRICTS = [
     "MA Start": 60000,
     "MA 5-Year": 72000,
     "MA 10-Year": 81000,
-    "Avg Start Salary": 58000.0,
-    "Avg 10-Year Salary": 78500.0,
+    "Avg Start Salary": 58000,
+    "Avg 10-Year Salary": 78500,
     "Avg Growth %": 0.353448,
     "Master's Premium": 4000,
     "Median Home Price": 350000,
@@ -6408,7 +6230,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 66.9231,
     "Sub Pay Housing Power": 2.1818,
     "Sub Pay Score": 59.09,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 90.7692,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 70.2553,
@@ -6465,8 +6287,8 @@ const DISTRICTS = [
     "MA Start": 58500,
     "MA 5-Year": 70000,
     "MA 10-Year": 75500,
-    "Avg Start Salary": 56015.0,
-    "Avg 10-Year Salary": 72750.0,
+    "Avg Start Salary": 56015,
+    "Avg 10-Year Salary": 72750,
     "Avg Growth %": 0.298759,
     "Master's Premium": 4970,
     "Median Home Price": 565000,
@@ -6497,7 +6319,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 53.0769,
     "Sub Pay Housing Power": 1.3333,
     "Sub Pay Score": 16.665,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 66.1538,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 58.3021,
@@ -6554,8 +6376,8 @@ const DISTRICTS = [
     "MA Start": 57000,
     "MA 5-Year": 68500,
     "MA 10-Year": 75000,
-    "Avg Start Salary": 54500.0,
-    "Avg 10-Year Salary": 72500.0,
+    "Avg Start Salary": 54500,
+    "Avg 10-Year Salary": 72500,
     "Avg Growth %": 0.330275,
     "Master's Premium": 5000,
     "Median Home Price": 670000,
@@ -6586,7 +6408,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 55.3846,
     "Sub Pay Housing Power": 1.1837,
     "Sub Pay Score": 9.185,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 61.5385,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 56.9239,
@@ -6643,13 +6465,13 @@ const DISTRICTS = [
     "MA Start": 55250,
     "MA 5-Year": 67000,
     "MA 10-Year": 75500,
-    "Avg Start Salary": 52750.0,
-    "Avg 10-Year Salary": 72500.0,
+    "Avg Start Salary": 52750,
+    "Avg 10-Year Salary": 72500,
     "Avg Growth %": 0.374408,
     "Master's Premium": 5000,
     "Median Home Price": 370000,
     "Median Rent": 1700,
-    "Student-Teacher Ratio": 18.0,
+    "Student-Teacher Ratio": 18,
     "Licensed Sub Pay": 140,
     "Median Home Price per Sq Ft": 220,
     "White %": 57,
@@ -6675,7 +6497,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 53.8462,
     "Sub Pay Housing Power": 1.6471,
     "Sub Pay Score": 32.355,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 86.1538,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 65.1318,
@@ -6732,8 +6554,8 @@ const DISTRICTS = [
     "MA Start": 56000,
     "MA 5-Year": 67500,
     "MA 10-Year": 77500,
-    "Avg Start Salary": 53126.0,
-    "Avg 10-Year Salary": 73000.0,
+    "Avg Start Salary": 53126,
+    "Avg 10-Year Salary": 73000,
     "Avg Growth %": 0.374092,
     "Master's Premium": 5748,
     "Median Home Price": 525000,
@@ -6764,7 +6586,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 46.9231,
     "Sub Pay Housing Power": 1.3514,
     "Sub Pay Score": 17.57,
-    "Demographic Balance Score": 90.0,
+    "Demographic Balance Score": 90,
     "Price per Sq Ft Score": 73.8462,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 60.0062,
@@ -6821,8 +6643,8 @@ const DISTRICTS = [
     "MA Start": 56000,
     "MA 5-Year": 66000,
     "MA 10-Year": 73500,
-    "Avg Start Salary": 53126.0,
-    "Avg 10-Year Salary": 69750.0,
+    "Avg Start Salary": 53126,
+    "Avg 10-Year Salary": 69750,
     "Avg Growth %": 0.312916,
     "Master's Premium": 5748,
     "Median Home Price": 370000,
@@ -6850,10 +6672,10 @@ const DISTRICTS = [
     "Master's Premium Score": 38.32,
     "Salary Score": 40.73,
     "Affordability Score": 82.1976,
-    "Student-Teacher Ratio Score": 60.0,
+    "Student-Teacher Ratio Score": 60,
     "Sub Pay Housing Power": 1.7241,
     "Sub Pay Score": 36.205,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 87.6923,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 65.3155,
@@ -6910,8 +6732,8 @@ const DISTRICTS = [
     "MA Start": 68000,
     "MA 5-Year": 78000,
     "MA 10-Year": 88000,
-    "Avg Start Salary": 65500.0,
-    "Avg 10-Year Salary": 83000.0,
+    "Avg Start Salary": 65500,
+    "Avg 10-Year Salary": 83000,
     "Avg Growth %": 0.267176,
     "Master's Premium": 5000,
     "Median Home Price": 550000,
@@ -6934,7 +6756,7 @@ const DISTRICTS = [
     "Last Verified": "2026-06-16",
     "lat": 39.5296,
     "lng": -119.8138,
-    "Salary Level Score": 55.0,
+    "Salary Level Score": 55,
     "Growth Score": 44.5293,
     "Master's Premium Score": 33.3333,
     "Salary Score": 47.0019,
@@ -6942,7 +6764,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 58.4615,
     "Sub Pay Housing Power": 1.6216,
     "Sub Pay Score": 31.08,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 61.5385,
     "Stability Score": 75,
     "Pre-Risk Overall Value Score": 60.9527,
@@ -6999,8 +6821,8 @@ const DISTRICTS = [
     "MA Start": 70429,
     "MA 5-Year": 89000,
     "MA 10-Year": 105000,
-    "Avg Start Salary": 67929.0,
-    "Avg 10-Year Salary": 101500.0,
+    "Avg Start Salary": 67929,
+    "Avg 10-Year Salary": 101500,
     "Avg Growth %": 0.494207,
     "Master's Premium": 5000,
     "Median Home Price": 395000,
@@ -7031,7 +6853,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 26.9231,
     "Sub Pay Housing Power": 2.3599,
     "Sub Pay Score": 67.995,
-    "Demographic Balance Score": 90.0,
+    "Demographic Balance Score": 90,
     "Price per Sq Ft Score": 83.0769,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 74.2947,
@@ -7088,8 +6910,8 @@ const DISTRICTS = [
     "MA Start": 65822,
     "MA 5-Year": 84300,
     "MA 10-Year": 102800,
-    "Avg Start Salary": 63322.0,
-    "Avg 10-Year Salary": 97800.0,
+    "Avg Start Salary": 63322,
+    "Avg 10-Year Salary": 97800,
     "Avg Growth %": 0.544487,
     "Master's Premium": 5000,
     "Median Home Price": 505000,
@@ -7120,7 +6942,7 @@ const DISTRICTS = [
     "Student-Teacher Ratio Score": 16.9231,
     "Sub Pay Housing Power": 2.2105,
     "Sub Pay Score": 60.525,
-    "Demographic Balance Score": 100.0,
+    "Demographic Balance Score": 100,
     "Price per Sq Ft Score": 73.8462,
     "Stability Score": 100,
     "Pre-Risk Overall Value Score": 72.4188,
@@ -7168,24 +6990,3 @@ const DISTRICTS = [
     }
   }
 ];
-
-  function upsertDistricts(target, additions) {
-    additions.forEach((district) => {
-      const idx = target.findIndex((existing) => existing.District === district.District);
-      if (idx >= 0) {
-        target[idx] = Object.assign({}, target[idx], district);
-      } else {
-        target.push(district);
-      }
-    });
-  }
-
-  if (typeof DISTRICTS !== "undefined" && Array.isArray(DISTRICTS)) {
-    upsertDistricts(DISTRICTS, NEW_DISTRICTS_V336);
-  } else {
-    window.NEW_DISTRICTS_V336 = NEW_DISTRICTS_V336;
-    console.warn("DISTRICTS was not available when v336 district additions loaded.");
-  }
-
-  window.TEACHER_VALUE_DISTRICT_ADDITIONS_VERSION = "v336";
-})();
