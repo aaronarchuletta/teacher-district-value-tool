@@ -19,3 +19,9 @@
 - The button now shows all districts matching the selected filters, ranked by Overall Value Score by default, instead of showing only districts currently visible in the map viewport.
 - Kept the map Top Matches behavior separate so map browsing can still reflect visible map districts.
 - No workbook, scoring formula, or district data changes.
+
+
+Prototype 325 - Mobile growth tile and desktop ranking growth column
+- Replaced the mobile district profile Sub Pay score tile with the 10-Year Growth score tile.
+- Replaced the desktop sortable rankings Salary score column with Salary Growth %.
+- Kept existing scoring formulas and district data unchanged.

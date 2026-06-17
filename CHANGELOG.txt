@@ -27,3 +27,9 @@ Prototype 324 - Filter results button behavior fix
 - The list is no longer limited to districts currently visible in the map viewport after using the button.
 - Map Top Matches behavior remains map-viewport based.
 - No workbook, scoring formula, or district data changes.
+
+
+Prototype 325 - Mobile growth tile and desktop ranking growth column
+- Replaced the mobile district profile Sub Pay score tile with the 10-Year Growth score tile.
+- Replaced the desktop sortable rankings Salary score column with Salary Growth %.
+- Kept existing scoring formulas and district data unchanged.

@@ -316,7 +316,7 @@ const scoreCols = [
   ];
   const columns = [
     "District","State","Region","Overall Value Score","Stability Score",
-    "Salary Score","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
+    "Avg Growth %","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
   ];
   const columnLabels = {
     "Overall Value Score": "Final Value",
@@ -325,6 +325,7 @@ const scoreCols = [
     "Work Environment Multiplier": "Stability Multiplier",
     "Stability Score": "Stability",
     "Salary Score": "Salary",
+    "Avg Growth %": "Salary Growth %",
     "Growth Score": "Growth",
     "Master's Premium Score": "Master’s Premium",
     "Affordability Score": "Affordability",
@@ -2104,7 +2105,7 @@ const scoreCols = [
     const highlightData = [
       {label:selectedEducationSalaryLabel(), value:d["Salary Score"], displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
-      {label:"Sub Pay", value:d["Sub Pay Score"], displayValue:formatDailySubPay(d), icon:mobileDetailIcon("subpay"), color:"#6b35b5"},
+      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#2f9e44"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#268c9a"},
       {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#5468c8"}

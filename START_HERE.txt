@@ -1,10 +1,10 @@
-Use this fixed complete package.
+Teacher District Value Prototype 325
 
-1. Unzip this folder.
-2. Open the unzipped folder.
-3. Copy ALL contents into your local teacher_value_site_working folder.
-4. Choose Replace for duplicate files.
-5. Open index.html from teacher_value_site_working.
-6. Search for Plano ISD or Galena Park ISD.
+Upload the contents of this folder into the existing GitHub repository.
+Choose Replace for matching files.
+Commit and test the live site with ?v=325.
 
-This package keeps the v323 districts in districts-data.js directly and also includes districts-additions-v323.js, so the new districts should appear even if the add-on script step caused confusion before.
+Main changes:
+- Mobile district profile scores now show 10-Year Growth instead of Sub Pay.
+- Desktop sortable rankings now show Salary Growth % instead of Salary score.
+- Five Texas districts remain included.
