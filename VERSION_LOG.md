@@ -83,7 +83,7 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - No scoring logic changes.
 
 
-## Prototype 338 - Integrated 75-district data fix
-- Rebuilt the data file as a fully integrated `districts-data-v338.js` containing all 75 districts directly in the main DISTRICTS array.
-- Removed reliance on post-load addendum upsert behavior for the 10-state expansion districts.
-- Updated browser tab title and cache-busting links to Prototype 338.
+## 339 Data-load hardening
+- Renamed both data and app files to version-specific filenames.
+- index.html now loads districts-data-v339.js and app-v339.js to avoid stale GitHub/browser cache.
+- Confirmed data file contains 75 districts.

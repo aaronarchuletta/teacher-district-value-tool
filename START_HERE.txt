@@ -1,7 +1,4 @@
-Prototype 337 complete package. Upload all files to the GitHub repository root, replace matching files, commit, then test with ?v=337. This package contains 75 districts.
-
-
-## Prototype 338 - Integrated 75-district data fix
-- Rebuilt the data file as a fully integrated `districts-data-v338.js` containing all 75 districts directly in the main DISTRICTS array.
-- Removed reliance on post-load addendum upsert behavior for the 10-state expansion districts.
-- Updated browser tab title and cache-busting links to Prototype 338.
+Prototype 339 complete package
+Upload all contents to GitHub root.
+The active files are index.html, districts-data-v339.js, app-v339.js, styles.css, and map images.
+Test with ?v=339.
