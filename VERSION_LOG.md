@@ -35,3 +35,18 @@
 - Disabled mouse wheel / trackpad scroll zoom on the desktop USA map.
 - Map zoom is now controlled by the Leaflet + and - buttons while keeping drag/pan behavior and mobile touch zoom intact.
 - No district data, workbook values, or scoring weights changed.
+
+## Prototype 346 - Master’s premium audit correction pass
+- Updated Alief ISD salary values to include the 2025-2026 Teacher Retention Allotment (TRA) because Alief’s compensation handbook states the approved beginning teaching salary is $66,500.
+- Alief BA/MA start, 5-year, and 10-year values, salary scores, affordability score, pre-risk overall, overall value score, and rank were recalculated.
+- Master’s premium remains $500 for Alief because the 2025-2026 schedule shows Master’s as $500 above Bachelor’s at each listed experience level.
+- Barbers Hill ISD and Glendale Union HSD were not changed in this package because the current accessible 2025-2026 Barbers Hill schedules do not show a separate master’s column, and the current GUHSD certified schedule is behind a Google Doc view that still needs direct extraction before changing values.
+- No scoring weights were changed.
+
+
+## Prototype 347 GUHSD salary schedule correction
+- Corrected Glendale Union High School District using the uploaded 2025-2026 Certified Salary Schedule.
+- BA maps to the BA column; Master's maps to BA+30 / MA.
+- Updated GUHSD BA/MA start, 5-year, 10-year values, Master's Premium, salary scores, affordability-linked values, overall value score, and rank.
+- No scoring weights were changed.
+- Browser tab title and cache-busting links updated to Prototype 347.

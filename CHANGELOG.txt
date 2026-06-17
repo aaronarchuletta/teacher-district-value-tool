@@ -128,3 +128,8 @@ Prototype 343 - Add 10 high-value candidate districts
 - Disabled mouse wheel / trackpad scroll zoom on the desktop USA map.
 - Map zoom is now controlled by the Leaflet + and - buttons while keeping drag/pan behavior and mobile touch zoom intact.
 - No district data, workbook values, or scoring weights changed.
+
+Prototype 347 GUHSD salary schedule correction
+- Corrected Glendale Union High School District salary data using uploaded 2025-2026 Certified Salary Schedule.
+- Mapped BA to BA and Master's to BA+30 / MA.
+- No scoring weights changed.
