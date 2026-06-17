@@ -140,3 +140,14 @@ Prototype 347 GUHSD salary schedule correction
 - New tile labels: $0 = None; $1–$2,499 = Low; $2,500–$4,999 = Fair; $5,000–$7,499 = Good; $7,500–$9,999 = Very Good; $10,000+ = Excellent.
 - This is a profile display/rating-scale change only; district salary values, workbook data, and scoring weights were not changed.
 - Browser tab title and cache-busting links updated to Prototype 348.
+
+Prototype 352 - Excellent color update
+- Replaced all Excellent tile color values with PMS 347 green (#0a843d).
+- Updated Salary and 10-Year Growth profile tile icon colors to #0a843d.
+- No district data, scoring weights, or rankings changed.
+
+Prototype 353 - Color and icon system update
+- Applied updated rating color palette for profile tiles.
+- Updated profile tile icon colors for Salary, Growth, Master’s Premium, Affordability, Class Size, Stability, Sub Pay, State Funding, and Demographics.
+- Updated profile tile icon artwork for both mobile and desktop, including Class Size seating-grid icon.
+- No district data, scoring weights, workbook formulas, or ranking formulas changed.

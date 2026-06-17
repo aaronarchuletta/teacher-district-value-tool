@@ -2153,11 +2153,11 @@ const STATE_FIT_BOUNDS = {
   function mobileScoreColor(score) {
     const n = Number(score);
     if (!Number.isFinite(n)) return "#172033";
-    if (n >= 90) return "#178a4f";
-    if (n >= 80) return "#2f9e44";
-    if (n >= 70) return "#6f9f3a";
-    if (n >= 60) return "#c67a12";
-    return "#cf3f3f";
+    if (n >= 90) return "#0A843D";
+    if (n >= 80) return "#489D46";
+    if (n >= 70) return "#8ABB40";
+    if (n >= 60) return "#BF5700";
+    return "#C8102E";
   }
 
   function mobileScoreWidth(score) {
@@ -2236,31 +2236,37 @@ const STATE_FIT_BOUNDS = {
     return Number.isFinite(v) ? `${fmtMoney(v)}/student` : "—";
   }
 
+  function mobileStateFundingDisplayValue(d) {
+    const v = Number(d["State Current Spending Per Pupil"]);
+    return Number.isFinite(v) ? fmtMoney(v) : "—";
+  }
+
   function stateFundingTileRating(d) {
     return d["State Funding Context Rating"] || mobileScoreRating(Number(d["State Funding Context Score"]));
   }
 
   function stateFundingTileColor(d) {
     const rating = String(stateFundingTileRating(d) || "").toLowerCase();
-    if (rating === "excellent") return "#178a4f";
-    if (rating === "very good") return "#238a4b";
-    if (rating === "good") return "#7a8f1f";
-    if (rating === "fair") return "#c58b00";
-    if (rating === "low") return "#b42318";
-    if (rating === "very low") return "#7f1d1d";
+    if (rating === "excellent") return "#0A843D";
+    if (rating === "very good") return "#489D46";
+    if (rating === "good") return "#8ABB40";
+    if (rating === "fair") return "#BF5700";
+    if (rating === "low") return "#C8102E";
+    if (rating === "very low") return "#9E1B32";
     return mobileScoreColor(Number(d["State Funding Context Score"]));
   }
 
   function mobileDetailIcon(kind) {
     const icons = {
       salary: '<span aria-hidden="true">$</span>',
+      masters: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.2 12 4l9 4.2-9 4.2L3 8.2z"/><path d="M6.5 10.2v4.2c1.8 1.4 3.7 2.1 5.5 2.1s3.7-.7 5.5-2.1v-4.2"/><path d="M19 9.5v5"/><path d="M19 14.5c.7.4 1 1 1 1.7"/></svg>`,
       affordability: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg>`,
-      subpay: `<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="5.5" ry="2.5"/><path d="M6.5 5.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M6.5 9.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M6.5 13.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/></svg>`,
-      stability: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h10v15H7z"/></svg>`,
+      subpay: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14.5h4.2l2.1 1.9h3.8"/><path d="M8.2 14.5l2.4-2.4h3.7c.9 0 1.5.7 1.5 1.5 0 .5-.2.9-.5 1.2"/><path d="M14 16.4h2.8l3.2-2.5c.8-.6 1.9 0 1.9 1 0 .4-.2.8-.5 1.1l-4.1 3.3H10l-2.1-1.9H4"/><circle cx="16.5" cy="7.3" r="3.4"/><path d="M16.5 5.6v3.4"/><path d="M15.5 6.5h1.8c.6 0 1 .4 1 .9s-.4.9-1 .9h-1.6"/></svg>`,
+      stability: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.4c0 4.6-2.7 7.3-7 9.1-4.3-1.8-7-4.5-7-9.1V6l7-2.5z"/><path d="m8.5 12.1 2.1 2.1 4.9-5"/></svg>`,
       demographics: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="2.3" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="2.3" fill="currentColor" stroke="none"/><circle cx="12" cy="7.2" r="2.3" fill="currentColor" stroke="none"/><path d="M4.8 17.4c.8-2.2 2.6-3.4 4.8-3.4s4 1.2 4.8 3.4"/><path d="M11 17.4c.6-1.9 2.1-3 4-3 1.8 0 3.4 1.1 4.2 3"/></svg>`,
-      studentTeacher: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5h15v9h-15z"/><path d="M9 18.5h6"/><path d="M12 14.5v4"/></svg>`,
+      studentTeacher: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/></svg>`,
       growth: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 15.5 9 11l3.2 3.2L19.5 7"/><path d="M14.5 7h5v5"/></svg>`,
-      funding: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16"/><path d="M5.5 17V9"/><path d="M10 17V5"/><path d="M14 17v-7"/><path d="M18.5 17V7"/></svg>`
+      funding: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5 12 4l8.5 5.5"/><path d="M5 19.5h14"/><path d="M6.5 17.5h11"/><path d="M7.5 10.5v7"/><path d="M12 10.5v7"/><path d="M16.5 10.5v7"/></svg>`
     };
     return icons[kind] || '<span aria-hidden="true">•</span>';
   }
@@ -2355,13 +2361,13 @@ const STATE_FIT_BOUNDS = {
     if (nextEl) nextEl.disabled = !items.length;
 
     const highlightData = [
-      {label:selectedEducationSalaryLabel(), value:salaryToRentScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
-      {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
-      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#2f9e44"},
+      {label:selectedEducationSalaryLabel(), value:salaryToRentScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:d["State Funding Context Score"], displayValue:stateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
-      {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#268c9a"},
-      {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#5468c8"}
+      {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#D39F10"},
+      {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
+      {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#143865"}
     ];
 
     highlightsEl.innerHTML = highlightData.map(item => {
@@ -2451,15 +2457,15 @@ const STATE_FIT_BOUNDS = {
     const placementLabel = placementLabelForDistrict(d);
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#7c3aed"},
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
+      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#D39F10"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
-      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#2f9e44"},
-      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
-      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
-      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
-      {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#6b35b5"},
-      {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#5468c8"},
+      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
+      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
+      {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}
     ];
     profileMetrics.innerHTML = metrics.map(item => renderDesktopProfileMetricTile(item)).join("");

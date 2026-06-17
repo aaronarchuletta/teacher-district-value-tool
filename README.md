@@ -41,3 +41,13 @@ Prototype 349: adds a 5% State Funding Context factor based on FY2024 Census cur
 - Updated State Funding Context profile tile colors to use the State Funding label scale directly.
 - Fair now displays with the fair/orange treatment instead of inheriting a red color from the underlying numeric score.
 - Display-only fix; no data, workbook, scoring weights, or rankings changed.
+
+## Prototype 352 color update
+- Replaced all Excellent tile color values with PMS 347 green (#0a843d).
+- Updated Salary and 10-Year Growth profile tile icon colors to #0a843d.
+- No district data, scoring weights, or rankings changed.
+- Browser tab title and cache-busting links updated to Prototype 352.
+
+
+## Prototype 353
+Color and profile tile icon system update. Replace index.html, app.js, and styles.css at minimum if applying through GitHub Desktop.

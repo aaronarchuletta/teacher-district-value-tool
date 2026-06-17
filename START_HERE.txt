@@ -1,13 +1,13 @@
-Prototype 344 candidate district additions.
+Teacher District Value Prototype 353
 
-Upload all files in this ZIP to your GitHub repository root. Choose Replace for matching files.
+Upload the contents of this folder to the root of your GitHub repository.
 
-Active website files:
+Required website files to replace:
 - index.html
+- app.js
 - styles.css
 - districts-data.js
-- app.js
 
-After GitHub Pages publishes, test with ?v=343. If your browser still shows old data, test with ?v=343b.
+This prototype updates the color and profile tile icon system only. District data and scoring formulas were not changed.
 
-Prototype 344: salary profile tile uses salary-to-rent ratio for its rating/bar.
+After committing/pushing, test with ?v=353 or ?v=353b if cache is stubborn.
