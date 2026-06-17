@@ -2171,6 +2171,30 @@ const STATE_FIT_BOUNDS = {
     return `${Math.round(n)}:1`;
   }
 
+
+  function salaryToRentRatio(d) {
+    const salary = salaryForDistrict(d);
+    const rent = Number(d["Median Rent"]);
+    if (!Number.isFinite(salary) || salary <= 0 || !Number.isFinite(rent) || rent <= 0) return null;
+    return (salary / 12) / rent;
+  }
+
+  function salaryToRentScore(d) {
+    const ratio = salaryToRentRatio(d);
+    if (!Number.isFinite(ratio)) return null;
+    let score;
+    if (ratio < 2.5) {
+      score = (ratio / 2.5) * 59;
+    } else if (ratio < 3.0) {
+      score = 60 + ((ratio - 2.5) / 0.5) * 9.9;
+    } else if (ratio < 3.5) {
+      score = 70 + ((ratio - 3.0) / 0.5) * 19.9;
+    } else {
+      score = 90 + Math.min(10, ((ratio - 3.5) / 0.5) * 10);
+    }
+    return Math.max(0, Math.min(100, score));
+  }
+
   function mobileDetailIcon(kind) {
     const icons = {
       salary: '<span aria-hidden="true">$</span>',
@@ -2274,7 +2298,7 @@ const STATE_FIT_BOUNDS = {
     if (nextEl) nextEl.disabled = !items.length;
 
     const highlightData = [
-      {label:selectedEducationSalaryLabel(), value:d["Salary Score"], displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
+      {label:selectedEducationSalaryLabel(), value:salaryToRentScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#2f5caa"},
       {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#2f9e44"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
@@ -2367,7 +2391,7 @@ const STATE_FIT_BOUNDS = {
     const placementLabel = placementLabelForDistrict(d);
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:d["Salary Score"], icon:mobileDetailIcon("salary"), color:"#1f9d55"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#1f9d55"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#2f9e44"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:d["Master's Premium Score"], icon:mobileDetailIcon("salary"), color:"#1f9d55"},
