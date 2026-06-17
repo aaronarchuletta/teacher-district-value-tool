@@ -1693,7 +1693,17 @@ const scoreCols = [
       return `<div class="district-name-with-favorite">${favoriteButton(d.District, "table-favorite-toggle")}<span>${escapeHtml(d.District)}</span></div>`;
     }
     if (["Avg Start Salary","Avg 10-Year Salary","Median Home Price","Median Rent","Licensed Sub Pay","Master's Premium"].includes(col)) return fmtMoney(v);
-    if (col === "Avg Growth %") return fmtPct(v);
+    if (col === "Avg Growth %") {
+      const growthScore = d["Growth Score"];
+      const title = Number.isFinite(Number(growthScore))
+        ? `Salary Growth Score: ${fmtScore(Number(growthScore))}`
+        : "Salary Growth";
+      return `<span class="score-pill" style="background:${scoreColor(growthScore)}" title="${title}">${fmtPct(v)}</span>`;
+    }
+    if (col === "Student-Teacher Ratio Score") {
+      const ratio = d["Student-Teacher Ratio"];
+      return `<span class="score-pill" style="background:${scoreColor(v)}" title="Class Size Score: ${fmtScore(v)}">${formatClassSizeRatio(ratio)}</span>`;
+    }
     if (["White %","Hispanic %","Asian %","Black %","Other %"].includes(col)) return fmtWholePct(v);
     if (col === "Work Environment Multiplier") return typeof v === "number" ? `${Math.round(v * 100)}%` : "—";
     if (col === "Stability Score") {

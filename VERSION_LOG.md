@@ -25,3 +25,8 @@ Prototype 325 - Mobile growth tile and desktop ranking growth column
 - Replaced the mobile district profile Sub Pay score tile with the 10-Year Growth score tile.
 - Replaced the desktop sortable rankings Salary score column with Salary Growth %.
 - Kept existing scoring formulas and district data unchanged.
+
+## 326 Ranking display refinement
+- Added color-scaled blocks to the desktop Salary Growth % column.
+- Changed the desktop Class Size column display from point score to the actual student-teacher ratio, such as 11:1.
+- Kept the underlying sorting/scoring data unchanged.

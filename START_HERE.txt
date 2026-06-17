@@ -1,10 +1,6 @@
-Teacher District Value Prototype 325
+Teacher Value Prototype 326 Complete Package
 
-Upload the contents of this folder into the existing GitHub repository.
-Choose Replace for matching files.
-Commit and test the live site with ?v=325.
+Upload all files in this package into the same GitHub repository directory as your current site.
+Choose Replace for matching filenames, then commit.
 
-Main changes:
-- Mobile district profile scores now show 10-Year Growth instead of Sub Pay.
-- Desktop sortable rankings now show Salary Growth % instead of Salary score.
-- Five Texas districts remain included.
+Test with: ?v=326
