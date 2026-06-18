@@ -131,3 +131,12 @@
 - Kept the 10-row ranking scroll behavior from Prototype 360.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=361.
+
+## Prototype 362
+- Corrected the bottom district profile/map section so the two bottom cards sit inside the same centered width as the cards above.
+- Reset the bottom profile and district map cards to share the parent grid instead of each trying to use full card width.
+- Changed the desktop sortable district ranking to render only the first 10 rows after sorting/filtering.
+- Removed internal table scrolling so users use the page scrollbar/sidebar area to move down the page.
+- Evened all sortable ranking score columns, including the Sub Pay to Demographic Balance spacing.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=362.

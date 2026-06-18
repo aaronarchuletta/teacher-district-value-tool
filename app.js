@@ -2016,8 +2016,9 @@ const STATE_FIT_BOUNDS = {
 
     const thead = document.querySelector("#districtTable thead");
     const tbody = document.querySelector("#districtTable tbody");
+    const desktopRows = rows.slice(0, 10);
     thead.innerHTML = `<tr>${columns.map(c=> { const extraClass = c === "District" ? "district-head" : ""; const numericClass = typeof rows[0]?.[c]==='number' ? 'num' : ''; const className = `${numericClass} ${extraClass}`.trim(); const label = c === "District" ? `<span class="district-head-label">${columnLabels[c] || c}</span>` : (columnLabels[c] || c); return `<th class="${className}" data-col="${c}">${label}</th>`; }).join("")}</tr>`;
-    tbody.innerHTML = rows.map((d,i) => `<tr data-district="${d.District}">
+    tbody.innerHTML = desktopRows.map((d,i) => `<tr data-district="${d.District}">
       ${columns.map(c=>`<td class="${typeof d[c]==='number' ? 'num':''}">${cellValue(d,c)}</td>`).join("")}
     </tr>`).join("");
 

@@ -3,12 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher District Value Prototype 361</title>
+  <title>Teacher District Value Prototype 362</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="styles.css?v=361">
+  <link rel="stylesheet" href="styles.css?v=362">
+
+  <style id="prototype-362-desktop-overrides">
+    @media (min-width: 901px) {
+      :root {
+        --prototype-362-card-width: clamp(1120px, calc(100vw - 420px), 1500px);
+      }
+
+      .mobile-search-topbar,
+      .top-map-card,
+      .map-rankings-layout,
+      .profile-map-layout {
+        width: var(--prototype-362-card-width) !important;
+        max-width: var(--prototype-362-card-width) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+      }
+
+      .profile-map-layout {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 16px !important;
+        align-items: stretch !important;
+      }
+
+      .profile-map-layout > .lower-profile-card,
+      .profile-map-layout > .district-map-card {
+        width: auto !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      .rankings-card .table-wrap,
+      .map-rankings-layout .rankings-card .table-wrap {
+        max-height: none !important;
+        overflow: visible !important;
+      }
+
+      #districtTable {
+        width: 100% !important;
+        table-layout: fixed !important;
+      }
+
+      #districtTable col:nth-child(1) { width: 20% !important; }
+      #districtTable col:nth-child(2) { width: 4% !important; }
+      #districtTable col:nth-child(3) { width: 12% !important; }
+      #districtTable col:nth-child(n+4) { width: 8% !important; }
+
+      #districtTable th:nth-child(1),
+      #districtTable td:nth-child(1) { width: 20% !important; text-align: left !important; }
+
+      #districtTable th:nth-child(2),
+      #districtTable td:nth-child(2) { width: 4% !important; text-align: center !important; }
+
+      #districtTable th:nth-child(3),
+      #districtTable td:nth-child(3) { width: 12% !important; text-align: left !important; }
+
+      #districtTable th:nth-child(n+4),
+      #districtTable td:nth-child(n+4) { width: 8% !important; text-align: center !important; }
+
+      #districtTable th,
+      #districtTable td {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        box-sizing: border-box !important;
+      }
+
+      #districtTable .score-pill,
+      #districtTable .ratio-pill {
+        width: 66px !important;
+        min-width: 66px !important;
+        max-width: 66px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        white-space: nowrap !important;
+        line-height: 1 !important;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        box-sizing: border-box !important;
+      }
+
+      #districtTable th[data-col="Demographic Balance Score"] {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        line-height: 1.05 !important;
+        letter-spacing: .035em !important;
+        font-size: 9.2px !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -383,8 +477,8 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="districts-data.js?v=361"></script>
-<script src="app.js?v=361"></script>
+<script src="districts-data.js?v=362"></script>
+<script src="app.js?v=362"></script>
 
 </body>
 </html>

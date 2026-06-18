@@ -188,3 +188,10 @@ Prototype 361 update:
 - Bottom district profile/map cards now use the same centered width as the cards above.
 - Sortable ranking score columns now use even spacing, removing the larger gap before Demographic Balance.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 362 update:
+- Bottom profile/map cards now correctly share the same centered width as the cards above.
+- Desktop sortable ranking displays only 10 rows after sort/filter.
+- Removed internal ranking-table scrolling so users use page/sidebar scrolling instead.
+- Score columns evened across the table.
+- No workbook, scoring, salary, or district data changes.
