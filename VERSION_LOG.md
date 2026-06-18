@@ -282,3 +282,8 @@
 - Because Post-Rent Income remains a 10% component of Housing Salary Power, this affects Housing Salary Power, Base Value, Overall Value, and rankings in the workbook/dynamic website scoring.
 - Visible Housing Salary Power and Post-Rent Income profile tiles remain removed from the profile display.
 - Browser title/cache-busting updated to Prototype 380.
+
+## Prototype 381 - Selected Salary Level Score formula fix
+- Replaced the Selected Salary Level Score workbook formula with a legacy Excel-compatible formula that does not use LET().
+- Preserves the same dynamic salary band logic: base 0-year Bachelor's bands, +$1,500 per selected year, +$4,000 for Master's.
+- No scoring weights, tile logic, district data, or housing formulas were changed.

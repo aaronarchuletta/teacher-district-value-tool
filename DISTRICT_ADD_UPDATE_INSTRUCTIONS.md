@@ -89,26 +89,26 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=377` or `?v=377b`. This version aligns profile tile bars/ratings to stored workbook score fields that feed the Overall Value Score where available. No scoring formulas, rankings, workbook values, or district data were recalculated.
 
 
-## Prototype 380 tile-to-overall scoring alignment
+## Prototype 381 tile-to-overall scoring alignment
 - Updated workbook/data scoring so Overall Value follows the current profile tile scales.
 - Selected Salary Level Score now uses the dynamic career-stage salary bands.
 - Growth Score now uses a 48% growth ceiling.
 - Rent and mortgage salary-share scores now reach 100 at 25% of selected salary or lower.
 - Recalculated Career Earnings, Housing Salary Power, Base Value, Overall Value, and ranks from the updated score fields.
-- Browser title/cache-busting updated to Prototype 380.
+- Browser title/cache-busting updated to Prototype 381.
 
 
-## Prototype 380 dynamic filter-aligned scoring
+## Prototype 381 dynamic filter-aligned scoring
 - Website scoring now recalculates dynamically when education or experience filters change.
 - Selected Salary Level Score, Career Earnings, Rent Salary Share, Mortgage Salary Share, Post-Rent Income, Housing Salary Power, Base Value, and Overall Value are recomputed in-browser from the selected salary for the active education/experience filter combination.
 - Profile tile bars now follow those dynamic score fields.
 - Removed the visible Housing Salary Power and Post-Rent Income profile tiles while keeping their underlying scoring contributions.
-- Browser title and cache-busting links updated to Prototype 380.
+- Browser title and cache-busting links updated to Prototype 381.
 
 
-## Prototype 380 - Post-rent income scoring ceiling
+## Prototype 381 - Post-rent income scoring ceiling
 - Updated Post-Rent Income Score so $4,000+ monthly after median rent reaches 100 / Excellent.
 - Score still floors at $2,500 monthly after median rent.
 - Because Post-Rent Income remains a 10% component of Housing Salary Power, this affects Housing Salary Power, Base Value, Overall Value, and rankings in the workbook/dynamic website scoring.
 - Visible Housing Salary Power and Post-Rent Income profile tiles remain removed from the profile display.
-- Browser title/cache-busting updated to Prototype 380.
+- Browser title/cache-busting updated to Prototype 381.
