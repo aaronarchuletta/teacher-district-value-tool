@@ -108,8 +108,11 @@
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=357.
 
-## Prototype 358
-- Restricted mouse-wheel scrolling from being captured by the desktop sortable district ranking/table area.
-- Kept page scrolling outside the ranking area unchanged.
+## Prototype 359
+- Rebuilt from the last stable package to correct the prior package issue.
+- Corrected desktop edge spacing with stronger selectors that apply to the actual layout.
+- Corrected desktop ranking table column sizing using the actual #districtTable selectors.
+- Gave Demographic Balance more room and allowed the full two-line label to display.
+- Removed the internal mouse-wheel scrolling behavior from the desktop ranking table by letting the page scroll instead of the ranking panel.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
-- Bumped cache-busting references in index.html to v=358.
+- Bumped cache-busting references in index.html to v=359.

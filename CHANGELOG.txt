@@ -170,6 +170,9 @@ Prototype 357 update:
 - Visible map rankings score columns tightened so Demographic Balance can display fully.
 - No workbook, scoring, salary, or district data changes.
 
-Prototype 358 update:
-- Restricted mouse-wheel scrolling on the desktop sortable district ranking/table area.
+Prototype 359 update:
+- Rebuilt from the last stable package and fixed the non-visible desktop spacing/ranking changes.
+- Desktop ranking table now uses corrected #districtTable column widths.
+- Demographic Balance header has more room.
+- Ranking table no longer captures mouse-wheel scrolling; page scrolling handles it instead.
 - No workbook, scoring, salary, or district data changes.

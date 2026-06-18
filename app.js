@@ -161,7 +161,6 @@ initMobileUsaMapZoom();
       document.body.classList.add("mobile-filters-open");
     }
   });
-  setTimeout(restrictDesktopRankingWheelScroll, 0);
 })();
 
 /* Prototype 246: make desktop top search use the same custom dropdown as mobile */
@@ -883,24 +882,7 @@ const scoreCols = [
     stateFilter.value = s;
     updateRegionOptions();
     selectedDistrict = null;
-  
-  // Prototype 358: prevent mouse wheel scrolling from being captured by desktop sortable rankings.
-  function restrictDesktopRankingWheelScroll() {
-    const rankingAreas = document.querySelectorAll(".rankings-card, .rankings-table-wrap, .sortable-rankings, .district-ranking-table");
-    rankingAreas.forEach(area => {
-      if (area.dataset.wheelRestricted === "true") return;
-      area.dataset.wheelRestricted = "true";
-      area.addEventListener("wheel", event => {
-        if (window.matchMedia && window.matchMedia("(min-width: 901px)").matches) {
-          event.preventDefault();
-        }
-      }, { passive: false });
-    });
-  }
-
-
-  restrictDesktopRankingWheelScroll();
-  renderAll();
+    renderAll();
     if (doScroll && stateResults) {
       stateResults.scrollIntoView({behavior:"smooth", block:"nearest"});
     }

@@ -8240,3 +8240,119 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     text-overflow: clip;
   }
 }
+
+/* Prototype 359: corrected desktop spacing, ranking columns, and ranking wheel behavior */
+@media (min-width: 901px) {
+  body {
+    padding-right: 24px !important;
+  }
+
+  main {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .mobile-search-topbar,
+  .map-rankings-layout,
+  .top-map-card,
+  .rankings-card,
+  .profile-card,
+  .lower-profile-card {
+    max-width: calc(100vw - 140px) !important;
+  }
+
+  /* Let the page handle wheel scrolling instead of the rankings panel. */
+  .map-rankings-layout .rankings-card .table-wrap,
+  .rankings-card .table-wrap {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #districtTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+  }
+
+  #districtTable th,
+  #districtTable td {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    box-sizing: border-box !important;
+  }
+
+  #districtTable th {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.05 !important;
+    font-size: 9.5px !important;
+    letter-spacing: .045em !important;
+    height: 50px !important;
+    vertical-align: middle !important;
+  }
+
+  #districtTable td {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #districtTable .score-pill,
+  #districtTable .ratio-pill {
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  #districtTable th:nth-child(1),
+  #districtTable td:nth-child(1) {
+    width: 20% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(2),
+  #districtTable td:nth-child(2) {
+    width: 4% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(3),
+  #districtTable td:nth-child(3) {
+    width: 12% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(4),
+  #districtTable td:nth-child(4),
+  #districtTable th:nth-child(5),
+  #districtTable td:nth-child(5),
+  #districtTable th:nth-child(6),
+  #districtTable td:nth-child(6),
+  #districtTable th:nth-child(7),
+  #districtTable td:nth-child(7),
+  #districtTable th:nth-child(8),
+  #districtTable td:nth-child(8),
+  #districtTable th:nth-child(9),
+  #districtTable td:nth-child(9),
+  #districtTable th:nth-child(10),
+  #districtTable td:nth-child(10) {
+    width: 7.5% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(11),
+  #districtTable td:nth-child(11) {
+    width: 11.5% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th[data-col="Demographic Balance Score"] {
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+}
