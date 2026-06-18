@@ -3,35 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher District Value Prototype 362</title>
+  <title>Teacher District Value Prototype 363</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="styles.css?v=362">
+  <link rel="stylesheet" href="styles.css?v=363">
 
-  <style id="prototype-362-desktop-overrides">
+  <style id="prototype-363-desktop-overrides">
     @media (min-width: 901px) {
-      :root {
-        --prototype-362-card-width: clamp(1120px, calc(100vw - 420px), 1500px);
-      }
-
-      .mobile-search-topbar,
-      .top-map-card,
-      .map-rankings-layout,
+      /* Bottom cards: stretch a bit farther right so they line up with the ranking card above. */
       .profile-map-layout {
-        width: var(--prototype-362-card-width) !important;
-        max-width: var(--prototype-362-card-width) !important;
+        width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
+        max-width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        box-sizing: border-box !important;
-      }
-
-      .profile-map-layout {
         display: grid !important;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
         gap: 16px !important;
         align-items: stretch !important;
+        box-sizing: border-box !important;
       }
 
       .profile-map-layout > .lower-profile-card,
@@ -44,10 +35,13 @@
         box-sizing: border-box !important;
       }
 
+      /* Restore ranking-table scrollbar, but wheel scrolling is redirected by JS. */
       .rankings-card .table-wrap,
       .map-rankings-layout .rankings-card .table-wrap {
-        max-height: none !important;
-        overflow: visible !important;
+        max-height: 548px !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        scrollbar-gutter: stable !important;
       }
 
       #districtTable {
@@ -477,8 +471,8 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="districts-data.js?v=362"></script>
-<script src="app.js?v=362"></script>
+<script src="districts-data.js?v=363"></script>
+<script src="app.js?v=363"></script>
 
 </body>
 </html>

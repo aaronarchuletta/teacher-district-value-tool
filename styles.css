@@ -8681,3 +8681,36 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     font-size: 9.2px !important;
   }
 }
+
+/* Prototype 363 source copy: bottom width + ranking scrollbar/wheel behavior */
+@media (min-width: 901px) {
+  .profile-map-layout {
+    width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
+    max-width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+  }
+
+  .profile-map-layout > .lower-profile-card,
+  .profile-map-layout > .district-map-card {
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .rankings-card .table-wrap,
+  .map-rankings-layout .rankings-card .table-wrap {
+    max-height: 548px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    scrollbar-gutter: stable !important;
+  }
+}

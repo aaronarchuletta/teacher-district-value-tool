@@ -195,3 +195,9 @@ Prototype 362 update:
 - Removed internal ranking-table scrolling so users use page/sidebar scrolling instead.
 - Score columns evened across the table.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 363 update:
+- Bottom profile/map cards stretched right to line up better with the ranking card.
+- Sortable ranking internal scrollbar restored.
+- Ranking table can only be scrolled by dragging its scrollbar; wheel/trackpad gestures navigate the page instead.
+- No workbook, scoring, salary, or district data changes.

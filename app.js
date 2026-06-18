@@ -161,6 +161,7 @@ initMobileUsaMapZoom();
       document.body.classList.add("mobile-filters-open");
     }
   });
+  setTimeout(initRankingScrollbarDragOnly, 0);
 })();
 
 /* Prototype 246: make desktop top search use the same custom dropdown as mobile */
@@ -2001,7 +2002,21 @@ const STATE_FIT_BOUNDS = {
     }
   }
 
-  function renderTable() {
+  
+  // Prototype 363: keep the ranking table scrollbar visible, but do not let wheel/trackpad gestures scroll it.
+  // Wheel gestures over the rankings table move the page instead; the table itself scrolls only by dragging its scrollbar.
+  function initRankingScrollbarDragOnly() {
+    const wrap = document.querySelector(".rankings-card .table-wrap");
+    if (!wrap || wrap.dataset.dragOnlyWheel === "true") return;
+    wrap.dataset.dragOnlyWheel = "true";
+    wrap.addEventListener("wheel", event => {
+      if (!(window.matchMedia && window.matchMedia("(min-width: 901px)").matches)) return;
+      event.preventDefault();
+      window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
+    }, { passive: false });
+  }
+
+function renderTable() {
     let rows = getRowsForSortableRankings();
     updateRankingsViewportCopy(rows.length);
     rows.sort((a,b) => {
@@ -2016,9 +2031,8 @@ const STATE_FIT_BOUNDS = {
 
     const thead = document.querySelector("#districtTable thead");
     const tbody = document.querySelector("#districtTable tbody");
-    const desktopRows = rows.slice(0, 10);
     thead.innerHTML = `<tr>${columns.map(c=> { const extraClass = c === "District" ? "district-head" : ""; const numericClass = typeof rows[0]?.[c]==='number' ? 'num' : ''; const className = `${numericClass} ${extraClass}`.trim(); const label = c === "District" ? `<span class="district-head-label">${columnLabels[c] || c}</span>` : (columnLabels[c] || c); return `<th class="${className}" data-col="${c}">${label}</th>`; }).join("")}</tr>`;
-    tbody.innerHTML = desktopRows.map((d,i) => `<tr data-district="${d.District}">
+    tbody.innerHTML = rows.map((d,i) => `<tr data-district="${d.District}">
       ${columns.map(c=>`<td class="${typeof d[c]==='number' ? 'num':''}">${cellValue(d,c)}</td>`).join("")}
     </tr>`).join("");
 
@@ -2041,6 +2055,7 @@ const STATE_FIT_BOUNDS = {
     });
     renderKpis(rows);
     renderStateResults(rows);
+    initRankingScrollbarDragOnly();
   }
 
 

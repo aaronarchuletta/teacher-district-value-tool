@@ -140,3 +140,11 @@
 - Evened all sortable ranking score columns, including the Sub Pay to Demographic Balance spacing.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=362.
+
+## Prototype 363
+- Stretched the bottom district profile/map section farther right to line up more closely with the sortable ranking card above.
+- Restored the internal scrollbar on the sortable district ranking.
+- Changed ranking scroll behavior so wheel/trackpad gestures over the ranking table move the page instead of scrolling the ranking; the ranking itself scrolls by dragging its scrollbar.
+- Restored the full sortable ranking rows inside the scrollable table.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=363.
