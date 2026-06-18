@@ -155,3 +155,18 @@
 - Kept the ranking scrollbar behavior from Prototype 363: users drag the scrollbar to scroll the table; wheel/trackpad gestures move the page.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=364.
+
+## Prototype 365
+- Pulled the right edge of the desktop sortable district rankings card left so it aligns with the other cards below.
+- Matched the overall desktop width of the rankings section to the lower card layout.
+- Kept the drag-only scrollbar behavior for the rankings table (wheel/trackpad gestures move the page; the table scrolls by dragging the scrollbar).
+- No workbook, scoring, formulas, or district data changes.
+- Bumped cache-busting references in index.html to v=365.
+
+## Prototype 366
+- Renamed the profile score guide title from "Score Guide" to "Overall Score Guide" on desktop and mobile.
+- Changed Median Rent and Median Home Price tile rating labels to housing-cost language:
+  - Very Low Cost, Low Cost, Good Cost, Moderate Cost, High Cost, Very High Cost.
+- Kept the same affordability score/color direction: greener means lower housing cost, redder means higher housing cost.
+- No workbook, scoring, formulas, or district data changes.
+- Bumped cache-busting references in index.html to v=366.

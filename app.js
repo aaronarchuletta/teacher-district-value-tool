@@ -2184,6 +2184,28 @@ function renderTable() {
     return Math.max(0, Math.min(100, n));
   }
 
+  function housingCostRating(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "—";
+    if (n >= 90) return "Very Low Cost";
+    if (n >= 80) return "Low Cost";
+    if (n >= 70) return "Good Cost";
+    if (n >= 60) return "Moderate Cost";
+    if (n >= 40) return "High Cost";
+    return "Very High Cost";
+  }
+
+  function housingCostColor(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "#172033";
+    if (n >= 90) return "#0A843D";
+    if (n >= 80) return "#489D46";
+    if (n >= 70) return "#8ABB40";
+    if (n >= 60) return "#D39F10";
+    if (n >= 40) return "#C8102E";
+    return "#9E1B32";
+  }
+
   function formatClassSizeRatio(value) {
     const n = Number(value);
     if (!Number.isFinite(n) || n <= 0) return "—";
@@ -2479,8 +2501,8 @@ function renderTable() {
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
-      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Affordability Score"], ratingLabel:housingCostRating(d["Affordability Score"]), ratingColor:housingCostColor(d["Affordability Score"]), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Affordability Score"], ratingLabel:housingCostRating(d["Affordability Score"]), ratingColor:housingCostColor(d["Affordability Score"]), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}

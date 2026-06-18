@@ -206,3 +206,12 @@ Prototype 364 update:
 - Removed Region from the sortable district ranking table.
 - Rebalanced sortable ranking columns for a tighter 10-column desktop layout.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 365 update:
+- Narrowed the desktop sortable district rankings section so its right edge lines up with the lower cards.
+- No workbook or data changes.
+
+Prototype 366 update:
+- Score Guide text changed to Overall Score Guide.
+- Median Rent and Median Home Price now use housing-cost labels instead of general Low/Very Low labels.
+- No workbook, scoring, salary, or district data changes.

@@ -8751,3 +8751,31 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     white-space: nowrap !important;
   }
 }
+
+
+/* Prototype 365: pull rankings card right edge left to align with other cards */
+@media (min-width: 901px) {
+  /* Make the rankings wrapper match the same overall centered width used by the lower cards. */
+  .map-rankings-layout {
+    width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
+    max-width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent the inner rankings card from re-expanding wider than the wrapper. */
+  .map-rankings-layout > .rankings-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .map-rankings-layout > .rankings-card .table-wrap {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
