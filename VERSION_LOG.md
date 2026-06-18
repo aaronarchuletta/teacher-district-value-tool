@@ -84,3 +84,10 @@
 - Updated profile tile icon artwork for both mobile and desktop, including Master’s Premium graduation cap, State Funding building, Sub Pay hand/coin, Stability shield/check, and Class Size seating-grid icon.
 - Browser tab title and cache-busting links updated to Prototype 353.
 - No district data, workbook formulas, scoring weights, or rankings were changed.
+
+## Prototype 354
+- Updated general profile tile rating thresholds to support Very Low (0–39) and Low (40–59).
+- Changed Fair rating color to Bright Gold (#D39F10).
+- Updated Sub Pay icon artwork to the approved hand-with-dollar design.
+- Updated Demographics icon artwork to match the approved generated example.
+- Bumped cache-busting references in index.html to v=354.

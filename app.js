@@ -2147,7 +2147,8 @@ const STATE_FIT_BOUNDS = {
     if (n >= 80) return "Very Good";
     if (n >= 70) return "Good";
     if (n >= 60) return "Fair";
-    return "Low";
+    if (n >= 40) return "Low";
+    return "Very Low";
   }
 
   function mobileScoreColor(score) {
@@ -2156,8 +2157,9 @@ const STATE_FIT_BOUNDS = {
     if (n >= 90) return "#0A843D";
     if (n >= 80) return "#489D46";
     if (n >= 70) return "#8ABB40";
-    if (n >= 60) return "#BF5700";
-    return "#C8102E";
+    if (n >= 60) return "#D39F10";
+    if (n >= 40) return "#C8102E";
+    return "#9E1B32";
   }
 
   function mobileScoreWidth(score) {
@@ -2250,7 +2252,7 @@ const STATE_FIT_BOUNDS = {
     if (rating === "excellent") return "#0A843D";
     if (rating === "very good") return "#489D46";
     if (rating === "good") return "#8ABB40";
-    if (rating === "fair") return "#BF5700";
+    if (rating === "fair") return "#D39F10";
     if (rating === "low") return "#C8102E";
     if (rating === "very low") return "#9E1B32";
     return mobileScoreColor(Number(d["State Funding Context Score"]));
@@ -2261,9 +2263,9 @@ const STATE_FIT_BOUNDS = {
       salary: '<span aria-hidden="true">$</span>',
       masters: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.2 12 4l9 4.2-9 4.2L3 8.2z"/><path d="M6.5 10.2v4.2c1.8 1.4 3.7 2.1 5.5 2.1s3.7-.7 5.5-2.1v-4.2"/><path d="M19 9.5v5"/><path d="M19 14.5c.7.4 1 1 1 1.7"/></svg>`,
       affordability: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg>`,
-      subpay: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14.5h4.2l2.1 1.9h3.8"/><path d="M8.2 14.5l2.4-2.4h3.7c.9 0 1.5.7 1.5 1.5 0 .5-.2.9-.5 1.2"/><path d="M14 16.4h2.8l3.2-2.5c.8-.6 1.9 0 1.9 1 0 .4-.2.8-.5 1.1l-4.1 3.3H10l-2.1-1.9H4"/><circle cx="16.5" cy="7.3" r="3.4"/><path d="M16.5 5.6v3.4"/><path d="M15.5 6.5h1.8c.6 0 1 .4 1 .9s-.4.9-1 .9h-1.6"/></svg>`,
+      subpay: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="6.8" r="3.2"/><path d="M17 5.2v3.2"/><path d="M15.9 6.1h1.9c.6 0 1 .4 1 .9s-.4.9-1 .9h-1.7"/><path d="M4.2 14.2h3.6l2.1 1.8H14c.7 0 1.2.5 1.2 1.2S14.7 18.4 14 18.4h-3.2"/><path d="M8.1 14.2l2.4-2.3h3.5c.8 0 1.5.6 1.5 1.4 0 .5-.2.9-.5 1.2"/><path d="M14.1 17.2h2.8l3-2.3c.8-.6 1.9 0 1.9.9 0 .4-.2.8-.5 1.1l-4 3.1H10l-2-1.8H4.2"/></svg>`,
       stability: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.4c0 4.6-2.7 7.3-7 9.1-4.3-1.8-7-4.5-7-9.1V6l7-2.5z"/><path d="m8.5 12.1 2.1 2.1 4.9-5"/></svg>`,
-      demographics: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="2.3" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="2.3" fill="currentColor" stroke="none"/><circle cx="12" cy="7.2" r="2.3" fill="currentColor" stroke="none"/><path d="M4.8 17.4c.8-2.2 2.6-3.4 4.8-3.4s4 1.2 4.8 3.4"/><path d="M11 17.4c.6-1.9 2.1-3 4-3 1.8 0 3.4 1.1 4.2 3"/></svg>`,
+      demographics: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="2.4" fill="currentColor" stroke="none"/><circle cx="7.2" cy="10.1" r="1.9" fill="currentColor" stroke="none"/><circle cx="16.8" cy="10.1" r="1.9" fill="currentColor" stroke="none"/><path d="M8.8 17.4c.4-2.1 1.8-3.3 3.2-3.3 1.5 0 2.8 1.2 3.2 3.3"/><path d="M3.9 17.4c.4-1.6 1.5-2.6 2.9-2.6 1.1 0 2 .5 2.7 1.4"/><path d="M20.1 17.4c-.4-1.6-1.5-2.6-2.9-2.6-1.1 0-2 .5-2.7 1.4"/></svg>`,
       studentTeacher: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/></svg>`,
       growth: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 15.5 9 11l3.2 3.2L19.5 7"/><path d="M14.5 7h5v5"/></svg>`,
       funding: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5 12 4l8.5 5.5"/><path d="M5 19.5h14"/><path d="M6.5 17.5h11"/><path d="M7.5 10.5v7"/><path d="M12 10.5v7"/><path d="M16.5 10.5v7"/></svg>`

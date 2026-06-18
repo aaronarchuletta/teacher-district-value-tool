@@ -151,3 +151,8 @@ Prototype 353 - Color and icon system update
 - Updated profile tile icon colors for Salary, Growth, Master’s Premium, Affordability, Class Size, Stability, Sub Pay, State Funding, and Demographics.
 - Updated profile tile icon artwork for both mobile and desktop, including Class Size seating-grid icon.
 - No district data, scoring weights, workbook formulas, or ranking formulas changed.
+
+Prototype 354 updates:
+- General tile cutoffs: Fair 60–69, Low 40–59, Very Low 0–39.
+- Fair color changed to #D39F10.
+- Updated Sub Pay and Demographics icons.
