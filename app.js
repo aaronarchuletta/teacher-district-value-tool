@@ -2339,8 +2339,7 @@ function renderTable() {
   }
 
   function tileMoneyWithShare(amount, share) {
-    const pct = salaryShareLabel(share);
-    return `${fmtMoney(amount)}<span class="salary-share-subvalue">${pct}</span>`;
+    return fmtMoney(amount);
   }
 
   function formatClassSizeRatio(value) {
@@ -2642,7 +2641,9 @@ function renderTable() {
       {label:"Median Rent", value:tileMoneyWithShare(d["Median Rent"], rentSalaryShare(d)), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
-      {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}
+      {label:"Total Schools", value:fmtCount(d["Total Schools Counted"] ?? ((Number(d["Number of Elementary Schools"]) || 0) + (Number(d["Number of Middle Schools"]) || 0) + (Number(d["Number of High Schools"]) || 0) + (Number(d["Other / Specialty Schools"]) || 0)))},
+      {label:"Middle Schools", value:fmtCount(d["Number of Middle Schools"])},
+      {label:"High Schools", value:fmtCount(d["Number of High Schools"])}
     ];
     profileMetrics.innerHTML = metrics.map(item => renderDesktopProfileMetricTile(item)).join("");
     renderDistrictMap();

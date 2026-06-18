@@ -100,7 +100,9 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 - Visible Housing Salary Power and Post-Rent Income profile tiles remain removed from the profile display.
 - Browser title/cache-busting updated to Prototype 381.
 
-## Prototype 382
-- Mobile map results sheet now renders all matching districts instead of limiting the list to the first 12.
-- Median Rent and Median Home Price profile tiles now again show the human-readable percent-of-salary value while keeping the rating bar tied to the aligned salary-share score.
-- Website cache-busting updated to v382.
+## Prototype 383
+Upload the standard active website files and test with `?v=383`. This update splits the desktop profile school-count display into Middle Schools and High Schools tiles only; scoring and workbook data are unchanged.
+
+
+## Prototype 384
+Upload the standard active website files and test with `?v=384`. This update restores the Total Schools tile alongside Middle Schools and High Schools in the desktop profile, and removes the duplicate gray `% of Salary` subvalue under the Median Rent and Median Home Price dollar amounts. The green bar rating label remains. No scoring or workbook formulas changed.

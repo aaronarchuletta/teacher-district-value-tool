@@ -288,7 +288,14 @@
 - Preserves the same dynamic salary band logic: base 0-year Bachelor's bands, +$1,500 per selected year, +$4,000 for Master's.
 - No scoring weights, tile logic, district data, or housing formulas were changed.
 
-## Prototype 382
-- Mobile map results sheet now renders all matching districts instead of limiting the list to the first 12.
-- Median Rent and Median Home Price profile tiles now again show the human-readable percent-of-salary value while keeping the rating bar tied to the aligned salary-share score.
-- Website cache-busting updated to v382.
+## Prototype 383 desktop school-count tile split
+- Replaced the desktop profile Schools Counted tile with Middle Schools and High Schools tiles.
+- Uses existing Number of Middle Schools and Number of High Schools fields from districts-data.js.
+- No scoring formulas, weights, rankings, workbook formulas, or district values changed.
+
+
+## Prototype 384 desktop schools and affordability label cleanup
+- Restored the desktop profile Total Schools tile while keeping the Middle Schools and High Schools tiles.
+- Removed the duplicate gray `% of Salary` subvalue below Median Rent and Median Home Price dollar amounts.
+- Kept the green affordability rating label/bar for rent and home price.
+- No scoring formulas, rankings, district data, or workbook formulas changed.
