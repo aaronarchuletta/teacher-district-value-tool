@@ -2184,17 +2184,17 @@ function renderTable() {
     return Math.max(0, Math.min(100, n));
   }
 
-  function estimatedMonthlyTakeHomePay(d) {
+  function selectedMonthlySalary(d) {
     const salary = Number(salaryForDistrict(d));
     if (!Number.isFinite(salary) || salary <= 0) return null;
-    return (salary * 0.75) / 12;
+    return salary / 12;
   }
 
-  function rentTakeHomeShare(d) {
+  function rentSalaryShare(d) {
     const rent = Number(d["Median Rent"]);
-    const takeHome = estimatedMonthlyTakeHomePay(d);
-    if (!Number.isFinite(rent) || rent <= 0 || !Number.isFinite(takeHome) || takeHome <= 0) return null;
-    return rent / takeHome;
+    const monthlySalary = selectedMonthlySalary(d);
+    if (!Number.isFinite(rent) || rent <= 0 || !Number.isFinite(monthlySalary) || monthlySalary <= 0) return null;
+    return rent / monthlySalary;
   }
 
   function estimatedMonthlyMortgagePayment(d) {
@@ -2208,14 +2208,14 @@ function renderTable() {
     return principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) / (Math.pow(1 + monthlyInterestRate, months) - 1);
   }
 
-  function mortgageTakeHomeShare(d) {
+  function mortgageSalaryShare(d) {
     const mortgage = estimatedMonthlyMortgagePayment(d);
-    const takeHome = estimatedMonthlyTakeHomePay(d);
-    if (!Number.isFinite(mortgage) || mortgage <= 0 || !Number.isFinite(takeHome) || takeHome <= 0) return null;
-    return mortgage / takeHome;
+    const monthlySalary = selectedMonthlySalary(d);
+    if (!Number.isFinite(mortgage) || mortgage <= 0 || !Number.isFinite(monthlySalary) || monthlySalary <= 0) return null;
+    return mortgage / monthlySalary;
   }
 
-  function takeHomeShareScore(share) {
+  function salaryShareScore(share) {
     const s = Number(share);
     if (!Number.isFinite(s)) return null;
     if (s <= 0.20) return 95;
@@ -2225,18 +2225,14 @@ function renderTable() {
     return 20;
   }
 
-  function takeHomeShareRating(share) {
+  function salaryShareLabel(share) {
     const s = Number(share);
     if (!Number.isFinite(s)) return "—";
-    if (s <= 0.20) return "Very Low Take-Home Share";
-    if (s <= 0.25) return "Low Take-Home Share";
-    if (s <= 0.30) return "Moderate Take-Home Share";
-    if (s <= 0.40) return "High Take-Home Share";
-    return "Very High Take-Home Share";
+    return `${Math.round(s * 100)}% of Salary`;
   }
 
-  function takeHomeShareColor(share) {
-    const score = takeHomeShareScore(share);
+  function salaryShareColor(share) {
+    const score = salaryShareScore(share);
     return Number.isFinite(Number(score)) ? mobileScoreColor(score) : "#172033";
   }
 
@@ -2535,8 +2531,8 @@ function renderTable() {
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
-      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:takeHomeShareScore(mortgageTakeHomeShare(d)), ratingLabel:takeHomeShareRating(mortgageTakeHomeShare(d)), ratingColor:takeHomeShareColor(mortgageTakeHomeShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:takeHomeShareScore(rentTakeHomeShare(d)), ratingLabel:takeHomeShareRating(rentTakeHomeShare(d)), ratingColor:takeHomeShareColor(rentTakeHomeShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:salaryShareScore(mortgageSalaryShare(d)), ratingLabel:salaryShareLabel(mortgageSalaryShare(d)), ratingColor:salaryShareColor(mortgageSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}

@@ -221,3 +221,9 @@ Prototype 367 update:
 - Rent is rated as rent divided by estimated monthly take-home pay.
 - Home price is rated using an estimated monthly mortgage payment divided by estimated monthly take-home pay.
 - No workbook, scoring, salary, or district ranking changes.
+
+Prototype 368 update:
+- Housing tiles now show percent of selected salary instead of Take-Home Share labels.
+- Removed 75% take-home reduction from the website logic.
+- Included revised Phase 1 workbook with salary-share columns and formulas.
+- No overall ranking/scoring changes.

@@ -183,3 +183,12 @@
 - Estimated take-home pay uses 75% of the selected annual salary.
 - This is a profile tile display-label change only; workbook data, scoring formulas, and rankings were unchanged.
 - Bumped cache-busting references in index.html to v=367.
+
+## Prototype 368
+- Replaced take-home-pay housing tile logic with selected salary share logic.
+- Median Rent now displays the actual rent burden as a percent of selected salary, for example “33% of Salary.”
+- Median Home Price now displays the estimated monthly mortgage payment as a percent of selected salary, for example “42% of Salary.”
+- Removed the 75% take-home assumption from the website tile logic.
+- Included revised Phase 1 workbook with clearer Housing Salary Share columns and formulas.
+- Overall scoring formulas, district data, and rankings are unchanged.
+- Bumped cache-busting references in index.html to v=368.
