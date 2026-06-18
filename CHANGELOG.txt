@@ -176,3 +176,10 @@ Prototype 359 update:
 - Demographic Balance header has more room.
 - Ranking table no longer captures mouse-wheel scrolling; page scrolling handles it instead.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 360 update:
+- Desktop content shifted right and centered away from the fixed left rail.
+- Center map/ranking cards tightened.
+- Score boxes widened so Salary Growth % is less likely to wrap.
+- District sortable ranking now shows about 10 rows at a time before scrolling.
+- No workbook, scoring, salary, or district data changes.

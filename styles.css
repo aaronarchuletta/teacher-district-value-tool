@@ -8356,3 +8356,146 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     overflow: visible !important;
   }
 }
+
+/* Prototype 360: center desktop cards, tighten rankings, and show 10 rows at a time */
+@media (min-width: 901px) {
+  :root {
+    --desktop-rail-width: 64px;
+    --desktop-content-gutter: 34px;
+    --desktop-content-max: 1560px;
+  }
+
+  body {
+    padding-right: 0 !important;
+  }
+
+  main,
+  .app-shell,
+  .desktop-shell,
+  .desktop-main,
+  .main-content,
+  .content-shell {
+    padding-left: var(--desktop-content-gutter) !important;
+    padding-right: var(--desktop-content-gutter) !important;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-search-topbar,
+  .map-rankings-layout,
+  .top-map-card,
+  .rankings-card,
+  .profile-card,
+  .lower-profile-card {
+    width: min(var(--desktop-content-max), calc(100vw - var(--desktop-rail-width) - (var(--desktop-content-gutter) * 2))) !important;
+    max-width: min(var(--desktop-content-max), calc(100vw - var(--desktop-rail-width) - (var(--desktop-content-gutter) * 2))) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .desktop-map-grid,
+  .map-rankings-layout {
+    column-gap: 16px !important;
+    gap: 16px !important;
+  }
+
+  /* Show about 10 ranking rows at a time and let users scroll inside the rankings table. */
+  .rankings-card .table-wrap,
+  .map-rankings-layout .rankings-card .table-wrap {
+    max-height: 548px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  #districtTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+  }
+
+  #districtTable th,
+  #districtTable td {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    box-sizing: border-box !important;
+  }
+
+  #districtTable th {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.05 !important;
+    font-size: 9.4px !important;
+    letter-spacing: .042em !important;
+    height: 52px !important;
+    vertical-align: middle !important;
+  }
+
+  #districtTable td {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    height: 48px !important;
+  }
+
+  #districtTable .score-pill,
+  #districtTable .ratio-pill {
+    width: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+  }
+
+  #districtTable th:nth-child(1),
+  #districtTable td:nth-child(1) {
+    width: 19% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(2),
+  #districtTable td:nth-child(2) {
+    width: 4% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(3),
+  #districtTable td:nth-child(3) {
+    width: 11.5% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(4),
+  #districtTable td:nth-child(4),
+  #districtTable th:nth-child(5),
+  #districtTable td:nth-child(5),
+  #districtTable th:nth-child(6),
+  #districtTable td:nth-child(6),
+  #districtTable th:nth-child(7),
+  #districtTable td:nth-child(7),
+  #districtTable th:nth-child(8),
+  #districtTable td:nth-child(8),
+  #districtTable th:nth-child(9),
+  #districtTable td:nth-child(9),
+  #districtTable th:nth-child(10),
+  #districtTable td:nth-child(10) {
+    width: 7.6% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(11),
+  #districtTable td:nth-child(11) {
+    width: 12.3% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th[data-col="Demographic Balance Score"] {
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+}

@@ -116,3 +116,11 @@
 - Removed the internal mouse-wheel scrolling behavior from the desktop ranking table by letting the page scroll instead of the ranking panel.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=359.
+
+## Prototype 360
+- Shifted and centered the desktop map/ranking/profile content away from the fixed left rail.
+- Tightened the center desktop cards so users scan less from far left to far right.
+- Increased ranking score pill width so Salary Growth % values can remain on one line.
+- Changed the sortable district ranking to show about 10 rows at a time, with internal scrolling for more rows.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=360.
