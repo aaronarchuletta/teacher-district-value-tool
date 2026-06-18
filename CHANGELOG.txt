@@ -233,3 +233,6 @@ Prototype 368 update:
 - Updated browser tab title and cache-busting references to Prototype 369.
 - No district salary data, workbook formulas, scoring weights, overall scores, or rankings changed.
 - Built 2026-06-17 23:49 MDT.
+Prototype 369 region label correction
+- Corrected Antelope Valley Union High School District region to Antelope Valley so the UI does not display California twice.
+- No scoring, ranking, salary, or workbook formula changes.
