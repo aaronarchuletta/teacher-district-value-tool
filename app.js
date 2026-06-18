@@ -316,7 +316,7 @@ const scoreCols = [
     "Pre-Risk Overall Value Score", "Stability Score", "State Funding Context Score"
   ];
   const columns = [
-    "District","State","Region","Overall Value Score","State Funding Context Score","Stability Score",
+    "District","State","Overall Value Score","State Funding Context Score","Stability Score",
     "Avg Growth %","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
   ];
   const columnLabels = {

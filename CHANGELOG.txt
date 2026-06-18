@@ -201,3 +201,8 @@ Prototype 363 update:
 - Sortable ranking internal scrollbar restored.
 - Ranking table can only be scrolled by dragging its scrollbar; wheel/trackpad gestures navigate the page instead.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 364 update:
+- Removed Region from the sortable district ranking table.
+- Rebalanced sortable ranking columns for a tighter 10-column desktop layout.
+- No workbook, scoring, salary, or district data changes.

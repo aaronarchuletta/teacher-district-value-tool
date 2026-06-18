@@ -8714,3 +8714,40 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     scrollbar-gutter: stable !important;
   }
 }
+
+/* Prototype 364: remove Region column from sortable table and rebalance 10-column layout */
+@media (min-width: 901px) {
+  .rankings-card .table-wrap,
+  .map-rankings-layout .rankings-card .table-wrap {
+    max-height: 548px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    scrollbar-gutter: stable !important;
+  }
+
+  #districtTable {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  #districtTable col:nth-child(1) { width: 24% !important; }
+  #districtTable col:nth-child(2) { width: 5% !important; }
+  #districtTable col:nth-child(n+3) { width: 8.875% !important; }
+
+  #districtTable th:nth-child(1),
+  #districtTable td:nth-child(1) { width: 24% !important; text-align: left !important; }
+  #districtTable th:nth-child(2),
+  #districtTable td:nth-child(2) { width: 5% !important; text-align: center !important; }
+  #districtTable th:nth-child(n+3),
+  #districtTable td:nth-child(n+3) { width: 8.875% !important; text-align: center !important; }
+
+  #districtTable .score-pill,
+  #districtTable .ratio-pill {
+    width: 66px !important;
+    min-width: 66px !important;
+    max-width: 66px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    white-space: nowrap !important;
+  }
+}

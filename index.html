@@ -3,39 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher District Value Prototype 363</title>
+  <title>Teacher District Value Prototype 364</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="styles.css?v=363">
+  <link rel="stylesheet" href="styles.css?v=364">
 
-  <style id="prototype-363-desktop-overrides">
+  <style id="prototype-364-desktop-overrides">
     @media (min-width: 901px) {
-      /* Bottom cards: stretch a bit farther right so they line up with the ranking card above. */
-      .profile-map-layout {
-        width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
-        max-width: clamp(1120px, calc(100vw - 360px), 1500px) !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-        gap: 16px !important;
-        align-items: stretch !important;
-        box-sizing: border-box !important;
-      }
-
-      .profile-map-layout > .lower-profile-card,
-      .profile-map-layout > .district-map-card {
-        width: auto !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-      }
-
-      /* Restore ranking-table scrollbar, but wheel scrolling is redirected by JS. */
       .rankings-card .table-wrap,
       .map-rankings-layout .rankings-card .table-wrap {
         max-height: 548px !important;
@@ -49,22 +25,18 @@
         table-layout: fixed !important;
       }
 
-      #districtTable col:nth-child(1) { width: 20% !important; }
-      #districtTable col:nth-child(2) { width: 4% !important; }
-      #districtTable col:nth-child(3) { width: 12% !important; }
-      #districtTable col:nth-child(n+4) { width: 8% !important; }
+      #districtTable col:nth-child(1) { width: 24% !important; }
+      #districtTable col:nth-child(2) { width: 5% !important; }
+      #districtTable col:nth-child(n+3) { width: 8.875% !important; }
 
       #districtTable th:nth-child(1),
-      #districtTable td:nth-child(1) { width: 20% !important; text-align: left !important; }
+      #districtTable td:nth-child(1) { width: 24% !important; text-align: left !important; }
 
       #districtTable th:nth-child(2),
-      #districtTable td:nth-child(2) { width: 4% !important; text-align: center !important; }
+      #districtTable td:nth-child(2) { width: 5% !important; text-align: center !important; }
 
-      #districtTable th:nth-child(3),
-      #districtTable td:nth-child(3) { width: 12% !important; text-align: left !important; }
-
-      #districtTable th:nth-child(n+4),
-      #districtTable td:nth-child(n+4) { width: 8% !important; text-align: center !important; }
+      #districtTable th:nth-child(n+3),
+      #districtTable td:nth-child(n+3) { width: 8.875% !important; text-align: center !important; }
 
       #districtTable th,
       #districtTable td {
@@ -471,8 +443,8 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="districts-data.js?v=363"></script>
-<script src="app.js?v=363"></script>
+<script src="districts-data.js?v=364"></script>
+<script src="app.js?v=364"></script>
 
 </body>
 </html>

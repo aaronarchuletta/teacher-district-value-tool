@@ -148,3 +148,10 @@
 - Restored the full sortable ranking rows inside the scrollable table.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=363.
+
+## Prototype 364
+- Removed the Region column from the desktop sortable district ranking table to reduce total table width.
+- Rebalanced the sortable ranking table as a 10-column layout with more room for score columns.
+- Kept the ranking scrollbar behavior from Prototype 363: users drag the scrollbar to scroll the table; wheel/trackpad gestures move the page.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=364.
