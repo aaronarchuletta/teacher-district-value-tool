@@ -51,3 +51,12 @@ Prototype 349: adds a 5% State Funding Context factor based on FY2024 Census cur
 
 ## Prototype 353
 Color and profile tile icon system update. Replace index.html, app.js, and styles.css at minimum if applying through GitHub Desktop.
+
+## Prototype 370 - Phase 2B scoring integration
+- Integrated the latest Phase 2B workbook scoring values into districts-data.js.
+- Selected Salary Level Score uses the softened $50k-$85k scale.
+- Housing Salary Power Score is included and used as the table affordability/housing-power score.
+- Salary-share display scoring now matches the Phase 2B scale: ≤20%=95, 20-25%=85, 25-30%=72, 30-35%=58, 35-40%=42, >40%=25.
+- Rent Salary % Label and Mortgage Salary % Label are stored as numeric percentages for correct ascending/descending sorting.
+- Ocean Springs sub pay is flagged as an unverified licensed/certified rate while preserving the workbook value.
+- Browser tab title and cache-busting references updated to Prototype 370.

@@ -1,3 +1,4 @@
+/* Prototype 370 Phase 2B scoring integration: table data uses Housing Salary Power, Career Earnings, softened selected salary scale ($50k-$85k), and updated salary-share scoring. */
 /* Prototype 230: pinch zoom + pan for the USA map on phones */
 function initMobileUsaMapZoom() {
   const wrap = document.querySelector(".top-map-card .usa-map-wrap");
@@ -311,13 +312,13 @@ initMobileUsaMapZoom();
 })();
 
 const scoreCols = [
-    "Salary Score","Growth Score","Master's Premium Score","Affordability Score",
+    "Selected Salary Level Score","Growth Score","Master's Premium Score","Career Earnings Score","Housing Salary Power Score",
     "Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score","Overall Value Score",
     "Pre-Risk Overall Value Score", "Stability Score", "State Funding Context Score"
   ];
   const columns = [
     "District","State","Overall Value Score","State Funding Context Score","Stability Score",
-    "Avg Growth %","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
+    "Avg Growth %","Housing Salary Power Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
   ];
   const columnLabels = {
     "Overall Value Score": "Final Value",
@@ -327,6 +328,9 @@ const scoreCols = [
     "Stability Score": "Stability",
     "State Funding Context Score": "State Funding",
     "Salary Score": "Salary",
+    "Selected Salary Level Score": "Salary Level",
+    "Career Earnings Score": "Career Earnings",
+    "Housing Salary Power Score": "Housing Power",
     "Avg Growth %": "Salary Growth %",
     "Growth Score": "Growth",
     "Master's Premium Score": "Master’s Premium",
@@ -2219,10 +2223,11 @@ function renderTable() {
     const s = Number(share);
     if (!Number.isFinite(s)) return null;
     if (s <= 0.20) return 95;
-    if (s <= 0.25) return 82;
-    if (s <= 0.30) return 65;
-    if (s <= 0.40) return 45;
-    return 20;
+    if (s <= 0.25) return 85;
+    if (s <= 0.30) return 72;
+    if (s <= 0.35) return 58;
+    if (s <= 0.40) return 42;
+    return 25;
   }
 
   function salaryShareLabel(share) {

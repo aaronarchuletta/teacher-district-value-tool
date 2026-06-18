@@ -193,11 +193,11 @@
 - Overall scoring formulas, district data, and rankings are unchanged.
 - Bumped cache-busting references in index.html to v=368.
 
-## Prototype 369 - Antelope Valley region label
-- Updated Antelope Valley Union High School District region to `Antelope Valley, California`.
-- Updated browser tab title and cache-busting references to Prototype 369.
-- No district salary data, workbook formulas, scoring weights, overall scores, or rankings changed.
-- Built 2026-06-17 23:49 MDT.
-## Prototype 369 region label correction
-- Corrected Antelope Valley Union High School District region to Antelope Valley so the UI does not display California twice.
-- No scoring, ranking, salary, or workbook formula changes.
+## Prototype 370 - Phase 2B scoring integration
+- Integrated the latest Phase 2B workbook scoring values into districts-data.js.
+- Selected Salary Level Score uses the softened $50k-$85k scale.
+- Housing Salary Power Score is included and used as the table affordability/housing-power score.
+- Salary-share display scoring now matches the Phase 2B scale: ≤20%=95, 20-25%=85, 25-30%=72, 30-35%=58, 35-40%=42, >40%=25.
+- Rent Salary % Label and Mortgage Salary % Label are stored as numeric percentages for correct ascending/descending sorting.
+- Ocean Springs sub pay is flagged as an unverified licensed/certified rate while preserving the workbook value.
+- Browser tab title and cache-busting references updated to Prototype 370.
