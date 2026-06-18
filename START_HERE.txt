@@ -1,4 +1,4 @@
-Teacher District Value Prototype 370
+Teacher District Value Prototype 371
 
 Upload the contents of this folder to the root of your GitHub repository.
 
@@ -11,4 +11,4 @@ Required website files to replace:
 
 This prototype integrates the latest Phase 2B scoring data from the softened-salary-scale workbook and keeps the uploaded repository’s current text/visual formatting.
 
-After committing/pushing, test with ?v=370 or ?v=370b if cache is stubborn.
+After committing/pushing, test with ?v=371 or ?v=371b if cache is stubborn.

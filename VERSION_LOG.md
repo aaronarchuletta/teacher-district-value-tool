@@ -201,3 +201,9 @@
 - Rent Salary % Label and Mortgage Salary % Label are stored as numeric percentages for correct ascending/descending sorting.
 - Ocean Springs sub pay is flagged as an unverified licensed/certified rate while preserving the workbook value.
 - Browser tab title and cache-busting references updated to Prototype 370.
+## Prototype 371 - Profile tile score scale update
+- Changed the district profile salary tile rating/bar to use the softened raw Selected Salary scale: $50,000 = 0 and $85,000+ = 100.
+- Median Rent and Median Home Price profile tile rating bars now reach full/Excellent when the estimated housing payment is 25% of selected monthly salary or lower.
+- This is a website profile-tile display scoring update only; district data and workbook rankings were not recalculated.
+- Browser tab title and cache-busting references updated to Prototype 371.
+

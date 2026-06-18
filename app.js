@@ -2222,8 +2222,10 @@ function renderTable() {
   function salaryShareScore(share) {
     const s = Number(share);
     if (!Number.isFinite(s)) return null;
-    if (s <= 0.20) return 95;
-    if (s <= 0.25) return 85;
+    // Housing share tile scale: rent or estimated mortgage at 25% of selected
+    // monthly salary or lower is considered full/Excellent. This is a
+    // display-tile score and does not recalculate workbook rankings.
+    if (s <= 0.25) return 100;
     if (s <= 0.30) return 72;
     if (s <= 0.35) return 58;
     if (s <= 0.40) return 42;
@@ -2269,6 +2271,14 @@ function renderTable() {
       score = 90 + Math.min(10, ((ratio - 3.5) / 0.5) * 10);
     }
     return Math.max(0, Math.min(100, score));
+  }
+
+  function selectedSalaryLevelTileScore(d) {
+    const salary = Number(salaryForDistrict(d));
+    if (!Number.isFinite(salary) || salary <= 0) return null;
+    // Profile salary tile scale follows the softened raw salary score scale:
+    // $50,000 = 0 and $85,000+ = 100.
+    return Math.max(0, Math.min(100, ((salary - 50000) / (85000 - 50000)) * 100));
   }
 
   function mastersPremiumAmount(d) {
@@ -2436,7 +2446,7 @@ function renderTable() {
     if (nextEl) nextEl.disabled = !items.length;
 
     const highlightData = [
-      {label:selectedEducationSalaryLabel(), value:salaryToRentScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryLevelTileScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
@@ -2532,7 +2542,7 @@ function renderTable() {
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelTileScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
