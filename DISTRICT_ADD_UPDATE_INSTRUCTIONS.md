@@ -119,3 +119,9 @@ Upload the standard active website files and test with `?v=383`. This update spl
 
 ## Prototype 384 upload
 Upload the standard active website files and test with `?v=384`. This update restores Total Schools in the desktop profile and removes duplicate rent/home `% of Salary` subtext under the dollar amount.
+
+Prototype 385
+- Restored nearest-city district region labels on top of Prototype 384.
+- Includes prior region cleanup such as Kern → Bakersfield, Clovis → Fresno, Chaffey → Ontario, Grossmont → San Diego, Saint Helena → East Santa Rosa, Tahoe-Truckee → Lake Tahoe, and Port Arthur ISD → Port Arthur.
+- No scoring/formula/ranking/workbook changes.
+- Website cache-busting updated to v385.

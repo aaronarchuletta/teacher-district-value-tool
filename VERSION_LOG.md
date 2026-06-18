@@ -299,3 +299,9 @@
 - Removed the duplicate gray `% of Salary` subvalue below Median Rent and Median Home Price dollar amounts.
 - Kept the green affordability rating label/bar for rent and home price.
 - No scoring formulas, rankings, district data, or workbook formulas changed.
+
+Prototype 385
+- Restored nearest-city district region labels on top of Prototype 384.
+- Includes prior region cleanup such as Kern → Bakersfield, Clovis → Fresno, Chaffey → Ontario, Grossmont → San Diego, Saint Helena → East Santa Rosa, Tahoe-Truckee → Lake Tahoe, and Port Arthur ISD → Port Arthur.
+- No scoring/formula/ranking/workbook changes.
+- Website cache-busting updated to v385.

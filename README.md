@@ -106,3 +106,9 @@ Upload the standard active website files and test with `?v=383`. This update spl
 
 ## Prototype 384
 Upload the standard active website files and test with `?v=384`. This update restores the Total Schools tile alongside Middle Schools and High Schools in the desktop profile, and removes the duplicate gray `% of Salary` subvalue under the Median Rent and Median Home Price dollar amounts. The green bar rating label remains. No scoring or workbook formulas changed.
+
+Prototype 385
+- Restored nearest-city district region labels on top of Prototype 384.
+- Includes prior region cleanup such as Kern → Bakersfield, Clovis → Fresno, Chaffey → Ontario, Grossmont → San Diego, Saint Helena → East Santa Rosa, Tahoe-Truckee → Lake Tahoe, and Port Arthur ISD → Port Arthur.
+- No scoring/formula/ranking/workbook changes.
+- Website cache-busting updated to v385.
