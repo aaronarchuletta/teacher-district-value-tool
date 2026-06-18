@@ -1,4 +1,4 @@
-/* Prototype 372 profile salary tile scale update: selected salary tile now uses dynamic career-stage bands based on selected experience and education. */
+/* Prototype 379 dynamic tile-to-overall alignment: profile tiles, ranking scores, and overall value now recalculate in the browser for the selected education + experience filter combination. */
 /* Prototype 230: pinch zoom + pan for the USA map on phones */
 function initMobileUsaMapZoom() {
   const wrap = document.querySelector(".top-map-card .usa-map-wrap");
@@ -867,6 +867,7 @@ const scoreCols = [
   }
 
   function getFiltered() {
+    recomputeDynamicScores();
     const st = stateFilter.value, reg = regionFilter.value;
     return DISTRICTS.filter(d =>
       (!st || d.State === st) &&
@@ -2222,14 +2223,14 @@ function renderTable() {
   function salaryShareScore(share) {
     const s = Number(share);
     if (!Number.isFinite(s)) return null;
-    // Housing share tile scale: rent or estimated mortgage at 25% of selected
-    // monthly salary or lower is considered full/Excellent. This is a
-    // display-tile score and does not recalculate workbook rankings.
+    // Dynamic scoring scale used by both the profile tiles and Overall Value:
+    // 25% of selected monthly salary or lower = 100 / Excellent.
+    // 30% = 70, 35% = 60, 40% = 40, and 50%+ = 0.
     if (s <= 0.25) return 100;
-    if (s <= 0.30) return 72;
-    if (s <= 0.35) return 58;
-    if (s <= 0.40) return 42;
-    return 25;
+    if (s <= 0.30) return 100 - ((s - 0.25) / 0.05) * 30;
+    if (s <= 0.35) return 70 - ((s - 0.30) / 0.05) * 10;
+    if (s <= 0.40) return 60 - ((s - 0.35) / 0.05) * 20;
+    return Math.max(0, 40 - ((s - 0.40) / 0.10) * 40);
   }
 
   function salaryShareLabel(share) {
@@ -2295,26 +2296,18 @@ function renderTable() {
     const salary = Number(salaryForDistrict(d));
     if (!Number.isFinite(salary) || salary <= 0) return null;
 
-    const shift = selectedSalaryBenchmarkShift();
-    const veryLowMax = 53000 + shift;
-    const lowMax = 57000 + shift;
-    const fairMin = 58000 + shift;
-    const fairMax = 62000 + shift;
-    const goodMin = 63000 + shift;
-    const goodMax = 69000 + shift;
-    const veryGoodMin = 70000 + shift;
-    const excellentMin = 75000 + shift;
-    const excellentFull = 80000 + shift;
-
-    if (salary < veryLowMax) return Math.max(0, Math.min(39, interpolateScore(salary, veryLowMax - 10000, veryLowMax, 0, 39)));
-    if (salary <= lowMax) return interpolateScore(salary, veryLowMax, lowMax, 40, 59);
-    if (salary < fairMin) return 59.5;
-    if (salary <= fairMax) return interpolateScore(salary, fairMin, fairMax, 60, 69);
-    if (salary < goodMin) return 69.5;
-    if (salary <= goodMax) return interpolateScore(salary, goodMin, goodMax, 70, 79);
-    if (salary < veryGoodMin) return 79.5;
-    if (salary < excellentMin) return interpolateScore(salary, veryGoodMin, excellentMin, 80, 89);
-    return Math.max(90, Math.min(100, interpolateScore(salary, excellentMin, excellentFull, 90, 100)));
+    // Exact dynamic salary score formula from the tile-aligned workbook.
+    // The base bands are for 0 years + Bachelor's; we subtract the selected
+    // benchmark shift so the same bands move upward with experience/education.
+    const effectiveSalary = salary - selectedSalaryBenchmarkShift();
+    if (effectiveSalary < 53000) {
+      return Math.max(0, Math.min(39.99, ((effectiveSalary - 45000) / 8000) * 39.99));
+    }
+    if (effectiveSalary < 58000) return 40 + ((effectiveSalary - 53000) / 5000) * 20;
+    if (effectiveSalary < 63000) return 60 + ((effectiveSalary - 58000) / 5000) * 10;
+    if (effectiveSalary < 70000) return 70 + ((effectiveSalary - 63000) / 7000) * 10;
+    if (effectiveSalary < 75000) return 80 + ((effectiveSalary - 70000) / 5000) * 10;
+    return Math.min(100, 90 + ((effectiveSalary - 75000) / 5000) * 10);
   }
 
 
@@ -2389,6 +2382,84 @@ function renderTable() {
     return mobileScoreColor(mastersPremiumTileScore(d));
   }
 
+
+  function clampScore(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return 0;
+    return Math.max(0, Math.min(100, n));
+  }
+
+  function estimatedMonthlyMortgagePaymentFromPrice(price) {
+    const p = Number(price);
+    if (!Number.isFinite(p) || p <= 0) return null;
+    const downPaymentRate = 0.20;
+    const annualInterestRate = 0.07;
+    const monthlyInterestRate = annualInterestRate / 12;
+    const months = 30 * 12;
+    const principal = p * (1 - downPaymentRate);
+    return principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) / (Math.pow(1 + monthlyInterestRate, months) - 1);
+  }
+
+  function postRentIncomeScore(monthlyIncomeAfterRent) {
+    const income = Number(monthlyIncomeAfterRent);
+    if (!Number.isFinite(income)) return 0;
+    return clampScore(((income - 2500) / (5500 - 2500)) * 100);
+  }
+
+  function subPayScoreForDistrict(d) {
+    const daily = Number(d["Daily Sub Pay"] ?? d["Licensed Sub Pay"]);
+    const rent = Number(d["Median Rent"]);
+    if (!Number.isFinite(daily) || !Number.isFinite(rent) || rent <= 0) return 0;
+    const housingPower = daily * 20 / rent;
+    const vendorPenalty = (d.District === "North Clackamas School District" || d.District === "Provo City School District") ? 0.6 : 1;
+    d["Sub Pay Housing Power"] = housingPower;
+    d["Sub Pay Score"] = clampScore(((housingPower - 1) / (3 - 1)) * 100) * vendorPenalty;
+    return d["Sub Pay Score"];
+  }
+
+  function recomputeDynamicScores() {
+    DISTRICTS.forEach(d => {
+      const selectedSalary = Number(salaryForDistrict(d));
+      const selectedMonthly = Number.isFinite(selectedSalary) && selectedSalary > 0 ? selectedSalary / 12 : 0;
+      const rent = Number(d["Median Rent"]);
+      const homePrice = Number(d["Median Home Price"]);
+      const pricePerSqFt = Number(d["Median Home Price per Sq Ft"]);
+      const studentTeacherRatio = Number(d["Student-Teacher Ratio"]);
+      const riskMultiplier = Number.isFinite(Number(d["Risk Multiplier"])) ? Number(d["Risk Multiplier"]) : 1;
+
+      d["Selected Salary"] = selectedSalary || 0;
+      d["Selected Monthly Salary"] = selectedMonthly;
+      d["Selected Salary Level Score"] = clampScore(selectedSalaryLevelTileScore(d));
+
+      d["Growth Score"] = clampScore(growthTileScore(d));
+      d["Master's Premium Score"] = clampScore((Number(d["Master's Premium"]) || 0) / 15000 * 100);
+      d["Career Earnings Score"] = clampScore(0.5 * d["Selected Salary Level Score"] + 0.35 * d["Growth Score"] + 0.15 * d["Master's Premium Score"]);
+
+      const rentShare = selectedMonthly > 0 && Number.isFinite(rent) && rent > 0 ? rent / selectedMonthly : null;
+      d["Rent % of Salary"] = Number.isFinite(rentShare) ? rentShare : 0;
+      d["Rent Salary Share Score"] = clampScore(salaryShareScore(rentShare));
+      d["Rent Salary % Label"] = Number.isFinite(rentShare) ? rentShare : 0;
+
+      const mortgagePayment = estimatedMonthlyMortgagePaymentFromPrice(homePrice);
+      const mortgageShare = selectedMonthly > 0 && Number.isFinite(mortgagePayment) && mortgagePayment > 0 ? mortgagePayment / selectedMonthly : null;
+      d["Est. Monthly Mortgage P&I"] = Number.isFinite(mortgagePayment) ? mortgagePayment : 0;
+      d["Mortgage % of Salary"] = Number.isFinite(mortgageShare) ? mortgageShare : 0;
+      d["Mortgage Salary Share Score"] = clampScore(salaryShareScore(mortgageShare));
+      d["Mortgage Salary % Label"] = Number.isFinite(mortgageShare) ? mortgageShare : 0;
+
+      d["Post-Rent Monthly Income"] = selectedMonthly - (Number.isFinite(rent) ? rent : 0);
+      d["Post-Rent Income Score"] = postRentIncomeScore(d["Post-Rent Monthly Income"]);
+      d["Price per Sq Ft Score"] = clampScore(((800 - pricePerSqFt) / (800 - 150)) * 100);
+      d["Housing Salary Power Score"] = clampScore(0.35 * d["Rent Salary Share Score"] + 0.30 * d["Mortgage Salary Share Score"] + 0.25 * d["Price per Sq Ft Score"] + 0.10 * d["Post-Rent Income Score"]);
+
+      d["Student-Teacher Ratio Score"] = clampScore(((25 - studentTeacherRatio) / (25 - 12)) * 100);
+      subPayScoreForDistrict(d);
+
+      d["Stability Score"] = riskMultiplier >= 1 ? 100 : riskMultiplier >= 0.95 ? 75 : riskMultiplier >= 0.9 ? 60 : riskMultiplier >= 0.85 ? 40 : riskMultiplier >= 0.8 ? 25 : 0;
+      d["Base Value Score"] = clampScore(0.35 * d["Housing Salary Power Score"] + 0.30 * d["Career Earnings Score"] + 0.10 * d["Student-Teacher Ratio Score"] + 0.10 * d["Sub Pay Score"] + 0.10 * d["Demographic Balance Score"] + 0.05 * d["State Funding Context Score"]);
+      d["Overall Value Score"] = clampScore(d["Base Value Score"] * riskMultiplier);
+    });
+  }
 
   function stateFundingDisplayValue(d) {
     const v = Number(d["State Current Spending Per Pupil"]);
@@ -2620,10 +2691,8 @@ function renderTable() {
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:d["Master's Premium Score"], icon:mobileDetailIcon("masters"), color:"#0A843D"},
-      {label:"Housing Salary Power", value:"Overall affordability", score:d["Housing Salary Power Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Mortgage Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Rent Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Post-Rent Income", value:fmtMoney(d["Post-Rent Monthly Income"]), score:d["Post-Rent Income Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Demographic Balance", value:fmtScore(d["Demographic Balance Score"]), score:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
@@ -2875,6 +2944,7 @@ function renderTable() {
   }
 
   function renderAll(profile=true) {
+    recomputeDynamicScores();
     updateCurrentSearchSummary();
     updateExtraFilterBadge();
     updateLegendVisibility();

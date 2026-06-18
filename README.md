@@ -83,3 +83,11 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 - Rent and mortgage salary-share scores now reach 100 at 25% of selected salary or lower.
 - Recalculated Career Earnings, Housing Salary Power, Base Value, Overall Value, and ranks from the updated score fields.
 - Browser title/cache-busting updated to Prototype 378.
+
+
+## Prototype 379 dynamic filter-aligned scoring
+- Website scoring now recalculates dynamically when education or experience filters change.
+- Selected Salary Level Score, Career Earnings, Rent Salary Share, Mortgage Salary Share, Post-Rent Income, Housing Salary Power, Base Value, and Overall Value are recomputed in-browser from the selected salary for the active education/experience filter combination.
+- Profile tile bars now follow those dynamic score fields.
+- Removed the visible Housing Salary Power and Post-Rent Income profile tiles while keeping their underlying scoring contributions.
+- Browser title and cache-busting links updated to Prototype 379.
