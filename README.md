@@ -112,3 +112,16 @@ Prototype 385
 - Includes prior region cleanup such as Kern → Bakersfield, Clovis → Fresno, Chaffey → Ontario, Grossmont → San Diego, Saint Helena → East Santa Rosa, Tahoe-Truckee → Lake Tahoe, and Port Arthur ISD → Port Arthur.
 - No scoring/formula/ranking/workbook changes.
 - Website cache-busting updated to v385.
+
+
+## Prototype 387 - Flagstaff pay update
+- Updated Flagstaff Unified School District salary values using the official FUSD 2025-2026 Certified Salary Schedule link and Arizona Daily Sun base-pay report.
+- Set BA/MA start to $53,700, BA/MA 5-year to $57,638, and BA/MA 10-year to $61,575; BA and MA remain equal because no separate master's lane was confirmed.
+- Dynamic website scores/rankings will recalculate from the updated salary schedule.
+- Browser title and cache-busting links updated to Prototype 387.
+
+## Prototype 387 - Flagstaff master’s stipend correction
+- Corrected Flagstaff Unified School District Master’s salary values to include the $800 master’s stipend shown on the 2025 salary schedule.
+- Updated Flagstaff MA Start, MA 5-Year, MA 10-Year, Master’s Premium, growth/career scoring, overall value score, and source note.
+- No scoring formula or scoring weight changes.
+- Browser tab title and cache-busting links updated to Prototype 387.
