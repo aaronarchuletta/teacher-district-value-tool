@@ -183,3 +183,8 @@ Prototype 360 update:
 - Score boxes widened so Salary Growth % is less likely to wrap.
 - District sortable ranking now shows about 10 rows at a time before scrolling.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 361 update:
+- Bottom district profile/map cards now use the same centered width as the cards above.
+- Sortable ranking score columns now use even spacing, removing the larger gap before Demographic Balance.
+- No workbook, scoring, salary, or district data changes.

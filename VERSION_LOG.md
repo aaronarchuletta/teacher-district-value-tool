@@ -124,3 +124,10 @@
 - Changed the sortable district ranking to show about 10 rows at a time, with internal scrolling for more rows.
 - Kept scoring, workbook data, rankings, and formulas unchanged.
 - Bumped cache-busting references in index.html to v=360.
+
+## Prototype 361
+- Matched the bottom district profile/map section width to the desktop cards above it.
+- Evened out the sortable district ranking score columns so the spacing before Demographic Balance matches the rest.
+- Kept the 10-row ranking scroll behavior from Prototype 360.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=361.

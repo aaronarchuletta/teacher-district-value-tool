@@ -8499,3 +8499,101 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     overflow: visible !important;
   }
 }
+
+/* Prototype 361: match bottom card widths and even sortable ranking score columns */
+@media (min-width: 901px) {
+  :root {
+    --desktop-content-max: 1560px;
+    --desktop-rail-width: 64px;
+    --desktop-content-gutter: 34px;
+  }
+
+  /* Make the lower district profile/map section use the same centered width as the cards above. */
+  .lower-profile-card,
+  .profile-card.lower-profile-card,
+  .desktop-detail-grid,
+  .desktop-profile-grid,
+  .district-detail-grid,
+  .profile-map-grid {
+    width: min(var(--desktop-content-max), calc(100vw - var(--desktop-rail-width) - (var(--desktop-content-gutter) * 2))) !important;
+    max-width: min(var(--desktop-content-max), calc(100vw - var(--desktop-rail-width) - (var(--desktop-content-gutter) * 2))) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .lower-profile-card {
+    overflow: hidden !important;
+  }
+
+  .lower-profile-card > *,
+  .desktop-detail-grid > *,
+  .desktop-profile-grid > *,
+  .district-detail-grid > *,
+  .profile-map-grid > * {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Even out all score/data columns so the gap before Demographic Balance matches the rest. */
+  #districtTable {
+    table-layout: fixed !important;
+  }
+
+  #districtTable th:nth-child(1),
+  #districtTable td:nth-child(1) {
+    width: 20% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(2),
+  #districtTable td:nth-child(2) {
+    width: 4% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(3),
+  #districtTable td:nth-child(3) {
+    width: 12% !important;
+    text-align: left !important;
+  }
+
+  #districtTable th:nth-child(n+4),
+  #districtTable td:nth-child(n+4) {
+    width: 8% !important;
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(11),
+  #districtTable td:nth-child(11) {
+    width: 8% !important;
+    text-align: center !important;
+  }
+
+  #districtTable .score-pill,
+  #districtTable .ratio-pill {
+    width: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    white-space: nowrap !important;
+  }
+
+  #districtTable th {
+    text-align: center !important;
+  }
+
+  #districtTable th:nth-child(1),
+  #districtTable th:nth-child(3) {
+    text-align: left !important;
+  }
+
+  #districtTable th[data-col="Demographic Balance Score"] {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    letter-spacing: .035em !important;
+    font-size: 9.2px !important;
+  }
+}
