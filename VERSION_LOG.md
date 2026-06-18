@@ -247,3 +247,22 @@
 - Tile labels now use these bands: under 20% Very Low; 20%-27% Low; 28%-35% Fair; 36%-41% Good; 42%-47% Very Good; 48%+ Excellent.
 - No district data, workbook formulas, rankings, or overall scoring weights were changed.
 - Browser tab title and cache-busting links updated to Prototype 376.
+
+## Prototype 377 - Tile-to-overall alignment pass
+- Updated district profile score tiles so tile bars/ratings use stored workbook score fields that feed the Overall Value Score where available.
+- Salary tile now uses Selected Salary Level Score.
+- 10-Year Growth tile now uses Growth Score.
+- Master’s Premium tile now uses Master’s Premium Score.
+- Median Rent and Median Home Price tiles now use Rent Salary Share Score and Mortgage Salary Share Score.
+- Added Housing Salary Power, Post-Rent Income, and Demographic Balance profile tiles so more Overall Value Score components are visible.
+- No district data, workbook formulas, scoring weights, or rankings were recalculated.
+- Browser tab title and cache-busting links updated to Prototype 377.
+
+
+## Prototype 378 tile-to-overall scoring alignment
+- Updated workbook/data scoring so Overall Value follows the current profile tile scales.
+- Selected Salary Level Score now uses the dynamic career-stage salary bands.
+- Growth Score now uses a 48% growth ceiling.
+- Rent and mortgage salary-share scores now reach 100 at 25% of selected salary or lower.
+- Recalculated Career Earnings, Housing Salary Power, Base Value, Overall Value, and ranks from the updated score fields.
+- Browser title/cache-busting updated to Prototype 378.

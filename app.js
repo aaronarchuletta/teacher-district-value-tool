@@ -2520,8 +2520,8 @@ function renderTable() {
     if (nextEl) nextEl.disabled = !items.length;
 
     const highlightData = [
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryLevelTileScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
-      {label:"10-Year Growth", value:growthTileScore(d), displayValue:fmtPct(d["Avg Growth %"]), ratingLabel:growthTileRating(d), ratingColor:growthTileColor(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:d["Selected Salary Level Score"], displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
@@ -2616,12 +2616,15 @@ function renderTable() {
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelTileScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:d["Selected Salary Level Score"], icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
-      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:growthTileScore(d), ratingLabel:growthTileRating(d), ratingColor:growthTileColor(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
-      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
-      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:salaryShareScore(mortgageSalaryShare(d)), ratingLabel:salaryShareLabel(mortgageSalaryShare(d)), ratingColor:salaryShareColor(mortgageSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:d["Master's Premium Score"], icon:mobileDetailIcon("masters"), color:"#0A843D"},
+      {label:"Housing Salary Power", value:"Overall affordability", score:d["Housing Salary Power Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Mortgage Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Rent Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Post-Rent Income", value:fmtMoney(d["Post-Rent Monthly Income"]), score:d["Post-Rent Income Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Demographic Balance", value:fmtScore(d["Demographic Balance Score"]), score:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}

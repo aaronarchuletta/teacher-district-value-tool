@@ -84,3 +84,15 @@ Prototype 375 note: Port Arthur ISD region label corrected to Port Arthur. No sc
 
 ## Prototype 376 upload
 Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=376` or `?v=376b`. This version updates the district profile 10-Year Growth tile rating scale only; scoring formulas, rankings, and workbook values are unchanged.
+
+## Prototype 377 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=377` or `?v=377b`. This version aligns profile tile bars/ratings to stored workbook score fields that feed the Overall Value Score where available. No scoring formulas, rankings, workbook values, or district data were recalculated.
+
+
+## Prototype 378 tile-to-overall scoring alignment
+- Updated workbook/data scoring so Overall Value follows the current profile tile scales.
+- Selected Salary Level Score now uses the dynamic career-stage salary bands.
+- Growth Score now uses a 48% growth ceiling.
+- Rent and mortgage salary-share scores now reach 100 at 25% of selected salary or lower.
+- Recalculated Career Earnings, Housing Salary Power, Base Value, Overall Value, and ranks from the updated score fields.
+- Browser title/cache-busting updated to Prototype 378.
