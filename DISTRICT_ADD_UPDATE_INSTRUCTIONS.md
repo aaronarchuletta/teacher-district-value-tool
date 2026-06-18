@@ -76,3 +76,6 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 
 ## Prototype 373 upload
 Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=373` or `?v=373b`. This version only updates selected district Region labels; scoring and workbook formulas are unchanged.
+
+## Prototype 374 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=374` or `?v=374b`. This version completes the district Region label cleanup across all districts; scoring and workbook formulas are unchanged.

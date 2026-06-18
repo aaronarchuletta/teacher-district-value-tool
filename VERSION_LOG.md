@@ -228,3 +228,10 @@
 - Chaffey Joint Union High School District: Ontario.
 - No scoring formulas, district scores, tile logic, or workbook rankings changed.
 - Browser tab title and cache-busting references updated to Prototype 373.
+
+## Prototype 374 - Complete district region naming cleanup
+- Reviewed all districts and updated Region labels to reference the nearest big city or nearest recognizable local market instead of broad region labels where needed.
+- Examples include Los Angeles, Phoenix, Minneapolis, Chicago, Madison, Salt Lake City, Houston, Dallas, Washington DC, Jacksonville, Biloxi, Durham, and other nearest-city labels.
+- Preserved the user-specified labels from Prototype 373, including Bakersfield, Fresno, Antelope Valley, Lake Tahoe, East Santa Rosa, San Diego, and Ontario.
+- No scoring formulas, district scores, tile logic, workbook formulas, or rankings were changed.
+- Browser tab title and cache-busting references updated to Prototype 374.

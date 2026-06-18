@@ -2,7 +2,7 @@ const DISTRICTS = [
   {
     "District": "Las Cruces Public Schools",
     "State": "NM",
-    "Region": "Southern New Mexico",
+    "Region": "Las Cruces",
     "BA Start": 55000,
     "BA 5-Year": 66000,
     "BA 10-Year": 75000,
@@ -238,7 +238,7 @@ const DISTRICTS = [
   {
     "District": "Mounds View Public Schools",
     "State": "MN",
-    "Region": "Twin Cities",
+    "Region": "Minneapolis",
     "BA Start": 52932,
     "BA 5-Year": 57028,
     "BA 10-Year": 79976,
@@ -352,7 +352,7 @@ const DISTRICTS = [
   {
     "District": "Rio Rancho Public Schools",
     "State": "NM",
-    "Region": "Albuquerque / Rio Rancho",
+    "Region": "Albuquerque",
     "BA Start": 56000,
     "BA 5-Year": 67000,
     "BA 10-Year": 76000,
@@ -470,7 +470,7 @@ const DISTRICTS = [
   {
     "District": "Anoka-Hennepin Schools",
     "State": "MN",
-    "Region": "Twin Cities North Metro",
+    "Region": "Minneapolis",
     "BA Start": 53864,
     "BA 5-Year": 61000,
     "BA 10-Year": 73000,
@@ -592,7 +592,7 @@ const DISTRICTS = [
   {
     "District": "Rosemount-Apple Valley-Eagan ISD 196",
     "State": "MN",
-    "Region": "Twin Cities Suburbs",
+    "Region": "Minneapolis",
     "BA Start": 51322,
     "BA 5-Year": 63680,
     "BA 10-Year": 87104,
@@ -706,7 +706,7 @@ const DISTRICTS = [
   {
     "District": "Twin Falls School District",
     "State": "ID",
-    "Region": "Magic Valley",
+    "Region": "Twin Falls",
     "BA Start": 50252,
     "BA 5-Year": 59000,
     "BA 10-Year": 66000,
@@ -824,7 +824,7 @@ const DISTRICTS = [
   {
     "District": "Vail School District",
     "State": "AZ",
-    "Region": "Tucson / Vail",
+    "Region": "Tucson",
     "BA Start": 50250,
     "BA 5-Year": 62000,
     "BA 10-Year": 69500,
@@ -942,7 +942,7 @@ const DISTRICTS = [
   {
     "District": "Eden Prairie Schools",
     "State": "MN",
-    "Region": "Twin Cities",
+    "Region": "Minneapolis",
     "BA Start": 51831,
     "BA 5-Year": 61041,
     "BA 10-Year": 70817,
@@ -1056,7 +1056,7 @@ const DISTRICTS = [
   {
     "District": "Hobbs Municipal Schools",
     "State": "NM",
-    "Region": "Southeast New Mexico",
+    "Region": "Hobbs",
     "BA Start": 63024,
     "BA 5-Year": 65178,
     "BA 10-Year": 72786,
@@ -1763,7 +1763,7 @@ const DISTRICTS = [
   {
     "District": "Osseo Area Schools / ISD 279",
     "State": "MN",
-    "Region": "Twin Cities Northwest Metro",
+    "Region": "Minneapolis",
     "BA Start": 53073,
     "BA 5-Year": 57376,
     "BA 10-Year": 67097,
@@ -1885,7 +1885,7 @@ const DISTRICTS = [
   {
     "District": "Naperville CUSD 203",
     "State": "IL",
-    "Region": "Chicago Suburbs",
+    "Region": "Chicago",
     "BA Start": 58403,
     "BA 5-Year": 71189,
     "BA 10-Year": 85764,
@@ -2114,7 +2114,7 @@ const DISTRICTS = [
   {
     "District": "Glenbrook High School District 225",
     "State": "IL",
-    "Region": "Chicago North Shore",
+    "Region": "Chicago",
     "BA Start": 69929,
     "BA 5-Year": 77208,
     "BA 10-Year": 85244,
@@ -2228,7 +2228,7 @@ const DISTRICTS = [
   {
     "District": "Carlsbad Municipal Schools",
     "State": "NM",
-    "Region": "Southeast New Mexico",
+    "Region": "Carlsbad",
     "BA Start": 60000,
     "BA 5-Year": 65000,
     "BA 10-Year": 73500,
@@ -2350,7 +2350,7 @@ const DISTRICTS = [
   {
     "District": "Port Arthur ISD",
     "State": "TX",
-    "Region": "Beaumont-Port Arthur",
+    "Region": "Beaumont",
     "BA Start": 55500,
     "BA 5-Year": 60500,
     "BA 10-Year": 60500,
@@ -2465,7 +2465,7 @@ const DISTRICTS = [
   {
     "District": "Indian Prairie School District 204",
     "State": "IL",
-    "Region": "Chicago Suburbs",
+    "Region": "Chicago",
     "BA Start": 56403,
     "BA 5-Year": 61362,
     "BA 10-Year": 68748,
@@ -2579,7 +2579,7 @@ const DISTRICTS = [
   {
     "District": "West Ada School District",
     "State": "ID",
-    "Region": "Boise / Meridian",
+    "Region": "Boise",
     "BA Start": 50252,
     "BA 5-Year": 61000,
     "BA 10-Year": 68500,
@@ -2819,7 +2819,7 @@ const DISTRICTS = [
   {
     "District": "Wayzata Public Schools",
     "State": "MN",
-    "Region": "Twin Cities Suburbs",
+    "Region": "Minneapolis",
     "BA Start": 52308,
     "BA 5-Year": 66033,
     "BA 10-Year": 79758,
@@ -3048,7 +3048,7 @@ const DISTRICTS = [
   {
     "District": "Gilbert Public Schools",
     "State": "AZ",
-    "Region": "Phoenix East Valley",
+    "Region": "Phoenix",
     "BA Start": 53530,
     "BA 5-Year": 65000,
     "BA 10-Year": 70000,
@@ -3166,7 +3166,7 @@ const DISTRICTS = [
   {
     "District": "Washoe County School District",
     "State": "NV",
-    "Region": "Reno / Washoe County",
+    "Region": "Reno",
     "BA Start": 63000,
     "BA 5-Year": 70500,
     "BA 10-Year": 78000,
@@ -3399,7 +3399,7 @@ const DISTRICTS = [
   {
     "District": "Farmington Municipal Schools",
     "State": "NM",
-    "Region": "Four Corners New Mexico",
+    "Region": "Farmington",
     "BA Start": 57231,
     "BA 5-Year": 57504,
     "BA 10-Year": 70272,
@@ -3521,7 +3521,7 @@ const DISTRICTS = [
   {
     "District": "Queen Creek Unified School District",
     "State": "AZ",
-    "Region": "Phoenix Southeast Valley",
+    "Region": "Phoenix",
     "BA Start": 52000,
     "BA 5-Year": 63500,
     "BA 10-Year": 70000,
@@ -3639,7 +3639,7 @@ const DISTRICTS = [
   {
     "District": "New Trier Township High School District 203",
     "State": "IL",
-    "Region": "Chicago North Shore",
+    "Region": "Chicago",
     "BA Start": 75000,
     "BA 5-Year": 90000,
     "BA 10-Year": 115000,
@@ -3753,7 +3753,7 @@ const DISTRICTS = [
   {
     "District": "Mariemont City Schools",
     "State": "OH",
-    "Region": "Ohio / Cincinnati suburbs",
+    "Region": "Cincinnati",
     "BA Start": 51000,
     "BA 5-Year": 62000,
     "BA 10-Year": 74000,
@@ -3871,7 +3871,7 @@ const DISTRICTS = [
   {
     "District": "Syosset Central School District",
     "State": "NY",
-    "Region": "Long Island",
+    "Region": "New York City",
     "BA Start": 68687,
     "BA 5-Year": 84471,
     "BA 10-Year": 103885,
@@ -4216,7 +4216,7 @@ const DISTRICTS = [
   {
     "District": "Scarsdale Union Free School District",
     "State": "NY",
-    "Region": "Westchester NY",
+    "Region": "New York City",
     "BA Start": 69524,
     "BA 5-Year": 90131,
     "BA 10-Year": 110052,
@@ -4331,7 +4331,7 @@ const DISTRICTS = [
   {
     "District": "Salt Lake School District",
     "State": "UT",
-    "Region": "Salt Lake Valley",
+    "Region": "Salt Lake City",
     "BA Start": 62566,
     "BA 5-Year": 74460,
     "BA 10-Year": 80826,
@@ -4464,7 +4464,7 @@ const DISTRICTS = [
   {
     "District": "Sun Prairie Area School District",
     "State": "WI",
-    "Region": "Madison Area",
+    "Region": "Madison",
     "BA Start": 52918,
     "BA 5-Year": 59918,
     "BA 10-Year": 66918,
@@ -4692,7 +4692,7 @@ const DISTRICTS = [
   {
     "District": "Dublin City Schools",
     "State": "OH",
-    "Region": "Ohio / Columbus suburbs",
+    "Region": "Columbus",
     "BA Start": 52078,
     "BA 5-Year": 72000,
     "BA 10-Year": 78000,
@@ -4810,7 +4810,7 @@ const DISTRICTS = [
   {
     "District": "Minnetonka Public Schools",
     "State": "MN",
-    "Region": "Twin Cities Suburbs",
+    "Region": "Minneapolis",
     "BA Start": 52217,
     "BA 5-Year": 59693,
     "BA 10-Year": 67163,
@@ -4924,7 +4924,7 @@ const DISTRICTS = [
   {
     "District": "Beaverton School District",
     "State": "OR",
-    "Region": "Portland Metro",
+    "Region": "Portland",
     "BA Start": 55872,
     "BA 5-Year": 68235,
     "BA 10-Year": 80598,
@@ -5038,7 +5038,7 @@ const DISTRICTS = [
   {
     "District": "Plano ISD",
     "State": "TX",
-    "Region": "Dallas-Fort Worth",
+    "Region": "Dallas",
     "BA Start": 64000,
     "BA 5-Year": 67600,
     "BA 10-Year": 69600,
@@ -5625,7 +5625,7 @@ const DISTRICTS = [
   {
     "District": "Waunakee Community School District",
     "State": "WI",
-    "Region": "Madison Area",
+    "Region": "Madison",
     "BA Start": 52000,
     "BA 5-Year": 60000,
     "BA 10-Year": 72000,
@@ -5855,7 +5855,7 @@ const DISTRICTS = [
   {
     "District": "Pearland ISD",
     "State": "TX",
-    "Region": "Houston / Brazoria County",
+    "Region": "Houston",
     "BA Start": 64250,
     "BA 5-Year": 70000,
     "BA 10-Year": 76000,
@@ -5977,7 +5977,7 @@ const DISTRICTS = [
   {
     "District": "Loudoun County Public Schools",
     "State": "VA",
-    "Region": "Northern VA/DC",
+    "Region": "Washington, DC",
     "BA Start": 60553,
     "BA 5-Year": 71558,
     "BA 10-Year": 84421,
@@ -6092,7 +6092,7 @@ const DISTRICTS = [
   {
     "District": "Clear Creek ISD",
     "State": "TX",
-    "Region": "Houston / Bay Area",
+    "Region": "Houston",
     "BA Start": 64000,
     "BA 5-Year": 67500,
     "BA 10-Year": 69780,
@@ -6214,7 +6214,7 @@ const DISTRICTS = [
   {
     "District": "Verona Area School District",
     "State": "WI",
-    "Region": "Madison Area",
+    "Region": "Madison",
     "BA Start": 56698,
     "BA 5-Year": 61588,
     "BA 10-Year": 66431,
@@ -6671,7 +6671,7 @@ const DISTRICTS = [
   {
     "District": "Middleton-Cross Plains Area School District",
     "State": "WI",
-    "Region": "Madison Area",
+    "Region": "Madison",
     "BA Start": 55000,
     "BA 5-Year": 61000,
     "BA 10-Year": 67000,
@@ -6785,7 +6785,7 @@ const DISTRICTS = [
   {
     "District": "Jordan District",
     "State": "UT",
-    "Region": "Salt Lake Valley",
+    "Region": "Salt Lake City",
     "BA Start": 63900,
     "BA 5-Year": 67500,
     "BA 10-Year": 72000,
@@ -7131,7 +7131,7 @@ const DISTRICTS = [
   {
     "District": "Edina Public Schools",
     "State": "MN",
-    "Region": "Twin Cities Suburbs",
+    "Region": "Minneapolis",
     "BA Start": 51384,
     "BA 5-Year": 57050,
     "BA 10-Year": 62962,
@@ -7245,7 +7245,7 @@ const DISTRICTS = [
   {
     "District": "Lake Washington School District",
     "State": "WA",
-    "Region": "Seattle Eastside",
+    "Region": "Seattle",
     "BA Start": 61887,
     "BA 5-Year": 68226,
     "BA 10-Year": 85047,
@@ -7705,7 +7705,7 @@ const DISTRICTS = [
   {
     "District": "Provo City School District",
     "State": "UT",
-    "Region": "Salt Lake Valley",
+    "Region": "Provo",
     "BA Start": 60672,
     "BA 5-Year": 63447,
     "BA 10-Year": 68072,
@@ -7820,7 +7820,7 @@ const DISTRICTS = [
   {
     "District": "Nassau County School District",
     "State": "FL",
-    "Region": "Northeast FL",
+    "Region": "Jacksonville",
     "BA Start": 52407,
     "BA 5-Year": 57173,
     "BA 10-Year": 62490,
@@ -7935,7 +7935,7 @@ const DISTRICTS = [
   {
     "District": "San Jose Unified School District",
     "State": "CA",
-    "Region": "Bay Area",
+    "Region": "San Jose",
     "BA Start": 72051,
     "BA 5-Year": 86255,
     "BA 10-Year": 104011,
@@ -8049,7 +8049,7 @@ const DISTRICTS = [
   {
     "District": "La Cañada Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Los Angeles",
     "BA Start": 62754,
     "BA 5-Year": 72033,
     "BA 10-Year": 85553,
@@ -8163,7 +8163,7 @@ const DISTRICTS = [
   {
     "District": "Glendora Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Los Angeles",
     "BA Start": 55384,
     "BA 5-Year": 64186,
     "BA 10-Year": 70809,
@@ -8277,7 +8277,7 @@ const DISTRICTS = [
   {
     "District": "South Pasadena Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Los Angeles",
     "BA Start": 54525,
     "BA 5-Year": 67339,
     "BA 10-Year": 77577,
@@ -8392,7 +8392,7 @@ const DISTRICTS = [
   {
     "District": "Oxnard Union High School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Oxnard",
     "BA Start": 70895,
     "BA 5-Year": 84354,
     "BA 10-Year": 93674,
@@ -8506,7 +8506,7 @@ const DISTRICTS = [
   {
     "District": "Ocean Springs School District",
     "State": "MS",
-    "Region": "Mississippi Gulf Coast",
+    "Region": "Biloxi",
     "BA Start": 48200,
     "BA 5-Year": 51100,
     "BA 10-Year": 54000,
@@ -8623,7 +8623,7 @@ const DISTRICTS = [
   {
     "District": "Canyons School District",
     "State": "UT",
-    "Region": "Salt Lake Valley",
+    "Region": "Salt Lake City",
     "BA Start": 64200,
     "BA 5-Year": 68950,
     "BA 10-Year": 73700,
@@ -8743,7 +8743,7 @@ const DISTRICTS = [
   {
     "District": "Chapel Hill-Carrboro City Schools",
     "State": "NC",
-    "Region": "Research Triangle",
+    "Region": "Durham",
     "BA Start": 48380,
     "BA 5-Year": 52805,
     "BA 10-Year": 58233,
@@ -8857,7 +8857,7 @@ const DISTRICTS = [
   {
     "District": "San Diego Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "San Diego",
     "BA Start": 59490.98,
     "BA 5-Year": 68980,
     "BA 10-Year": 83135,
@@ -8971,7 +8971,7 @@ const DISTRICTS = [
   {
     "District": "Oakland Unified School District",
     "State": "CA",
-    "Region": "Bay Area",
+    "Region": "Oakland",
     "BA Start": 62696,
     "BA 5-Year": 67430,
     "BA 10-Year": 78360,
@@ -9085,7 +9085,7 @@ const DISTRICTS = [
   {
     "District": "Glendale Union High School District",
     "State": "AZ",
-    "Region": "Phoenix Metro",
+    "Region": "Phoenix",
     "BA Start": 51326,
     "BA 5-Year": 54376,
     "BA 10-Year": 57764,
@@ -9315,7 +9315,7 @@ const DISTRICTS = [
   {
     "District": "Arcadia Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Los Angeles",
     "BA Start": 78277,
     "BA 5-Year": 86800,
     "BA 10-Year": 99057,
@@ -9544,7 +9544,7 @@ const DISTRICTS = [
   {
     "District": "Los Angeles Unified School District",
     "State": "CA",
-    "Region": "Southern California",
+    "Region": "Los Angeles",
     "BA Start": 68966,
     "BA 5-Year": 70715,
     "BA 10-Year": 79193,
@@ -9760,7 +9760,7 @@ const DISTRICTS = [
   {
     "District": "Chandler Unified School District",
     "State": "AZ",
-    "Region": "Phoenix / East Valley",
+    "Region": "Phoenix",
     "BA Start": 55249,
     "BA 5-Year": 56877,
     "BA 10-Year": 58098,
