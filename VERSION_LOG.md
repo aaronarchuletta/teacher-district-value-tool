@@ -91,3 +91,13 @@
 - Updated Sub Pay icon artwork to the approved hand-with-dollar design.
 - Updated Demographics icon artwork to match the approved generated example.
 - Bumped cache-busting references in index.html to v=354.
+
+## Prototype 355
+- Removed the Affordability tile from the mobile district detail/profile card to reduce confusion with Salary vs Rent.
+- Desktop profile tiles and district data were unchanged.
+- Bumped cache-busting references in index.html to v=355.
+
+## Prototype 356
+- Changed the State Funding tile icon color to Dark Gold (#8C7535).
+- Increased the size of the desktop profile tile icon circles slightly for improved visibility.
+- Bumped cache-busting references in index.html to v=356.

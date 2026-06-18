@@ -2364,10 +2364,9 @@ const STATE_FIT_BOUNDS = {
 
     const highlightData = [
       {label:selectedEducationSalaryLabel(), value:salaryToRentScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
-      {label:"Affordability", value:d["Affordability Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#D39F10"},
+      {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
       {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#143865"}
     ];
@@ -2459,7 +2458,7 @@ const STATE_FIT_BOUNDS = {
     const placementLabel = placementLabelForDistrict(d);
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#D39F10"},
+      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:salaryToRentScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},

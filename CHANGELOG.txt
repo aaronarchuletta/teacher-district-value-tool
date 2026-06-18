@@ -156,3 +156,11 @@ Prototype 354 updates:
 - General tile cutoffs: Fair 60–69, Low 40–59, Very Low 0–39.
 - Fair color changed to #D39F10.
 - Updated Sub Pay and Demographics icons.
+
+Prototype 355 update:
+- Removed Affordability from the mobile profile tile set only.
+- No workbook, scoring, salary, or district data changes.
+
+Prototype 356 update:
+- State Funding tile icon color changed to #8C7535.
+- Desktop tile icon circles increased slightly in size.
