@@ -2403,7 +2403,7 @@ function renderTable() {
   function postRentIncomeScore(monthlyIncomeAfterRent) {
     const income = Number(monthlyIncomeAfterRent);
     if (!Number.isFinite(income)) return 0;
-    return clampScore(((income - 2500) / (5500 - 2500)) * 100);
+    return clampScore(((income - 2500) / (4000 - 2500)) * 100);
   }
 
   function subPayScoreForDistrict(d) {
