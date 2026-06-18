@@ -207,3 +207,24 @@
 - This is a website profile-tile display scoring update only; district data and workbook rankings were not recalculated.
 - Browser tab title and cache-busting references updated to Prototype 371.
 
+
+
+## Prototype 372 - Dynamic selected salary tile bands
+- Updated the district profile selected salary tile to use career-stage salary bands instead of the simple $50k-$85k linear scale.
+- Base scale for 0 years + Bachelor's: under $53k Very Low; $53k-$57k Low; $58k-$62k Fair; $63k-$69k Good; $70k-$74,999 Very Good; $75k+ Excellent.
+- The salary tile benchmark shifts upward by $1,500 per selected experience year and by $4,000 when Master's is selected.
+- Median Rent and Median Home Price tiles continue to reach full/Excellent at 25% of selected monthly salary or lower.
+- Display-tile logic only; district data and workbook rankings were not recalculated.
+- Browser tab title and cache-busting references updated to Prototype 372.
+
+## Prototype 373 - District region naming cleanup
+- Updated selected California district Region labels to reference the nearest big city / more familiar local market label.
+- Kern High School District: Bakersfield.
+- Clovis Unified School District: Fresno.
+- Antelope Valley Union High School District: Antelope Valley.
+- Tahoe-Truckee Unified School District: Lake Tahoe.
+- Saint Helena Unified School District: East Santa Rosa.
+- Grossmont Union High School District: San Diego.
+- Chaffey Joint Union High School District: Ontario.
+- No scoring formulas, district scores, tile logic, or workbook rankings changed.
+- Browser tab title and cache-busting references updated to Prototype 373.

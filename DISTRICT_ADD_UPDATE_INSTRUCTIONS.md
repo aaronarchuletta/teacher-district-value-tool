@@ -65,7 +65,14 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 - Ocean Springs sub pay is flagged as an unverified licensed/certified rate while preserving the workbook value.
 - Browser tab title and cache-busting references updated to Prototype 370.
 
-## Prototype 371 upload
-Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=371` or `?v=371b`.
+## Prototype 372 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=372` or `?v=372b`.
 
 Changes: salary profile tile uses softened $50k-$85k scale; Median Rent and Median Home Price profile bars are full/Excellent at 25% of selected salary or lower.
+
+
+## Prototype 372 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=372` or `?v=372b`.
+
+## Prototype 373 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=373` or `?v=373b`. This version only updates selected district Region labels; scoring and workbook formulas are unchanged.

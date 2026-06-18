@@ -1,4 +1,4 @@
-/* Prototype 370 Phase 2B scoring integration: table data uses Housing Salary Power, Career Earnings, softened selected salary scale ($50k-$85k), and updated salary-share scoring. */
+/* Prototype 372 profile salary tile scale update: selected salary tile now uses dynamic career-stage bands based on selected experience and education. */
 /* Prototype 230: pinch zoom + pan for the USA map on phones */
 function initMobileUsaMapZoom() {
   const wrap = document.querySelector(".top-map-card .usa-map-wrap");
@@ -2273,12 +2273,48 @@ function renderTable() {
     return Math.max(0, Math.min(100, score));
   }
 
+  function interpolateScore(value, lowValue, highValue, lowScore, highScore) {
+    const v = Number(value);
+    if (!Number.isFinite(v)) return null;
+    if (highValue <= lowValue) return lowScore;
+    const ratio = Math.max(0, Math.min(1, (v - lowValue) / (highValue - lowValue)));
+    return lowScore + ratio * (highScore - lowScore);
+  }
+
+  function selectedSalaryBenchmarkShift() {
+    // Dynamic profile salary tile benchmark. Base bands are for
+    // 0 years + Bachelor's, then the entire scale moves up by:
+    // +$1,500 per selected year of experience
+    // +$4,000 when Master's is selected
+    const experienceShift = Math.max(0, Number(getExperience()) || 0) * 1500;
+    const educationShift = selectedEducation === "Master's" ? 4000 : 0;
+    return experienceShift + educationShift;
+  }
+
   function selectedSalaryLevelTileScore(d) {
     const salary = Number(salaryForDistrict(d));
     if (!Number.isFinite(salary) || salary <= 0) return null;
-    // Profile salary tile scale follows the softened raw salary score scale:
-    // $50,000 = 0 and $85,000+ = 100.
-    return Math.max(0, Math.min(100, ((salary - 50000) / (85000 - 50000)) * 100));
+
+    const shift = selectedSalaryBenchmarkShift();
+    const veryLowMax = 53000 + shift;
+    const lowMax = 57000 + shift;
+    const fairMin = 58000 + shift;
+    const fairMax = 62000 + shift;
+    const goodMin = 63000 + shift;
+    const goodMax = 69000 + shift;
+    const veryGoodMin = 70000 + shift;
+    const excellentMin = 75000 + shift;
+    const excellentFull = 80000 + shift;
+
+    if (salary < veryLowMax) return Math.max(0, Math.min(39, interpolateScore(salary, veryLowMax - 10000, veryLowMax, 0, 39)));
+    if (salary <= lowMax) return interpolateScore(salary, veryLowMax, lowMax, 40, 59);
+    if (salary < fairMin) return 59.5;
+    if (salary <= fairMax) return interpolateScore(salary, fairMin, fairMax, 60, 69);
+    if (salary < goodMin) return 69.5;
+    if (salary <= goodMax) return interpolateScore(salary, goodMin, goodMax, 70, 79);
+    if (salary < veryGoodMin) return 79.5;
+    if (salary < excellentMin) return interpolateScore(salary, veryGoodMin, excellentMin, 80, 89);
+    return Math.max(90, Math.min(100, interpolateScore(salary, excellentMin, excellentFull, 90, 100)));
   }
 
   function mastersPremiumAmount(d) {

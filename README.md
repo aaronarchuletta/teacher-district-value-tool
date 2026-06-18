@@ -60,3 +60,6 @@ Color and profile tile icon system update. Replace index.html, app.js, and style
 - Rent Salary % Label and Mortgage Salary % Label are stored as numeric percentages for correct ascending/descending sorting.
 - Ocean Springs sub pay is flagged as an unverified licensed/certified rate while preserving the workbook value.
 - Browser tab title and cache-busting references updated to Prototype 370.
+
+## Prototype 373 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=373` or `?v=373b`. This version only updates selected district Region labels; scoring and workbook formulas are unchanged.
