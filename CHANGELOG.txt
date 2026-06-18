@@ -164,3 +164,12 @@ Prototype 355 update:
 Prototype 356 update:
 - State Funding tile icon color changed to #8C7535.
 - Desktop tile icon circles increased slightly in size.
+
+Prototype 357 update:
+- Desktop spacing adjusted away from screen edges.
+- Visible map rankings score columns tightened so Demographic Balance can display fully.
+- No workbook, scoring, salary, or district data changes.
+
+Prototype 358 update:
+- Restricted mouse-wheel scrolling on the desktop sortable district ranking/table area.
+- No workbook, scoring, salary, or district data changes.

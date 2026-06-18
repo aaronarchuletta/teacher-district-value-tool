@@ -101,3 +101,15 @@
 - Changed the State Funding tile icon color to Dark Gold (#8C7535).
 - Increased the size of the desktop profile tile icon circles slightly for improved visibility.
 - Bumped cache-busting references in index.html to v=356.
+
+## Prototype 357
+- Added more desktop breathing room on the left and right edges of the app.
+- Tightened visible map rankings table column spacing so the Demographic Balance header has room to display fully.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=357.
+
+## Prototype 358
+- Restricted mouse-wheel scrolling from being captured by the desktop sortable district ranking/table area.
+- Kept page scrolling outside the ranking area unchanged.
+- Kept scoring, workbook data, rankings, and formulas unchanged.
+- Bumped cache-busting references in index.html to v=358.
