@@ -268,3 +268,15 @@ Prototype 372 - Dynamic selected salary tile bands
 - Preserved the user-specified labels from Prototype 373, including Bakersfield, Fresno, Antelope Valley, Lake Tahoe, East Santa Rosa, San Diego, and Ontario.
 - No scoring formulas, district scores, tile logic, workbook formulas, or rankings were changed.
 - Browser tab title and cache-busting references updated to Prototype 374.
+
+## Prototype 375 - Port Arthur region label correction
+- Changed Port Arthur ISD region label from Beaumont-Port Arthur to Port Arthur.
+- No scoring, formulas, tile logic, rankings, or workbook values changed.
+- Browser tab title and cache-busting links updated to Prototype 375.
+
+## Prototype 376 - 10-Year Growth tile rating scale
+- Updated the district profile 10-Year Growth tile display scale only.
+- Growth tile bar now reaches full at 48% 10-year salary growth.
+- Tile labels now use these bands: under 20% Very Low; 20%-27% Low; 28%-35% Fair; 36%-41% Good; 42%-47% Very Good; 48%+ Excellent.
+- No district data, workbook formulas, rankings, or overall scoring weights were changed.
+- Browser tab title and cache-busting links updated to Prototype 376.

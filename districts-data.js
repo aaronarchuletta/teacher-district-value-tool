@@ -2457,7 +2457,7 @@ const DISTRICTS = [
     "riskMultiplier": 1,
     "subPay": 115,
     "state": "TX",
-    "region": "Beaumont-Port Arthur",
+    "region": "Port Arthur",
     "studentTeacherRatio": 13.19,
     "totalSchools": 15,
     "highSchools": 2

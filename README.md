@@ -64,5 +64,10 @@ Color and profile tile icon system update. Replace index.html, app.js, and style
 ## Prototype 373 upload
 Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=373` or `?v=373b`. This version only updates selected district Region labels; scoring and workbook formulas are unchanged.
 
-## Prototype 374 upload
-Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=374` or `?v=374b`. This version completes the district Region label cleanup across all districts; scoring and workbook formulas are unchanged.
+## Prototype 375 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=375` or `?v=375b`. This version completes the district Region label cleanup across all districts; scoring and workbook formulas are unchanged.
+
+Prototype 375 note: Port Arthur ISD region label corrected to Port Arthur. No scoring or formula changes.
+
+## Prototype 376 upload
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=376` or `?v=376b`. This version updates the district profile 10-Year Growth tile rating scale only; scoring formulas, rankings, and workbook values are unchanged.

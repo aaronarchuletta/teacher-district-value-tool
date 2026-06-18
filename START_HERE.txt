@@ -1,4 +1,4 @@
-Teacher District Value Prototype 374
+Teacher District Value Prototype 376
 
 Upload the contents of this folder to the root of your GitHub repository.
 
@@ -9,6 +9,6 @@ Required website files to replace:
 - districts-data.js
 - district-map-*.png files
 
-This prototype integrates the latest Phase 2B scoring data from the softened-salary-scale workbook and keeps the uploaded repository’s current text/visual formatting.
+This prototype updates only the district profile 10-Year Growth tile rating scale. It does not change district data, overall scoring, formulas, rankings, or workbook values.
 
-After committing/pushing, test with ?v=374 or ?v=374 if cache is stubborn.
+After committing/pushing, test with ?v=376 or ?v=376b if cache is stubborn.

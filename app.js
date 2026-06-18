@@ -2317,6 +2317,44 @@ function renderTable() {
     return Math.max(90, Math.min(100, interpolateScore(salary, excellentMin, excellentFull, 90, 100)));
   }
 
+
+  function growthTilePercent(d) {
+    const growth = Number(d["Avg Growth %"]);
+    return Number.isFinite(growth) ? growth : null;
+  }
+
+  function growthTileScore(d) {
+    const growth = growthTilePercent(d);
+    if (!Number.isFinite(growth)) return null;
+    return Math.max(0, Math.min(100, (growth / 0.48) * 100));
+  }
+
+  function growthTileRating(d) {
+    const growth = growthTilePercent(d);
+    if (!Number.isFinite(growth)) return "—";
+    if (growth >= 0.48) return "Excellent";
+    if (growth >= 0.42) return "Very Good";
+    if (growth >= 0.36) return "Good";
+    if (growth >= 0.28) return "Fair";
+    if (growth >= 0.20) return "Low";
+    return "Very Low";
+  }
+
+  function ratingColorFromLabel(label) {
+    const key = String(label || "").toLowerCase();
+    if (key === "excellent") return "#0A843D";
+    if (key === "very good") return "#489D46";
+    if (key === "good") return "#8ABB40";
+    if (key === "fair") return "#D39F10";
+    if (key === "low") return "#C8102E";
+    if (key === "very low") return "#9E1B32";
+    return "#172033";
+  }
+
+  function growthTileColor(d) {
+    return ratingColorFromLabel(growthTileRating(d));
+  }
+
   function mastersPremiumAmount(d) {
     const premium = Number(d["Master's Premium"]);
     return Number.isFinite(premium) ? Math.max(0, premium) : null;
@@ -2483,7 +2521,7 @@ function renderTable() {
 
     const highlightData = [
       {label:selectedEducationSalaryLabel(), value:selectedSalaryLevelTileScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
-      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:"10-Year Growth", value:growthTileScore(d), displayValue:fmtPct(d["Avg Growth %"]), ratingLabel:growthTileRating(d), ratingColor:growthTileColor(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
@@ -2580,7 +2618,7 @@ function renderTable() {
       {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelTileScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
-      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:growthTileScore(d), ratingLabel:growthTileRating(d), ratingColor:growthTileColor(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
       {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:salaryShareScore(mortgageSalaryShare(d)), ratingLabel:salaryShareLabel(mortgageSalaryShare(d)), ratingColor:salaryShareColor(mortgageSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
