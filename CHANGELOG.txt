@@ -227,3 +227,9 @@ Prototype 368 update:
 - Removed 75% take-home reduction from the website logic.
 - Included revised Phase 1 workbook with salary-share columns and formulas.
 - No overall ranking/scoring changes.
+
+## Prototype 369 - Antelope Valley region label
+- Updated Antelope Valley Union High School District region to `Antelope Valley, California`.
+- Updated browser tab title and cache-busting references to Prototype 369.
+- No district salary data, workbook formulas, scoring weights, overall scores, or rankings changed.
+- Built 2026-06-17 23:49 MDT.

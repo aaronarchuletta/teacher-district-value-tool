@@ -993,7 +993,7 @@ const DISTRICTS = [
   {
     "District": "Antelope Valley Union High School District",
     "State": "CA",
-    "Region": "Northern Los Angeles County / Antelope Valley",
+    "Region": "Antelope Valley, California",
     "BA Start": 64000,
     "BA 5-Year": 80000,
     "BA 10-Year": 94000,
@@ -1084,7 +1084,7 @@ const DISTRICTS = [
     "Student Teacher Ratio": 21.5,
     "Daily Sub Pay": 230,
     "state": "CA",
-    "region": "Northern Los Angeles County / Antelope Valley",
+    "region": "Antelope Valley, California",
     "studentTeacherRatio": 21.5,
     "subPay": 230,
     "totalSchools": 12,

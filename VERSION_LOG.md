@@ -192,3 +192,9 @@
 - Included revised Phase 1 workbook with clearer Housing Salary Share columns and formulas.
 - Overall scoring formulas, district data, and rankings are unchanged.
 - Bumped cache-busting references in index.html to v=368.
+
+## Prototype 369 - Antelope Valley region label
+- Updated Antelope Valley Union High School District region to `Antelope Valley, California`.
+- Updated browser tab title and cache-busting references to Prototype 369.
+- No district salary data, workbook formulas, scoring weights, overall scores, or rankings changed.
+- Built 2026-06-17 23:49 MDT.
