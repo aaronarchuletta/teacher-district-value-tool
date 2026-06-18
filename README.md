@@ -99,3 +99,8 @@ Upload the contents of this ZIP to the GitHub repo root, replacing matching file
 - Because Post-Rent Income remains a 10% component of Housing Salary Power, this affects Housing Salary Power, Base Value, Overall Value, and rankings in the workbook/dynamic website scoring.
 - Visible Housing Salary Power and Post-Rent Income profile tiles remain removed from the profile display.
 - Browser title/cache-busting updated to Prototype 381.
+
+## Prototype 382
+- Mobile map results sheet now renders all matching districts instead of limiting the list to the first 12.
+- Median Rent and Median Home Price profile tiles now again show the human-readable percent-of-salary value while keeping the rating bar tied to the aligned salary-share score.
+- Website cache-busting updated to v382.

@@ -1,4 +1,3 @@
-/* Prototype 379 dynamic tile-to-overall alignment: profile tiles, ranking scores, and overall value now recalculate in the browser for the selected education + experience filter combination. */
 /* Prototype 230: pinch zoom + pan for the USA map on phones */
 function initMobileUsaMapZoom() {
   const wrap = document.querySelector(".top-map-card .usa-map-wrap");
@@ -312,13 +311,13 @@ initMobileUsaMapZoom();
 })();
 
 const scoreCols = [
-    "Selected Salary Level Score","Growth Score","Master's Premium Score","Career Earnings Score","Housing Salary Power Score",
+    "Salary Score","Growth Score","Master's Premium Score","Affordability Score",
     "Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score","Overall Value Score",
     "Pre-Risk Overall Value Score", "Stability Score", "State Funding Context Score"
   ];
   const columns = [
     "District","State","Overall Value Score","State Funding Context Score","Stability Score",
-    "Avg Growth %","Housing Salary Power Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
+    "Avg Growth %","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
   ];
   const columnLabels = {
     "Overall Value Score": "Final Value",
@@ -328,9 +327,6 @@ const scoreCols = [
     "Stability Score": "Stability",
     "State Funding Context Score": "State Funding",
     "Salary Score": "Salary",
-    "Selected Salary Level Score": "Salary Level",
-    "Career Earnings Score": "Career Earnings",
-    "Housing Salary Power Score": "Housing Power",
     "Avg Growth %": "Salary Growth %",
     "Growth Score": "Growth",
     "Master's Premium Score": "Master’s Premium",
@@ -407,7 +403,7 @@ const scoreCols = [
   const stateAvgScore = state => {
     const rows = DISTRICTS.filter(d => d.State === state);
     if (!rows.length) return null;
-    return rows.reduce((s,d)=>s+(d["Overall Value Score"]||0),0)/rows.length;
+    return rows.reduce((s,d)=>s+overallValueScore(d),0)/rows.length;
   };
 
   const stateNames = {
@@ -458,7 +454,7 @@ const scoreCols = [
     if (selectedState) {
       const stateName = stateNames[selectedState] || selectedState;
       const items = [...getFiltered().filter(d => d.State === selectedState)]
-        .sort((a,b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
+        .sort((a,b) => overallValueScore(b) - overallValueScore(a));
       return {
         mode: "state",
         label: `${stateName} matching districts`,
@@ -472,7 +468,7 @@ const scoreCols = [
     // after the user pans or zooms the map.
     if (isDesktopMapViewportRankingMode()) {
       const items = [...getMapViewportRows()]
-        .sort((a,b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
+        .sort((a,b) => overallValueScore(b) - overallValueScore(a));
       return {
         mode: "viewport",
         label: "Visible map districts",
@@ -480,7 +476,7 @@ const scoreCols = [
       };
     }
 
-    const items = [...getFiltered()].sort((a,b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
+    const items = [...getFiltered()].sort((a,b) => overallValueScore(b) - overallValueScore(a));
     return {
       mode: "national",
       label: "Filtered national browse",
@@ -834,7 +830,7 @@ const scoreCols = [
     }
     if (showTenPlusHighSchoolsOnly && !(Number(d["Number of High Schools"]) >= 10)) return false;
     if (showStableDistrictsOnly && !isStableDistrict(d)) return false;
-    if (showOverall60PlusOnly && !(Number(d["Overall Value Score"]) >= 60)) return false;
+    if (showOverall60PlusOnly && !(overallValueScore(d) >= 60)) return false;
     if (showBalancedDemographicsOnly && !isBalancedDemographicsDistrict(d)) return false;
     return true;
   }
@@ -867,7 +863,6 @@ const scoreCols = [
   }
 
   function getFiltered() {
-    recomputeDynamicScores();
     const st = stateFilter.value, reg = regionFilter.value;
     return DISTRICTS.filter(d =>
       (!st || d.State === st) &&
@@ -1567,7 +1562,7 @@ const STATE_FIT_BOUNDS = {
         <div class="district-map-popup">
           <strong>${escapeHtml(d.District)}</strong>
           <span>${escapeHtml(d.Region ?? "—")}, ${escapeHtml(d.State ?? "—")}</span>
-          <span>Overall: ${fmtScore(d["Overall Value Score"])} · Salary: ${fmtMoney(salaryForDistrict(d))}</span>
+          <span>Overall: ${fmtScore(overallValueScore(d))} · Salary: ${fmtMoney(salaryForDistrict(d))}</span>
         </div>
       `);
 
@@ -1699,7 +1694,7 @@ const STATE_FIT_BOUNDS = {
     const list = document.getElementById("mobileMapResultsList");
     if (!sheet || !summary || !list) return;
 
-    const sorted = [...rows].sort((a,b)=>(b["Overall Value Score"]||0)-(a["Overall Value Score"]||0));
+    const sorted = [...rows].sort((a,b)=>overallValueScore(b)-overallValueScore(a));
     summary.textContent = mapDistrictMatchMessage(sorted.length);
 
     if (!sorted.length) {
@@ -1707,9 +1702,9 @@ const STATE_FIT_BOUNDS = {
       return;
     }
 
-    list.innerHTML = sorted.slice(0, 12).map((d, i) => {
+    list.innerHTML = sorted.map((d, i) => {
       const salary = salaryForDistrict(d);
-      const overall = d["Overall Value Score"];
+      const overall = overallValueScore(d);
       const overallBg = scoreColor(overall);
       const subPay = d["Daily Sub Pay"] ?? d["Licensed Sub Pay"];
       const totalSchools = d["Total Schools Counted"] ?? ((d["Number of Elementary Schools"] || 0) + (d["Number of Middle Schools"] || 0) + (d["Number of High Schools"] || 0) + (d["Other / Specialty Schools"] || 0));
@@ -1770,7 +1765,7 @@ const STATE_FIT_BOUNDS = {
 
     const rows = getMapViewportRows();
     const zoom = leafletUsaMap.getZoom();
-    const sorted = [...rows].sort((a,b)=>(b["Overall Value Score"]||0)-(a["Overall Value Score"]||0));
+    const sorted = [...rows].sort((a,b)=>overallValueScore(b)-overallValueScore(a));
     const topMatches = sorted.slice(0, 3);
     const viewportSummaryText = topMatches.length
       ? `${rows.length} matching district${rows.length === 1 ? "" : "s"} visible at zoom ${zoom.toFixed(1)}. Pan or pinch-zoom to change the list.`
@@ -1802,7 +1797,7 @@ const STATE_FIT_BOUNDS = {
           <div class="rank">#${i+1} in View</div>
           <h3>${escapeHtml(d.District)}</h3>
           <div class="top-card-grid">
-            <div><span>Overall</span>${fmtScore(d["Overall Value Score"])}</div>
+            <div><span>Overall</span>${fmtScore(overallValueScore(d))}</div>
             <div><span>Salary</span>${fmtMoney(salaryForDistrict(d))}</div>
             <div><span>High Schools</span>${fmtCount(d["Number of High Schools"])}</div>
             <div><span>Region</span>${escapeHtml(d.Region ?? "—")}</div>
@@ -1859,11 +1854,19 @@ const STATE_FIT_BOUNDS = {
     }
     if (["Avg Start Salary","Avg 10-Year Salary","Median Home Price","Median Rent","Licensed Sub Pay","Master's Premium"].includes(col)) return fmtMoney(v);
     if (col === "Avg Growth %") {
-      const growthScore = d["Growth Score"];
+      const growthScore = dynamicGrowthScore(d);
       const title = Number.isFinite(Number(growthScore))
         ? `Salary Growth Score: ${fmtScore(Number(growthScore))}`
         : "Salary Growth";
       return `<span class="score-pill" style="background:${scoreColor(growthScore)}" title="${title}">${fmtPct(v)}</span>`;
+    }
+    if (col === "Overall Value Score") {
+      const overall = overallValueScore(d);
+      return `<span class="score-pill" style="background:${scoreColor(overall)}">${fmtScore(overall)}</span>`;
+    }
+    if (col === "Affordability Score") {
+      const housingScore = housingSalaryPowerScore(d);
+      return `<span class="score-pill" style="background:${scoreColor(housingScore)}">${fmtScore(housingScore)}</span>`;
     }
     if (col === "Student-Teacher Ratio Score") {
       const ratio = d["Student-Teacher Ratio"];
@@ -1920,7 +1923,7 @@ const STATE_FIT_BOUNDS = {
       </div>
       ${visibleRows.map((d, i) => {
         const salary = salaryForDistrict(d);
-        const overall = d["Overall Value Score"];
+        const overall = overallValueScore(d);
         const overallBg = scoreColor(overall);
         const subPay = d["Daily Sub Pay"] ?? d["Licensed Sub Pay"];
         const totalSchools = d["Total Schools Counted"] ?? ((d["Number of Elementary Schools"] || 0) + (d["Number of Middle Schools"] || 0) + (d["Number of High Schools"] || 0) + (d["Other / Specialty Schools"] || 0));
@@ -2026,6 +2029,18 @@ function renderTable() {
     updateRankingsViewportCopy(rows.length);
     rows.sort((a,b) => {
       let av = a[sortKey], bv = b[sortKey];
+      if (sortKey === "Overall Value Score") {
+        av = overallValueScore(a);
+        bv = overallValueScore(b);
+      }
+      if (sortKey === "Growth Score") {
+        av = dynamicGrowthScore(a);
+        bv = dynamicGrowthScore(b);
+      }
+      if (sortKey === "Affordability Score") {
+        av = housingSalaryPowerScore(a);
+        bv = housingSalaryPowerScore(b);
+      }
       if (sortKey === "Stability Score") {
         av = stabilityDisplayScore(a);
         bv = stabilityDisplayScore(b);
@@ -2101,7 +2116,7 @@ function renderTable() {
     setCalloutArrowForState(st);
     const allStateRows = DISTRICTS.filter(d => d.State === st);
     const matchingRows = rows.filter(d => d.State === st);
-    const sorted = [...matchingRows].sort((a,b)=>(b["Overall Value Score"]||0)-(a["Overall Value Score"]||0));
+    const sorted = [...matchingRows].sort((a,b)=>overallValueScore(b)-overallValueScore(a));
     const best = sorted[0];
     const highestSalary = [...matchingRows].sort((a,b)=>(salaryForDistrict(b)||0)-(salaryForDistrict(a)||0))[0];
 
@@ -2125,7 +2140,7 @@ function renderTable() {
           <div class="rank">#${i+1} Match</div>
           <h3>${d.District}</h3>
           <div class="top-card-grid">
-            <div><span>Overall</span>${fmtScore(d["Overall Value Score"])}</div>
+            <div><span>Overall</span>${fmtScore(overallValueScore(d))}</div>
             <div><span>Salary</span>${fmtMoney(salaryForDistrict(d))}</div>
             <div><span>High Schools</span>${fmtCount(d["Number of High Schools"])}</div>
             <div><span>Region</span>${d.Region ?? "—"}</div>
@@ -2223,9 +2238,6 @@ function renderTable() {
   function salaryShareScore(share) {
     const s = Number(share);
     if (!Number.isFinite(s)) return null;
-    // Dynamic scoring scale used by both the profile tiles and Overall Value:
-    // 25% of selected monthly salary or lower = 100 / Excellent.
-    // 30% = 70, 35% = 60, 40% = 40, and 50%+ = 0.
     if (s <= 0.25) return 100;
     if (s <= 0.30) return 100 - ((s - 0.25) / 0.05) * 30;
     if (s <= 0.35) return 70 - ((s - 0.30) / 0.05) * 10;
@@ -2242,6 +2254,93 @@ function renderTable() {
   function salaryShareColor(share) {
     const score = salaryShareScore(share);
     return Number.isFinite(Number(score)) ? mobileScoreColor(score) : "#172033";
+  }
+  function selectedSalaryLevelScore(d) {
+    const salary = Number(salaryForDistrict(d));
+    if (!Number.isFinite(salary)) return null;
+    const adjustment = (getExperience() * 1500) + (selectedEducation === "Master's" ? 4000 : 0);
+    const adjustedSalary = salary - adjustment;
+    if (adjustedSalary < 53000) {
+      return Math.max(0, Math.min(39.99, ((adjustedSalary - 45000) / 8000) * 39.99));
+    }
+    if (adjustedSalary < 58000) return 40 + ((adjustedSalary - 53000) / 5000) * 20;
+    if (adjustedSalary < 63000) return 60 + ((adjustedSalary - 58000) / 5000) * 10;
+    if (adjustedSalary < 70000) return 70 + ((adjustedSalary - 63000) / 7000) * 10;
+    if (adjustedSalary < 75000) return 80 + ((adjustedSalary - 70000) / 5000) * 10;
+    return Math.min(100, 90 + ((adjustedSalary - 75000) / 5000) * 10);
+  }
+
+  function dynamicGrowthScore(d) {
+    const growth = Number(d["Avg Growth %"]);
+    if (!Number.isFinite(growth)) return null;
+    return Math.max(0, Math.min(100, (growth / 0.48) * 100));
+  }
+
+  function dynamicMastersPremiumScore(d) {
+    const premium = Number(d["Master's Premium"]);
+    if (!Number.isFinite(premium)) return null;
+    return Math.max(0, Math.min(100, (premium / 15000) * 100));
+  }
+
+  function postRentMonthlyIncome(d) {
+    const monthlySalary = selectedMonthlySalary(d);
+    const rent = Number(d["Median Rent"]);
+    if (!Number.isFinite(monthlySalary) || !Number.isFinite(rent)) return null;
+    return monthlySalary - rent;
+  }
+
+  function postRentIncomeScore(d) {
+    const postRent = postRentMonthlyIncome(d);
+    if (!Number.isFinite(postRent)) return null;
+    return Math.max(0, Math.min(100, ((postRent - 2500) / (4000 - 2500)) * 100));
+  }
+
+  function housingSalaryPowerScore(d) {
+    const rentScore = salaryShareScore(rentSalaryShare(d));
+    const mortgageScore = salaryShareScore(mortgageSalaryShare(d));
+    const priceSqFtScore = Number(d["Price per Sq Ft Score"]);
+    const postRentScore = postRentIncomeScore(d);
+    return (Number.isFinite(rentScore) ? rentScore : 0) * 0.35
+      + (Number.isFinite(mortgageScore) ? mortgageScore : 0) * 0.30
+      + (Number.isFinite(priceSqFtScore) ? priceSqFtScore : 0) * 0.25
+      + (Number.isFinite(postRentScore) ? postRentScore : 0) * 0.10;
+  }
+
+  function careerEarningsScore(d) {
+    const salaryScore = selectedSalaryLevelScore(d);
+    const growthScore = dynamicGrowthScore(d);
+    const mastersScore = dynamicMastersPremiumScore(d);
+    return (Number.isFinite(salaryScore) ? salaryScore : 0) * 0.50
+      + (Number.isFinite(growthScore) ? growthScore : 0) * 0.35
+      + (Number.isFinite(mastersScore) ? mastersScore : 0) * 0.15;
+  }
+
+  function baseValueScore(d) {
+    const housing = housingSalaryPowerScore(d);
+    const career = careerEarningsScore(d);
+    const classSize = Number(d["Student-Teacher Ratio Score"]);
+    const subPay = Number(d["Sub Pay Score"]);
+    const demographics = Number(d["Demographic Balance Score"]);
+    const stateFunding = Number(d["State Funding Context Score"] ?? d["State Funding Score"]);
+    return (Number.isFinite(housing) ? housing : 0) * 0.35
+      + (Number.isFinite(career) ? career : 0) * 0.30
+      + (Number.isFinite(classSize) ? classSize : 0) * 0.10
+      + (Number.isFinite(subPay) ? subPay : 0) * 0.10
+      + (Number.isFinite(demographics) ? demographics : 0) * 0.10
+      + (Number.isFinite(stateFunding) ? stateFunding : 0) * 0.05;
+  }
+
+  function overallValueScore(d) {
+    const base = baseValueScore(d);
+    const riskMultiplier = Number.isFinite(Number(d["Risk Multiplier"]))
+      ? Number(d["Risk Multiplier"])
+      : (Number.isFinite(Number(d["Work Environment Multiplier"])) ? Number(d["Work Environment Multiplier"]) : 1);
+    return Math.max(0, Math.min(100, base * riskMultiplier));
+  }
+
+  function tileMoneyWithShare(amount, share) {
+    const pct = salaryShareLabel(share);
+    return `${fmtMoney(amount)}<span class="salary-share-subvalue">${pct}</span>`;
   }
 
   function formatClassSizeRatio(value) {
@@ -2272,80 +2371,6 @@ function renderTable() {
       score = 90 + Math.min(10, ((ratio - 3.5) / 0.5) * 10);
     }
     return Math.max(0, Math.min(100, score));
-  }
-
-  function interpolateScore(value, lowValue, highValue, lowScore, highScore) {
-    const v = Number(value);
-    if (!Number.isFinite(v)) return null;
-    if (highValue <= lowValue) return lowScore;
-    const ratio = Math.max(0, Math.min(1, (v - lowValue) / (highValue - lowValue)));
-    return lowScore + ratio * (highScore - lowScore);
-  }
-
-  function selectedSalaryBenchmarkShift() {
-    // Dynamic profile salary tile benchmark. Base bands are for
-    // 0 years + Bachelor's, then the entire scale moves up by:
-    // +$1,500 per selected year of experience
-    // +$4,000 when Master's is selected
-    const experienceShift = Math.max(0, Number(getExperience()) || 0) * 1500;
-    const educationShift = selectedEducation === "Master's" ? 4000 : 0;
-    return experienceShift + educationShift;
-  }
-
-  function selectedSalaryLevelTileScore(d) {
-    const salary = Number(salaryForDistrict(d));
-    if (!Number.isFinite(salary) || salary <= 0) return null;
-
-    // Exact dynamic salary score formula from the tile-aligned workbook.
-    // The base bands are for 0 years + Bachelor's; we subtract the selected
-    // benchmark shift so the same bands move upward with experience/education.
-    const effectiveSalary = salary - selectedSalaryBenchmarkShift();
-    if (effectiveSalary < 53000) {
-      return Math.max(0, Math.min(39.99, ((effectiveSalary - 45000) / 8000) * 39.99));
-    }
-    if (effectiveSalary < 58000) return 40 + ((effectiveSalary - 53000) / 5000) * 20;
-    if (effectiveSalary < 63000) return 60 + ((effectiveSalary - 58000) / 5000) * 10;
-    if (effectiveSalary < 70000) return 70 + ((effectiveSalary - 63000) / 7000) * 10;
-    if (effectiveSalary < 75000) return 80 + ((effectiveSalary - 70000) / 5000) * 10;
-    return Math.min(100, 90 + ((effectiveSalary - 75000) / 5000) * 10);
-  }
-
-
-  function growthTilePercent(d) {
-    const growth = Number(d["Avg Growth %"]);
-    return Number.isFinite(growth) ? growth : null;
-  }
-
-  function growthTileScore(d) {
-    const growth = growthTilePercent(d);
-    if (!Number.isFinite(growth)) return null;
-    return Math.max(0, Math.min(100, (growth / 0.48) * 100));
-  }
-
-  function growthTileRating(d) {
-    const growth = growthTilePercent(d);
-    if (!Number.isFinite(growth)) return "—";
-    if (growth >= 0.48) return "Excellent";
-    if (growth >= 0.42) return "Very Good";
-    if (growth >= 0.36) return "Good";
-    if (growth >= 0.28) return "Fair";
-    if (growth >= 0.20) return "Low";
-    return "Very Low";
-  }
-
-  function ratingColorFromLabel(label) {
-    const key = String(label || "").toLowerCase();
-    if (key === "excellent") return "#0A843D";
-    if (key === "very good") return "#489D46";
-    if (key === "good") return "#8ABB40";
-    if (key === "fair") return "#D39F10";
-    if (key === "low") return "#C8102E";
-    if (key === "very low") return "#9E1B32";
-    return "#172033";
-  }
-
-  function growthTileColor(d) {
-    return ratingColorFromLabel(growthTileRating(d));
   }
 
   function mastersPremiumAmount(d) {
@@ -2382,84 +2407,6 @@ function renderTable() {
     return mobileScoreColor(mastersPremiumTileScore(d));
   }
 
-
-  function clampScore(value) {
-    const n = Number(value);
-    if (!Number.isFinite(n)) return 0;
-    return Math.max(0, Math.min(100, n));
-  }
-
-  function estimatedMonthlyMortgagePaymentFromPrice(price) {
-    const p = Number(price);
-    if (!Number.isFinite(p) || p <= 0) return null;
-    const downPaymentRate = 0.20;
-    const annualInterestRate = 0.07;
-    const monthlyInterestRate = annualInterestRate / 12;
-    const months = 30 * 12;
-    const principal = p * (1 - downPaymentRate);
-    return principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) / (Math.pow(1 + monthlyInterestRate, months) - 1);
-  }
-
-  function postRentIncomeScore(monthlyIncomeAfterRent) {
-    const income = Number(monthlyIncomeAfterRent);
-    if (!Number.isFinite(income)) return 0;
-    return clampScore(((income - 2500) / (4000 - 2500)) * 100);
-  }
-
-  function subPayScoreForDistrict(d) {
-    const daily = Number(d["Daily Sub Pay"] ?? d["Licensed Sub Pay"]);
-    const rent = Number(d["Median Rent"]);
-    if (!Number.isFinite(daily) || !Number.isFinite(rent) || rent <= 0) return 0;
-    const housingPower = daily * 20 / rent;
-    const vendorPenalty = (d.District === "North Clackamas School District" || d.District === "Provo City School District") ? 0.6 : 1;
-    d["Sub Pay Housing Power"] = housingPower;
-    d["Sub Pay Score"] = clampScore(((housingPower - 1) / (3 - 1)) * 100) * vendorPenalty;
-    return d["Sub Pay Score"];
-  }
-
-  function recomputeDynamicScores() {
-    DISTRICTS.forEach(d => {
-      const selectedSalary = Number(salaryForDistrict(d));
-      const selectedMonthly = Number.isFinite(selectedSalary) && selectedSalary > 0 ? selectedSalary / 12 : 0;
-      const rent = Number(d["Median Rent"]);
-      const homePrice = Number(d["Median Home Price"]);
-      const pricePerSqFt = Number(d["Median Home Price per Sq Ft"]);
-      const studentTeacherRatio = Number(d["Student-Teacher Ratio"]);
-      const riskMultiplier = Number.isFinite(Number(d["Risk Multiplier"])) ? Number(d["Risk Multiplier"]) : 1;
-
-      d["Selected Salary"] = selectedSalary || 0;
-      d["Selected Monthly Salary"] = selectedMonthly;
-      d["Selected Salary Level Score"] = clampScore(selectedSalaryLevelTileScore(d));
-
-      d["Growth Score"] = clampScore(growthTileScore(d));
-      d["Master's Premium Score"] = clampScore((Number(d["Master's Premium"]) || 0) / 15000 * 100);
-      d["Career Earnings Score"] = clampScore(0.5 * d["Selected Salary Level Score"] + 0.35 * d["Growth Score"] + 0.15 * d["Master's Premium Score"]);
-
-      const rentShare = selectedMonthly > 0 && Number.isFinite(rent) && rent > 0 ? rent / selectedMonthly : null;
-      d["Rent % of Salary"] = Number.isFinite(rentShare) ? rentShare : 0;
-      d["Rent Salary Share Score"] = clampScore(salaryShareScore(rentShare));
-      d["Rent Salary % Label"] = Number.isFinite(rentShare) ? rentShare : 0;
-
-      const mortgagePayment = estimatedMonthlyMortgagePaymentFromPrice(homePrice);
-      const mortgageShare = selectedMonthly > 0 && Number.isFinite(mortgagePayment) && mortgagePayment > 0 ? mortgagePayment / selectedMonthly : null;
-      d["Est. Monthly Mortgage P&I"] = Number.isFinite(mortgagePayment) ? mortgagePayment : 0;
-      d["Mortgage % of Salary"] = Number.isFinite(mortgageShare) ? mortgageShare : 0;
-      d["Mortgage Salary Share Score"] = clampScore(salaryShareScore(mortgageShare));
-      d["Mortgage Salary % Label"] = Number.isFinite(mortgageShare) ? mortgageShare : 0;
-
-      d["Post-Rent Monthly Income"] = selectedMonthly - (Number.isFinite(rent) ? rent : 0);
-      d["Post-Rent Income Score"] = postRentIncomeScore(d["Post-Rent Monthly Income"]);
-      d["Price per Sq Ft Score"] = clampScore(((800 - pricePerSqFt) / (800 - 150)) * 100);
-      d["Housing Salary Power Score"] = clampScore(0.35 * d["Rent Salary Share Score"] + 0.30 * d["Mortgage Salary Share Score"] + 0.25 * d["Price per Sq Ft Score"] + 0.10 * d["Post-Rent Income Score"]);
-
-      d["Student-Teacher Ratio Score"] = clampScore(((25 - studentTeacherRatio) / (25 - 12)) * 100);
-      subPayScoreForDistrict(d);
-
-      d["Stability Score"] = riskMultiplier >= 1 ? 100 : riskMultiplier >= 0.95 ? 75 : riskMultiplier >= 0.9 ? 60 : riskMultiplier >= 0.85 ? 40 : riskMultiplier >= 0.8 ? 25 : 0;
-      d["Base Value Score"] = clampScore(0.35 * d["Housing Salary Power Score"] + 0.30 * d["Career Earnings Score"] + 0.10 * d["Student-Teacher Ratio Score"] + 0.10 * d["Sub Pay Score"] + 0.10 * d["Demographic Balance Score"] + 0.05 * d["State Funding Context Score"]);
-      d["Overall Value Score"] = clampScore(d["Base Value Score"] * riskMultiplier);
-    });
-  }
 
   function stateFundingDisplayValue(d) {
     const v = Number(d["State Current Spending Per Pupil"]);
@@ -2545,7 +2492,7 @@ function renderTable() {
     }
 
     const d = selectedDistrict;
-    const overall = d["Overall Value Score"];
+    const overall = overallValueScore(d);
     nameEl.innerHTML = formatDistrictNameForProfile(d.District);
     regionEl.textContent = `${d.Region ?? "—"}, ${stateNames[d.State] || d.State || "—"}`;
     const overallBg = scoreColor(overall);
@@ -2591,8 +2538,8 @@ function renderTable() {
     if (nextEl) nextEl.disabled = !items.length;
 
     const highlightData = [
-      {label:selectedEducationSalaryLabel(), value:d["Selected Salary Level Score"], displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
-      {label:"10-Year Growth", value:d["Growth Score"], displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryLevelScore(d), displayValue:selectedSalaryDollarValue(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:"10-Year Growth", value:dynamicGrowthScore(d), displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
@@ -2667,10 +2614,10 @@ function renderTable() {
     const desktopProfileOverallScore = document.getElementById("desktopProfileOverallScore");
     if (desktopProfileRegion) desktopProfileRegion.textContent = `${d.Region ?? "—"}, ${stateNames[d.State] || d.State || "—"}`;
     if (desktopProfileOverallScore) {
-      const overallBg = scoreColor(d["Overall Value Score"]);
+      const overallBg = scoreColor(overallValueScore(d));
       desktopProfileOverallScore.style.background = overallBg;
       desktopProfileOverallScore.style.borderColor = overallBg;
-      desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup(fmtScore(d["Overall Value Score"]), "desktop");
+      desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup(fmtScore(overallValueScore(d)), "desktop");
     }
     const desktopProfileFavoriteBtn = document.getElementById("desktopProfileFavoriteBtn");
     const desktopProfileInfoBtn = document.getElementById("desktopProfileInfoBtn");
@@ -2687,13 +2634,12 @@ function renderTable() {
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
-      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:d["Selected Salary Level Score"], icon:mobileDetailIcon("salary"), color:"#0A843D"},
+      {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
-      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:d["Growth Score"], icon:mobileDetailIcon("growth"), color:"#0A843D"},
-      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:d["Master's Premium Score"], icon:mobileDetailIcon("masters"), color:"#0A843D"},
-      {label:"Median Home Price", value:fmtMoney(d["Median Home Price"]), score:d["Mortgage Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Median Rent", value:fmtMoney(d["Median Rent"]), score:d["Rent Salary Share Score"], icon:mobileDetailIcon("affordability"), color:"#0047BA"},
-      {label:"Demographic Balance", value:fmtScore(d["Demographic Balance Score"]), score:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
+      {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:dynamicGrowthScore(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
+      {label:"Master’s Premium", value:fmtMoney(d["Master's Premium"]), score:mastersPremiumTileScore(d), ratingLabel:mastersPremiumTileRating(d), ratingColor:mastersPremiumTileColor(d), icon:mobileDetailIcon("masters"), color:"#0A843D"},
+      {label:"Median Home Price", value:tileMoneyWithShare(d["Median Home Price"], mortgageSalaryShare(d)), score:salaryShareScore(mortgageSalaryShare(d)), ratingLabel:salaryShareLabel(mortgageSalaryShare(d)), ratingColor:salaryShareColor(mortgageSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
+      {label:"Median Rent", value:tileMoneyWithShare(d["Median Rent"], rentSalaryShare(d)), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
       {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Schools Counted", value:d["Total Schools Counted"] ?? "—"}
@@ -2944,7 +2890,6 @@ function renderTable() {
   }
 
   function renderAll(profile=true) {
-    recomputeDynamicScores();
     updateCurrentSearchSummary();
     updateExtraFilterBadge();
     updateLegendVisibility();
@@ -3373,7 +3318,7 @@ function favoriteDistrictCard(d) {
     <h3>${escapeHtml(d.District)}</h3>
     <div class="favorite-card-region">${escapeHtml(d.Region ?? "—")}, ${escapeHtml(stateNames[d.State] || d.State || "—")}</div>
     <div class="favorite-card-grid">
-      <div class="favorite-card-stat"><span>Overall</span><strong>${fmtScore(d["Overall Value Score"])}</strong></div>
+      <div class="favorite-card-stat"><span>Overall</span><strong>${fmtScore(overallValueScore(d))}</strong></div>
       <div class="favorite-card-stat"><span>${selectedEducationSalaryLabel()}</span><strong>${fmtMoney(salaryForDistrict(d))}</strong></div>
       <div class="favorite-card-stat"><span>Rent</span><strong>${fmtMoney(d["Median Rent"])}</strong></div>
       <div class="favorite-card-stat"><span>Class Size</span><strong>${formatClassSizeRatio(d["Student-Teacher Ratio"])}</strong></div>
@@ -3387,7 +3332,7 @@ function renderFavoritesPanel() {
   const favoriteRows = [...favoriteDistricts]
     .map(name => DISTRICTS.find(d => d.District === name))
     .filter(Boolean)
-    .sort((a, b) => (b["Overall Value Score"] || 0) - (a["Overall Value Score"] || 0));
+    .sort((a, b) => overallValueScore(b) - overallValueScore(a));
 
   if (!favoriteRows.length) {
     grid.innerHTML = `<div class="favorites-empty">No favorite districts yet. Use the heart button beside a district to save it here.</div>`;

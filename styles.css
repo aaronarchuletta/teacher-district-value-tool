@@ -8779,3 +8779,13 @@ body.mobile-filters-open #mobileDistrictSearchResults {
     box-sizing: border-box !important;
   }
 }
+
+/* Prototype 382: show percent-of-salary sublabels inside rent/home price tiles. */
+.salary-share-subvalue {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #667085;
+}

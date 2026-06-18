@@ -2,3 +2,8 @@
 Prototype 381 - Selected Salary Level Score formula fix
 - Replaced the Selected Salary Level Score workbook formula with a legacy Excel-compatible formula that does not use LET().
 - Same dynamic salary scoring model retained; this is a workbook compatibility/correction pass.
+
+## Prototype 382
+- Mobile map results sheet now renders all matching districts instead of limiting the list to the first 12.
+- Median Rent and Median Home Price profile tiles now again show the human-readable percent-of-salary value while keeping the rating bar tied to the aligned salary-share score.
+- Website cache-busting updated to v382.

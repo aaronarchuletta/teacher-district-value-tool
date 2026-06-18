@@ -287,3 +287,8 @@
 - Replaced the Selected Salary Level Score workbook formula with a legacy Excel-compatible formula that does not use LET().
 - Preserves the same dynamic salary band logic: base 0-year Bachelor's bands, +$1,500 per selected year, +$4,000 for Master's.
 - No scoring weights, tile logic, district data, or housing formulas were changed.
+
+## Prototype 382
+- Mobile map results sheet now renders all matching districts instead of limiting the list to the first 12.
+- Median Rent and Median Home Price profile tiles now again show the human-readable percent-of-salary value while keeping the rating bar tied to the aligned salary-share score.
+- Website cache-busting updated to v382.
