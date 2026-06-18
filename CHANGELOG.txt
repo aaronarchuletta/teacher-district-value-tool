@@ -215,3 +215,9 @@ Prototype 366 update:
 - Score Guide text changed to Overall Score Guide.
 - Median Rent and Median Home Price now use housing-cost labels instead of general Low/Very Low labels.
 - No workbook, scoring, salary, or district data changes.
+
+Prototype 367 update:
+- Median Rent and Median Home Price profile tiles now use Take-Home Share labels.
+- Rent is rated as rent divided by estimated monthly take-home pay.
+- Home price is rated using an estimated monthly mortgage payment divided by estimated monthly take-home pay.
+- No workbook, scoring, salary, or district ranking changes.

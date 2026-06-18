@@ -170,3 +170,16 @@
 - Kept the same affordability score/color direction: greener means lower housing cost, redder means higher housing cost.
 - No workbook, scoring, formulas, or district data changes.
 - Bumped cache-busting references in index.html to v=366.
+
+## Prototype 367
+- Changed Median Rent and Median Home Price tile labels from generic housing-cost labels to take-home-share labels:
+  - Very Low Take-Home Share
+  - Low Take-Home Share
+  - Moderate Take-Home Share
+  - High Take-Home Share
+  - Very High Take-Home Share.
+- Median Rent now rates median monthly rent as a share of estimated monthly take-home pay.
+- Median Home Price now estimates a monthly principal-and-interest mortgage payment using 20% down, 30-year fixed, 7% interest, then rates that payment as a share of estimated monthly take-home pay.
+- Estimated take-home pay uses 75% of the selected annual salary.
+- This is a profile tile display-label change only; workbook data, scoring formulas, and rankings were unchanged.
+- Bumped cache-busting references in index.html to v=367.
