@@ -125,3 +125,49 @@ Prototype 385
 - Updated Flagstaff MA Start, MA 5-Year, MA 10-Year, Master’s Premium, growth/career scoring, overall value score, and source note.
 - No scoring formula or scoring weight changes.
 - Browser tab title and cache-busting links updated to Prototype 387.
+
+## Prototype 395
+- Kept Prototype 392/394 fixed rating swatch colors for sortable district ranking boxes.
+- Changed Low and Very Low ranking score-box text to white for contrast.
+- Overall score badge subheading is black on non-red backgrounds and white only on Low/Very Low red backgrounds.
+- Default/no-selection district profile score badge now uses the platform Good green (#8ABB40).
+- Kept sortable ranking scrollbar restoration from Prototype 395.
+- No workbook, district data, formulas, scoring weights, or rankings changed.
+
+
+
+## Prototype 396
+- Added an always-visible in-app draggable scrollbar rail to the desktop sortable district rankings table.
+- Kept Prototype 395 color and overall score subheading behavior.
+- Test with `?v=396`.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+
+## Prototype 397
+- Removed the State Funding column from the sortable district rankings table.
+- Changed the district profile tile header to "State Funding Per Student".
+- Changed the State Funding Per Student tile value to display the dollar amount only, without the "/student" suffix.
+- Kept scoring formulas, weights, district data, rankings, color behavior, and profile bar scaling unchanged.
+- Updated browser title and cache-busting references to Prototype 397.
+- Test with `?v=397`.
+
+## Prototype 401
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=401`.
+
+Changes: restored Prototype 397 sortable-ranking spacing, shifted only the columns right of Final Value slightly right, protected Demographic Balance from the scrollbar area, and extended the header shading to the rankings edge. No scoring, workbook, formula, data, or ranking changes.
+
+
+## Prototype 401
+- Reverted to the working Prototype 399-style column spacing after Prototype 400 caused clipped ranking columns.
+- Filled the remaining header shading gaps without moving or resizing score columns.
+- Fixed Class Size column color logic so identical displayed rounded ratios, such as 17:1, use the same color.
+- The displayed ratio remains rounded.
+- No workbook, scoring formulas, weights, district data, or rankings changed.
+
+
+## Prototype 403
+- Corrected Final Value / Overall Score coloring to use the Overall Score Guide thresholds while keeping the approved platform swatch colors.
+- Final Value now uses a smooth gradient across the platform swatches: dark red below 40, red at 40, gold at 50, Good green at 60, Very Good green at 70, and Excellent green at 80+.
+- Overall Score badges use the same swatch-based Overall Value color logic.
+- Component columns continue using the regular component score scale.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+- Test with `?v=403`.

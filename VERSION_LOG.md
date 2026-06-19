@@ -318,3 +318,67 @@ Prototype 385
 - Updated Flagstaff MA Start, MA 5-Year, MA 10-Year, Master’s Premium, growth/career scoring, overall value score, and source note.
 - No scoring formula or scoring weight changes.
 - Browser tab title and cache-busting links updated to Prototype 387.
+
+## Prototype 392 - Unified rating colors and lower-band bar scaling
+- Rebuilt from the current working prototype files provided by the user, preserving the standard active file structure and district map image files.
+- Updated sortable district ranking score-box colors to use the fixed rating swatches instead of the relative Excel-style gradient.
+- Updated Fair rating color to gold (#D39F10).
+- Kept the values displayed in ranking boxes and district profile tiles unchanged.
+- Kept profile tile bars visually simple: no dot marker, no visible segmented scale, and no tile legend.
+- Updated profile tile bar visual scaling only: Very Low maxes at 20% of the bar, Low maxes at 40%, Fair at 70%, Good at 80%, Very Good at 90%, and Excellent at 100%.
+- No workbook, district data, scoring formulas, scoring weights, or rankings were changed.
+- Browser title and cache-busting references updated to Prototype 392.
+
+## Prototype 395
+- Kept Prototype 392/394 fixed rating swatch colors for sortable district ranking boxes.
+- Changed Low and Very Low ranking score-box text to white for contrast.
+- Overall score badge subheading is black on non-red backgrounds and white only on Low/Very Low red backgrounds.
+- Default/no-selection district profile score badge now uses the platform Good green (#8ABB40).
+- Kept sortable ranking scrollbar restoration from Prototype 394.
+- No workbook, district data, formulas, scoring weights, or rankings changed.
+
+
+## Prototype 396
+- Added an always-visible in-app draggable scrollbar rail to the desktop sortable district rankings table, so users can click and drag even when the operating system hides native scrollbars.
+- Kept Prototype 395 color and overall score subheading behavior.
+- Updated browser title and cache-busting references to Prototype 396.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+
+## Prototype 397
+- Removed the State Funding column from the sortable district rankings table.
+- Changed the district profile tile header to "State Funding Per Student".
+- Changed the State Funding Per Student tile value to display the dollar amount only, without the "/student" suffix.
+- Kept scoring formulas, weights, district data, rankings, color behavior, and profile bar scaling unchanged.
+- Updated browser title and cache-busting references to Prototype 397.
+- Test with `?v=397`.
+
+## Prototype 401
+- Restored Prototype 397 sortable ranking column spacing after the Prototype 398 spacing experiment.
+- Shifted only columns to the right of Final Value slightly right while keeping District, State, and Final Value anchored.
+- Kept Demographic Balance readable and away from the custom rankings scrollbar.
+- Extended the rankings header shading across the full table/scrollbar area.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+
+
+## Prototype 401
+- Reverted to the working Prototype 399-style column spacing after Prototype 400 caused clipped ranking columns.
+- Filled the remaining header shading gaps without moving or resizing score columns.
+- Fixed Class Size column color logic so identical displayed rounded ratios, such as 17:1, use the same color.
+- The displayed ratio remains rounded.
+- No workbook, scoring formulas, weights, district data, or rankings changed.
+
+
+## Prototype 403
+- Corrected Final Value / Overall Score coloring to use the Overall Score Guide thresholds while keeping the approved platform swatch colors.
+- Final Value now uses a smooth gradient across the platform swatches: dark red below 40, red at 40, gold at 50, Good green at 60, Very Good green at 70, and Excellent green at 80+.
+- Overall Score badges use the same swatch-based Overall Value color logic.
+- Component columns continue using the regular component score scale.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+- Test with `?v=403`.
+
+
+## Prototype 406 - map default zoom and marker border update
+- Tightened the default/home USA map viewport to fit currently visible district markers as closely as possible without excluding any district from view.
+- Added fractional Leaflet zoom support for a closer initial fit.
+- Reduced the white border on district location circles from 3px to 2px.
+- No workbook, formulas, scoring weights, district data, or rankings changed.

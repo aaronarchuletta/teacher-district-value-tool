@@ -1,23 +1,14 @@
-Teacher District Value Prototype 377
+Teacher District Value Prototype 396
 
-Upload the contents of this folder to the root of your GitHub repository.
+Upload all files in this folder to the same GitHub Pages directory.
+Do not upload only index.html; it depends on styles.css, districts-data.js, app.js, and the district-map-*.png image files.
 
-Required website files to replace:
-- index.html
-- app.js
-- styles.css
-- districts-data.js
-- district-map-*.png files
+After upload, test with:
+index.html?v=396
 
-This prototype updates only the district profile 10-Year Growth tile rating scale. It does not change district data, overall scoring, formulas, rankings, or workbook values.
-
-After committing/pushing, test with ?v=377 or ?v=377b if cache is stubborn.
-
-
-## Prototype 378 tile-to-overall scoring alignment
-- Updated workbook/data scoring so Overall Value follows the current profile tile scales.
-- Selected Salary Level Score now uses the dynamic career-stage salary bands.
-- Growth Score now uses a 48% growth ceiling.
-- Rent and mortgage salary-share scores now reach 100 at 25% of selected salary or lower.
-- Recalculated Career Earnings, Housing Salary Power, Base Value, Overall Value, and ranks from the updated score fields.
-- Browser title/cache-busting updated to Prototype 378.
+Changes:
+- Adds an always-visible draggable scrollbar rail to the desktop sortable district rankings table.
+- Keeps Prototype 395 score colors and profile score text behavior.
+- No workbook, formulas, scoring weights, district data, or rankings changed.
+Prototype 402: Upload all files to the same GitHub Pages directory and test with ?v=402.
+Restores Prototype 397 rankings spacing while shifting only columns right of Final Value slightly right. No data/scoring changes.

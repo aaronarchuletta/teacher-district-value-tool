@@ -138,3 +138,19 @@ Prototype 385
 - Updated Flagstaff MA Start, MA 5-Year, MA 10-Year, Master’s Premium, growth/career scoring, overall value score, and source note.
 - No scoring formula or scoring weight changes.
 - Browser tab title and cache-busting links updated to Prototype 387.
+
+## Prototype 395
+- Kept Prototype 392/394 fixed rating swatch colors for sortable district ranking boxes.
+- Changed Low and Very Low ranking score-box text to white for contrast.
+- Overall score badge subheading is black on non-red backgrounds and white only on Low/Very Low red backgrounds.
+- Default/no-selection district profile score badge now uses the platform Good green (#8ABB40).
+- Kept sortable ranking scrollbar restoration from Prototype 394.
+- No workbook, district data, formulas, scoring weights, or rankings changed.
+
+
+
+## Prototype 396
+- Added an always-visible in-app draggable scrollbar rail to the desktop sortable district rankings table.
+- Kept Prototype 395 color and overall score subheading behavior.
+- Test with `?v=396`.
+- No workbook, formulas, scoring weights, district data, or rankings changed.

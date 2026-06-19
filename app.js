@@ -316,7 +316,7 @@ const scoreCols = [
     "Pre-Risk Overall Value Score", "Stability Score", "State Funding Context Score"
   ];
   const columns = [
-    "District","State","Overall Value Score","State Funding Context Score","Stability Score",
+    "District","State","Overall Value Score","Stability Score",
     "Avg Growth %","Affordability Score","Student-Teacher Ratio Score","Sub Pay Score","Demographic Balance Score"
   ];
   const columnLabels = {
@@ -374,21 +374,96 @@ const scoreCols = [
   const fmtScore = v => (typeof v === "number") ? v.toFixed(1) : "—";
   const fmtCount = v => (typeof v === "number" && Number.isFinite(v)) ? v.toLocaleString("en-US", {maximumFractionDigits:0}) : "—";
   const scoreColor = v => {
-    if (typeof v !== "number") return "#d1d5db";
-    const clamp = Math.max(0, Math.min(100, v));
-    const red = [248, 105, 107];     // Excel-style low value
-    const yellow = [255, 235, 132];  // Excel-style midpoint
-    const green = [99, 190, 123];    // Excel-style high value
-    const mix = (a, b, t) => Math.round(a + (b - a) * t);
-    const start = clamp < 50 ? red : yellow;
-    const end = clamp < 50 ? yellow : green;
-    const t = clamp < 50 ? clamp / 50 : (clamp - 50) / 50;
-    const rgb = [
-      mix(start[0], end[0], t),
-      mix(start[1], end[1], t),
-      mix(start[2], end[2], t)
-    ];
-    return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    // Prototype 394: return to fixed rating swatches for sortable ranking boxes.
+    const n = Number(v);
+    if (!Number.isFinite(n)) return "#d1d5db";
+    if (n >= 90) return "#0A843D";      // Excellent
+    if (n >= 80) return "#489D46";      // Very Good
+    if (n >= 70) return "#8ABB40";      // Good
+    if (n >= 60) return "#D39F10";      // Fair / gold
+    if (n >= 40) return "#C8102E";      // Low
+    return "#9E1B32";                  // Very Low
+  };
+
+  const scoreTextColor = v => {
+    // Prototype 395: both red score boxes use white text for contrast.
+    const n = Number(v);
+    return Number.isFinite(n) && n < 60 ? "#ffffff" : "#111827";
+  };
+
+  const overallValueStops = [
+    // Prototype 406: Overall / Final Value still follows the Overall Score Guide thresholds,
+    // but the platform swatches are re-anchored so scores start warming toward gold at 70,
+    // reach full Fair gold by 60, stay gold throughout the 50s, then transition to Low red by 40
+    // and Very Low dark red below 40.
+    { score: 0, color: "#9E1B32" },      // Very Low red anchor
+    { score: 40, color: "#C8102E" },     // Low red anchor
+    { score: 50, color: "#D39F10" },     // Fair gold
+    { score: 60, color: "#D39F10" },     // Keep full Fair gold through the 50s and up to 60
+    { score: 70, color: "#8ABB40" },     // Start transition from green toward gold at 70
+    { score: 80, color: "#0A843D" },     // Excellent green anchor
+    { score: 100, color: "#0A843D" }
+  ];
+
+  const hexToRgb = hex => {
+    const clean = String(hex || "").replace("#", "");
+    if (clean.length !== 6) return { r: 209, g: 213, b: 219 };
+    return {
+      r: parseInt(clean.slice(0, 2), 16),
+      g: parseInt(clean.slice(2, 4), 16),
+      b: parseInt(clean.slice(4, 6), 16)
+    };
+  };
+
+  const rgbToHex = ({ r, g, b }) => `#${[r, g, b].map(v => Math.round(v).toString(16).padStart(2, "0")).join("")}`;
+
+  const blendHex = (a, b, t) => {
+    const ca = hexToRgb(a);
+    const cb = hexToRgb(b);
+    const clamped = Math.max(0, Math.min(1, Number(t) || 0));
+    return rgbToHex({
+      r: ca.r + (cb.r - ca.r) * clamped,
+      g: ca.g + (cb.g - ca.g) * clamped,
+      b: ca.b + (cb.b - ca.b) * clamped
+    });
+  };
+
+  const overallValueColor = v => {
+    // Prototype 403: Overall / Final Value uses the Overall Score Guide thresholds,
+    // with the approved platform swatches blended as a smooth gradient.
+    const n = Number(v);
+    if (!Number.isFinite(n)) return "#d1d5db";
+    const score = Math.max(0, Math.min(100, n));
+    for (let i = 0; i < overallValueStops.length - 1; i++) {
+      const a = overallValueStops[i];
+      const b = overallValueStops[i + 1];
+      if (score <= b.score) {
+        const span = b.score - a.score || 1;
+        return blendHex(a.color, b.color, (score - a.score) / span);
+      }
+    }
+    return overallValueStops[overallValueStops.length - 1].color;
+  };
+
+  const overallValueTextColor = v => {
+    // Prototype 406/405: Overall / Final Value uses white text in the red ranges;
+    // black returns once the score reaches the Fair gold range and above.
+    const n = Number(v);
+    return Number.isFinite(n) && n < 50 ? "#ffffff" : "#111827";
+  };
+
+  const overallBadgeSubtextColor = v => overallValueTextColor(v);
+
+  const scorePillStyle = v => `background:${scoreColor(v)};color:${scoreTextColor(v)}`;
+  const overallPillStyle = v => `background:${overallValueColor(v)};color:${overallValueTextColor(v)}`;
+
+  // Prototype 401: the Class Size column displays rounded ratios (for example, 17:1).
+  // Use the same rounded ratio for the color score so identical displayed ratios always share the same color.
+  const classSizeColorScoreFromDisplayedRatio = ratio => {
+    const rounded = Math.round(Number(ratio));
+    if (!Number.isFinite(rounded) || rounded <= 0) return NaN;
+    const score = ((25 - rounded) / (25 - 12)) * 100;
+    return Math.max(0, Math.min(100, score));
   };
 
   const stabilityDisplayScore = d => {
@@ -1400,6 +1475,8 @@ const STATE_FIT_BOUNDS = {
         zoom: 4,
         minZoom: 3,
         maxZoom: 12,
+        zoomSnap: 0.25,
+        zoomDelta: 0.5,
         zoomControl: true,
         scrollWheelZoom: false,
         touchZoom: true,
@@ -1439,8 +1516,12 @@ const STATE_FIT_BOUNDS = {
     setTimeout(() => {
       if (leafletUsaMap) {
         leafletUsaMap.invalidateSize(true);
-        if (window.matchMedia("(max-width: 768px)").matches && !document.body.classList.contains("has-selected-district")) {
-          fitMobileMapToAllAvailableDistricts();
+        if (!document.body.classList.contains("has-selected-district")) {
+          if (window.matchMedia("(max-width: 768px)").matches) {
+            fitMobileMapToAllAvailableDistricts();
+          } else {
+            fitMapToDefaultDistrictView(false);
+          }
         }
       }
     }, 50);
@@ -1463,11 +1544,11 @@ const STATE_FIT_BOUNDS = {
     });
   }
 
-  function fitMapToDefaultDistrictView() {
+  function fitMapToDefaultDistrictView(animate = true) {
     if (!leafletUsaMap || !window.L) return;
     const rows = getMapDefaultRows();
     if (!rows.length) {
-      leafletUsaMap.setView([39.5, -98.35], 4);
+      leafletUsaMap.setView([39.5, -98.35], 4.75, { animate });
       return;
     }
     const latLngs = rows
@@ -1476,17 +1557,19 @@ const STATE_FIT_BOUNDS = {
       .map(point => L.latLng(point[0], point[1]));
 
     if (!latLngs.length) {
-      leafletUsaMap.setView([39.5, -98.35], 4);
+      leafletUsaMap.setView([39.5, -98.35], 4.75, { animate });
       return;
     }
 
     const bounds = L.latLngBounds(latLngs);
     if (latLngs.length === 1) {
-      leafletUsaMap.setView(latLngs[0], 8);
+      leafletUsaMap.setView(latLngs[0], 8, { animate });
     } else {
-      leafletUsaMap.fitBounds(bounds.pad(0.2), {
+      // Prototype 406: use a tighter default/home viewport so the USA map starts as close as possible
+      // while still keeping every currently matching district marker in view.
+      leafletUsaMap.fitBounds(bounds.pad(0.04), {
         maxZoom: 7,
-        animate: true
+        animate
       });
     }
   }
@@ -1705,7 +1788,7 @@ const STATE_FIT_BOUNDS = {
     list.innerHTML = sorted.map((d, i) => {
       const salary = salaryForDistrict(d);
       const overall = overallValueScore(d);
-      const overallBg = scoreColor(overall);
+      const overallBg = overallValueColor(overall);
       const subPay = d["Daily Sub Pay"] ?? d["Licensed Sub Pay"];
       const totalSchools = d["Total Schools Counted"] ?? ((d["Number of Elementary Schools"] || 0) + (d["Number of Middle Schools"] || 0) + (d["Number of High Schools"] || 0) + (d["Other / Specialty Schools"] || 0));
       return `<article class="mobile-ranking-card" data-mobile-map-district="${escapeAttr(d.District)}">
@@ -1716,7 +1799,7 @@ const STATE_FIT_BOUNDS = {
             <p>${escapeHtml(d.Region ?? "—")}, ${escapeHtml(d.State ?? "—")}</p>
           </div>
           ${favoriteButton(d.District, "mobile-ranking-favorite")}
-          <div class="mobile-ranking-score" style="background:${overallBg}; border-color:${overallBg}; color:#172033;">${fmtScore(overall)}<span>Overall</span></div>
+          <div class="mobile-ranking-score" style="background:${overallBg}; border-color:${overallBg}; color:${overallValueTextColor(overall)};">${fmtScore(overall)}<span style="color:${overallBadgeSubtextColor(overall)};">Overall</span></div>
         </div>
         <div class="mobile-ranking-metrics">
           <div class="mobile-ranking-metric"><span>${selectedEducationSalaryLabel()}</span><strong>${fmtMoney(salary)}</strong></div>
@@ -1858,31 +1941,32 @@ const STATE_FIT_BOUNDS = {
       const title = Number.isFinite(Number(growthScore))
         ? `Salary Growth Score: ${fmtScore(Number(growthScore))}`
         : "Salary Growth";
-      return `<span class="score-pill" style="background:${scoreColor(growthScore)}" title="${title}">${fmtPct(v)}</span>`;
+      return `<span class="score-pill" style="${scorePillStyle(growthScore)}" title="${title}">${fmtPct(v)}</span>`;
     }
     if (col === "Overall Value Score") {
       const overall = overallValueScore(d);
-      return `<span class="score-pill" style="background:${scoreColor(overall)}">${fmtScore(overall)}</span>`;
+      return `<span class="score-pill" style="${overallPillStyle(overall)}" title="Overall Value: ${fmtScore(overall)}. Color follows the Overall Score Guide.">${fmtScore(overall)}</span>`;
     }
     if (col === "Affordability Score") {
       const housingScore = housingSalaryPowerScore(d);
-      return `<span class="score-pill" style="background:${scoreColor(housingScore)}">${fmtScore(housingScore)}</span>`;
+      return `<span class="score-pill" style="${scorePillStyle(housingScore)}">${fmtScore(housingScore)}</span>`;
     }
     if (col === "Student-Teacher Ratio Score") {
       const ratio = d["Student-Teacher Ratio"];
       const classSizeScore = d["Student-Teacher Ratio Score"];
+      const displayColorScore = classSizeColorScoreFromDisplayedRatio(ratio);
       const title = Number.isFinite(Number(classSizeScore))
-        ? `Class Size Score: ${fmtScore(Number(classSizeScore))}`
+        ? `Class Size Score: ${fmtScore(Number(classSizeScore))}. Color is based on the displayed rounded ratio so identical ratios match visually.`
         : "Student-Teacher Ratio";
-      return `<span class="score-pill" style="background:${scoreColor(classSizeScore)}" title="${title}">${formatClassSizeRatio(ratio)}</span>`;
+      return `<span class="score-pill" style="${scorePillStyle(displayColorScore)}" title="${title}">${formatClassSizeRatio(ratio)}</span>`;
     }
     if (["White %","Hispanic %","Asian %","Black %","Other %"].includes(col)) return fmtWholePct(v);
     if (col === "Work Environment Multiplier") return typeof v === "number" ? `${Math.round(v * 100)}%` : "—";
     if (col === "Stability Score") {
       const stability = stabilityDisplayScore(d);
-      return `<span class="score-pill" style="background:${scoreColor(stability)}" title="Stability Score: ${fmtScore(stability)}. Lower scores mean higher layoff/work-environment risk.">${fmtScore(stability)}</span>`;
+      return `<span class="score-pill" style="${scorePillStyle(stability)}" title="Stability Score: ${fmtScore(stability)}. Lower scores mean higher layoff/work-environment risk.">${fmtScore(stability)}</span>`;
     }
-    if (scoreCols.includes(col)) return `<span class="score-pill" style="background:${scoreColor(v)}">${fmtScore(v)}</span>`;
+    if (scoreCols.includes(col)) return `<span class="score-pill" style="${scorePillStyle(v)}">${fmtScore(v)}</span>`;
     return v ?? "—";
   }
 
@@ -1924,7 +2008,7 @@ const STATE_FIT_BOUNDS = {
       ${visibleRows.map((d, i) => {
         const salary = salaryForDistrict(d);
         const overall = overallValueScore(d);
-        const overallBg = scoreColor(overall);
+        const overallBg = overallValueColor(overall);
         const subPay = d["Daily Sub Pay"] ?? d["Licensed Sub Pay"];
         const totalSchools = d["Total Schools Counted"] ?? ((d["Number of Elementary Schools"] || 0) + (d["Number of Middle Schools"] || 0) + (d["Number of High Schools"] || 0) + (d["Other / Specialty Schools"] || 0));
         return `<article class="mobile-ranking-card" data-district="${escapeAttr(d.District)}">
@@ -1935,7 +2019,7 @@ const STATE_FIT_BOUNDS = {
               <p>${escapeHtml(d.Region ?? "—")}, ${escapeHtml(d.State ?? "—")}</p>
             </div>
             ${favoriteButton(d.District, "mobile-ranking-favorite")}
-            <div class="mobile-ranking-score" style="background:${overallBg}; border-color:${overallBg}; color:#172033;">${fmtScore(overall)}<span>Overall</span></div>
+            <div class="mobile-ranking-score" style="background:${overallBg}; border-color:${overallBg}; color:${overallValueTextColor(overall)};">${fmtScore(overall)}<span style="color:${overallBadgeSubtextColor(overall)};">Overall</span></div>
           </div>
           <div class="mobile-ranking-metrics">
             <div class="mobile-ranking-metric"><span>${selectedEducationSalaryLabel()}</span><strong>${fmtMoney(salary)}</strong></div>
@@ -2201,7 +2285,22 @@ function renderTable() {
   function mobileScoreWidth(score) {
     const n = Number(score);
     if (!Number.isFinite(n)) return 0;
-    return Math.max(0, Math.min(100, n));
+    const clamp = Math.max(0, Math.min(100, n));
+    const mapRange = (value, inMin, inMax, outMin, outMax) => {
+      if (inMax <= inMin) return outMin;
+      const t = Math.max(0, Math.min(1, (value - inMin) / (inMax - inMin)));
+      return outMin + (outMax - outMin) * t;
+    };
+
+    // Visual-only bar scaling. Rating thresholds remain unchanged, but the
+    // bar endpoints are compressed for the lower bands so Very Low ends at
+    // 20% of the track and Low ends at 40% of the track.
+    if (clamp < 40) return mapRange(clamp, 0, 40, 0, 20);
+    if (clamp < 60) return mapRange(clamp, 40, 60, 20, 40);
+    if (clamp < 70) return mapRange(clamp, 60, 70, 40, 70);
+    if (clamp < 80) return mapRange(clamp, 70, 80, 70, 80);
+    if (clamp < 90) return mapRange(clamp, 80, 90, 80, 90);
+    return mapRange(clamp, 90, 100, 90, 100);
   }
 
   function selectedMonthlySalary(d) {
@@ -2409,7 +2508,7 @@ function renderTable() {
 
   function stateFundingDisplayValue(d) {
     const v = Number(d["State Current Spending Per Pupil"]);
-    return Number.isFinite(v) ? `${fmtMoney(v)}/student` : "—";
+    return Number.isFinite(v) ? fmtMoney(v) : "—";
   }
 
   function mobileStateFundingDisplayValue(d) {
@@ -2470,10 +2569,10 @@ function renderTable() {
     if (!selectedDistrict) {
       nameEl.textContent = "Select a district";
       regionEl.textContent = "Choose a district to view details.";
-      scoreEl.style.color = "";
-      scoreEl.style.background = "";
-      scoreEl.style.borderColor = "";
-      scoreEl.innerHTML = buildScoreBadgeMarkup("—", "mobile");
+      scoreEl.style.color = "#172033";
+      scoreEl.style.background = "#8ABB40";
+      scoreEl.style.borderColor = "#8ABB40";
+      scoreEl.innerHTML = buildScoreBadgeMarkup("—", "mobile", "#111827");
       if (favoriteBtnEl) favoriteBtnEl.hidden = true;
       if (infoBtnEl) infoBtnEl.hidden = true;
       if (utilityStackEl) utilityStackEl.hidden = true;
@@ -2494,11 +2593,11 @@ function renderTable() {
     const overall = overallValueScore(d);
     nameEl.innerHTML = formatDistrictNameForProfile(d.District);
     regionEl.textContent = `${d.Region ?? "—"}, ${stateNames[d.State] || d.State || "—"}`;
-    const overallBg = scoreColor(overall);
+    const overallBg = overallValueColor(overall);
     scoreEl.style.background = overallBg;
     scoreEl.style.borderColor = overallBg;
-    scoreEl.style.color = "#172033";
-    scoreEl.innerHTML = buildScoreBadgeMarkup(fmtScore(overall), "mobile");
+    scoreEl.style.color = scoreTextColor(overall);
+    scoreEl.innerHTML = buildScoreBadgeMarkup(fmtScore(overall), "mobile", overallBadgeSubtextColor(overall));
     if (utilityStackEl) utilityStackEl.hidden = false;
     if (favoriteBtnEl) {
       favoriteBtnEl.hidden = false;
@@ -2591,9 +2690,10 @@ function renderTable() {
       const desktopProfileOverallScore = document.getElementById("desktopProfileOverallScore");
       if (desktopProfileRegion) desktopProfileRegion.textContent = "Choose a district to view details.";
       if (desktopProfileOverallScore) {
-        desktopProfileOverallScore.style.background = "";
-        desktopProfileOverallScore.style.borderColor = "";
-        desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup("—", "desktop");
+        desktopProfileOverallScore.style.background = "#8ABB40";
+        desktopProfileOverallScore.style.borderColor = "#8ABB40";
+        desktopProfileOverallScore.style.color = "#172033";
+        desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup("—", "desktop", "#111827");
       }
       const desktopProfileFavoriteBtn = document.getElementById("desktopProfileFavoriteBtn");
       const desktopProfileInfoBtn = document.getElementById("desktopProfileInfoBtn");
@@ -2613,10 +2713,12 @@ function renderTable() {
     const desktopProfileOverallScore = document.getElementById("desktopProfileOverallScore");
     if (desktopProfileRegion) desktopProfileRegion.textContent = `${d.Region ?? "—"}, ${stateNames[d.State] || d.State || "—"}`;
     if (desktopProfileOverallScore) {
-      const overallBg = scoreColor(overallValueScore(d));
+      const overall = overallValueScore(d);
+      const overallBg = overallValueColor(overall);
       desktopProfileOverallScore.style.background = overallBg;
       desktopProfileOverallScore.style.borderColor = overallBg;
-      desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup(fmtScore(overallValueScore(d)), "desktop");
+      desktopProfileOverallScore.style.color = overallValueTextColor(overall);
+      desktopProfileOverallScore.innerHTML = buildScoreBadgeMarkup(fmtScore(overall), "desktop", overallBadgeSubtextColor(overall));
     }
     const desktopProfileFavoriteBtn = document.getElementById("desktopProfileFavoriteBtn");
     const desktopProfileInfoBtn = document.getElementById("desktopProfileInfoBtn");
@@ -2632,7 +2734,7 @@ function renderTable() {
     const placementLabel = placementLabelForDistrict(d);
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
-      {label:"State Funding", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
+      {label:"State Funding Per Student", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:dynamicGrowthScore(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
@@ -3184,9 +3286,9 @@ function escapeAttr(value) {
 }
 
 
-function buildScoreBadgeMarkup(valueDisplay, mode) {
+function buildScoreBadgeMarkup(valueDisplay, mode, subtextColor = "#111827") {
   const label = mode === "mobile" ? "Overall Value Score" : "Overall score";
-  return `${valueDisplay}<span>${label}</span>`;
+  return `${valueDisplay}<span style="color:${subtextColor} !important">${label}</span>`;
 }
 
 function setDesktopScoreGuideOpen(open) {
@@ -3934,4 +4036,125 @@ initMobileUsaMapZoom();
   moveArrows();
   window.addEventListener("resize", moveArrows);
   new MutationObserver(moveArrows).observe(document.body, { childList: true, subtree: true });
+})();
+
+/* Prototype 396: add an always-visible draggable scrollbar to the desktop rankings table. */
+(function initRankingsDragScrollbar() {
+  const desktopQuery = window.matchMedia("(min-width: 901px)");
+
+  function setupRankingsScrollbar() {
+    if (!desktopQuery.matches) return;
+    const wrap = document.querySelector(".rankings-card .table-wrap");
+    if (!wrap || wrap.dataset.rankingsDragScrollbarReady === "true") return;
+
+    const shell = document.createElement("div");
+    shell.className = "rankings-scroll-shell";
+    wrap.parentNode.insertBefore(shell, wrap);
+    shell.appendChild(wrap);
+
+    const rail = document.createElement("div");
+    rail.className = "rankings-drag-scrollbar";
+    rail.setAttribute("aria-hidden", "true");
+
+    const thumb = document.createElement("div");
+    thumb.className = "rankings-drag-thumb";
+    rail.appendChild(thumb);
+    shell.appendChild(rail);
+
+    wrap.dataset.rankingsDragScrollbarReady = "true";
+
+    let dragging = false;
+    let startY = 0;
+    let startScrollTop = 0;
+
+    function getRailMetrics() {
+      const railHeight = rail.clientHeight;
+      const maxScroll = Math.max(0, wrap.scrollHeight - wrap.clientHeight);
+      const thumbHeight = maxScroll > 0
+        ? Math.max(44, Math.min(railHeight, (wrap.clientHeight / wrap.scrollHeight) * railHeight))
+        : railHeight;
+      const maxThumbTop = Math.max(0, railHeight - thumbHeight);
+      return { railHeight, maxScroll, thumbHeight, maxThumbTop };
+    }
+
+    function updateThumb() {
+      const { maxScroll, thumbHeight, maxThumbTop } = getRailMetrics();
+      if (maxScroll <= 1) {
+        rail.hidden = true;
+        return;
+      }
+      rail.hidden = false;
+      const thumbTop = maxScroll > 0 ? (wrap.scrollTop / maxScroll) * maxThumbTop : 0;
+      thumb.style.height = `${thumbHeight}px`;
+      thumb.style.transform = `translateY(${thumbTop}px)`;
+    }
+
+    function scrollFromPointer(clientY) {
+      const { maxScroll, maxThumbTop } = getRailMetrics();
+      const deltaY = clientY - startY;
+      const scrollDelta = maxThumbTop > 0 ? (deltaY / maxThumbTop) * maxScroll : 0;
+      wrap.scrollTop = startScrollTop + scrollDelta;
+    }
+
+    thumb.addEventListener("pointerdown", event => {
+      dragging = true;
+      startY = event.clientY;
+      startScrollTop = wrap.scrollTop;
+      rail.classList.add("is-dragging");
+      thumb.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+    });
+
+    thumb.addEventListener("pointermove", event => {
+      if (!dragging) return;
+      scrollFromPointer(event.clientY);
+      event.preventDefault();
+    });
+
+    function endDrag(event) {
+      if (!dragging) return;
+      dragging = false;
+      rail.classList.remove("is-dragging");
+      thumb.releasePointerCapture?.(event.pointerId);
+    }
+
+    thumb.addEventListener("pointerup", endDrag);
+    thumb.addEventListener("pointercancel", endDrag);
+
+    rail.addEventListener("pointerdown", event => {
+      if (event.target === thumb) return;
+      const rect = rail.getBoundingClientRect();
+      const { maxScroll, maxThumbTop, thumbHeight } = getRailMetrics();
+      const desiredTop = Math.min(Math.max(0, event.clientY - rect.top - thumbHeight / 2), maxThumbTop);
+      wrap.scrollTop = maxThumbTop > 0 ? (desiredTop / maxThumbTop) * maxScroll : 0;
+      event.preventDefault();
+    });
+
+    wrap.addEventListener("scroll", updateThumb, { passive: true });
+    window.addEventListener("resize", updateThumb);
+
+    const tbody = wrap.querySelector("tbody");
+    if (tbody) {
+      new MutationObserver(updateThumb).observe(tbody, { childList: true, subtree: true });
+    }
+
+    updateThumb();
+    setTimeout(updateThumb, 50);
+    setTimeout(updateThumb, 250);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupRankingsScrollbar);
+  } else {
+    setupRankingsScrollbar();
+  }
+
+  desktopQuery.addEventListener("change", () => {
+    setTimeout(setupRankingsScrollbar, 50);
+  });
+
+  new MutationObserver(() => setupRankingsScrollbar()).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
 })();
