@@ -360,6 +360,11 @@ const scoreCols = [
     maxHomePrice: HOME_PRICE_MAX
   };
 
+  // Prototype 406: Housing Preference defaults to Any/Blended. Selecting Renting or Buying
+  // dynamically changes the Affordability column and Overall Value calculation.
+  let activeHousingPreference = "any";
+  let pendingHousingPreference = "any";
+
   let showTenPlusHighSchoolsOnly = false;
   let showStableDistrictsOnly = false;
   let showOverall60PlusOnly = false;
@@ -429,7 +434,7 @@ const scoreCols = [
   };
 
   const overallValueColor = v => {
-    // Prototype 403: Overall / Final Value uses the Overall Score Guide thresholds,
+    // Prototype 406: Overall / Final Value uses the Overall Score Guide thresholds,
     // with the approved platform swatches blended as a smooth gradient.
     const n = Number(v);
     if (!Number.isFinite(n)) return "#d1d5db";
@@ -457,7 +462,7 @@ const scoreCols = [
   const scorePillStyle = v => `background:${scoreColor(v)};color:${scoreTextColor(v)}`;
   const overallPillStyle = v => `background:${overallValueColor(v)};color:${overallValueTextColor(v)}`;
 
-  // Prototype 401: the Class Size column displays rounded ratios (for example, 17:1).
+  // Prototype 406: the Class Size column displays rounded ratios (for example, 17:1).
   // Use the same rounded ratio for the color score so identical displayed ratios always share the same color.
   const classSizeColorScoreFromDisplayedRatio = ratio => {
     const rounded = Math.round(Number(ratio));
@@ -751,6 +756,7 @@ const scoreCols = [
 
   function countActiveHousingFilters() {
     let count = 0;
+    if (activeHousingPreference !== "any") count++;
     if (activeHousingFilters.minRent > RENT_MIN || activeHousingFilters.maxRent < RENT_MAX) count++;
     if (activeHousingFilters.minHomePrice > HOME_PRICE_MIN || activeHousingFilters.maxHomePrice < HOME_PRICE_MAX) count++;
     if (showTenPlusHighSchoolsOnly) count++;
@@ -787,11 +793,18 @@ const scoreCols = [
     fillEl.style.right = `${rightPct}%`;
   }
 
+  function syncHousingPreferenceControls() {
+    document.querySelectorAll('input[name="housingPreference"]').forEach(input => {
+      input.checked = input.value === pendingHousingPreference;
+    });
+  }
+
   function syncHousingFilterControls() {
     if (minRentFilter) minRentFilter.value = String(pendingHousingFilters.minRent);
     if (maxRentFilter) maxRentFilter.value = String(pendingHousingFilters.maxRent);
     if (minHomePriceFilter) minHomePriceFilter.value = String(pendingHousingFilters.minHomePrice);
     if (maxHomePriceFilter) maxHomePriceFilter.value = String(pendingHousingFilters.maxHomePrice);
+    syncHousingPreferenceControls();
     updateHousingReadouts();
   }
 
@@ -861,6 +874,7 @@ const scoreCols = [
 
   function setPendingFromActiveFilters() {
     pendingHousingFilters = {...activeHousingFilters};
+    pendingHousingPreference = activeHousingPreference;
     syncHousingFilterControls();
   }
 
@@ -1326,6 +1340,7 @@ const scoreCols = [
   let leafletDistrictLayer = null;
   let leafletStateBoundaryLayer = null;
   let leafletMoveTimer = null;
+  let didInitialDesktopDefaultFit = false;
 
   
 
@@ -1475,8 +1490,6 @@ const STATE_FIT_BOUNDS = {
         zoom: 4,
         minZoom: 3,
         maxZoom: 12,
-        zoomSnap: 0.25,
-        zoomDelta: 0.5,
         zoomControl: true,
         scrollWheelZoom: false,
         touchZoom: true,
@@ -1516,12 +1529,11 @@ const STATE_FIT_BOUNDS = {
     setTimeout(() => {
       if (leafletUsaMap) {
         leafletUsaMap.invalidateSize(true);
-        if (!document.body.classList.contains("has-selected-district")) {
-          if (window.matchMedia("(max-width: 768px)").matches) {
-            fitMobileMapToAllAvailableDistricts();
-          } else {
-            fitMapToDefaultDistrictView(false);
-          }
+        if (window.matchMedia("(max-width: 768px)").matches && !document.body.classList.contains("has-selected-district")) {
+          fitMobileMapToAllAvailableDistricts();
+        } else if (window.matchMedia("(min-width: 769px)").matches && !didInitialDesktopDefaultFit && !document.body.classList.contains("has-selected-district")) {
+          didInitialDesktopDefaultFit = true;
+          fitMapToDefaultDistrictView();
         }
       }
     }, 50);
@@ -1544,11 +1556,11 @@ const STATE_FIT_BOUNDS = {
     });
   }
 
-  function fitMapToDefaultDistrictView(animate = true) {
+  function fitMapToDefaultDistrictView() {
     if (!leafletUsaMap || !window.L) return;
     const rows = getMapDefaultRows();
     if (!rows.length) {
-      leafletUsaMap.setView([39.5, -98.35], 4.75, { animate });
+      leafletUsaMap.setView([39.5, -98.35], 4);
       return;
     }
     const latLngs = rows
@@ -1557,19 +1569,17 @@ const STATE_FIT_BOUNDS = {
       .map(point => L.latLng(point[0], point[1]));
 
     if (!latLngs.length) {
-      leafletUsaMap.setView([39.5, -98.35], 4.75, { animate });
+      leafletUsaMap.setView([39.5, -98.35], 4);
       return;
     }
 
     const bounds = L.latLngBounds(latLngs);
     if (latLngs.length === 1) {
-      leafletUsaMap.setView(latLngs[0], 8, { animate });
+      leafletUsaMap.setView(latLngs[0], 8);
     } else {
-      // Prototype 406: use a tighter default/home viewport so the USA map starts as close as possible
-      // while still keeping every currently matching district marker in view.
-      leafletUsaMap.fitBounds(bounds.pad(0.04), {
-        maxZoom: 7,
-        animate
+      leafletUsaMap.fitBounds(bounds.pad(0.06), {
+        maxZoom: 8,
+        animate: true
       });
     }
   }
@@ -1949,7 +1959,7 @@ const STATE_FIT_BOUNDS = {
     }
     if (col === "Affordability Score") {
       const housingScore = housingSalaryPowerScore(d);
-      return `<span class="score-pill" style="${scorePillStyle(housingScore)}">${fmtScore(housingScore)}</span>`;
+      return `<span class="score-pill" style="${scorePillStyle(housingScore)}" title="Affordability Score: ${fmtScore(housingScore)}. Housing preference: ${housingPreferenceLabel()}.">${fmtScore(housingScore)}</span>`;
     }
     if (col === "Student-Teacher Ratio Score") {
       const ratio = d["Student-Teacher Ratio"];
@@ -2394,7 +2404,7 @@ function renderTable() {
     return Math.max(0, Math.min(100, ((postRent - 2500) / (4000 - 2500)) * 100));
   }
 
-  function housingSalaryPowerScore(d) {
+  function blendedHousingSalaryPowerScore(d) {
     const rentScore = salaryShareScore(rentSalaryShare(d));
     const mortgageScore = salaryShareScore(mortgageSalaryShare(d));
     const priceSqFtScore = Number(d["Price per Sq Ft Score"]);
@@ -2405,13 +2415,41 @@ function renderTable() {
       + (Number.isFinite(postRentScore) ? postRentScore : 0) * 0.10;
   }
 
+  function rentingAffordabilityScore(d) {
+    const rentScore = salaryShareScore(rentSalaryShare(d));
+    const postRentScore = postRentIncomeScore(d);
+    return (Number.isFinite(rentScore) ? rentScore : 0) * (35 / 45)
+      + (Number.isFinite(postRentScore) ? postRentScore : 0) * (10 / 45);
+  }
+
+  function buyingAffordabilityScore(d) {
+    const mortgageScore = salaryShareScore(mortgageSalaryShare(d));
+    const priceSqFtScore = Number(d["Price per Sq Ft Score"]);
+    return (Number.isFinite(mortgageScore) ? mortgageScore : 0) * (30 / 55)
+      + (Number.isFinite(priceSqFtScore) ? priceSqFtScore : 0) * (25 / 55);
+  }
+
+  function housingSalaryPowerScore(d) {
+    if (activeHousingPreference === "renting") return rentingAffordabilityScore(d);
+    if (activeHousingPreference === "buying") return buyingAffordabilityScore(d);
+    return blendedHousingSalaryPowerScore(d);
+  }
+
+  function housingPreferenceLabel() {
+    if (activeHousingPreference === "renting") return "Renting";
+    if (activeHousingPreference === "buying") return "Buying";
+    return "Any / Blended";
+  }
+
   function careerEarningsScore(d) {
     const salaryScore = selectedSalaryLevelScore(d);
     const growthScore = dynamicGrowthScore(d);
     const mastersScore = dynamicMastersPremiumScore(d);
-    return (Number.isFinite(salaryScore) ? salaryScore : 0) * 0.50
-      + (Number.isFinite(growthScore) ? growthScore : 0) * 0.35
-      + (Number.isFinite(mastersScore) ? mastersScore : 0) * 0.15;
+    // Prototype 409: Career Earnings now emphasizes long-term schedule growth.
+    // Selected Salary Level = 30%, Salary Growth = 50%, Master's Premium = 20%.
+    return (Number.isFinite(salaryScore) ? salaryScore : 0) * 0.30
+      + (Number.isFinite(growthScore) ? growthScore : 0) * 0.50
+      + (Number.isFinite(mastersScore) ? mastersScore : 0) * 0.20;
   }
 
   function baseValueScore(d) {
@@ -3056,6 +3094,27 @@ function renderTable() {
     selectedDistrict = null;
     renderAll();
   }
+
+  function commitHousingPreference(nextPreference) {
+    const allowed = ["renting", "buying", "any"];
+    const next = allowed.includes(nextPreference) ? nextPreference : "any";
+    pendingHousingPreference = next;
+    activeHousingPreference = next;
+    syncHousingPreferenceControls();
+    commitHousingFilters();
+  }
+
+  document.querySelectorAll('input[name="housingPreference"]').forEach(input => {
+    input.addEventListener("change", () => {
+      if (input.checked) {
+        commitHousingPreference(input.value);
+      } else if (input.value === activeHousingPreference) {
+        commitHousingPreference("any");
+      } else {
+        syncHousingPreferenceControls();
+      }
+    });
+  });
 
   minRentFilter.addEventListener("input", () => {
     const nextValue = Math.min(Number(minRentFilter.value), pendingHousingFilters.maxRent);

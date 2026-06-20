@@ -150,24 +150,31 @@ Prototype 385
 - Updated browser title and cache-busting references to Prototype 397.
 - Test with `?v=397`.
 
-## Prototype 401
-Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=401`.
+## Prototype 409
+Upload the contents of this ZIP to the GitHub repo root, replacing matching files. Test with `?v=409`.
 
 Changes: restored Prototype 397 sortable-ranking spacing, shifted only the columns right of Final Value slightly right, protected Demographic Balance from the scrollbar area, and extended the header shading to the rankings edge. No scoring, workbook, formula, data, or ranking changes.
 
 
-## Prototype 401
-- Reverted to the working Prototype 399-style column spacing after Prototype 400 caused clipped ranking columns.
+## Prototype 409
+- Reverted to the working Prototype 399-style column spacing after Prototype 409 caused clipped ranking columns.
 - Filled the remaining header shading gaps without moving or resizing score columns.
 - Fixed Class Size column color logic so identical displayed rounded ratios, such as 17:1, use the same color.
 - The displayed ratio remains rounded.
 - No workbook, scoring formulas, weights, district data, or rankings changed.
 
 
-## Prototype 403
+## Prototype 409
 - Corrected Final Value / Overall Score coloring to use the Overall Score Guide thresholds while keeping the approved platform swatch colors.
 - Final Value now uses a smooth gradient across the platform swatches: dark red below 40, red at 40, gold at 50, Good green at 60, Very Good green at 70, and Excellent green at 80+.
 - Overall Score badges use the same swatch-based Overall Value color logic.
 - Component columns continue using the regular component score scale.
 - No workbook, formulas, scoring weights, district data, or rankings changed.
-- Test with `?v=403`.
+- Test with `?v=409`.
+
+
+## Prototype 409
+- Fixed the sortable district rankings scrollbar so only one visible in-app draggable scrollbar rail appears.
+- Hid the native browser scrollbar inside the rankings table to prevent the doubled/stacked scrollbar look.
+- Kept Prototype 406 housing preference behavior and all existing data/scoring formulas unchanged.
+- Test with `?v=409`.

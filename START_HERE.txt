@@ -10,5 +10,5 @@ Changes:
 - Adds an always-visible draggable scrollbar rail to the desktop sortable district rankings table.
 - Keeps Prototype 395 score colors and profile score text behavior.
 - No workbook, formulas, scoring weights, district data, or rankings changed.
-Prototype 402: Upload all files to the same GitHub Pages directory and test with ?v=402.
+Prototype 409: Upload all files to the same GitHub Pages directory and test with ?v=409.
 Restores Prototype 397 rankings spacing while shifting only columns right of Final Value slightly right. No data/scoring changes.

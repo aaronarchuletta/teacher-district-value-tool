@@ -6020,7 +6020,7 @@ button#mobileFilterOpenBtn.mobile-filter-circle.has-active-filters #mobileFilter
   margin-top: -9px !important;
   border-radius: 999px;
   background: #2f5caa;
-  border: 2px solid #ffffff;
+  border: 1.5px solid #ffffff;
   box-shadow: 0 6px 14px rgba(15, 23, 42, .28);
 }
 .district-map-marker.no-match {
@@ -8894,7 +8894,7 @@ body.mobile-filters-open #mobileDistrictSearchResults {
   }
 }
 
-/* Prototype 401: keep Prototype 397 column spacing, but shift columns right of Final Value slightly right.
+/* Prototype 406: keep Prototype 397 column spacing, but shift columns right of Final Value slightly right.
    District, State, and Final Value stay anchored; Stability through Demographic Balance move into the available right-side space.
    Header shading also extends behind the drag scrollbar area. */
 @media (min-width: 901px) {
@@ -8980,7 +8980,7 @@ body.mobile-filters-open #mobileDistrictSearchResults {
 }
 
 
-/* Prototype 401: preserve Prototype 397/399 column spacing, but fill header shading gaps safely.
+/* Prototype 406: preserve Prototype 397/399 column spacing, but fill header shading gaps safely.
    This does not transform or resize columns; it only paints the table wrapper behind the header row. */
 @media (min-width: 901px) {
   .rankings-scroll-shell .table-wrap,
@@ -8997,5 +8997,88 @@ body.mobile-filters-open #mobileDistrictSearchResults {
   #districtTable thead tr,
   #districtTable th {
     background: #f9fafb !important;
+  }
+}
+
+
+/* Prototype 406: Housing Preference filter layout */
+.housing-preference-section {
+  padding-bottom: 14px;
+}
+.housing-preference-section .filter-section-heading {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .055em;
+}
+.housing-preference-check {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.housing-preference-check input {
+  accent-color: #2f5caa;
+}
+
+/* Prototype 408: use only the in-app draggable rankings scrollbar.
+   Hide the native browser scrollbar so the rail does not appear doubled/stacked. */
+@media (min-width: 901px) {
+  .rankings-scroll-shell .table-wrap {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .rankings-scroll-shell .table-wrap::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  .rankings-drag-scrollbar {
+    right: 8px !important;
+    width: 14px !important;
+  }
+}
+
+/* Prototype 408: remove doubled rankings scrollbar.
+   Use the native table scrollbar only and hide the custom overlay rail that caused a second track/thumb. */
+@media (min-width: 901px) {
+  .rankings-scroll-shell .table-wrap,
+  .rankings-card .table-wrap,
+  .map-rankings-layout .rankings-card .table-wrap {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    scrollbar-gutter: stable !important;
+    scrollbar-width: auto !important;
+    scrollbar-color: #7b8494 #eef2f7 !important;
+    -ms-overflow-style: auto !important;
+  }
+
+  .rankings-scroll-shell .table-wrap::-webkit-scrollbar,
+  .rankings-card .table-wrap::-webkit-scrollbar,
+  .map-rankings-layout .rankings-card .table-wrap::-webkit-scrollbar {
+    width: 12px !important;
+    height: 12px !important;
+    display: block !important;
+  }
+
+  .rankings-scroll-shell .table-wrap::-webkit-scrollbar-track,
+  .rankings-card .table-wrap::-webkit-scrollbar-track,
+  .map-rankings-layout .rankings-card .table-wrap::-webkit-scrollbar-track {
+    background: #eef2f7 !important;
+    border-radius: 999px !important;
+  }
+
+  .rankings-scroll-shell .table-wrap::-webkit-scrollbar-thumb,
+  .rankings-card .table-wrap::-webkit-scrollbar-thumb,
+  .map-rankings-layout .rankings-card .table-wrap::-webkit-scrollbar-thumb {
+    background: #7b8494 !important;
+    border-radius: 999px !important;
+    border: 3px solid #eef2f7 !important;
+  }
+
+  .rankings-drag-scrollbar {
+    display: none !important;
   }
 }

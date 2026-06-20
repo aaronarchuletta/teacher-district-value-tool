@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher District Value Prototype 403</title>
+  <title>Teacher District Value Prototype 409</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="styles.css?v=403">
+  <link rel="stylesheet" href="styles.css?v=409">
 
   <style id="prototype-364-desktop-overrides">
     @media (min-width: 901px) {
@@ -184,6 +184,21 @@
 
         <div class="more-filters-panel" id="moreFiltersPanel" hidden>
           <div class="more-filters-content">
+            <div class="filter-section housing-preference-section">
+              <div class="filter-section-heading">HOUSING PREFERENCE</div>
+              <label class="filter-check housing-preference-check">
+                <input type="checkbox" name="housingPreference" value="renting">
+                <span>Renting</span>
+              </label>
+              <label class="filter-check housing-preference-check">
+                <input type="checkbox" name="housingPreference" value="buying">
+                <span>Buying</span>
+              </label>
+              <label class="filter-check housing-preference-check">
+                <input type="checkbox" name="housingPreference" value="any" checked>
+                <span>Any</span>
+              </label>
+            </div>
             <div class="filter-section numeric-filter-section">
               <div class="numeric-filter-row">
                 <div class="numeric-filter-label-row">
@@ -443,8 +458,8 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="districts-data.js?v=403"></script>
-<script src="app.js?v=403"></script>
+<script src="districts-data.js?v=409"></script>
+<script src="app.js?v=409"></script>
 
 </body>
 </html>
