@@ -178,3 +178,33 @@ Changes: restored Prototype 397 sortable-ranking spacing, shifted only the colum
 - Hid the native browser scrollbar inside the rankings table to prevent the doubled/stacked scrollbar look.
 - Kept Prototype 406 housing preference behavior and all existing data/scoring formulas unchanged.
 - Test with `?v=409`.
+
+
+## Prototype 411 SoCal verification rebuild
+This package preserves the stable Prototype 409 layout/files and replaces the data file with the v410 substitute-vendor audit dataset including the 10 Southern California additions.
+
+Verified included districts:
+- Victor Valley Union High School District
+- Perris Union High School District
+- Val Verde Unified School District
+- Moreno Valley Unified School District
+- San Jacinto Unified School District
+- Hesperia Unified School District
+- Apple Valley Unified School District
+- Riverside Unified School District
+- Corona-Norco Unified School District
+- Santa Ana Unified School District
+
+Test with index.html?v=411-socal-105 after upload.
+
+
+## Prototype 412 local-testing fix
+
+This package keeps the standard active file structure (`index.html`, `styles.css`, `districts-data.js`, `app.js`, and map images). It also includes `standalone_test.html`, which embeds CSS, district data, and app behavior into one file for local testing when you want to open a single HTML file directly.
+
+For normal GitHub upload, upload all standard files together and test with `index.html?v=412-socal-verified`. For local single-file testing, open `standalone_test.html`.
+
+Verified: `districts-data.js` contains 105 districts, including the 10 Southern California additions from the workbook.
+
+
+Prototype 413 filter-match fix: generated salarySchedule objects for newly added CA/OK/FL districts and added an app.js fallback from Avg Start / Avg 10-Year salary fields, so these districts render as active matches on the map under default filters instead of gray no-match markers.

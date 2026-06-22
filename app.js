@@ -719,10 +719,25 @@ const scoreCols = [
 
   function salaryForDistrict(d) {
     const schedule = d.salarySchedule?.[selectedEducation];
-    if (!schedule) return null;
     const lookupYears = creditedExperienceForDistrict(d);
-    const val = schedule[String(lookupYears)];
-    return typeof val === "number" ? val : null;
+    if (schedule) {
+      const val = schedule[String(lookupYears)];
+      if (typeof val === "number") return val;
+    }
+
+    // Prototype 413 fallback: newer workbook additions may have Avg Start / Avg 10-Year
+    // salary fields before a full salarySchedule object is available. Interpolate
+    // from those workbook fields so map/filter matching does not incorrectly gray
+    // those districts out under the default $40k+ salary filter.
+    const avgStart = Number(d["Avg Start Salary"]);
+    const avgTen = Number(d["Avg 10-Year Salary"]);
+    if (!Number.isFinite(avgStart) || !Number.isFinite(avgTen)) return null;
+    const premium = Number(d["Master's Premium"] || 0);
+    const educationOffset = selectedEducation === "Master's" ? premium / 2 : -premium / 2;
+    const baseStart = avgStart + educationOffset;
+    const baseTen = avgTen + educationOffset;
+    const clampedYears = Math.max(0, Math.min(10, lookupYears));
+    return Math.round(baseStart + ((baseTen - baseStart) * clampedYears / 10));
   }
 
   function matchesSalaryFilters(d) {

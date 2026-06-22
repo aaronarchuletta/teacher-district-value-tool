@@ -1,0 +1,13 @@
+Total districts parsed from districts-data.js: 105
+
+Southern California additions:
+FOUND: Victor Valley Union High School District | score=68.092794079268 | lat=34.5361 | lng=-117.2912
+FOUND: Perris Union High School District | score=54.88588417368456 | lat=33.7825 | lng=-117.2286
+FOUND: Val Verde Unified School District | score=46.15086758968315 | lat=33.8721 | lng=-117.221
+FOUND: Moreno Valley Unified School District | score=46.694050707631426 | lat=33.9425 | lng=-117.2297
+FOUND: San Jacinto Unified School District | score=55.41136533883161 | lat=33.7839 | lng=-116.9586
+FOUND: Hesperia Unified School District | score=52.956416105306594 | lat=34.4264 | lng=-117.3009
+FOUND: Apple Valley Unified School District | score=59.7830373373309 | lat=34.5008 | lng=-117.1859
+FOUND: Riverside Unified School District | score=42.237147276834 | lat=33.9806 | lng=-117.3755
+FOUND: Corona-Norco Unified School District | score=43.36687834196455 | lat=33.8753 | lng=-117.5664
+FOUND: Santa Ana Unified School District | score=41.980337545629716 | lat=33.7455 | lng=-117.8677

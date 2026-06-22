@@ -388,3 +388,9 @@ Prototype 385
 - Fixed doubled/stacked scrollbar in the sortable district rankings by using only the native table scrollbar and hiding the custom overlay rail.
 - Kept Prototype 407 housing preference behavior and UI settings.
 - No workbook, formulas, scoring weights, district data, or rankings changed.
+
+
+Prototype 411 SoCal verification: rebuild uses the stable Prototype 409 layout files plus v410 vendor-audit data. It explicitly includes the 10 Southern California additions in districts-data.js and uses cache-busting ?v=411-socal-105.
+
+
+Prototype 413 filter-match fix: generated salarySchedule objects for newly added CA/OK/FL districts and added an app.js fallback from Avg Start / Avg 10-Year salary fields, so these districts render as active matches on the map under default filters instead of gray no-match markers.

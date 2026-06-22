@@ -12,3 +12,6 @@ Changes:
 - No workbook, formulas, scoring weights, district data, or rankings changed.
 Prototype 409: Upload all files to the same GitHub Pages directory and test with ?v=409.
 Restores Prototype 397 rankings spacing while shifting only columns right of Final Value slightly right. No data/scoring changes.
+
+
+Prototype 411 SoCal verification: rebuild uses the stable Prototype 409 layout files plus v410 vendor-audit data. It explicitly includes the 10 Southern California additions in districts-data.js and uses cache-busting ?v=411-socal-105.

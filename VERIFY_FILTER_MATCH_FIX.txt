@@ -1,0 +1,46 @@
+Prototype 413 filter-match verification
+
+Total districts: 105
+Generated salary schedules for 20 districts:
+- Victor Valley Union High School District
+- Fort Gibson Public Schools
+- Apple Valley Unified School District
+- San Jacinto Unified School District
+- Perris Union High School District
+- Hesperia Unified School District
+- Bethany Public Schools
+- Moreno Valley Unified School District
+- Val Verde Unified School District
+- Union Public Schools
+- Corona-Norco Unified School District
+- Riverside Unified School District
+- Santa Ana Unified School District
+- Orange County Public Schools
+- Lake County Schools
+- Jenks Public Schools
+- Volusia County Schools
+- Edmond Public Schools
+- Seminole County Public Schools
+- School District of Osceola County
+
+Presence and default salary-match check ($40,000+):
+- Victor Valley Union High School District: present=True, BA year 0 salary=67627, default salary match=True
+- Perris Union High School District: present=True, BA year 0 salary=79437, default salary match=True
+- Val Verde Unified School District: present=True, BA year 0 salary=74194, default salary match=True
+- Moreno Valley Unified School District: present=True, BA year 0 salary=73345, default salary match=True
+- San Jacinto Unified School District: present=True, BA year 0 salary=67000, default salary match=True
+- Hesperia Unified School District: present=True, BA year 0 salary=60367, default salary match=True
+- Apple Valley Unified School District: present=True, BA year 0 salary=63000, default salary match=True
+- Riverside Unified School District: present=True, BA year 0 salary=65100, default salary match=True
+- Corona-Norco Unified School District: present=True, BA year 0 salary=65000, default salary match=True
+- Santa Ana Unified School District: present=True, BA year 0 salary=75953, default salary match=True
+- Jenks Public Schools: present=True, BA year 0 salary=45130, default salary match=True
+- Edmond Public Schools: present=True, BA year 0 salary=47253, default salary match=True
+- Bethany Public Schools: present=True, BA year 0 salary=45368, default salary match=True
+- Fort Gibson Public Schools: present=True, BA year 0 salary=42621, default salary match=True
+- Union Public Schools: present=True, BA year 0 salary=43220, default salary match=True
+- Orange County Public Schools: present=True, BA year 0 salary=50000, default salary match=True
+- Lake County Schools: present=True, BA year 0 salary=45570, default salary match=True
+- Volusia County Schools: present=True, BA year 0 salary=50000, default salary match=True
+- Seminole County Public Schools: present=True, BA year 0 salary=50000, default salary match=True
+- School District of Osceola County: present=True, BA year 0 salary=49500, default salary match=True
