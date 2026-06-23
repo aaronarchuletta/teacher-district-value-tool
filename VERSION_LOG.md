@@ -513,3 +513,8 @@ Prototype 456: Clarified Florida transcript wording so FASTER/SPEEDE are not pre
 
 
 Prototype 458: Added map coordinates for the 15 districts that were missing lat/lng so all 114 districts can appear in default map-based rankings. On mobile, Favorites now keeps the bottom navigation bar fixed above the Favorites page and hides the redundant Favorites close button.
+
+
+Prototype 459: Search result rows now show a favorite heart button on the right. The district name and region/state text remain grouped on the left, so the right side is reserved for favorite toggling.
+
+Prototype 460: Fixed desktop Licensure double-scrollbar by using the Licensure page itself as the single scroll container, and removed the route/subheading text under “Become an Educator in [state]”. No district data, scoring formulas, map behavior, or workbook logic changed.

@@ -2975,17 +2975,24 @@ function renderTable() {
 
     results.innerHTML = matches.map((d, index) => {
       const meta = [d.Region, d.State].filter(Boolean).join(", ");
-      return `<button type="button" class="mobile-search-result-item" role="option" data-district-index="${index}">
-        <span class="mobile-search-result-name">${escapeHtml(d.District)}</span>
-        <span class="mobile-search-result-meta">${escapeHtml(meta)}</span>
-      </button>`;
+      return `<div class="mobile-search-result-item" role="option" data-district-index="${index}">
+        <button type="button" class="mobile-search-result-copy" data-open-search-result="${index}">
+          <span class="mobile-search-result-name">${escapeHtml(d.District)}</span>
+          <span class="mobile-search-result-meta">${escapeHtml(meta)}</span>
+        </button>
+        ${favoriteButton(d.District, "mobile-search-result-favorite")}
+      </div>`;
     }).join("");
 
-    [...results.querySelectorAll(".mobile-search-result-item")].forEach((button, index) => {
-      button.addEventListener("mousedown", evt => evt.preventDefault());
+    [...results.querySelectorAll(".mobile-search-result-item, .mobile-search-result-copy, .mobile-search-result-favorite")].forEach((element) => {
+      element.addEventListener("mousedown", evt => evt.preventDefault());
+    });
+
+    [...results.querySelectorAll("[data-open-search-result]")].forEach((button) => {
       button.addEventListener("click", evt => {
         evt.preventDefault();
-        openDistrictFromMobileSearch(matches[index]);
+        const index = Number(button.dataset.openSearchResult);
+        if (!Number.isNaN(index) && matches[index]) openDistrictFromMobileSearch(matches[index]);
       });
     });
 
@@ -4658,7 +4665,7 @@ function forceCloseFavoritesForLicensure() {
     if (!data) {
       detailCard?.classList.remove("has-selected-state");
       stateTitle.textContent = "Select a state";
-      routeLine.textContent = "Choose a state from the dropdown to view its licensure checklist.";
+      routeLine.textContent = "";
       warningTitle.textContent = "";
       warningText.textContent = "";
       warningBox.classList.remove("positive", "danger");
@@ -4674,7 +4681,7 @@ function forceCloseFavoritesForLicensure() {
     const { state, scenario } = data;
 
     stateTitle.textContent = `Become an Educator in ${state.name}`;
-    routeLine.textContent = scenario.routeLine;
+    routeLine.textContent = "";
     warningTitle.textContent = scenario.warning.title;
     warningText.textContent = scenario.warning.text;
     const isPositive = scenario.warning.type === "positive";

@@ -10557,3 +10557,92 @@ body.favorites-panel-open #mobileToolbarFavorites.is-active {
     display: none !important;
   }
 }
+
+
+/* Prototype 459: search results use favorite heart on the right instead of right-side region text */
+.mobile-search-results .mobile-search-result-item {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 8px 10px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  text-align: left !important;
+  color: #172033 !important;
+  font: inherit !important;
+}
+
+.mobile-search-results .mobile-search-result-item:hover,
+.mobile-search-results .mobile-search-result-item:focus-within {
+  background: #f3f6fb !important;
+  outline: none !important;
+}
+
+.mobile-search-results .mobile-search-result-copy {
+  display: block !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  padding: 4px 6px !important;
+  border: 0 !important;
+  background: transparent !important;
+  text-align: left !important;
+  color: inherit !important;
+  font: inherit !important;
+  cursor: pointer !important;
+}
+
+.mobile-search-results .mobile-search-result-copy:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, .45) !important;
+  outline-offset: 2px !important;
+  border-radius: 10px !important;
+}
+
+.mobile-search-results .mobile-search-result-name,
+.mobile-search-results .mobile-search-result-meta {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.mobile-search-results .mobile-search-result-favorite.favorite-toggle {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  justify-self: end !important;
+  margin: 0 !important;
+}
+
+
+/* Prototype 460: Licensure desktop single-scrollbar + remove route subheading */
+.licensure-route-line {
+  display: none !important;
+}
+@media (min-width: 769px) {
+  body.licensure-panel-open,
+  body.licensure-page-active {
+    overflow: hidden !important;
+  }
+  body.licensure-page-active .licensure-process-panel:not([hidden]),
+  body.licensure-panel-open .licensure-process-panel:not([hidden]) {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    scrollbar-gutter: stable !important;
+  }
+  body.licensure-page-active .licensure-panel-card,
+  body.licensure-panel-open .licensure-panel-card {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    scrollbar-gutter: auto !important;
+  }
+}
