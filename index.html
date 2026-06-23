@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher District Value Prototype 413</title>
+  <title>Teacher District Value Prototype 457</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="styles.css?v=413-filter-match">
+  <link rel="stylesheet" href="styles.css?v=453-tn-literacy-label-fix">
 
   <style id="prototype-364-desktop-overrides">
     @media (min-width: 901px) {
@@ -68,24 +68,85 @@
         font-size: 9.2px !important;
       }
     }
-  </style>
-<!-- Build 412: verified package includes 105 districts and all 10 Southern California additions. -->
+  
+/* Prototype 439: hide district search only while the Licensure full-page view is active */
+body.licensure-page-active .top-search,
+body.licensure-page-active .district-search,
+body.licensure-page-active .search-bar,
+body.licensure-page-active #districtSearch,
+body.licensure-page-active #searchBar,
+body.licensure-page-active input[placeholder*="Search districts"],
+body.licensure-page-active input[placeholder*="Search district"] {
+  display: none !important;
+}
+
+
+/* Prototype 439: remove the floating district search bar from the Licensure page header only */
+body.licensure-page-active .search-container,
+body.licensure-page-active .searchOverlay,
+body.licensure-page-active .search-overlay,
+body.licensure-page-active .global-search,
+body.licensure-page-active .floating-search,
+body.licensure-page-active .app-search,
+body.licensure-page-active .topbar-search,
+body.licensure-page-active .header-search,
+body.licensure-page-active .search-input-wrap,
+body.licensure-page-active .search-wrapper,
+body.licensure-page-active .searchBox,
+body.licensure-page-active .search-box,
+body.licensure-page-active .searchField,
+body.licensure-page-active .search-field,
+body.licensure-page-active form[role="search"],
+body.licensure-page-active [role="search"],
+body.licensure-page-active [class*="search" i]:not(.licensure-search-allow),
+body.licensure-page-active [id*="search" i]:not(.licensure-search-allow) {
+  display: none !important;
+}
+
+</style>
+<!-- Build 439: merges stable Waco/map/region fixes with Licensure full-page app view. -->
 </head>
 <body>
 
 <nav class="desktop-side-rail" aria-label="Main shortcuts">
-  <button type="button" class="side-rail-btn" id="desktopRailHome" aria-label="Return to home map view">
-    <span class="side-rail-icon" aria-hidden="true">⌂</span>
-    <span class="side-rail-label">Home</span>
-  </button>
-  <button type="button" class="side-rail-btn" id="desktopRailSearch" aria-label="Search districts">
-    <span class="side-rail-icon" aria-hidden="true">⌕</span>
-    <span class="side-rail-label">Search</span>
+  <button type="button" class="side-rail-btn" id="desktopRailHome" aria-label="Return to map view">
+    <span class="side-rail-icon side-rail-icon-map" aria-hidden="true"><svg class="usa-map-icon" viewBox="0 0 96 60" aria-hidden="true" focusable="false">
+  <path d="M6 34
+           C8 27 11 23 14 17
+           C16 13 15 9 19 11
+           C22 13 21 5 28 7
+           C34 9 38 12 47 12
+           C54 12 59 10 65 13
+           C70 15 73 14 76 16
+           C79 18 78 22 82 22
+           C85 22 86 25 85 29
+           C84 34 89 32 91 36
+           C93 40 88 42 86 46
+           C83 50 83 55 78 54
+           C74 53 72 47 68 45
+           C64 43 59 45 55 44
+           C51 43 51 47 46 47
+           C40 47 39 47 36 51
+           C33 55 29 55 28 50
+           C27 45 24 43 20 44
+           C15 45 14 41 11 39
+           C9 38 6 38 6 34 Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="4.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg></span>
+    <span class="side-rail-label">Map</span>
   </button>
   <button type="button" class="side-rail-btn" id="desktopRailFavorites" aria-label="Open favorite districts">
     <span class="side-rail-icon" aria-hidden="true">♥</span>
     <span class="side-rail-label">Favorites</span>
     <span class="side-rail-count" id="favoriteRailCount" hidden>0</span>
+  </button>
+  <button type="button" class="side-rail-btn" id="desktopRailLicensure" aria-label="Open licensure process by state">
+    <span class="side-rail-icon" aria-hidden="true">✓</span>
+    <span class="side-rail-label">Licensure</span>
   </button>
 </nav>
 
@@ -100,19 +161,161 @@
   <div class="favorites-panel-grid" id="favoritesPanelGrid"></div>
 </section>
 
+<section class="licensure-process-panel" id="licensureProcessPanel" aria-label="Licensure Process by State" hidden>
+  <div class="licensure-panel-card" aria-labelledby="licensurePanelTitle">
+    <div class="licensure-panel-head">
+      <div>
+        <div class="licensure-kicker">Teacher licensure</div>
+        <h2 id="licensurePanelTitle">Licensure Process by State</h2>
+        <p>Compare state certification steps by applicant type, location, teaching area, and experience route.</p>
+      </div>
+      <button type="button" class="licensure-panel-close" id="licensurePanelClose" aria-label="Close licensure process">×</button>
+    </div>
+
+    <div class="licensure-panel-layout">
+      <aside class="licensure-build-card" aria-label="Licensure filters">
+        <div class="licensure-selector-group">
+          <label>What describes you?</label>
+          <div class="licensure-route-card-grid" role="group" aria-label="What describes you?">
+            <button type="button" class="licensure-choice licensure-route-card" data-lps-route="first">
+              <span class="licensure-route-icon" aria-hidden="true">
+                <svg viewBox="0 0 96 72" focusable="false" class="licensure-student-icon">
+                  <circle cx="52" cy="36" r="27" fill="currentColor" opacity="0.10"/>
+                  <circle cx="32" cy="18" r="10" fill="#ffffff" stroke="currentColor" stroke-width="2.4"/>
+                  <path d="M27 38V26c0-4.4 3.2-8 7.6-8h6.8c3.4 0 5.7 1.5 7.8 4.1L58.5 33H78" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M40 32.5 52 48h26" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M43.5 48 51.5 67" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round"/>
+                  <path d="M63 6v23h13V6" fill="#ffffff" stroke="currentColor" stroke-width="3.1" stroke-linejoin="round"/>
+                  <path d="M14 49h23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+                  <path d="M18 57v5M31 57v5M78 36h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+                </svg>
+              </span>
+              <span>I am a high school or college student</span>
+            </button>
+            <button type="button" class="licensure-choice licensure-route-card active" data-lps-route="transfer">
+              <span class="licensure-route-icon" aria-hidden="true">
+                <svg viewBox="0 0 96 72" focusable="false">
+                  <circle cx="48" cy="36" r="30" fill="currentColor" opacity="0.10"/>
+                  <path d="M26 18h44v32H26z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                  <path d="M34 28h28M34 38h20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M48 50v12l8-5 8 5V50" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                  <circle cx="56" cy="48" r="9" fill="#d5ec73" stroke="currentColor" stroke-width="3"/>
+                </svg>
+              </span>
+              <span>I am an educator licensed in another state</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="licensure-selector-group">
+          <label>Where are you applying from?</label>
+          <div class="licensure-segmented">
+            <button type="button" class="licensure-choice" data-lps-location="inside">Inside this state</button>
+            <button type="button" class="licensure-choice active" data-lps-location="outside">Outside this state</button>
+          </div>
+          <div class="licensure-filter-note" id="licensureLocationNote" hidden></div>
+        </div>
+
+        <div class="licensure-selector-group">
+          <label>Teaching area</label>
+          <div class="licensure-segmented">
+            <button type="button" class="licensure-choice" data-lps-area="elementary">Elementary</button>
+            <button type="button" class="licensure-choice active" data-lps-area="secondary">Middle / High School</button>
+          </div>
+          <div class="licensure-filter-note">This prototype currently uses the same checklist for elementary and middle/high school unless a state has separate data entered.</div>
+        </div>
+
+        <div class="licensure-selector-group">
+          <label>Full-time teaching experience</label>
+          <div class="licensure-segmented">
+            <button type="button" class="licensure-choice active" data-lps-experience="lessThanTwo">Less than 2 years</button>
+            <button type="button" class="licensure-choice" data-lps-experience="twoOrMore">2 or more years</button>
+            <button type="button" class="licensure-choice" data-lps-experience="nationalBoard">National Board Certification</button>
+          </div>
+          <div class="licensure-filter-note" id="licensureExperienceNote" hidden></div>
+        </div>
+</aside>
+
+      <section class="licensure-detail-card" id="licensureDetailCard" aria-label="Selected state checklist">
+        <div class="licensure-state-select-group">
+          <label id="licensureStateSelectLabel">Select a state</label>
+          <div class="licensure-state-menu-wrap">
+            <button type="button"
+              id="licensureStateSelectButton"
+              class="licensure-state-select"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="licensureStateSelectLabel licensureStateSelectButton">
+              Select a state
+            </button>
+            <div id="licensureStateSelectMenu"
+              class="licensure-state-menu"
+              role="listbox"
+              aria-labelledby="licensureStateSelectLabel"
+              hidden></div>
+          </div>
+        </div>
+
+        <div class="licensure-state-header">
+          <h3 id="licensureStateTitle">State checklist</h3>
+          <div class="licensure-route-line" id="licensureRouteLine"></div>
+        </div>
+
+        <div class="licensure-alert" id="licensureWarningBox">
+          <div class="licensure-alert-icon">!</div>
+          <div>
+            <strong id="licensureWarningTitle"></strong>
+            <p id="licensureWarningText"></p>
+          </div>
+        </div>
+
+        <div class="licensure-progress" aria-label="Checklist progress"><span id="licensureProgressBar"></span></div>
+        <div class="licensure-checklist" id="licensureChecklist"></div>
+        <p class="licensure-footer-note">Checklist actions are simplified; the quote under each step shows why the step exists.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
 <nav class="mobile-bottom-toolbar" aria-label="Mobile shortcuts">
-  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarHome" aria-label="Return to home map view">
-    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">⌂</span>
-    <span>Home</span>
-  </button>
-  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarSearch" aria-label="Search districts">
-    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">⌕</span>
-    <span>Search</span>
+  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarHome" aria-label="Return to map view">
+    <span class="mobile-bottom-toolbar-icon mobile-bottom-toolbar-icon-map" aria-hidden="true"><svg class="usa-map-icon" viewBox="0 0 96 60" aria-hidden="true" focusable="false">
+  <path d="M6 34
+           C8 27 11 23 14 17
+           C16 13 15 9 19 11
+           C22 13 21 5 28 7
+           C34 9 38 12 47 12
+           C54 12 59 10 65 13
+           C70 15 73 14 76 16
+           C79 18 78 22 82 22
+           C85 22 86 25 85 29
+           C84 34 89 32 91 36
+           C93 40 88 42 86 46
+           C83 50 83 55 78 54
+           C74 53 72 47 68 45
+           C64 43 59 45 55 44
+           C51 43 51 47 46 47
+           C40 47 39 47 36 51
+           C33 55 29 55 28 50
+           C27 45 24 43 20 44
+           C15 45 14 41 11 39
+           C9 38 6 38 6 34 Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="4.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg></span>
+    <span>Map</span>
   </button>
   <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarFavorites" aria-label="Open favorite districts">
     <span class="mobile-bottom-toolbar-icon" aria-hidden="true">♥</span>
     <span>Favorites</span>
     <span class="mobile-bottom-toolbar-count" id="mobileFavoriteCount" hidden>0</span>
+  </button>
+  <button type="button" class="mobile-bottom-toolbar-btn" id="mobileToolbarLicensure" aria-label="Open licensure process by state">
+    <span class="mobile-bottom-toolbar-icon" aria-hidden="true">✓</span>
+    <span>Licensure</span>
   </button>
 </nav>
 
@@ -459,8 +662,86 @@
 </main>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="districts-data.js?v=413-filter-match"></script>
-<script src="app.js?v=413-filter-match"></script>
+<script src="districts-data.js?v=453-tn-literacy-label-fix"></script>
+<script src="app.js?v=457-florida-certificate-upload-wording"></script>
 
+<script>
+
+/* Prototype 439: scoped Licensure page state for hiding only the district search */
+(function () {
+  function hasText(el, text) {
+    return ((el && el.textContent) || "").trim().toLowerCase().includes(text);
+  }
+
+  function isVisible(el) {
+    if (!el) return false;
+    const style = window.getComputedStyle(el);
+    const rect = el.getBoundingClientRect();
+    return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+  }
+
+  function licensureNavIsActive() {
+    const activeEls = Array.from(document.querySelectorAll(".active, .selected, [aria-current='page'], [aria-selected='true']"));
+    return activeEls.some(el => hasText(el, "licensure"));
+  }
+
+  function licensurePageIsVisible() {
+    const candidates = Array.from(document.querySelectorAll(
+      "#licensurePage, #licensure-page, #licensureView, .licensure-page, .licensure-view, [data-page='licensure'], [data-view='licensure']"
+    ));
+    return candidates.some(isVisible);
+  }
+
+  function updateLicensureSearchState() {
+    document.body.classList.toggle("licensure-page-active", licensureNavIsActive() || licensurePageIsVisible());
+  }
+
+  document.addEventListener("click", function () {
+    setTimeout(updateLicensureSearchState, 0);
+    setTimeout(updateLicensureSearchState, 150);
+  }, true);
+
+  document.addEventListener("DOMContentLoaded", updateLicensureSearchState);
+  window.addEventListener("hashchange", updateLicensureSearchState);
+  window.addEventListener("popstate", updateLicensureSearchState);
+  setInterval(updateLicensureSearchState, 500);
+  updateLicensureSearchState();
+})();
+
+</script>
+<script>
+
+/* Prototype 439: allow Licensure to open after Favorites */
+(function () {
+  function hideFavoritesBeforeLicensure() {
+    document.body.classList.remove("favorites-active", "favorites-page-active", "show-favorites", "favorites-open");
+
+    document.querySelectorAll(
+      "#favoritesPanel, #favoritesPage, .favorites-panel, .favorites-page, [data-page='favorites'], [data-view='favorites']"
+    ).forEach(panel => {
+      panel.classList.remove("active", "open", "visible", "is-active", "show");
+      panel.setAttribute("aria-hidden", "true");
+      if (panel.style.display === "block") panel.style.display = "";
+    });
+
+    document.querySelectorAll("#desktopRailFavorites, #mobileToolbarFavorites").forEach(btn => {
+      btn.classList.remove("active", "selected");
+      btn.removeAttribute("aria-current");
+      btn.removeAttribute("aria-selected");
+    });
+  }
+
+  function isLicensureTrigger(el) {
+    return Boolean(el && el.closest && el.closest("#desktopRailLicensure, #mobileToolbarLicensure, [data-page='licensure'], [data-view='licensure']"));
+  }
+
+  document.addEventListener("click", function (evt) {
+    if (!isLicensureTrigger(evt.target)) return;
+    hideFavoritesBeforeLicensure();
+    setTimeout(hideFavoritesBeforeLicensure, 0);
+  }, true);
+})();
+
+</script>
 </body>
 </html>

@@ -1349,6 +1349,26 @@ const scoreCols = [
   "West Des Moines Community Schools": [
     41.5772,
     -93.7113
+  ],
+  "Hobbs Municipal Schools": [
+    32.7026,
+    -103.1360
+  ],
+  "Las Cruces Public Schools": [
+    32.3199,
+    -106.7637
+  ],
+  "Carlsbad Municipal Schools": [
+    32.4207,
+    -104.2288
+  ],
+  "Farmington Municipal Schools": [
+    36.7281,
+    -108.2187
+  ],
+  "Rio Rancho Public Schools": [
+    35.2328,
+    -106.6630
   ]
 };
   let leafletUsaMap = null;
@@ -1527,7 +1547,10 @@ const STATE_FIT_BOUNDS = {
           renderMapViewportTopMatches();
           renderMobileMapResultsSheetFromViewport();
           updateDistrictMapNavigation();
-          if (window.matchMedia("(min-width: 769px)").matches) renderTable(false);
+          if (window.matchMedia("(min-width: 769px)").matches) {
+            forceFilteredRankings = false;
+            renderTable(false);
+          }
         }, 80);
       });
 
@@ -1564,10 +1587,17 @@ const STATE_FIT_BOUNDS = {
       (!regionFilter.value || d.Region === regionFilter.value);
   }
 
+  function districtHasViewportMapMatch(d) {
+    // The live Leaflet map is the user's location context. Keep salary/housing/extra
+    // filters active, but do not let the hidden state/region filters from a prior
+    // state click block districts that are actually visible after the user pans or zooms.
+    return matchesSalaryFilters(d) && passesExtraFilters(d);
+  }
+
   function getMapDefaultRows() {
     return DISTRICTS.filter(d => {
       const point = getDistrictGeo(d);
-      return point && districtHasMapMatch(d);
+      return point && districtHasViewportMapMatch(d);
     });
   }
 
@@ -1655,7 +1685,7 @@ const STATE_FIT_BOUNDS = {
       const latLng = L.latLng(point[0], point[1]);
       if (!bounds.pad(0.25).contains(latLng)) return;
 
-      const isMatch = districtHasMapMatch(d);
+      const isMatch = districtHasViewportMapMatch(d);
       const isSelected = selectedDistrict?.District === d.District;
 
       const icon = L.divIcon({
@@ -1696,7 +1726,7 @@ const STATE_FIT_BOUNDS = {
     return DISTRICTS.filter(d => {
       const point = getDistrictGeo(d);
       if (!point) return false;
-      return bounds.contains(L.latLng(point[0], point[1])) && districtHasMapMatch(d);
+      return bounds.contains(L.latLng(point[0], point[1])) && districtHasViewportMapMatch(d);
     });
   }
 
@@ -3522,16 +3552,44 @@ function renderFavoritesPanel() {
 function openFavoritesPanel() {
   renderFavoritesPanel();
   const panel = document.getElementById("favoritesPanel");
-  const btn = document.getElementById("desktopRailFavorites");
   if (panel) panel.hidden = false;
-  if (btn) btn.classList.add("is-active");
+  if (typeof setMainNavActive === "function") setMainNavActive("favorites");
 }
 
 function closeFavoritesPanel() {
   const panel = document.getElementById("favoritesPanel");
-  const btn = document.getElementById("desktopRailFavorites");
   if (panel) panel.hidden = true;
-  if (btn) btn.classList.remove("is-active");
+  ["desktopRailFavorites", "mobileToolbarFavorites"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.classList.remove("is-active", "active");
+    btn.removeAttribute("aria-current");
+    btn.removeAttribute("aria-selected");
+  });
+}
+
+function setMainNavActive(view) {
+  const states = {
+    map: ["desktopRailHome", "mobileToolbarHome"],
+    favorites: ["desktopRailFavorites", "mobileToolbarFavorites"],
+    licensure: ["desktopRailLicensure", "mobileToolbarLicensure"]
+  };
+  Object.entries(states).forEach(([key, ids]) => {
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const active = key === view;
+      el.classList.toggle("is-active", active);
+      el.classList.toggle("active", active);
+      if (active) {
+        el.setAttribute("aria-current", "page");
+        el.setAttribute("aria-selected", "true");
+      } else {
+        el.removeAttribute("aria-current");
+        el.removeAttribute("aria-selected");
+      }
+    });
+  });
 }
 
 document.addEventListener("click", event => {
@@ -3563,6 +3621,7 @@ document.getElementById("desktopRailSearch")?.addEventListener("click", () => {
 
 function goHomeToDefaultMapView() {
   closeFavoritesPanel();
+  if (typeof setMainNavActive === "function") setMainNavActive("map");
   stateFilter.value = "";
   regionFilter.value = "";
   updateRegionOptions();
@@ -4231,4 +4290,586 @@ initMobileUsaMapZoom();
     childList: true,
     subtree: true
   });
+})();
+
+/* Prototype 439: Licensure helpers merged from the prior Licensure package. */
+function forceCloseFavoritesForLicensure() {
+  document.body.classList.remove("favorites-active", "favorites-page-active", "show-favorites", "favorites-open");
+  document.querySelectorAll("#favoritesPanel, #favoritesPage, .favorites-panel, .favorites-page, [data-page='favorites'], [data-view='favorites']").forEach(panel => {
+    panel.classList.remove("active", "open", "visible", "is-active", "show");
+    panel.setAttribute("aria-hidden", "true");
+    if (panel.style.display === "block") panel.style.display = "";
+  });
+}
+
+// Prototype 439: Licensure Process by State panel
+(() => {
+  const DATA = {"CA":{"name":"California","difficulty":"Complicated","difficultyClass":"high","costLabel":"Expensive","costClass":"cost-expensive","transfer":{"outside":{"routeLine":"Licensed out-of-state teacher · Applying from outside California · Middle / High School","fee":"$149+","warning":{"title":"California separates out-of-state applicants by experience.","text":"Use the experience toggle on the left. California calls the less-than-two-years checklist Route 1, the two-or-more-years checklist Route 2, and the National Board checklist Route 3."},"steps":[{"title":"Confirm that your current out-of-state license is a professional-level teaching credential.","quote":"Individuals must have a professional-level credential from another state or U.S. territory to qualify for California teaching or services certification based on out-of-state preparation.","source":"California CTC — Out-of-State Applicants","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/","tags":["Required","Before applying"],"shortTitle":"Confirm your out-of-state license","detailBullets":[{"text":"Individuals must have a professional-level credential from another state or U.S. territory to qualify for California teaching or services certification based on out-of-state preparation.","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/","label":"Instruction source ↗"}]},{"title":"Create or log in to your CTC educator account.","quote":"Login to your CTC Online Educator Account to complete the application.","source":"California CTC — Direct Application Submission","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","tags":["Required","Start here"],"shortTitle":"Create a CTC account"},{"title":"Select the California credential application that matches your current license.","quote":"California authorizes departmentalized teaching, typically found in secondary/high schools, via the Single Subjects Teaching Credential.","source":"California CTC — Out-of-State High School Teacher Applicants","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/high-school/","tags":["Required"],"shortTitle":"Select the matching credential"},{"title":"Submit licensure documents","quote":"The attachments page will allow the uploading of supporting documents to verify eligibility for the requested document.","source":"California CTC — Direct Application Submission","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","tags":["Required","Upload documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"The attachments page will allow the uploading of supporting documents to verify eligibility for the requested document.","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","label":"Instruction source ↗"}]},{"type":"header","title":"California Route 3: National Board route","detail":"This route appears when the user selects “National Board Certification.”","appliesExperience":"nationalBoard"},{"title":"Use the National Board Certification route if you hold current National Board Certification.","quote":"Submit a photocopy of the National Board Certification.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required","Route 3"],"appliesExperience":"nationalBoard","shortTitle":"Use the National Board route"},{"type":"header","title":"California Route 1: Less than 2 years","detail":"This route appears when the user selects “Less than 2 years.”","appliesExperience":"lessThanTwo"},{"title":"Continue using Route 1 because you have less than two full-time years of teaching experience.","quote":"You hold a professional-level teaching license out-of-state and have less than two years of full-time, out-of-state teaching experience.","source":"California CTC — Route 1: Less Than Two Years of Teaching Experience","url":"https://www.ctc.ca.gov/aspiring-educators/roadmap-to-teaching/prepared-out-of-state/route-1/","tags":["Required","Route 1"],"appliesExperience":"lessThanTwo","shortTitle":"Follow Route 1"},{"type":"header","title":"California Route 2: 2 or more years","detail":"This route appears when the user selects “2 or more years.”","appliesExperience":"twoOrMore"},{"title":"Get both an HR experience letter and two satisfactory performance evaluations.","quote":"Letter from the out-of-state employer verifying at least two years of out-of-state full-time teaching experience accompanied by two satisfactory performance evaluations.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required","Route 2"],"appliesExperience":"twoOrMore","shortTitle":"Submit experience proof"},{"title":"Request two FD-258 fingerprint cards from CTC, then take both cards to a local fingerprinting agency.","quote":"Fingerprint cards must be ordered from the Commission by completing the Submit New Fingerprint Card Request form.","source":"California CTC — Fees and Fingerprinting","url":"https://www.ctc.ca.gov/credentials/fees-and-fingerprinting/","tags":["Required","Outside California"],"fee":"$49 CTC fingerprint processing fee + local fingerprinting provider fee may vary","shortTitle":"Complete fingerprint cards"},{"title":"Submit your direct online CTC application before mailing your fingerprint cards.","quote":"When completing fingerprint cards, please submit your direct online application first.","source":"California CTC — Fees and Fingerprinting","url":"https://www.ctc.ca.gov/credentials/fees-and-fingerprinting/","tags":["Required","Do this before mailing cards"],"fee":"$100 application fee + $2.65 online service fee","shortTitle":"Submit the CTC application"},{"title":"Mail your completed fingerprint cards using the Stamp Number from your CTC application confirmation email.","quote":"After paying for your online application, you will receive a confirmation email that states your unique 10-digit “Stamp Number” at the top of the email.","source":"California CTC — Fees and Fingerprinting","url":"https://www.ctc.ca.gov/credentials/fees-and-fingerprinting/","tags":["Required","Mail fingerprint cards"],"shortTitle":"Mail fingerprint cards"},{"title":"Check your CTC account and email for status or missing documents.","quote":"you can log into your profile to see your fingerprint status at any time.","source":"California CTC — Out-of-State FAQ","url":"https://www.ctc.ca.gov/aspiring-educators/roadmap-to-teaching/prepared-out-of-state/faq/","tags":["After submission"],"shortTitle":"Check for missing items"}]},"inside":{"routeLine":"Licensed out-of-state teacher · Applying from inside California · Middle / High School","fee":"$102.65+","warning":{"title":"California separates out-of-state applicants by experience.","text":"Use the experience toggle on the left. California calls the less-than-two-years checklist Route 1, the two-or-more-years checklist Route 2, and the National Board checklist Route 3."},"steps":[{"title":"Confirm that your current out-of-state license is a professional-level teaching credential.","quote":"Individuals must have a professional-level credential from another state or U.S. territory to qualify for California teaching or services certification based on out-of-state preparation.","source":"California CTC — Out-of-State Applicants","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/","tags":["Required"],"shortTitle":"Confirm your out-of-state license","detailBullets":[{"text":"Individuals must have a professional-level credential from another state or U.S. territory to qualify for California teaching or services certification based on out-of-state preparation.","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/","label":"Instruction source ↗"}]},{"title":"Create or log in to your CTC educator account.","quote":"Login to your CTC Online Educator Account to complete the application.","source":"California CTC — Direct Application Submission","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","tags":["Required","Start here"],"shortTitle":"Create a CTC account"},{"title":"Select the California credential application that matches your current license.","quote":"California authorizes departmentalized teaching, typically found in secondary/high schools, via the Single Subjects Teaching Credential.","source":"California CTC — Out-of-State High School Teacher Applicants","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/high-school/","tags":["Required"],"shortTitle":"Select the matching credential"},{"title":"Submit licensure documents","quote":"The attachments page will allow the uploading of supporting documents to verify eligibility for the requested document.","source":"California CTC — Direct Application Submission","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","tags":["Required","Upload documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"The attachments page will allow the uploading of supporting documents to verify eligibility for the requested document.","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","label":"Instruction source ↗"}]},{"type":"header","title":"California Route 3: National Board route","detail":"This route appears when the user selects “National Board Certification.”","appliesExperience":"nationalBoard"},{"title":"Use the National Board Certification route if you hold current National Board Certification.","quote":"Submit a photocopy of the National Board Certification.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required","Route 3"],"appliesExperience":"nationalBoard","shortTitle":"Use the National Board route"},{"type":"header","title":"California Route 1: Less than 2 years","detail":"This route appears when the user selects “Less than 2 years.”","appliesExperience":"lessThanTwo"},{"title":"Continue using Route 1 because you have less than two full-time years of teaching experience.","quote":"You hold a professional-level teaching license out-of-state and have less than two years of full-time, out-of-state teaching experience.","source":"California CTC — Route 1: Less Than Two Years of Teaching Experience","url":"https://www.ctc.ca.gov/aspiring-educators/roadmap-to-teaching/prepared-out-of-state/route-1/","tags":["Required","Route 1"],"appliesExperience":"lessThanTwo","shortTitle":"Follow Route 1"},{"type":"header","title":"California Route 2: 2 or more years","detail":"This route appears when the user selects “2 or more years.”","appliesExperience":"twoOrMore"},{"title":"Get both an HR experience letter and two satisfactory performance evaluations.","quote":"Letter from the out-of-state employer verifying at least two years of out-of-state full-time teaching experience accompanied by two satisfactory performance evaluations.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required","Route 2"],"appliesExperience":"twoOrMore","shortTitle":"Submit experience proof"},{"title":"Print three copies of CTC Live Scan Form 41-LS and complete Live Scan at a California Live Scan location.","quote":"Take the completed form into a live scan location, where you will pay a fee at the time of service and be scanned.","source":"California CTC — Fees and Fingerprinting","url":"https://www.ctc.ca.gov/credentials/fees-and-fingerprinting/","tags":["Required","Inside California"],"fee":"Live Scan operator fee varies by location","shortTitle":"Complete Live Scan"},{"title":"Finish uploading the required route documents, pay the application fee, and submit the application.","quote":"The attachments page will allow the uploading of supporting documents to verify eligibility for the requested document.","source":"California CTC — Direct Application Submission","url":"https://www.ctc.ca.gov/aspiring-educators/apply/online-application/direct-submission/","tags":["Required","Submit"],"fee":"$100 application fee + $2.65 online service fee","shortTitle":"Submit the application"},{"title":"Check your CTC account and email for status or missing documents.","quote":"you can log into your profile to see your fingerprint status at any time.","source":"California CTC — Out-of-State FAQ","url":"https://www.ctc.ca.gov/aspiring-educators/roadmap-to-teaching/prepared-out-of-state/faq/","tags":["After submission"],"shortTitle":"Check for missing items"}]}},"first":{"outside":{"routeLine":"First-time teacher · California credential path · Middle / High School","fee":"Varies","warning":{"title":"California first-time certification is not just an application.","text":"Most first-time teachers need a California Commission-approved credential program, subject-matter verification, performance assessment, and later induction."},"steps":[{"title":"Choose the credential type for the job you want.","quote":"California authorizes departmentalized teaching, typically found in secondary/high schools, via the Single Subjects Teaching Credential.","source":"California CTC — Out-of-State High School Teacher Applicants","url":"https://www.ctc.ca.gov/aspiring-educators/out-of-state/high-school/","tags":["Required"],"shortTitle":"Choose your credential type"},{"title":"Apply to a California Commission-approved teacher preparation program.","quote":"California has a two-tier credential structure.","source":"California CTC — Roadmap to Teaching","url":"https://www.ctc.ca.gov/aspiring-educators/roadmap-to-teaching/pathways-to-credentialing/","tags":["Required"],"fee":"Program tuition/fees vary","shortTitle":"Apply to a preparation program"},{"title":"Verify your subject-matter competence.","quote":"Meet subject-matter competence, if not met with the issuance of the preliminary.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required"],"shortTitle":"Verify subject competence"},{"title":"Complete the U.S. Constitution requirement.","quote":"Complete a course in the provisions and principles of the United States Constitution.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["Required"],"shortTitle":"Complete the Constitution requirement"},{"title":"Complete induction after employment to clear the credential.","quote":"Complete a Commission-approved Teacher Induction Program.","source":"California CTC — Single Subject Credential Leaflet CL-560","url":"https://www.ctc.ca.gov/credentials/leaflets/cl-560/","tags":["After employment"],"shortTitle":"Complete induction"}]},"inside":null}},"TN":{"name":"Tennessee","difficulty":"Easy","difficultyClass":"easy","costLabel":"Free","costClass":"cost-free","transfer":{"outside":{"routeLine":"Licensed out-of-state teacher · Applying to Tennessee · Middle / High School","fee":"$0","warning":{"title":"Tennessee is one of the easiest states to get licensed.","text":"Tennessee’s application is completed through TNCompass. The state fee is $0, the checklist is short, and review is generally quick compared with more complicated states.","type":"positive"},"steps":[{"title":"Create a TNCompass account","quote":"All licensure transactions ... must be submitted electronically through TNCompass.","source":"Tennessee DOE — Educator Licensure","url":"https://www.tn.gov/education/educators/licensing/educator-licensure.html","tags":["Required"],"shortTitle":"Create a TNCompass account"},{"title":"Start the out-of-state educator application","quote":"Begin the out-of-state educator application in TNCompass before submitting supporting documents.","source":"Tennessee DOE — Educator Licensure","url":"https://www.tn.gov/education/educators/licensing/educator-licensure.html","tags":["Required"],"shortTitle":"Start the out-of-state educator application"},{"title":"Submit licensure documents","quote":"Your regionally-accredited college or university should send an official transcript, showing a conferred bachelor’s degree or higher to Educator.Licensure@tn.gov through an approved clearinghouse, or mailed to 710 James Robertson Parkway, 9th Floor, Nashville, TN 37243.","source":"Tennessee DOE — Out-of-State Educators","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/out-of-state-educators.html","tags":["Required","Documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"Your regionally-accredited college or university should send an official transcript, showing a conferred bachelor’s degree or higher to Educator.Licensure@tn.gov through an approved clearinghouse, or mailed to 710 James Robertson Parkway, 9th Floor, Nashville, TN 37243.","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/out-of-state-educators.html","label":"Tennessee DOE out-of-state educator instructions ↗"},{"text":"In TNCompass, upload your professional level license, equivalent to Tennessee’s professional-level license, in a state other than Tennessee.","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/out-of-state-educators.html","label":"Tennessee DOE out-of-state educator instructions ↗"}]},{"title":"Complete the Tennessee Early Literacy Assessment","quote":"After passing the Tennessee Early Literacy Assessment, upload your training certificate as an attachment on TNCompass from the Licensure Tab.","source":"Tennessee DOE — Literacy Success Act","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/tlsa.html","tags":["Conditional","Qualifying endorsements"],"shortTitle":"Complete the Tennessee Early Literacy Assessment","detailBullets":[{"text":"Enroll in TeachALL - Tennessee Early Literacy Assessment","url":"https://teachall.tnedu.gov/learning-path/tennessee-early-literacy-assessment","label":"TeachALL Tennessee Early Literacy Assessment ↗"},{"text":"Pass the Tennessee Early Literacy Assessment"},{"text":"After passing the Tennessee Early Literacy Assessment, upload your training certificate as an attachment on TNCompass from the Licensure Tab.","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/tlsa.html","label":"Tennessee DOE instructions ↗"}]},{"title":"Submit the application in TNCompass to be reviewed","quote":"submit the desired transaction in TNCompass for review by a licensure specialist.","source":"Tennessee DOE — Educator Licensure","url":"https://www.tn.gov/education/educators/licensing/educator-licensure.html","tags":["Required","Submit"],"shortTitle":"Submit application in TNCompass to be reviewed"}]},"inside":null},"first":{"outside":{"routeLine":"First-time teacher · Tennessee practitioner path · Middle / High School","fee":"$0","warning":{"title":"Tennessee is one of the easiest states to get licensed.","text":"Tennessee’s application is completed through TNCompass. The state fee is $0, the checklist is short, and review is generally quick compared with more complicated states.","type":"positive"},"steps":[{"title":"Apply to or complete an approved educator preparation program.","quote":"be enrolled in or have completed an approved educator preparation program.","source":"Tennessee DOE — New to Education","url":"https://www.tn.gov/content/tn/education/educators/licensing/educator-licensure/new-to-education.html","tags":["Required"],"fee":"Program tuition/fees vary","shortTitle":"Complete a preparation program"},{"title":"Create or log in to your TNCompass account.","quote":"In order to complete licensure transactions, educators must register for a TNCompass account.","source":"TNCompass Login","url":"https://tncompass.org/","tags":["Required"],"shortTitle":"Create a TNCompass account"},{"title":"Have your educator preparation program submit or support your recommendation.","quote":"be recommended for licensure by the program provider.","source":"Tennessee DOE — New to Education","url":"https://www.tn.gov/content/tn/education/educators/licensing/educator-licensure/new-to-education.html","tags":["Required"],"shortTitle":"Get program recommendation"},{"title":"Send official transcripts showing your bachelor’s degree.","quote":"The transcript must be submitted by the institution of higher learning to Educator.Licensure@tn.gov.","source":"Tennessee DOE — New to Education","url":"https://www.tn.gov/content/tn/education/educators/licensing/educator-licensure/new-to-education.html","tags":["Required"],"shortTitle":"Submit official transcripts","detailBullets":[{"text":"The transcript must be submitted by the institution of higher learning to Educator.Licensure@tn.gov.","url":"https://www.tn.gov/content/tn/education/educators/licensing/educator-licensure/new-to-education.html","label":"Instruction source ↗"},{"text":"All licensure transactions must be submitted in www.TNCompass.org.","url":"https://www.tn.gov/education/educators/licensing/educator-licensure/out-of-state-educators.html","label":"Instruction source ↗"}]},{"title":"Complete the Tennessee Literacy Success Act requirement if TNCompass says your endorsement requires it.","quote":"Beginning August 1, 2023, candidates seeking to obtain, renew, or advance a teaching license with at least one qualifying endorsement must demonstrate compliance with TLSA requirements when submitting licensure transactions.","source":"Tennessee DOE — Tennessee Literacy Success Act","url":"https://bestforall.tnedu.gov/lessons-and-learning-item?content-id=7910","tags":["Conditional","Qualifying endorsements"],"shortTitle":"Complete the Literacy Success Act"},{"title":"Submit required assessment scores for your endorsement area.","quote":"meet all professional assessment requirements as specified by the State Board of Education.","source":"Tennessee DOE — New to Education","url":"https://www.tn.gov/content/tn/education/educators/licensing/educator-licensure/new-to-education.html","tags":["Required"],"shortTitle":"Submit required test scores"}]},"inside":null}},"AZ":{"name":"Arizona","difficulty":"Easy","difficultyClass":"easy","costLabel":"Low Cost","costClass":"cost-free","transfer":{"outside":{"routeLine":"Licensed out-of-state teacher · Applying to Arizona · Middle / High School","fee":"$127+","warning":{"title":"Arizona has a fairly direct reciprocity process.","text":"Arizona requires an IVP fingerprint clearance card, a valid comparable out-of-state certificate, official transcripts, and the certification application fee."},"steps":[{"title":"Create your ADE Connect account and open My Certification Portal.","quote":"Prior to applying for certification, you must have an ADE Connect account.","source":"Arizona Department of Education — Educator Certification","url":"https://www.azed.gov/educator-certification","tags":["Required","Start here"],"shortTitle":"Create an ADE Connect account"},{"type":"header","title":"Arizona: National Board route","detail":"This route appears when the user selects “National Board Certification.”","appliesExperience":"nationalBoard"},{"title":"Use the National Board Certification route if you hold current National Board Certification.","quote":"Teachers who hold a valid National Board for Professional Teaching Standards certificate may qualify for a certificate.","source":"Arizona Department of Education — National Board Certification","url":"https://www.azed.gov/educator-certification","tags":["Required","National Board"],"appliesExperience":"nationalBoard","shortTitle":"Use the National Board route"},{"title":"Apply for your Arizona IVP Fingerprint Clearance Card.","quote":"The DPS fee is currently $67.00, except for volunteers.","source":"Arizona Department of Public Safety — Fingerprint Clearance Card","url":"https://www.azdps.gov/services/public-services-center/fingerprint-clearance-card","tags":["Required"],"fee":"$67 DPS fee for the IVP fingerprint clearance card","shortTitle":"Get an IVP fingerprint card"},{"title":"Submit licensure documents","quote":"Submit the following documents as indicated to apply under Certification Reciprocity.","source":"Arizona Department of Education — Reciprocity Requirements","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","tags":["Required","Upload documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"A photocopy of your valid Arizona Department of Public Safety Identity Verified Prints (IVP) fingerprint clearance card.","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","label":"Arizona reciprocity instructions ↗"},{"text":"A photocopy of your valid, comparable out-of-state educator certificate or National Board Certificate. Submit a photocopy with your application if you apply by mail, or upload a copy of your certificate when you apply online.","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","label":"Arizona reciprocity instructions ↗"},{"text":"Your regionally-accredited college or university should send an official transcript, showing a conferred bachelor’s degree or higher to certification@azed.gov, or through Parchment by your institution.","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","label":"Arizona reciprocity instructions ↗"},{"text":"Exams or work experience are not required under reciprocity rules.","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","label":"Arizona reciprocity instructions ↗"}]},{"title":"Submit the Arizona certification application and pay the fee.","quote":"The fee is $60 per certificate, endorsement, or approved area.","source":"Arizona Department of Education — Reciprocity Requirements","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","tags":["Required","Submit"],"fee":"$60 per certificate, endorsement, or approved area","shortTitle":"Submit the application"},{"title":"Check My Certification Portal for status or missing items.","quote":"The quickest way to apply, renew, or check your application status is online.","source":"Arizona Department of Education — Educator Certification","url":"https://www.azed.gov/educator-certification","tags":["After submission"],"shortTitle":"Check for missing items"}]},"inside":null},"first":{"outside":{"routeLine":"First-time teacher · Arizona certification path · Middle / High School","fee":"$127+","warning":{"title":"Arizona first-time certification depends on the certificate route.","text":"Arizona has different first-time certificate types and each one has its own requirement sheet. Before applying, choose the certificate you want in Arizona’s list and check that sheet for the exact coursework, testing, and document requirements."},"steps":[{"title":"Create your ADE Connect account and open My Certification Portal.","quote":"Prior to applying for certification, you must have an ADE Connect account.","source":"Arizona Department of Education — Educator Certification","url":"https://www.azed.gov/educator-certification","tags":["Required","Start here"],"shortTitle":"Create an ADE Connect account"},{"title":"Choose the Arizona certificate you want and open its requirement sheet.","quote":"Before submitting an application, please review the requirement document for the certificate(s) and/or other services you are seeking.","source":"Arizona Department of Education — Prepare and Submit an Application","url":"https://www.azed.gov/educator-certification/azedcert","tags":["Required"],"shortTitle":"Choose your certificate"},{"title":"Apply for your Arizona IVP Fingerprint Clearance Card.","quote":"The DPS fee is currently $67.00, except for volunteers.","source":"Arizona Department of Public Safety — Fingerprint Clearance Card","url":"https://www.azdps.gov/services/public-services-center/fingerprint-clearance-card","tags":["Required"],"fee":"$67 DPS fee for the IVP fingerprint clearance card","shortTitle":"Get an IVP fingerprint card"},{"title":"Have your official transcripts sent to Arizona through the approved method.","quote":"Your official transcripts or foreign credential evaluation are submitted to certification@azed.gov or through Parchment by your institution.","source":"Arizona Department of Education — Reciprocity Requirements","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","tags":["Required"],"shortTitle":"Submit official transcripts","detailBullets":[{"text":"Your official transcripts or foreign credential evaluation are submitted to certification@azed.gov or through Parchment by your institution.","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","label":"Instruction source ↗"}]},{"title":"Submit the Arizona certification application and pay the fee.","quote":"The fee is $60 per certificate, endorsement, or approved area.","source":"Arizona Department of Education — Reciprocity Requirements","url":"https://www.azed.gov/educator-certification/forms-and-information/reciprocity","tags":["Required","Submit"],"fee":"$60 per certificate, endorsement, or approved area","shortTitle":"Submit the application"},{"title":"Check My Certification Portal for status or missing items.","quote":"The quickest way to apply, renew, or check your application status is online.","source":"Arizona Department of Education — Educator Certification","url":"https://www.azed.gov/educator-certification","tags":["After submission"],"shortTitle":"Check for missing items"}]},"inside":null}},"FL":{"name":"Florida","difficulty":"Moderate","difficultyClass":"moderate","costLabel":"Moderate Cost","costClass":"cost-moderate","transfer":{"outside":{"routeLine":"Licensed out-of-state teacher · Applying to Florida · Middle / High School","fee":"$125-$165+","warning":{"title":"Florida uses a state evaluation process before certification.","text":"Florida’s application package is evaluated by the Bureau of Educator Certification. Plan for the $75 per-subject application fee plus about $50-$90 for fingerprinting/background screening."},"steps":[{"title":"Create a Florida online certification account and start a new application.","quote":"Click Begin Here for Sign-up to create a new online user account and retrieve your temporary password sent via email.","source":"Florida DOE — Online Licensing Service","url":"https://www.fldoe.org/teaching/certification/on-line-application-status-lookup-site.stml","tags":["Required","Start here"],"shortTitle":"Create a Florida certification account"},{"title":"Choose the Florida application for evaluation of eligibility for educator certification.","quote":"For new applicants, you may Start a New Application for the available Florida certifications issued via the Bureau of Educator Certification: Evaluation of eligibility for Educator Certification.","source":"Florida DOE — Online Licensing Service","url":"https://www.fldoe.org/teaching/certification/on-line-application-status-lookup-site.stml","tags":["Required"],"shortTitle":"Start the eligibility application"},{"title":"Submit licensure documents","quote":"Upload copies of teaching certificate(s) you hold from U.S. states or territories to your Florida online certification account.","source":"Florida DOE — Completing Your Initial Application Package","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","tags":["Required","Upload documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"Upload copies of teaching certificate(s) you hold from U.S. states or territories to your Florida online certification account.","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","label":"Florida application package instructions ↗"},{"text":"Your regionally-accredited college or university should send an official transcript, showing a conferred bachelor’s degree or higher electronically through FASTER, SPEEDE, or an approved transcript service such as Parchment.","url":"https://www.fldoe.org/teaching/certification/on-line-application-status-lookup-site.stml","label":"Florida transcript instructions ↗"}]},{"title":"Pay Florida’s application fee for each subject you request.","quote":"the application fee is $75 per subject.","source":"Florida DOE — Certification Application Fee Schedule","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/certification-application-fee-schedule.stml","tags":["Required","Submit"],"fee":"$75 per subject","shortTitle":"Pay the application fee"},{"title":"Check your Official Statement of Status of Eligibility and follow any remaining instructions.","quote":"Your application package cannot be evaluated until it is completed, submitted and all items received in the Bureau of Educator Certification.","source":"Florida DOE — Completing Your Initial Application Package","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","tags":["After submission"],"shortTitle":"Review your eligibility statement"},{"type":"header","title":"Florida: National Board route","detail":"This route appears when the user selects “National Board Certification.”","appliesExperience":"nationalBoard"},{"title":"Complete Florida fingerprinting/background screening when instructed.","quote":"Applicants must submit fingerprints electronically through the Florida Department of Law Enforcement.","source":"Florida DOE — Fingerprinting","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-4-submitting-fingerprints.stml","tags":["Required","When instructed"],"fee":"$50-$90 fingerprinting/background screening cost","shortTitle":"Complete fingerprinting"},{"title":"Use the National Board Certification route if you hold current National Board Certification.","quote":"A valid certificate issued by the National Board for Professional Teaching Standards will satisfy Florida's subject specialization and professional preparation requirements.","source":"Florida DOE — Certified Teacher or Administrator","url":"https://www.fldoe.org/teaching/certification/pathways-routes/certified-teacher-or-administrator.stml","tags":["Required","National Board"],"appliesExperience":"nationalBoard","shortTitle":"Use the National Board route"}]},"inside":null},"first":{"outside":{"routeLine":"First-time teacher · Florida certification path · Middle / High School","fee":"$125-$165+","warning":{"title":"Florida first-time applicants begin with an eligibility evaluation.","text":"Florida reviews the application package and issues an Official Statement of Status of Eligibility. Plan for the $75 per-subject application fee plus about $50-$90 for fingerprinting/background screening."},"steps":[{"title":"Create a Florida online certification account and start a new application.","quote":"Click Begin Here for Sign-up to create a new online user account and retrieve your temporary password sent via email.","source":"Florida DOE — Online Licensing Service","url":"https://www.fldoe.org/teaching/certification/on-line-application-status-lookup-site.stml","tags":["Required","Start here"],"shortTitle":"Create a Florida certification account"},{"title":"Choose the Florida application for evaluation of eligibility for educator certification.","quote":"For new applicants, you may Start a New Application for the available Florida certifications issued via the Bureau of Educator Certification: Evaluation of eligibility for Educator Certification.","source":"Florida DOE — Online Licensing Service","url":"https://www.fldoe.org/teaching/certification/on-line-application-status-lookup-site.stml","tags":["Required"],"shortTitle":"Start the eligibility application"},{"title":"Have official transcripts sent to Florida using an accepted method.","quote":"You must submit an official transcript showing at least a bachelor's degree from an accredited or approved U.S. institution to apply for a certificate.","source":"Florida DOE — Completing Your Initial Application Package","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","tags":["Required"],"shortTitle":"Submit official transcripts","detailBullets":[{"text":"Official transcripts may only be submitted electronically by the academic institution via the FASTER or SPEEDE systems.","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","label":"Instruction source ↗"}]},{"title":"Pay Florida’s application fee for each subject you request.","quote":"the application fee is $75 per subject.","source":"Florida DOE — Certification Application Fee Schedule","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/certification-application-fee-schedule.stml","tags":["Required","Submit"],"fee":"$75 per subject","shortTitle":"Pay the application fee"},{"title":"Review your Official Statement of Status of Eligibility.","quote":"Your application package cannot be evaluated until it is completed, submitted and all items received in the Bureau of Educator Certification.","source":"Florida DOE — Completing Your Initial Application Package","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-1-completing-your-initial-applica.stml","tags":["After submission"],"shortTitle":"Review your eligibility statement"},{"title":"Complete Florida fingerprinting/background screening when instructed.","quote":"Applicants must submit fingerprints electronically through the Florida Department of Law Enforcement.","source":"Florida DOE — Fingerprinting","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-4-submitting-fingerprints.stml","tags":["Required","When instructed"],"fee":"$50-$90 fingerprinting/background screening cost","shortTitle":"Complete fingerprinting"},{"title":"Complete any remaining requirements listed by Florida.","quote":"If your Official SOE indicates that \"you are not eligible\" for a Florida certificate, it will provide you with options for completing necessary requirements to become eligible for certification.","source":"Florida DOE — Official Statement of Status of Eligibility","url":"https://www.fldoe.org/teaching/certification/steps-to-certification/step-2-the-official-statement-of-statu.stml","tags":["Conditional"],"shortTitle":"Complete remaining requirements"}]},"inside":null}},"TX":{"name":"Texas","difficulty":"Moderate","difficultyClass":"moderate","costLabel":"Expensive","costClass":"cost-expensive","transfer":{"outside":{"routeLine":"Licensed out-of-state teacher · Applying to Texas · Middle / High School","fee":"$203+","warning":{"title":"Texas is one of the most expensive states in this comparison.","text":"Texas requires multiple fees, and the review process can take months. Submit the review early and watch ECOS for TEA’s response or missing items.","type":"danger"},"steps":[{"title":"Create a TEAL account.","quote":"The Texas Education Agency Login (TEAL) is a secure gateway where access must be set up before an educator can access their certification account.","source":"Texas Education Agency — Educator Certification Online System","url":"https://tea.texas.gov/educators/certification/educator-certification-online-system","tags":["Required","Start here"],"shortTitle":"Create a TEAL account"},{"title":"Start the Texas Review of Credentials application in ECOS.","quote":"A complete credentials review application includes: A submitted review of credentials application and payment of the required fee.","source":"Texas Education Agency — Out-of-State Certified Educators","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-state-certified-educators","tags":["Required"],"shortTitle":"Start the ECOS credential review"},{"title":"Submit licensure documents","quote":"A copy of your out-of-state standard certificate uploaded to your Educator Certification Online System (ECOS) account.","source":"Texas Education Agency — Out-of-State Certified Educators","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-state-certified-educators","tags":["Required","Upload documents"],"shortTitle":"Submit licensure documents","detailBullets":[{"text":"A copy of your out-of-state standard certificate uploaded to your Educator Certification Online System (ECOS) account.","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-state-certified-educators","label":"Texas out-of-state certified educator instructions ↗"},{"text":"Your regionally-accredited college or university should send an official transcript, showing a conferred bachelor’s degree or higher directly to the Texas Education Agency (TEA) from the issuing institution.","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-state-certified-educators","label":"Texas out-of-state certified educator instructions ↗"}]},{"title":"Pay the Texas review of credentials fee.","quote":"Your credentials will not be reviewed without the application and the non-refundable fee of $164.00.","source":"Texas Education Agency — Application Checklist","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-of-country-application-check-list-1.pdf","tags":["Required","Submit"],"fee":"$164 review of credentials fee","shortTitle":"Pay the review fee"},{"type":"header","title":"Texas: National Board route","detail":"This route appears when the user selects “National Board Certification.” Texas still uses TEAL/ECOS, but National Board Certification can lead to the Recognized designation.","appliesExperience":"nationalBoard"},{"title":"After your Texas certificate is issued, use your National Board Certification for the Recognized designation process if eligible.","quote":"Beginning in April 2021, eligible National Board Certified teachers (NBCTs) will earn a Recognized designation on their Texas educator certificate.","source":"National Board for Professional Teaching Standards — Texas","url":"https://www.nbpts.org/texas/","tags":["National Board","Recognized designation"],"appliesExperience":"nationalBoard","shortTitle":"Use the National Board route"},{"title":"After TEA reviews your credentials, follow the test exemption or exam instructions.","quote":"Educators certified outside of Texas may be eligible for exemption from some or all Texas certification exams.","source":"Texas Education Agency — Out-of-State Educator Test Exemption Review","url":"https://tea.texas.gov/educators/certification/out-state-certification/out-state-educator-test-exemption-review","tags":["Conditional","Testing"],"shortTitle":"Follow testing instructions"},{"title":"Monitor ECOS for TEA’s review response, test-exemption decision, or missing items.","quote":"ECOS is the online site for educators to access their certification account to verify or apply for certification.","source":"Texas Education Agency — Educator Certification Online System","url":"https://tea.texas.gov/educators/certification/educator-certification-online-system","tags":["After submission","Before fingerprinting"],"shortTitle":"Monitor ECOS status"},{"title":"Complete fingerprinting when TEA prompts you.","quote":"If you are required to be fingerprinted, you will receive an email from the Texas Education Agency with instructions.","source":"Texas Education Agency — Fingerprinting Process","url":"https://tea.texas.gov/educators/investigations/fingerprinting/fingerprinting-process-texas-educator-certification","tags":["Final step","When prompted"],"fee":"$39 fingerprinting fee","shortTitle":"Complete fingerprinting"}]},"inside":null},"first":{"outside":{"routeLine":"First-time teacher · Texas certification path · Middle / High School","fee":"Varies","warning":{"title":"Texas is one of the most expensive states in this comparison.","text":"Texas requires multiple fees, and the review process can take months. Submit the review early and watch ECOS for TEA’s response or missing items.","type":"danger"},"steps":[{"title":"Decide the grade level and subject area you want to teach.","quote":"Decide the specific grade levels of students and subject areas you would like to teach.","source":"Texas Education Agency — Alternative Certification Programs","url":"https://tea.texas.gov/educators/preparation-and-continuing-education/becoming-certified-texas-educator-through-alternative-certification-program","tags":["Required","Start here"],"shortTitle":"Choose grade and subject"},{"title":"Select an approved Texas educator preparation program or alternative certification program.","quote":"You must complete an Approved Educator Preparation Program.","source":"Texas Education Agency — Becoming a Classroom Teacher in Texas","url":"https://tea.texas.gov/educators/certification/initial-certification/becoming-classroom-teacher-texas","tags":["Required"],"fee":"Program tuition and fees vary","shortTitle":"Select a preparation program"},{"title":"Meet the program’s screening and admission requirements.","quote":"Your program will advise you of the entry requirements such as basic skills, GPA, and demonstration of content knowledge.","source":"Texas Education Agency — Alternative Certification Programs","url":"https://tea.texas.gov/educators/preparation-and-continuing-education/becoming-certified-texas-educator-through-alternative-certification-program","tags":["Required"],"shortTitle":"Meet admission requirements"},{"title":"Create a TEAL account.","quote":"The Texas Education Agency Login (TEAL) is a secure gateway where access must be set up before an educator can access their certification account.","source":"Texas Education Agency — Educator Certification Online System","url":"https://tea.texas.gov/educators/certification/educator-certification-online-system","tags":["Required"],"shortTitle":"Create a TEAL account"},{"title":"Complete the tests and certificate application your program tells you to complete.","quote":"This decision determines the certificate you need, the program you need to enroll in, and the certification tests you need to take.","source":"Texas Education Agency — Alternative Certification Programs","url":"https://tea.texas.gov/educators/preparation-and-continuing-education/becoming-certified-texas-educator-through-alternative-certification-program","tags":["Required","Testing"],"shortTitle":"Complete tests and application"},{"title":"Complete fingerprinting when TEA prompts you.","quote":"If you are required to be fingerprinted, you will receive an email from the Texas Education Agency with instructions.","source":"Texas Education Agency — Fingerprinting Process","url":"https://tea.texas.gov/educators/investigations/fingerprinting/fingerprinting-process-texas-educator-certification","tags":["Final step","When prompted"],"fee":"$39 fingerprinting fee","shortTitle":"Complete fingerprinting"},{"title":"Monitor ECOS for certificate status or missing items.","quote":"ECOS is the online site for educators to access their certification account to verify or apply for certification.","source":"Texas Education Agency — Educator Certification Online System","url":"https://tea.texas.gov/educators/certification/educator-certification-online-system","tags":["After submission"],"shortTitle":"Monitor ECOS status"}]},"inside":null}}};
+  const panel = document.getElementById("licensureProcessPanel");
+  if (!panel) return;
+  const stateSelectButton = document.getElementById("licensureStateSelectButton");
+  const stateSelectMenu = document.getElementById("licensureStateSelectMenu");
+  const checklist = document.getElementById("licensureChecklist");
+  const detailCard = document.getElementById("licensureDetailCard");
+  const stateTitle = document.getElementById("licensureStateTitle");
+  const routeLine = document.getElementById("licensureRouteLine");
+  const warningBox = document.getElementById("licensureWarningBox");
+  const warningIcon = warningBox?.querySelector(".licensure-alert-icon");
+  const warningTitle = document.getElementById("licensureWarningTitle");
+  const warningText = document.getElementById("licensureWarningText");
+  const progressBar = document.getElementById("licensureProgressBar");
+  const locationNote = document.getElementById("licensureLocationNote");
+  const experienceNote = document.getElementById("licensureExperienceNote");
+
+  let activeState = null;
+  let activeRoute = "transfer";
+  let activeLocation = "outside";
+  let activeExperience = "lessThanTwo";
+
+  function setActive(buttons, clicked) {
+    buttons.forEach(btn => btn.classList.remove("active"));
+    clicked.classList.add("active");
+  }
+
+  function getScenario(stateKey = activeState) {
+    if (!stateKey || !DATA[stateKey]) return null;
+    const state = DATA[stateKey];
+    const pathway = state[activeRoute] || state.transfer;
+    const hasSelectedLocation = Boolean(pathway[activeLocation]);
+    const scenario = pathway[activeLocation] || pathway.outside;
+    return { state, scenario, hasSelectedLocation };
+  }
+
+  function getSortedStateKeys() {
+    return Object.keys(DATA).sort((a, b) => DATA[a].name.localeCompare(DATA[b].name));
+  }
+
+  function experienceOptionsUsed(scenario) {
+    const used = new Set();
+    scenario.steps.forEach(step => { if (step.appliesExperience) used.add(step.appliesExperience); });
+    return used;
+  }
+
+  function updateFilterNotes() {
+    const data = getScenario();
+
+    if (!data) {
+      if (locationNote) {
+        locationNote.hidden = true;
+        locationNote.textContent = "";
+      }
+      if (experienceNote) {
+        experienceNote.hidden = true;
+        experienceNote.textContent = "";
+      }
+      return;
+    }
+
+    if (locationNote) {
+      if (!data.hasSelectedLocation && activeLocation === "inside") {
+        locationNote.hidden = false;
+        locationNote.textContent = `${data.state.name} does not currently have a separate “inside this state” checklist in this prototype, so the outside-state checklist is shown.`;
+      } else {
+        locationNote.hidden = true;
+        locationNote.textContent = "";
+      }
+    }
+
+    if (experienceNote) {
+      const used = experienceOptionsUsed(data.scenario);
+      if (!used.has("lessThanTwo") && !used.has("twoOrMore") && activeExperience !== "nationalBoard") {
+        experienceNote.hidden = false;
+        experienceNote.textContent = `${data.state.name} does not currently change the checklist for less-than-two-years vs. two-or-more-years experience. Choose National Board Certification only if that applies.`;
+      } else if ((activeExperience === "lessThanTwo" || activeExperience === "twoOrMore") && !used.has(activeExperience)) {
+        experienceNote.hidden = false;
+        experienceNote.textContent = `This experience choice does not change ${data.state.name} in the current prototype.`;
+      } else {
+        experienceNote.hidden = true;
+        experienceNote.textContent = "";
+      }
+    }
+  }
+
+  function visibleSteps(scenario) {
+    if (!scenario || !Array.isArray(scenario.steps)) return [];
+    return scenario.steps.filter(step => !step.appliesExperience || step.appliesExperience === activeExperience);
+  }
+
+  function addText(parent, className, text) {
+    const el = document.createElement("div");
+    el.className = className;
+    el.textContent = text || "";
+    parent.appendChild(el);
+    return el;
+  }
+
+
+  function getStepDetailBullets(step) {
+    if (step.detailBullets && Array.isArray(step.detailBullets)) return step.detailBullets;
+    return [];
+  }
+
+  function addStepDetailList(parent, items) {
+    if (!items || !items.length) return;
+    const list = document.createElement("ul");
+    list.className = "licensure-detail-bullet-list";
+    items.forEach(item => {
+      const li = document.createElement("li");
+      if (typeof item === "string") {
+        li.textContent = item;
+      } else {
+        const text = document.createElement("span");
+        text.textContent = item.text || "";
+        li.appendChild(text);
+        if (item.url) {
+          const link = document.createElement("a");
+          link.className = "licensure-inline-source-link";
+          link.href = item.url;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = item.label || "Source ↗";
+          li.appendChild(document.createTextNode(" "));
+          li.appendChild(link);
+        }
+      }
+      list.appendChild(li);
+    });
+    parent.appendChild(list);
+  }
+
+  function renderStateList() {
+    // State list removed in Prototype 427; state selection now happens through the dropdown.
+  }
+
+  function renderStateFeeLabel(target, stateName, feeText) {
+    if (!target) return;
+    target.innerHTML = "";
+
+    const name = document.createElement("span");
+    name.className = "licensure-state-menu-name";
+    name.textContent = stateName;
+
+    const dash = document.createElement("span");
+    dash.className = "licensure-state-menu-dash";
+    dash.textContent = "—";
+
+    const fee = document.createElement("span");
+    fee.className = "licensure-state-menu-fee";
+    fee.textContent = `Fees: ${feeText || "Varies"}`;
+
+    target.appendChild(name);
+    target.appendChild(dash);
+    target.appendChild(fee);
+  }
+
+  function closeStateMenu() {
+    if (!stateSelectButton || !stateSelectMenu) return;
+    stateSelectMenu.hidden = true;
+    stateSelectButton.setAttribute("aria-expanded", "false");
+  }
+
+  function openStateMenu() {
+    if (!stateSelectButton || !stateSelectMenu) return;
+    renderStateSelect();
+    stateSelectMenu.hidden = false;
+    stateSelectButton.setAttribute("aria-expanded", "true");
+  }
+
+  function renderStateSelect() {
+    if (!stateSelectButton || !stateSelectMenu) return;
+
+    if (!activeState || !DATA[activeState]) {
+      stateSelectButton.textContent = "Select a state";
+    } else {
+      const currentData = getScenario(activeState);
+      if (currentData) renderStateFeeLabel(stateSelectButton, currentData.state.name, currentData.scenario.fee);
+    }
+
+    stateSelectMenu.innerHTML = "";
+    getSortedStateKeys().forEach(key => {
+      const data = getScenario(key);
+      if (!data) return;
+
+      const option = document.createElement("button");
+      option.type = "button";
+      option.className = "licensure-state-option" + (key === activeState ? " active" : "");
+      option.setAttribute("role", "option");
+      option.setAttribute("aria-selected", key === activeState ? "true" : "false");
+      option.dataset.licensureStateOption = key;
+      renderStateFeeLabel(option, data.state.name, data.scenario.fee);
+
+      option.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        activeState = key;
+        closeStateMenu();
+        render();
+      });
+
+      stateSelectMenu.appendChild(option);
+    });
+  }
+
+  function makeConciseStepTitle(title) {
+    if (!title) return "Complete this step";
+    return title
+      .replace(/^Create or log in to /i, "Create your ")
+      .replace(/^Start the application and /i, "Start your application and ")
+      .replace(/^Submit your direct online /i, "Submit your online ")
+      .replace(/^Mail your completed /i, "Mail your ")
+      .replace(/^Check your /i, "Check ")
+      .replace(/^Request /i, "Request ")
+      .replace(/^Upload a copy of your /i, "Upload your ")
+      .replace(/^Have your official /i, "Send official ")
+      .replace(/^Apply for your /i, "Apply for ")
+      .replace(/\.$/, "");
+  }
+
+  function renderChecklist(scenario) {
+    if (!checklist) return;
+    checklist.innerHTML = "";
+
+    const stepsGrid = document.createElement("div");
+    stepsGrid.className = "licensure-step-grid";
+
+    const detailsPanel = document.createElement("section");
+    detailsPanel.className = "licensure-selected-step-panel";
+    detailsPanel.setAttribute("aria-live", "polite");
+    detailsPanel.innerHTML = `<div class="licensure-selected-step-empty">Select a step above to view details and links.</div>`;
+
+    function populateDetails(step, stepNumber, card) {
+      Array.from(stepsGrid.querySelectorAll(".licensure-step-card")).forEach(c => {
+        c.classList.toggle("is-open", c === card);
+        c.setAttribute("aria-expanded", c === card ? "true" : "false");
+      });
+
+      detailsPanel.innerHTML = "";
+      const panelTitle = document.createElement("h4");
+      panelTitle.className = "licensure-selected-step-title";
+      panelTitle.textContent = `${stepNumber}. ${makeConciseStepTitle(step.shortTitle || step.title)}`;
+      detailsPanel.appendChild(panelTitle);
+
+      addStepDetailList(detailsPanel, getStepDetailBullets(step));
+
+      if (step.quote && !(step.detailBullets && step.detailBullets.length)) addText(detailsPanel, "licensure-quote-box", step.quote);
+
+      if (step.url || step.source) {
+        const source = document.createElement("a");
+        source.className = "licensure-source-link";
+        source.href = step.url || "#";
+        source.target = "_blank";
+        source.rel = "noopener";
+        source.textContent = `Source: ${step.source || "Official source"} ↗`;
+        detailsPanel.appendChild(source);
+      }
+
+      const tagWrap = document.createElement("div");
+      tagWrap.className = "licensure-selected-step-tags";
+      (step.tags || []).forEach(t => {
+        const tag = document.createElement("span");
+        tag.className = "licensure-tag";
+        tag.textContent = t;
+        tagWrap.appendChild(tag);
+      });
+      if (tagWrap.children.length) detailsPanel.appendChild(tagWrap);
+
+      if (step.fee) {
+        const fee = document.createElement("div");
+        fee.className = "licensure-fee-note";
+        fee.textContent = step.fee;
+        detailsPanel.appendChild(fee);
+      }
+    }
+
+    let stepNumber = 0;
+    visibleSteps(scenario).forEach(step => {
+      if (step.type === "header") {
+        const header = document.createElement("div");
+        header.className = "licensure-route-header";
+        addText(header, "licensure-route-header-title", step.title);
+        if (step.detail) addText(header, "licensure-route-header-sub", step.detail);
+        stepsGrid.appendChild(header);
+        return;
+      }
+
+      stepNumber += 1;
+      const currentNumber = stepNumber;
+      const card = document.createElement("article");
+      card.className = "licensure-step-card";
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-expanded", "false");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "licensure-step-check";
+      checkbox.setAttribute("aria-label", `Mark step ${currentNumber} complete`);
+
+      const number = document.createElement("div");
+      number.className = "licensure-step-number";
+      number.textContent = currentNumber;
+
+      const title = document.createElement("div");
+      title.className = "licensure-step-card-title";
+      title.textContent = makeConciseStepTitle(step.shortTitle || step.title);
+
+      const summary = document.createElement("div");
+      summary.className = "licensure-step-summary";
+      summary.appendChild(checkbox);
+      summary.appendChild(number);
+      summary.appendChild(title);
+
+      checkbox.addEventListener("click", event => event.stopPropagation());
+      checkbox.addEventListener("change", () => {
+        card.classList.toggle("is-complete", checkbox.checked);
+        updateProgress();
+      });
+
+      function openDetails() {
+        populateDetails(step, currentNumber, card);
+      }
+
+      card.addEventListener("click", event => {
+        if (event.target.closest("a, input, button")) return;
+        openDetails();
+      });
+      card.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        openDetails();
+      });
+
+      card.appendChild(summary);
+      stepsGrid.appendChild(card);
+    });
+
+    checklist.appendChild(stepsGrid);
+    checklist.appendChild(detailsPanel);
+    const firstStepCard = stepsGrid.querySelector(".licensure-step-card");
+    if (firstStepCard) firstStepCard.click();
+    updateProgress();
+  }
+
+  function render() {
+    const data = getScenario();
+
+    renderStateSelect();
+
+    if (!data) {
+      detailCard?.classList.remove("has-selected-state");
+      stateTitle.textContent = "Select a state";
+      routeLine.textContent = "Choose a state from the dropdown to view its licensure checklist.";
+      warningTitle.textContent = "";
+      warningText.textContent = "";
+      warningBox.classList.remove("positive", "danger");
+      warningIcon.textContent = "";
+      progressBar.style.width = "0%";
+      checklist.innerHTML = "";
+      updateFilterNotes();
+      renderStateList();
+      return;
+    }
+
+    detailCard?.classList.add("has-selected-state");
+    const { state, scenario } = data;
+
+    stateTitle.textContent = `Become an Educator in ${state.name}`;
+    routeLine.textContent = scenario.routeLine;
+    warningTitle.textContent = scenario.warning.title;
+    warningText.textContent = scenario.warning.text;
+    const isPositive = scenario.warning.type === "positive";
+    const isDanger = scenario.warning.type === "danger";
+    warningBox.classList.toggle("positive", isPositive);
+    warningBox.classList.toggle("danger", isDanger);
+    warningIcon.textContent = isPositive ? "✓" : "!";
+
+    updateFilterNotes();
+    renderStateList();
+    renderChecklist(scenario);
+  }
+
+  function updateProgress() {
+    if (!progressBar || !checklist) return;
+    const inputs = Array.from(checklist.querySelectorAll(".licensure-step-check"));
+    const checked = inputs.filter(i => i.checked).length;
+    progressBar.style.width = inputs.length ? `${(checked / inputs.length) * 100}%` : "0%";
+  }
+
+  function openPanel() {
+    panel.hidden = false;
+    document.body.classList.add("licensure-panel-open", "licensure-page-active");
+    if (typeof setMainNavActive === "function") setMainNavActive("licensure");
+    else {
+      document.getElementById("desktopRailLicensure")?.classList.add("is-active");
+      document.getElementById("mobileToolbarLicensure")?.classList.add("active");
+    }
+    render();
+    setTimeout(() => document.getElementById("licensurePanelTitle")?.focus?.(), 50);
+  }
+
+  function closePanel(nextView = "map") {
+    panel.hidden = true;
+    document.body.classList.remove("licensure-panel-open", "licensure-page-active");
+    if (typeof setMainNavActive === "function") setMainNavActive(nextView);
+    else {
+      document.getElementById("desktopRailLicensure")?.classList.remove("is-active");
+      document.getElementById("mobileToolbarLicensure")?.classList.remove("active");
+    }
+  }
+
+  document.getElementById("desktopRailLicensure")?.addEventListener("click", openPanel);
+  document.getElementById("mobileToolbarLicensure")?.addEventListener("click", openPanel);
+  document.getElementById("licensurePanelClose")?.addEventListener("click", closePanel);
+  document.addEventListener("keydown", event => { if (event.key === "Escape" && !panel.hidden) closePanel(); });
+  document.getElementById("desktopRailHome")?.addEventListener("click", () => closePanel("map"));
+  document.getElementById("mobileToolbarHome")?.addEventListener("click", () => closePanel("map"));
+  document.getElementById("desktopRailFavorites")?.addEventListener("click", () => closePanel("favorites"));
+  document.getElementById("mobileToolbarFavorites")?.addEventListener("click", () => closePanel("favorites"));
+
+  document.querySelectorAll("[data-lps-route]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(document.querySelectorAll("[data-lps-route]"), btn);
+      activeRoute = btn.dataset.lpsRoute;
+      render();
+    });
+  });
+  document.querySelectorAll("[data-lps-location]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(document.querySelectorAll("[data-lps-location]"), btn);
+      activeLocation = btn.dataset.lpsLocation;
+      render();
+    });
+  });
+  document.querySelectorAll("[data-lps-area]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(document.querySelectorAll("[data-lps-area]"), btn);
+      render();
+    });
+  });
+  document.querySelectorAll("[data-lps-experience]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(document.querySelectorAll("[data-lps-experience]"), btn);
+      activeExperience = btn.dataset.lpsExperience;
+      render();
+    });
+  });
+
+  stateSelectButton?.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!stateSelectMenu) return;
+    if (stateSelectMenu.hidden) openStateMenu();
+    else closeStateMenu();
+  });
+
+  document.addEventListener("click", event => {
+    if (event.target.closest?.(".licensure-state-menu-wrap")) return;
+    closeStateMenu();
+  });
+
+  stateSelectButton?.addEventListener("keydown", event => {
+    if (event.key !== "Enter" && event.key !== " " && event.key !== "ArrowDown") return;
+    event.preventDefault();
+    openStateMenu();
+    stateSelectMenu?.querySelector(".licensure-state-option")?.focus();
+  });
+
+  stateSelectMenu?.addEventListener("keydown", event => {
+    const options = Array.from(stateSelectMenu.querySelectorAll(".licensure-state-option"));
+    const index = options.indexOf(document.activeElement);
+    if (event.key === "Escape") {
+      closeStateMenu();
+      stateSelectButton?.focus();
+      return;
+    }
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      options[Math.min(index + 1, options.length - 1)]?.focus();
+      return;
+    }
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      options[Math.max(index - 1, 0)]?.focus();
+    }
+  });
+
+  render();
+})();
+
+
+/* Prototype 445: navigation active-state cleanup.
+   Keep only Map, Favorites, or Licensure highlighted based on the currently open view. */
+(function () {
+  function syncMainNavState() {
+    const licensurePanel = document.getElementById("licensureProcessPanel");
+    const favoritesPanel = document.getElementById("favoritesPanel");
+    if (licensurePanel && !licensurePanel.hidden) {
+      if (typeof setMainNavActive === "function") setMainNavActive("licensure");
+      return;
+    }
+    if (favoritesPanel && !favoritesPanel.hidden) {
+      if (typeof setMainNavActive === "function") setMainNavActive("favorites");
+      return;
+    }
+    if (typeof setMainNavActive === "function") setMainNavActive("map");
+  }
+  ["desktopRailHome", "mobileToolbarHome", "desktopRailFavorites", "mobileToolbarFavorites", "desktopRailLicensure", "mobileToolbarLicensure"].forEach(id => {
+    document.getElementById(id)?.addEventListener("click", () => {
+      setTimeout(syncMainNavState, 0);
+      setTimeout(syncMainNavState, 150);
+    });
+  });
+  document.getElementById("licensurePanelClose")?.addEventListener("click", () => setTimeout(syncMainNavState, 0));
+  document.getElementById("favoritesPanelClose")?.addEventListener("click", () => setTimeout(syncMainNavState, 0));
+})();
+
+
+/* Prototype 448: robustly keep only the current main navigation item highlighted. */
+(function () {
+  function setOnlyActive(view) {
+    var groups = {
+      map: ["desktopRailHome", "mobileToolbarHome"],
+      favorites: ["desktopRailFavorites", "mobileToolbarFavorites"],
+      licensure: ["desktopRailLicensure", "mobileToolbarLicensure"]
+    };
+    Object.keys(groups).forEach(function (key) {
+      groups[key].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var on = key === view;
+        el.classList.toggle("is-active", on);
+        el.classList.toggle("active", on);
+        if (on) {
+          el.setAttribute("aria-current", "page");
+          el.setAttribute("aria-selected", "true");
+        } else {
+          el.removeAttribute("aria-current");
+          el.removeAttribute("aria-selected");
+        }
+      });
+    });
+    document.body.classList.toggle("favorites-panel-open", view === "favorites");
+  }
+  function currentView() {
+    var lic = document.getElementById("licensureProcessPanel");
+    var fav = document.getElementById("favoritesPanel");
+    if (lic && !lic.hidden) return "licensure";
+    if (fav && !fav.hidden) return "favorites";
+    return "map";
+  }
+  function sync() { setOnlyActive(currentView()); }
+  ["desktopRailHome", "mobileToolbarHome", "desktopRailFavorites", "mobileToolbarFavorites", "desktopRailLicensure", "mobileToolbarLicensure", "licensurePanelClose", "favoritesPanelClose"].forEach(function (id) {
+    document.getElementById(id)?.addEventListener("click", function () {
+      setTimeout(sync, 0);
+      setTimeout(sync, 120);
+      setTimeout(sync, 350);
+    }, true);
+  });
+  var observer = new MutationObserver(sync);
+  ["licensureProcessPanel", "favoritesPanel"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el, { attributes: true, attributeFilter: ["hidden", "class", "style"] });
+  });
+  document.addEventListener("DOMContentLoaded", sync);
+  sync();
 })();

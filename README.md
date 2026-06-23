@@ -208,3 +208,96 @@ Verified: `districts-data.js` contains 105 districts, including the 10 Southern 
 
 
 Prototype 413 filter-match fix: generated salarySchedule objects for newly added CA/OK/FL districts and added an app.js fallback from Avg Start / Avg 10-Year salary fields, so these districts render as active matches on the map under default filters instead of gray no-match markers.
+
+## Prototype 439 — Combined Waco/map/region fixes with Licensure page
+- Rebuilt from Prototype 417 Waco/map/region data and behavior.
+- Preserved the 9 Waco-area district additions.
+- Preserved map-viewport sortable rankings and New Mexico map dots.
+- Preserved nearest-city/local-market Region labels.
+- Merged in the Licensure Process by State full-page app view, navigation, state dropdown, checklist behavior, and styles from the uploaded licensure package.
+- No scoring formulas, scoring weights, or workbook methodology changed.
+- Test with ?v=439-combined-waco-licensure.
+
+
+## Prototype 440 — Illinois-style Licensure cards
+- Combined the Waco district additions, visible-map ranking behavior, New Mexico map dots, and nearest-city region labels with the Licensure page package.
+- Changed the selected-state title to “Become an Educator in [state]”.
+- Reworked Licensure steps into Illinois-style numbered cards with a completion checkbox and expandable details/links.
+- Replaced the “What describes you?” segmented buttons with card-style pathway choices.
+- Fixed the Licensure page double-scrollbar behavior and cleaned up nav active-state highlighting so only the current section remains highlighted.
+- No scoring formulas, scoring weights, or workbook methodology changed.
+
+## Prototype 442 — Licensure route-card shadow fix
+- Preserved the larger Illinois-style “What describes you?” pathway cards from Prototype 440.
+- Removed only the 3D/drop-shadow bottom from those pathway cards.
+- Updated the high school / college student icon to look closer to the Illinois reference while using the app blue.
+- Kept Waco districts, visible-map rankings, New Mexico dots, restored region labels, and the licensure page work.
+- No scoring formulas, weights, or workbook methodology changed.
+
+
+## Prototype 443 — Licensure route-card icon/content fix
+- Restored the larger Illinois-style route cards under “What describes you?” instead of the flattened version.
+- Removed only the 3D/drop-shadow treatment from the route cards.
+- Fixed the first route card so its label displays correctly and the student icon matches the Illinois-style seated student reference more closely.
+- No scoring formulas, weights, district data, or workbook methodology changed.
+
+
+## Prototype 444 — Licensure route card size/icon cleanup
+- Restored the “What describes you?” route buttons to the prior normal-sized card layout.
+- Kept the route cards flat by removing the 3D/drop-shadow treatment only.
+- Removed the student icon from “I am a high school or college student.”
+- Kept the licensed-out-of-state icon unchanged.
+- No scoring formulas, weights, district data, or workbook methodology changed.
+
+
+## Prototype 445 — Licensure route card and nav cleanup
+- Kept the student route card layout consistent before and after selection.
+- Removed the student icon visually while preserving the left icon space for a future illustration.
+- Kept the licensed-out-of-state icon.
+- Fixed main navigation active-state behavior so Map, Favorites, and Licensure do not stay highlighted together.
+- No scoring formulas, weights, workbook values, or district data changed.
+
+
+## Prototype 447 — Compact Licensure Step Cards
+- Reworked Licensure steps into smaller square Illinois-style cards.
+- Step details now render in a separate panel below the step grid, so the grid does not expand when a step is selected.
+- Checkbox progress behavior is unchanged.
+- No district scoring, formula, or workbook methodology changes.
+
+
+## Prototype 448 — Illinois-style step spacing and licensure scroll/nav cleanup
+- Refined licensure step cards to be smaller, more square, and centered rather than stretched across the full page.
+- Adjusted number/text spacing inside each step card to better match the Illinois reference layout.
+- Kept the selected step details/links in a separate panel below the step grid.
+- Strengthened licensure page scrolling so only the licensure content area scrolls.
+- Strengthened Map/Favorites/Licensure active-state handling so only the current page stays highlighted.
+- No scoring formulas, district data, or workbook methodology changed.
+
+
+## Prototype 450 — Licensure detail bullets
+- Added Illinois-style bullet details inside the selected licensure step detail panel.
+- Document-submission steps now explain transcript, out-of-state license, supplemental document, and follow-up requirements in more detail.
+- Kept concise step-card titles and the separate detail/link panel below the step grid.
+- No district data, scoring formulas, map behavior, region labels, or workbook methodology changed.
+
+
+## Prototype 452 — Tennessee licensure detail cleanup
+- Updated Tennessee Step 3 detail panel to use the exact transcript submission and professional-level license upload instructions requested.
+- Removed duplicate/generic Tennessee document bullets from Step 3.
+- Updated Tennessee Step 4 detail panel with TeachALL enrollment/pass instructions and TNCompass certificate upload instruction.
+- Linked Tennessee Step 4 bullets to the Tennessee Literacy Success Act page and TeachALL Tennessee Early Literacy Assessment page.
+- No district data, scoring formulas, map behavior, or region labels changed.
+
+
+## Prototype 453 - Tennessee Early Literacy Assessment label cleanup
+- Added "In TNCompass," before Tennessee Step 3 professional-level license upload instruction.
+- Changed Tennessee Step 4 wording to consistently use "Tennessee Early Literacy Assessment" for the step/action.
+- Removed the duplicate TeachALL source link from the "Pass the Tennessee Early Literacy Assessment" bullet while keeping official links on the surrounding source-specific instructions.
+- No scoring, district data, map behavior, region labels, or workbook formulas changed.
+
+
+Update in Prototype 455: Arizona Step 3 now mirrors the reciprocity document list more directly, and transcript wording was standardized across transfer-state document steps where institutions must send transcripts.
+
+Prototype 456: Clarified Florida transcript wording so FASTER/SPEEDE are not presented as the only possible electronic transcript path; the detail now also references approved transcript services such as Parchment.
+
+- Prototype 457: Clarified Florida Step 3 so teaching certificates are described as uploads to the Florida online certification account, while transcript wording still includes approved electronic transcript services such as Parchment.
