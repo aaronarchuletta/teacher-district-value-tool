@@ -510,3 +510,6 @@ Prototype 413 filter-match fix: generated salarySchedule objects for newly added
 Prototype 456: Clarified Florida transcript wording so FASTER/SPEEDE are not presented as the only possible electronic transcript path; the detail now also references approved transcript services such as Parchment.
 
 - Prototype 457: Clarified Florida Step 3 so teaching certificates are described as uploads to the Florida online certification account, while transcript wording still includes approved electronic transcript services such as Parchment.
+
+
+Prototype 458: Added map coordinates for the 15 districts that were missing lat/lng so all 114 districts can appear in default map-based rankings. On mobile, Favorites now keeps the bottom navigation bar fixed above the Favorites page and hides the redundant Favorites close button.

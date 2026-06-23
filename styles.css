@@ -10533,3 +10533,27 @@ body.favorites-panel-open #mobileToolbarFavorites.is-active {
     padding-left: 22px !important;
   }
 }
+
+
+/* Prototype 458: keep mobile bottom nav available on Favorites and remove redundant close button */
+@media (max-width: 768px) {
+  body.favorites-panel-open .mobile-bottom-toolbar,
+  .favorites-panel:not([hidden]) ~ .mobile-bottom-toolbar {
+    display: grid !important;
+    position: fixed !important;
+    z-index: 9000 !important;
+    pointer-events: auto !important;
+  }
+
+  body.favorites-panel-open .favorites-panel,
+  .favorites-panel:not([hidden]) {
+    padding-bottom: calc(128px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .favorites-panel .favorites-panel-close,
+  .favorites-panel [aria-label="Close favorites"],
+  .favorites-panel [aria-label="Close Favorites"],
+  .favorites-panel button[aria-label*="Close" i] {
+    display: none !important;
+  }
+}
