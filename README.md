@@ -309,3 +309,10 @@ Prototype 458: Added map coordinates for the 15 districts that were missing lat/
 Prototype 459: Search result rows now show a favorite heart button on the right. The district name and region/state text remain grouped on the left, so the right side is reserved for favorite toggling.
 
 Prototype 460: Fixed desktop Licensure double-scrollbar by using the Licensure page itself as the single scroll container, and removed the route/subheading text under “Become an Educator in [state]”. No district data, scoring formulas, map behavior, or workbook logic changed.
+
+
+Prototype 461 — Hiring Access profile tile
+- Removed the Class Size / Student-Teacher Ratio tile from desktop and mobile district profiles.
+- Added Hiring Access immediately after State Funding Per Student in the profile tile grid.
+- Hiring Access uses preliminary state-level defaults only for UT, CA, CO, AZ, TX, NM, and NV; all other states display Not Available.
+- Hiring Access is display-only and does not affect Overall Value Score, scoring weights, filters, map behavior, rankings, or workbook methodology.

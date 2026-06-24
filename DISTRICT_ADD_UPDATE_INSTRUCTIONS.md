@@ -201,3 +201,10 @@ Prototype 385
 - Strengthened licensure page scrolling so only the licensure content area scrolls.
 - Strengthened Map/Favorites/Licensure active-state handling so only the current page stays highlighted.
 - No scoring formulas, district data, or workbook methodology changed.
+
+
+Prototype 461 — Hiring Access profile tile
+- Removed the Class Size / Student-Teacher Ratio tile from desktop and mobile district profiles.
+- Added Hiring Access immediately after State Funding Per Student in the profile tile grid.
+- Hiring Access uses preliminary state-level defaults only for UT, CA, CO, AZ, TX, NM, and NV; all other states display Not Available.
+- Hiring Access is display-only and does not affect Overall Value Score, scoring weights, filters, map behavior, rankings, or workbook methodology.

@@ -1,4 +1,4 @@
-// Prototype 417 data build: stable Prototype 416 data with nearest-city/local-market Region labels restored. No scoring formulas or weights changed.
+// Prototype 461 data build: adds preliminary state-level Hiring Access fields for assigned states only. Overall scoring formulas and weights unchanged.
 const DISTRICTS = [
   {
     "District": "Hobbs Municipal Schools",
@@ -100,7 +100,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 84,
+    "hiringAccess": "High Need",
+    "hiringAccessSource": "State-level estimate based on statewide vacancy and shortage pressure"
   },
   {
     "District": "Victor Valley Union High School District",
@@ -203,7 +206,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "https://www.edjoin.org/Home/JobPosting/2119466",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Mounds View Public Schools",
@@ -509,7 +515,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 84,
+    "hiringAccess": "High Need",
+    "hiringAccessSource": "State-level estimate based on statewide vacancy and shortage pressure"
   },
   {
     "District": "West Des Moines Community Schools",
@@ -815,7 +824,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 84,
+    "hiringAccess": "High Need",
+    "hiringAccessSource": "State-level estimate based on statewide vacancy and shortage pressure"
   },
   {
     "District": "Madison Metropolitan School District",
@@ -1019,7 +1031,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 84,
+    "hiringAccess": "High Need",
+    "hiringAccessSource": "State-level estimate based on statewide vacancy and shortage pressure"
   },
   {
     "District": "Rio Rancho Public Schools",
@@ -1121,7 +1136,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 84,
+    "hiringAccess": "High Need",
+    "hiringAccessSource": "State-level estimate based on statewide vacancy and shortage pressure"
   },
   {
     "District": "Fort Gibson Public Schools",
@@ -1632,7 +1650,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Osseo Area Schools / ISD 279",
@@ -1836,7 +1857,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Alief ISD",
@@ -1938,7 +1962,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.aliefisd.net/o/aisd/page/substitute",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Cobb County School District",
@@ -2143,7 +2170,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Antelope Valley Union High School District",
@@ -2245,7 +2275,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Barbers Hill ISD",
@@ -2347,7 +2380,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Galena Park ISD",
@@ -2449,7 +2485,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Clovis Unified School District",
@@ -2551,7 +2590,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Gwinnett County Public Schools",
@@ -2755,7 +2797,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Rosemount-Apple Valley-Eagan ISD 196",
@@ -3061,7 +3106,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 30
+    "rank": 30,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Waco ISD",
@@ -3163,7 +3211,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 31
+    "rank": 31,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "La Vega ISD",
@@ -3265,7 +3316,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 32
+    "rank": 32,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Pearland ISD",
@@ -3367,7 +3421,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Katy ISD",
@@ -3469,7 +3526,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.katyisd.org/careers/human-resources/substitutes/substituting-in-katy-isd",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "San Jacinto Unified School District",
@@ -3572,7 +3632,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Channelview ISD",
@@ -3674,7 +3737,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Perris Union High School District",
@@ -3777,7 +3843,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Portland Public Schools",
@@ -3981,7 +4050,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Wayzata Public Schools",
@@ -4185,7 +4257,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.slcschools.org/314308_2",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 18,
+    "hiringAccess": "Very Competitive",
+    "hiringAccessSource": "State-level estimate based on low vacancy pressure, high retention, and strong local teacher pipeline"
   },
   {
     "District": "Robinson ISD",
@@ -4287,7 +4362,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 42
+    "rank": 42,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Beaverton School District",
@@ -4696,7 +4774,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "North Clackamas School District",
@@ -5104,7 +5185,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 50
+    "rank": 50,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "McGregor ISD",
@@ -5206,7 +5290,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 51
+    "rank": 51,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Syosset Central School District",
@@ -5819,7 +5906,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 93,
+    "hiringAccess": "Very High Need",
+    "hiringAccessSource": "State-level estimate based on severe vacancy and staffing pressure"
   },
   {
     "District": "Tahoe-Truckee Unified School District",
@@ -5921,7 +6011,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Lorena ISD",
@@ -6023,7 +6116,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 59
+    "rank": 59,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "San Antonio ISD",
@@ -6125,7 +6221,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.saisd.net/page/substitute",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Scarsdale Union Free School District",
@@ -6329,7 +6428,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Middleton-Cross Plains Area School District",
@@ -6635,7 +6737,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://hr.jordandistrict.org/substitutes-2/",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 18,
+    "hiringAccess": "Very Competitive",
+    "hiringAccessSource": "State-level estimate based on low vacancy pressure, high retention, and strong local teacher pipeline"
   },
   {
     "District": "Chaffey Joint Union High School District",
@@ -6737,7 +6842,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Vail School District",
@@ -6839,7 +6947,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   },
   {
     "District": "Loudoun County Public Schools",
@@ -7044,7 +7155,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Val Verde Unified School District",
@@ -7147,7 +7261,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Denver Public Schools",
@@ -7249,7 +7366,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 48,
+    "hiringAccess": "Moderate / Competitive",
+    "hiringAccessSource": "State-level estimate based on moderate vacancy pressure and uneven rural/suburban hiring demand"
   },
   {
     "District": "Cherry Creek School District",
@@ -7351,7 +7471,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 48,
+    "hiringAccess": "Moderate / Competitive",
+    "hiringAccessSource": "State-level estimate based on moderate vacancy pressure and uneven rural/suburban hiring demand"
   },
   {
     "District": "Midway ISD",
@@ -7453,7 +7576,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 73
+    "rank": 73,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Leander ISD",
@@ -7555,7 +7681,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Union Public Schools",
@@ -7760,7 +7889,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Corona-Norco Unified School District",
@@ -7863,7 +7995,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Edina Public Schools",
@@ -8068,7 +8203,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Santa Ana Unified School District",
@@ -8171,7 +8309,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-21",
-    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows."
+    "salaryScheduleSourceNote": "Prototype 413 generated 0–10 year salary schedule from workbook Avg Start Salary, Avg 10-Year Salary, and Master's Premium so map/filter matching uses the same workbook district rows.",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Provo City School District",
@@ -8273,7 +8414,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 18,
+    "hiringAccess": "Very Competitive",
+    "hiringAccessSource": "State-level estimate based on low vacancy pressure, high retention, and strong local teacher pipeline"
   },
   {
     "District": "Lake Washington School District",
@@ -8477,7 +8621,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "West Ada School District",
@@ -8783,7 +8930,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Gilbert Public Schools",
@@ -8885,7 +9035,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   },
   {
     "District": "Canyons School District",
@@ -8987,7 +9140,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.canyonsdistrict.org/depts/hr/substitutes/",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 18,
+    "hiringAccess": "Very Competitive",
+    "hiringAccessSource": "State-level estimate based on low vacancy pressure, high retention, and strong local teacher pipeline"
   },
   {
     "District": "China Spring ISD",
@@ -9089,7 +9245,10 @@ const DISTRICTS = [
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
     "Sub Vendor Audit Date": "2026-06-23",
-    "rank": 89
+    "rank": 89,
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Queen Creek Unified School District",
@@ -9191,7 +9350,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.qcusd.org/substitutes",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   },
   {
     "District": "Metro Nashville Public Schools",
@@ -9498,7 +9660,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Volusia County Schools",
@@ -9703,7 +9868,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "South Pasadena Unified School District",
@@ -9805,7 +9973,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Ocean Springs School District",
@@ -10009,7 +10180,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Lake County Schools",
@@ -10419,7 +10593,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.austinisd.org/hc/careers/substitutes",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Oakland Unified School District",
@@ -10521,7 +10698,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Edmond Public Schools",
@@ -10726,7 +10906,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Oxnard Union High School District",
@@ -10828,7 +11011,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Seminole County Public Schools",
@@ -11033,7 +11219,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "https://www.guhsdaz.org/substitute",
     "Sub Vendor Evidence": "District substitute/careers page located; no outside substitute-staffing vendor identified on that page in this audit pass.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   },
   {
     "District": "Flagstaff Unified School District",
@@ -11135,7 +11324,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   },
   {
     "District": "School District of Osceola County",
@@ -11340,7 +11532,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Eanes ISD",
@@ -11442,7 +11637,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 76,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
   },
   {
     "District": "Arcadia Unified School District",
@@ -11544,7 +11742,10 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 36,
+    "hiringAccess": "Competitive",
+    "hiringAccessSource": "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
   },
   {
     "District": "Chandler Unified School District",
@@ -11646,6 +11847,9 @@ const DISTRICTS = [
     "Sub Vendor Penalty": "No vendor penalty",
     "Sub Vendor Source URL": "Targeted public-source search for district + substitute teacher + Kelly/ESS/EDUStaff/Swing/Kokua/ESI; no explicit outside-agency page found in this pass.",
     "Sub Vendor Evidence": "No public evidence found in this pass that substitute teacher hiring is managed by Kelly Education, ESS, EDUStaff, Swing, Kokua, ESI, or another outside staffing agency.",
-    "Sub Vendor Audit Date": "2026-06-21"
+    "Sub Vendor Audit Date": "2026-06-21",
+    "hiringAccessScore": 74,
+    "hiringAccess": "Accessible",
+    "hiringAccessSource": "State-level estimate based on persistent teacher staffing pressure"
   }
 ];

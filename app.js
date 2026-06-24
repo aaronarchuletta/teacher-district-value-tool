@@ -2614,6 +2614,114 @@ function renderTable() {
     return mobileScoreColor(Number(d["State Funding Context Score"]));
   }
 
+  const STATE_HIRING_ACCESS = {
+    UT: {
+      score: 18,
+      label: "Very Competitive",
+      source: "State-level estimate based on low vacancy pressure, high retention, and strong local teacher pipeline"
+    },
+    CA: {
+      score: 36,
+      label: "Competitive",
+      source: "State-level estimate based on mixed shortage evidence but strong applicant pool in desirable districts"
+    },
+    CO: {
+      score: 48,
+      label: "Moderate / Competitive",
+      source: "State-level estimate based on moderate vacancy pressure and uneven rural/suburban hiring demand"
+    },
+    AZ: {
+      score: 74,
+      label: "Accessible",
+      source: "State-level estimate based on persistent teacher staffing pressure"
+    },
+    TX: {
+      score: 76,
+      label: "Accessible",
+      source: "State-level estimate based on large hiring market and substantial use of not-fully-certified teachers"
+    },
+    NM: {
+      score: 84,
+      label: "High Need",
+      source: "State-level estimate based on statewide vacancy and shortage pressure"
+    },
+    NV: {
+      score: 93,
+      label: "Very High Need",
+      source: "State-level estimate based on severe vacancy and staffing pressure"
+    }
+  };
+
+  const HIRING_ACCESS_RATING_MAP = {
+    "Very Competitive": "Very Low",
+    "Competitive": "Low",
+    "Moderate / Competitive": "Fair",
+    "Moderate": "Fair",
+    "Accessible": "Good",
+    "High Need": "Very Good",
+    "Very High Need": "Excellent"
+  };
+
+  function hiringAccessLabelFromScore(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return null;
+    if (n < 25) return "Very Competitive";
+    if (n < 40) return "Competitive";
+    if (n < 55) return "Moderate / Competitive";
+    if (n < 70) return "Moderate";
+    if (n < 80) return "Accessible";
+    if (n < 90) return "High Need";
+    return "Very High Need";
+  }
+
+  function hiringAccessInfo(d) {
+    const districtScore = Number(d?.hiringAccessScore);
+    const districtLabel = d?.hiringAccess;
+    const stateInfo = STATE_HIRING_ACCESS[d?.State];
+    if (Number.isFinite(districtScore)) {
+      return {
+        score: districtScore,
+        label: districtLabel || hiringAccessLabelFromScore(districtScore),
+        source: d?.hiringAccessSource || stateInfo?.source || "District-specific estimate"
+      };
+    }
+    if (stateInfo && Number.isFinite(Number(stateInfo.score))) {
+      return {
+        score: Number(stateInfo.score),
+        label: stateInfo.label || hiringAccessLabelFromScore(stateInfo.score),
+        source: stateInfo.source
+      };
+    }
+    if (districtLabel) {
+      return { score: null, label: districtLabel, source: d?.hiringAccessSource || "State-level estimate" };
+    }
+    return null;
+  }
+
+  function hiringAccessTileLabel(d) {
+    return hiringAccessInfo(d)?.label || "Not Available";
+  }
+
+  function hiringAccessTileRating(d) {
+    const label = hiringAccessTileLabel(d);
+    return HIRING_ACCESS_RATING_MAP[label] || null;
+  }
+
+  function ratingNameColor(rating) {
+    const key = String(rating || "").toLowerCase();
+    if (key === "excellent") return "#0A843D";
+    if (key === "very good") return "#489D46";
+    if (key === "good") return "#8ABB40";
+    if (key === "fair") return "#D39F10";
+    if (key === "low") return "#C8102E";
+    if (key === "very low") return "#9E1B32";
+    return "#667085";
+  }
+
+  function hiringAccessTileColor(d) {
+    return ratingNameColor(hiringAccessTileRating(d));
+  }
+
   function mobileDetailIcon(kind) {
     const icons = {
       salary: '<span aria-hidden="true">$</span>',
@@ -2624,7 +2732,8 @@ function renderTable() {
       demographics: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="2.4" fill="currentColor" stroke="none"/><circle cx="7.2" cy="10.1" r="1.9" fill="currentColor" stroke="none"/><circle cx="16.8" cy="10.1" r="1.9" fill="currentColor" stroke="none"/><path d="M8.8 17.4c.4-2.1 1.8-3.3 3.2-3.3 1.5 0 2.8 1.2 3.2 3.3"/><path d="M3.9 17.4c.4-1.6 1.5-2.6 2.9-2.6 1.1 0 2 .5 2.7 1.4"/><path d="M20.1 17.4c-.4-1.6-1.5-2.6-2.9-2.6-1.1 0-2 .5-2.7 1.4"/></svg>`,
       studentTeacher: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="4.5" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="10.1" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="5" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="10.4" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/><rect x="15.8" y="15.7" width="3.2" height="2.5" rx=".4" fill="currentColor" stroke="none"/></svg>`,
       growth: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 15.5 9 11l3.2 3.2L19.5 7"/><path d="M14.5 7h5v5"/></svg>`,
-      funding: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5 12 4l8.5 5.5"/><path d="M5 19.5h14"/><path d="M6.5 17.5h11"/><path d="M7.5 10.5v7"/><path d="M12 10.5v7"/><path d="M16.5 10.5v7"/></svg>`
+      funding: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5 12 4l8.5 5.5"/><path d="M5 19.5h14"/><path d="M6.5 17.5h11"/><path d="M7.5 10.5v7"/><path d="M12 10.5v7"/><path d="M16.5 10.5v7"/></svg>`,
+      hiring: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.4c0 4.6-2.7 7.3-7 9.1-4.3-1.8-7-4.5-7-9.1V6l7-2.5z"/><path d="M9.2 12.2h5.6"/><path d="M12 9.4V15"/></svg>`
     };
     return icons[kind] || '<span aria-hidden="true">•</span>';
   }
@@ -2723,15 +2832,24 @@ function renderTable() {
       {label:"10-Year Growth", value:dynamicGrowthScore(d), displayValue:fmtPct(d["Avg Growth %"]), icon:mobileDetailIcon("growth"), color:"#0A843D"},
       {label:"Stability", value:stabilityDisplayScore(d), displayValue:stabilityTextLabel(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:d["State Funding Context Score"], displayValue:mobileStateFundingDisplayValue(d), ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
-      {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"},
-      {label:"Class Size", value:d["Student-Teacher Ratio Score"], displayValue:formatClassSizeRatio(d["Student-Teacher Ratio"]), icon:mobileDetailIcon("studentTeacher"), color:"#143865"}
+      {label:"Hiring Access", displayValue:hiringAccessTileLabel(d), ratingColor:hiringAccessTileColor(d), icon:mobileDetailIcon("hiring"), color:hiringAccessTileColor(d), hiringAccessOnly:true},
+      {label:"Demographic Balance", value:d["Demographic Balance Score"], icon:mobileDetailIcon("demographics"), color:"#4B9CD3"}
     ];
 
     highlightsEl.innerHTML = highlightData.map(item => {
       const value = Number(item.value);
       const safeValue = item.displayValue ?? (Number.isFinite(value) ? fmtScore(value) : "—");
-      const width = mobileScoreWidth(value);
       const scoreColor = item.ratingColor || mobileScoreColor(value);
+      if (item.hiringAccessOnly) {
+        return `<div class="mobile-detail-highlight hiring-access-tile ${item.wide ? "wide" : ""}" style="--hiring-access-color:${scoreColor}">
+          <div class="mobile-detail-highlight-head">
+            <div class="mobile-detail-highlight-icon" style="background:${item.color}">${item.icon}</div>
+            <div class="mobile-detail-highlight-label">${item.label}</div>
+          </div>
+          <div class="mobile-detail-highlight-value">${safeValue}</div>
+        </div>`;
+      }
+      const width = mobileScoreWidth(value);
       const ratingLabel = item.ratingLabel || mobileScoreRating(value);
       return `<div class="mobile-detail-highlight ${item.wide ? "wide" : ""}">
         <div class="mobile-detail-highlight-head">
@@ -2746,6 +2864,16 @@ function renderTable() {
   }
 
   function renderDesktopProfileMetricTile(item) {
+    if (item.hiringAccessOnly) {
+      const ratingColor = item.ratingColor || "#667085";
+      const icon = item.icon || "";
+      const iconColor = item.color || ratingColor;
+      return `<div class="metric score-feature-tile hiring-access-tile" style="--hiring-access-color:${ratingColor}">
+        <div class="desktop-score-icon" style="background:${iconColor}">${icon}</div>
+        <div class="m-label">${item.label}</div>
+        <div class="m-value">${item.value}</div>
+      </div>`;
+    }
     const hasScore = Number.isFinite(Number(item.score));
     if (!hasScore) {
       return `<div class="metric plain-centered-tile"><div class="m-label">${item.label}</div><div class="m-value">${item.value}</div></div>`;
@@ -2818,6 +2946,7 @@ function renderTable() {
     const metrics = [
       {label:"Stability", value:stabilityTextLabel(d), score:stabilityDisplayScore(d), icon:mobileDetailIcon("stability"), color:"#BF5700"},
       {label:"State Funding Per Student", value:stateFundingDisplayValue(d), score:d["State Funding Context Score"], ratingLabel:stateFundingTileRating(d), ratingColor:stateFundingTileColor(d), icon:mobileDetailIcon("funding"), color:"#8C7535"},
+      {label:"Hiring Access", value:hiringAccessTileLabel(d), ratingColor:hiringAccessTileColor(d), icon:mobileDetailIcon("hiring"), color:hiringAccessTileColor(d), hiringAccessOnly:true},
       {label:selectedEducationSalaryLabel(), value:selectedSalaryDollarValue(d), score:selectedSalaryLevelScore(d), icon:mobileDetailIcon("salary"), color:"#0A843D"},
       ...(placementLabel ? [{label:"Credited Placement", value:placementLabel}] : []),
       {label:"10-Year Growth", value:fmtPct(d["Avg Growth %"]), score:dynamicGrowthScore(d), icon:mobileDetailIcon("growth"), color:"#0A843D"},
@@ -2825,7 +2954,6 @@ function renderTable() {
       {label:"Median Home Price", value:tileMoneyWithShare(d["Median Home Price"], mortgageSalaryShare(d)), score:salaryShareScore(mortgageSalaryShare(d)), ratingLabel:salaryShareLabel(mortgageSalaryShare(d)), ratingColor:salaryShareColor(mortgageSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Median Rent", value:tileMoneyWithShare(d["Median Rent"], rentSalaryShare(d)), score:salaryShareScore(rentSalaryShare(d)), ratingLabel:salaryShareLabel(rentSalaryShare(d)), ratingColor:salaryShareColor(rentSalaryShare(d)), icon:mobileDetailIcon("affordability"), color:"#0047BA"},
       {label:"Sub Pay", value:formatDailySubPay(d), score:d["Sub Pay Score"], icon:mobileDetailIcon("subpay"), color:"#4D1979"},
-      {label:"Student-Teacher Ratio", value:d["Student-Teacher Ratio"] ?? "—", score:d["Student-Teacher Ratio Score"], icon:mobileDetailIcon("studentTeacher"), color:"#143865"},
       {label:"Total Schools", value:fmtCount(d["Total Schools Counted"] ?? ((Number(d["Number of Elementary Schools"]) || 0) + (Number(d["Number of Middle Schools"]) || 0) + (Number(d["Number of High Schools"]) || 0) + (Number(d["Other / Specialty Schools"]) || 0)))},
       {label:"Middle Schools", value:fmtCount(d["Number of Middle Schools"])},
       {label:"High Schools", value:fmtCount(d["Number of High Schools"])}

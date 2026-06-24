@@ -10646,3 +10646,40 @@ body.favorites-panel-open #mobileToolbarFavorites.is-active {
     scrollbar-gutter: auto !important;
   }
 }
+
+
+/* Prototype 461: Hiring Access profile tile */
+.profile-card .metric.hiring-access-tile,
+.mobile-detail-highlight.hiring-access-tile {
+  border-color: color-mix(in srgb, var(--hiring-access-color, #667085) 40%, #e5e9f2);
+}
+
+.profile-card .metric.hiring-access-tile .m-value,
+.mobile-detail-highlight.hiring-access-tile .mobile-detail-highlight-value {
+  color: var(--hiring-access-color, #667085) !important;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.profile-card .metric.hiring-access-tile .m-value {
+  font-size: 22px !important;
+}
+
+.mobile-detail-highlight.hiring-access-tile .mobile-detail-highlight-value {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 18px;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 769px) {
+  .profile-card .metric.score-feature-tile.hiring-access-tile {
+    padding-bottom: 16px !important;
+  }
+  .profile-card .metric.score-feature-tile.hiring-access-tile .m-value {
+    transform: translateY(-28%);
+  }
+}
