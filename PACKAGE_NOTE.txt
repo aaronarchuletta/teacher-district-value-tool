@@ -1,1 +1,11 @@
 Prototype 440 combines the latest Waco-area district additions, visible-map sortable rankings, New Mexico map dots, nearest-city region labels, and the Licensure full-page app. The Licensure page now uses Illinois-style pathway and step cards. Upload all active files together and test with ?v=440-illinois-licensure-cards.
+
+
+## Prototype 463 - Enrollment-informed stability audit
+- Applied the updated stability methodology to the 114-district prototype data.
+- Preserved the Overall Value formula structure: Pre-Risk Overall × Stability Multiplier.
+- Added enrollment-informed stability audit fields to each district.
+- Strengthened penalties for districts with public evidence of enrollment-linked budget cuts, structural deficits, layoffs, consolidation risk, or funding pressure.
+- Added fast-growth watch treatment where growth may exceed the ideal steady-growth zone.
+- No new weighted category was added to the Overall Value formula.
+- Cache-busting updated to v463-enrollment-stability-audit.

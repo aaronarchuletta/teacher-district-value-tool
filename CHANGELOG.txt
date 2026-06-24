@@ -297,3 +297,13 @@ Prototype 461 — Hiring Access profile tile
 - Added Hiring Access immediately after State Funding Per Student in the profile tile grid.
 - Hiring Access uses preliminary state-level defaults only for UT, CA, CO, AZ, TX, NM, and NV; all other states display Not Available.
 - Hiring Access is display-only and does not affect Overall Value Score, scoring weights, filters, map behavior, rankings, or workbook methodology.
+
+
+## Prototype 463 - Enrollment-informed stability audit
+- Applied the updated stability methodology to the 114-district prototype data.
+- Preserved the Overall Value formula structure: Pre-Risk Overall × Stability Multiplier.
+- Added enrollment-informed stability audit fields to each district.
+- Strengthened penalties for districts with public evidence of enrollment-linked budget cuts, structural deficits, layoffs, consolidation risk, or funding pressure.
+- Added fast-growth watch treatment where growth may exceed the ideal steady-growth zone.
+- No new weighted category was added to the Overall Value formula.
+- Cache-busting updated to v463-enrollment-stability-audit.
